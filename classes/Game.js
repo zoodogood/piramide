@@ -72,7 +72,7 @@ class Game extends EventEmitter {
 
 
     #checkFilling(){
-      let full = this.#arrayList.find(arr => arr.length === this.arraySize);
+      let full = this.#arrayList.find(arr => arr.length === this.#arraySize);
       if (!full){
         return;
       }
@@ -281,3 +281,9 @@ async function stepsHandler(){
 
   stepsHandler.handle = false;
 }
+
+
+window.addEventListener("error", e => {
+  console.log(123);
+  Alert.create(e.message, "error", "Просто ошибка");
+});
