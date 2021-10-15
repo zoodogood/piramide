@@ -6,6 +6,7 @@ class Game extends EventEmitter {
     #score
     #arraySize
     #arrayCount
+    #win
 
     constructor({count: arrayCount = 3, size: arraySize = 15}){
       super();
@@ -110,6 +111,11 @@ class Game extends EventEmitter {
 
     #playerWinner(){
       this.emit("win");
+      this.#win = true;
+    }
+
+    isWin(){
+      return !!this.#win;
     }
 }
 
@@ -148,7 +154,11 @@ Game.prototype.visualize = function (){
 
 // Срабатывает кнопкой Пуск или нажатием пробела
 function launch(){
-  eval(codearea.textContent);
+  try {
+    eval(codearea.textContent);
+  } catch (err) {
+    console.error(err.message);
+  }
 }
 
 // Ну и при старте)
@@ -159,11 +169,15 @@ function generateHandle(game){
   gameElement._game = game;
 
   if (score){
-    scoreMap.push(score);
+    scoreMap.push([score, game.isWin()]);
     score = 0;
+    localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
   }
 
   steps.length = 0;
+
+  console.log("%c🦝 Игра сгенерированна. Старт! ", "color: green; padding: 30px;");
+  console.log("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
 
   createTowers();
 }
@@ -171,7 +185,8 @@ function generateHandle(game){
 function stepHandle(game, move = {from: 0, to: 1}){
   score = game.getScore();
   steps.push(move);
-  moveSlab(move);
+
+  stepsHandler();
 }
 
 
@@ -225,7 +240,7 @@ async function moveSlab({from, to}){
   await delay(15);
 
   sameElement.style.transform = `translateY(-30vh)`;
-  await delay(300);
+  await delay(200);
 
   let toTower = gameElement.children.item(to);
 
@@ -234,12 +249,12 @@ async function moveSlab({from, to}){
 
 
   sameElement.style.transform = `translateY(-30vh) translateX(${distance}px)`;
-  await delay(250);
+  await delay(175);
 
 
   let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
   sameElement.style.transform = `translateY(${slabsHeight}vh) translateX(${distance}px)`;
-  await delay(300);
+  await delay(200);
 
   sameElement.style.transition = "";
   sameElement.style.transform = "";
@@ -247,4 +262,22 @@ async function moveSlab({from, to}){
 
   toTower.prepend(sameElement);
   return;
+}
+
+
+
+async function stepsHandler(){
+  if (stepsHandler.handle === true){
+    return;
+  }
+
+  stepsHandler.handle = true;
+
+  while (steps.length){
+    console.log(steps);
+    let move = steps.shift();
+    await moveSlab(move);
+  }
+
+  stepsHandler.handle = false;
 }

@@ -50,7 +50,7 @@
   background-color: #ffffff;
   width: 100%;
   height: 15px;
-  transition: transform 300ms, border-radius 300ms;
+  transition: transform 200ms, border-radius 200ms;
   z-index: -1;
 }
 

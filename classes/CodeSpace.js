@@ -4,7 +4,11 @@ const codearea = codespace.children.item(1);
 
 
 // Заполняет код
-defaultCode();
+function setCode(){
+  codearea.textContent = localStorage.getItem("userCode") || defaultCode();
+  hljs.highlightElement(  codearea  );
+}
+setCode();
 
 
 const stretch = codespace.children.item(0);
@@ -47,7 +51,7 @@ function copyAllCode(){
 
 
 function defaultCode(){
-  codearea.textContent = `
+  return `
     const game = new Game({size: 15, count: 3}).visualize();
 
     // Перемещает верхнюю плитку от первой башенки к третьей башне
@@ -55,11 +59,34 @@ function defaultCode(){
 
     console.log( game.list );
   `;
+}
+
+function setDefaultCode(){
+  codearea.textContent = defaultCode();
   hljs.highlightElement(  codearea  );
 }
 
-
 function checkScoreMap(){
-  Alert.create("Загляните в консоль.</br>Там статистика!");
+  // Alert.create("Загляните в консоль.</br>Там статистика!");
   navigator.clipboard.writeText( codearea.textContent );
+  console.log();
+  Alert.create("Ещё не готово", "warning", ":(");
 }
+
+
+codearea.addEventListener("input", e => {
+  localStorage.setItem("userCode", codearea.textContent);
+});
+
+
+
+document.addEventListener("keydown", e => {
+  if (document.activeElement === codearea)
+    return;
+
+  if (e.code !== "Space")
+    return;
+
+  launch();
+  e.preventDefault();
+});
