@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Пирамидка</title>
+    <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
+    <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="resources/game.css">
+    <link rel="stylesheet" href="resources/code-space.css">
+    <link rel="stylesheet" href="resources/footer.css">
+  </head>
+  <body>
+    <main>
+      <section id = "game">
+          <div class = "array">
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+            <div class = "slab"></div>
+          </div>
+          <div class = "array"></div>
+          <div class = "array"></div>
+      </section>
+      <section id = "code-space">
+          <div id = "stretch-container"></div>
+          <code contenteditable placeholder = "Зачем вы стёрли весь код?">
+
+
+        </code>
+        <div id = "control-buttons">
+          <span class = "button" title = "Запустить сценарий! *Пробел*" onclick = "launch()">
+            <span class = "icon">p</span> Пуск!
+          </span>
+          <span class = "button" onclick = "checkScoreMap()">
+            <span class = "icon">i</span> График ходов
+          </span>
+          <span class = "button" onclick = "copyAllCode()">
+            <span class = "icon"></span> Скопировать
+          </span>
+          <span class = "button" onclick = "defaultCode()">
+            <span class = "icon">h</span> Код по умолчанию
+          </span>
+        </div>
+      </section>
+    </main>
+
+    <section id = "readme">
+      <main>
+        <h1>ПОЯСНЕНИЕ ЗАДАЧИ</h1>
+        Задача считается выполненной, если вызван метод <code>game.#playerWinner</code> любого экземпляра класса <code>Game</code>.
+        </br>
+        Если у вас получится сделать это "нечестным" способом — вы всё-равно победили!
+        </br>
+        Например, создав миллион таких экземпляров можно быть уверенными, что один из них в точности повторяет законченную структуру
+        </br>
+        </br>
+        Простите, отошёл от сути. В поле выше вы можете писать код. Задача алгоритма — перенести все элементы трёх массивов в один, при этом удерживая последовательность элементов от большего к меньшему</br>Звучит просто, да? Нет. Создайте-же оптимальное решение!
+        </br>Массив представляет собой обычный набор чисел — плиток. Чем больше число, тем шире плитка :)
+        </br>
+        </br>
+        Напрямую взаимодействовать с массивами невозможно. Для этого у <code>game</code> есть замечательный метод <code>step</code>, который перемещает элементы между массивами.
+        </br>
+        Функция "шаг" имеет два аргумента: <code>from</code> и <code>to</code> — это числа, или же номера массивов. Мы берём последний элемент одного массива и помещаем в конец второго.
+        </br>
+        Хотя прямая работа с башнями (массивами) невозможна — получить их список со всеми элементами можно с помощью свойства <code>game.list</code>
+
+
+
+        <h2>Советы</h2>
+        1. Используйте консоль разработчика (по умолчанию F12) Во вкладке <code>Console</code> кроме пасхалки вы можете получить информацию о процессе выполнения вашего алгоритма
+        </br>
+        2. Просмотрите код самой игры, он краток и прост для чтения. Найти его можно посетив <a href = "https://zoodogood.github.io/solodota/" target="_blank"><span class = "icon">g</span> Страницу Гитхаба</a>
+        </br>
+        3. Раздел сверху создан для визуализации взаимодействия с игрой. Надеюсь, он будет вам полезен. Широкие плитки должны находится снизу, тонкие — сверху.
+        </br>
+        4. Помните, Ваш код и Ваша статистика сохраняются даже при перезагрузке страницы.
+      </main>
+      <footer>
+        <span>Самое время нажать *Пробел*</span>
+      </footer>
+    </section>
+
+
+    <script type="text/javascript" src = "classes/EventEmitter.js"></script>
+    <script type="text/javascript" src = "classes/Util.js"></script>
+
+    <link rel="stylesheet" href="resources/alert-field.css">
+    <script type="text/javascript" src = "classes/alerts.js"></script>
+
+    <link rel="stylesheet" href="resources/highlight/styles/a11y-dark.min.css">
+    <script type="text/javascript" src = "resources/highlight/highlight.min.js"></script>
+    <script type="text/javascript" src = "classes/CodeSpace.js"></script>
+
+    <script type="text/javascript" src = "classes/Game.js"></script>
+    <script type="text/javascript" src = "main.js"></script>
+  </body>
+</html>

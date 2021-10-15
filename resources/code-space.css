@@ -1,0 +1,64 @@
+#code-space {
+  position: absolute;
+  background-color: #2b2b2b;
+  left: 0px;
+  bottom: 0px;
+}
+
+
+#code-space code {
+  display: block;
+  resize: none;
+  left: 0px;
+  width: 98vw;
+  height: 26vh;
+  min-height: 20vh;
+  max-height: 94vh;
+  border: none;
+  padding-top: 1vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+
+  word-wrap: normal;
+  white-space: pre-wrap;
+  overflow-y: overlay;
+}
+
+
+#code-space code:focus {
+  outline: none;
+}
+
+
+#code-space #stretch-container {
+  height: 1vh;
+  width: 100vw;
+  cursor: row-resize;
+}
+
+#code-space #control-buttons {
+  display: flex;
+  height: 3vh;
+  background-color: #1d1d1d;
+}
+
+
+#code-space #control-buttons .button {
+  display: flex;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-size: 0.9em;
+  align-items: center;
+}
+
+#code-space #control-buttons .button:hover {
+  filter: brightness(1.5);
+  backdrop-filter: brightness(1.5);
+}
+
+#code-space #control-buttons .button .icon {
+  padding-right: 5px;
+}
