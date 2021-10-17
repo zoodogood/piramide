@@ -2,7 +2,6 @@
 console.warn = () => {}
 
 // Всплывающее сообщение
-const Alert = new AlertBubble( 15000 );
 Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Вы всегда можете <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>прокрутить</a> вниз страницы, чтобы прочитать короткую документацию или просмотреть основной код игры и её правила", "success", "Помощник");
 
 

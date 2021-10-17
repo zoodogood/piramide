@@ -58,3 +58,6 @@ class AlertBubble {
     return field;
   }
 }
+
+
+const Alert = new AlertBubble( 15000 );

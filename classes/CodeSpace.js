@@ -69,8 +69,8 @@ function setDefaultCode(){
 function checkScoreMap(){
   // Alert.create("Загляните в консоль.</br>Там статистика!");
   navigator.clipboard.writeText( codearea.textContent );
-  console.log();
-  Alert.create("Ещё не готово", "warning", ":(");
+  console.log( localStorage.getItem("scoreMap") );
+  Alert.create("Ещё не готово</br>19.12", "warning", ":(");
 }
 
 

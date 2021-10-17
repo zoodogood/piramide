@@ -15,7 +15,6 @@
   min-height: 20vh;
   max-height: 94vh;
   border: none;
-  padding-top: 1vh;
   padding-left: 1vw;
   padding-right: 1vw;
 
@@ -31,7 +30,7 @@
 
 
 #code-space #stretch-container {
-  height: 1vh;
+  height: 2vh;
   width: 100vw;
   cursor: row-resize;
 }
