@@ -39,12 +39,10 @@ each( arr ); // 3, 2, 2
 let array = [5, 5, 5];
 
 function each(arr){
-
   let i = 0;
   while (arr.length < i){
     console.log( array[i] );
     i++;
   }
-
 }
 ```
