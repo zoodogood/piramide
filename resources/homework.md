@@ -36,15 +36,15 @@ each( arr ); // 3, 2, 2
 
 Эта же функция без горы комментариев
 ```js
-let arr = [5, 5, 5];
+let array = [5, 5, 5];
 
-function each(array){
+function each(arr){
+
   let i = 0;
-  let len = array.length;
-  while (l < i){
-    let element = array[i];
-    console.log(element);
+  while (arr.length < i){
+    console.log( array[i] );
     i++;
   }
+
 }
 ```
