@@ -173,6 +173,5 @@ _Начните с тренеровки на самых простых веща�
   
 Замечательный источник информации:  
 https://learn.javascript.ru/array  
-  
-~ Досвидания!
+Досвидания!
 ![image](https://images-ext-1.discordapp.net/external/www2ZBQ_g85ePokQyLc22m_XYuP7Do-1rskJT0MHmF4/%3Fwidth%3D1214%26height%3D683/https/media.discordapp.net/attachments/605085718947299389/812728041407119410/wallhaven-zxg7gj.jpg)
