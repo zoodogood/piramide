@@ -147,6 +147,8 @@ array[3] // 8
   
   
 ***
+
+![coffee](https://media.discordapp.net/attachments/803991213551255612/899512648373272596/dfb22326d9b5d91c.gif)
   
   
 #### Условия задачи
