@@ -35,7 +35,7 @@ function launch(){
 }
 
 // Ну и при старте)
-launch();
+// launch();
 
 
 function generateHandle(game){
