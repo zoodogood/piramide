@@ -96,7 +96,7 @@ console.log( "🦝" + string ); // "🦝🍪🍪🍪"
 ```js
 let cube = {
   color: "red",
-  size: "10cm",
+  size:  "10cm",
   material: "wood"
 }
 console.log( cube.color ); // red
@@ -105,8 +105,8 @@ console.log( cube.color ); // red
 
 Объекты в программировании не всегда содержат данные об обычных вещах, например, мы можем создать коллекцию независимых предметов, и это все ещё будет объект!
 ```js
-let cube = {color: "green"};
-let image = {width: 5, height: 7};
+let cube  = { color: "green" };
+let image = { width: 5, height: 7 };
 
 let collection = {
   cube: cube,
@@ -115,6 +115,7 @@ let collection = {
 }
 collection.cube.color = "blue" // "blue"  
 cube.color // "blue" (прошлая строчка кода изменила значение переменной-свойства color)
+
 // Так тоже будет работать:
 collection["carrot"]; // "🥕"
 ```
