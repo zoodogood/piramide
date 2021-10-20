@@ -30,7 +30,7 @@ Array.prototype.random = function(pop, weights){
     let last = 0;
     let limites = this.map((e, i) => last = e._weight + last);
 
-    let rand = Math.random() * limites.last;
+    let rand = Math.random() * limites.at(-1);
     index = limites.findIndex(e => e >= rand);
   }
   else index = Math.floor(Math.random() * this.length);

@@ -26,3 +26,17 @@ document.addEventListener("wheel", e => {
     behavior: "smooth"
   });
 }, {passive: false});
+
+
+
+// Срабатывает кнопкой Пуск или нажатием пробела
+function launch(){
+  try {
+    eval(codearea.textContent);
+  } catch (err) {
+    Alert.create(err.message, "error", "Просто ошибка");
+    console.error(err);
+  }
+}
+
+launch();

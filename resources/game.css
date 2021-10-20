@@ -11,7 +11,7 @@
 }
 
 
-#game .array {
+.array {
   min-width: 40vh;
   min-height: 40vh;
   margin-left: 10vh;
@@ -29,11 +29,11 @@
   overflow: visible;
 }
 
-#game .array:hover {
+.array:hover {
   background: rgba(255, 255, 255, 0.02);
 }
 
-#game .array::before {
+.array::before {
   content: "";
   display: flex;
   position: absolute;
@@ -46,7 +46,7 @@
   border-radius: 15px 15px 0% 0%;
 }
 
-#game .array .slab {
+.array .slab {
   background-color: #ffffff;
   width: 100%;
   height: 15px;
@@ -54,6 +54,6 @@
   z-index: -1;
 }
 
-#game .array .slab:first-child {
+.array .slab:first-child {
   border-radius: 15px 15px 0% 0%;
 }

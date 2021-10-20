@@ -31,10 +31,16 @@ document.addEventListener("mousedown", e => {
     hljs.highlightElement(  codearea  );
 });
 
-// Привычка использовать таб в редакторе кода мешает (
+// Поддержка Таба и Enter внутри Codearea
 document.addEventListener("keydown", e => {
-  if (e.key !== "Tab")
+  if (e.key !== "Tab" && e.key !== "Enter")
     return;
+
+  if (e.key === "Enter" && e.shiftKey)
+    return;
+
+  let sel = window.getSelection();
+  console.log(sel);
 
   e.preventDefault();
 });
