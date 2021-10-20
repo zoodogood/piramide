@@ -24,6 +24,7 @@ class Game extends EventEmitter {
 
       this.#arrayCount = arrayCount;
       this.#arraySize  = arraySize;
+      this.#hardmode   = hardmode;
       this.generate();
     }
 
@@ -69,6 +70,11 @@ class Game extends EventEmitter {
 
       if (isNaN(from) || isNaN(to))
         throw new Error(`Argument's must be a number. from — ${from}, to — ${to}`);
+
+      // В хард режиме нельзя класть большую плитку на меньшую
+      if ( this.#hardmode && second.at(-1) < from.at(-1) )
+        throw new Error(`Into Hardmode You cannot put the larger slab on smaller`);
+
 
 
       second.push( first.pop() );
