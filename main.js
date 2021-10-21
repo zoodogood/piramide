@@ -39,7 +39,6 @@ function launch(){
   }
 }
 
-console.log(window.location.href.includes);
 if ( !window.location.href.includes("ignore") ){
   launch();
 }

@@ -26,21 +26,52 @@ stretch.addEventListener("mousedown", async () => {
 });
 
 
-// При каждом клике окрашивать синтаксис
+
+
+
+// При клике окрашивать синтаксис
 document.addEventListener("mousedown", e => {
-    hljs.highlightElement(  codearea  );
+  if ( e.path.includes(codearea) )
+    return;
+
+  hljs.highlightElement(  codearea  );
 });
 
+
+
+
+
 // Поддержка Таба и Enter внутри Codearea
-document.addEventListener("keydown", e => {
+codearea.addEventListener("keydown", e => {
   if (e.key !== "Tab" && e.key !== "Enter")
     return;
 
   if (e.key === "Enter" && e.shiftKey)
     return;
 
-  let sel = window.getSelection();
-  console.log(sel);
+
+  const key = {Enter: "\n", Tab: "\t"}[e.key];
+
+
+  const selection = window.getSelection();
+  let prev = selection.baseNode.nodeValue.substring(0, selection.baseOffset);
+  let end  = selection.baseNode.nodeValue.substring(selection.baseOffset);
+
+  selection.baseNode.nodeValue = `${  prev  }${ key }${  end  }`;
+
+  const range = document.createRange();
+  range.selectNodeContents( selection.baseNode );
+  range.collapse(false);
+
+  range.setStart( selection.baseNode, `${  prev  }${ key }`.length );
+  range.setEnd  ( selection.baseNode, `${  prev  }${ key }`.length );
+
+
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+
+  //
 
   e.preventDefault();
 });
@@ -90,9 +121,19 @@ document.addEventListener("keydown", e => {
   if (document.activeElement === codearea)
     return;
 
-  if (e.code !== "Space")
+  if (e.code !== "Enter" || !e.shiftKey)
     return;
 
   launch();
+  e.preventDefault();
+});
+
+
+document.addEventListener("keydown", e => {
+
+  if (e.code !== "Escape")
+    return;
+
+  codearea.blur();
   e.preventDefault();
 });
