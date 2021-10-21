@@ -118,7 +118,7 @@ codearea.addEventListener("input", e => {
 
 
 document.addEventListener("keydown", e => {
-  if (document.activeElement === codearea)
+  if (document.activeElement !== codearea)
     return;
 
   if (e.code !== "Enter" || !e.shiftKey)
@@ -130,6 +130,8 @@ document.addEventListener("keydown", e => {
 
 
 document.addEventListener("keydown", e => {
+  if (document.activeElement !== codearea)
+    return;
 
   if (e.code !== "Escape")
     return;
