@@ -46,11 +46,11 @@ codearea.addEventListener("keydown", e => {
   if (e.key !== "Tab" && e.key !== "Enter")
     return;
 
-  if (e.key === "Enter" && e.shiftKey)
+  if (e.key === "Enter" && e.ctrlKey)
     return;
 
 
-  const key = {Enter: "\n", Tab: "\t"}[e.key];
+  const key = {Enter: "\n", Tab: "  "}[e.key];
 
 
   const selection = window.getSelection();
@@ -121,7 +121,7 @@ document.addEventListener("keydown", e => {
   if (document.activeElement !== codearea)
     return;
 
-  if (e.code !== "Enter" || !e.shiftKey)
+  if (e.code !== "Enter" || !e.ctrlKey)
     return;
 
   launch();
