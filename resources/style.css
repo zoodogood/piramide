@@ -12,6 +12,10 @@
   overflow-y: overlay;
 }
 
+::selection {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .icon {
   font-family: 'Icons', 'Open Sans', sans-serif;
 }

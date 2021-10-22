@@ -89,12 +89,12 @@ function copyAllCode(){
 
 function defaultCode(){
   return `
-    const game = new Game({size: 15, count: 3}).visualize();
+const game = new Game({size: 15, count: 3}).visualize();
 
-    // Перемещает верхнюю плитку от первой башенки к третьей башне
-    game.step(0, 2);
+// Перемещает верхнюю плитку от первой башенки к третьей башне
+game.step(0, 2);
 
-    console.log( game.list );
+console.log( game.list );
   `;
 }
 

@@ -30,7 +30,7 @@
 }
 
 .array:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .array::before {

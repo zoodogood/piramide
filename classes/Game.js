@@ -29,9 +29,14 @@ class Game extends EventEmitter {
     }
 
 
-    /* Создаются копии массивов */
+    /*
+    Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
+    Он будет автоматически изменятся при "Шаге" игры
+    */
     get list(){
-      return [...this.#arrayList].map(arr => [...arr]);
+      let proxyArray = [...this.#arrayList].map( arr => [...arr] );
+      this.on("step", ({from, to}) =>   proxyArray[to].push( proxyArray[from].pop()  ) );
+      return proxyArray;
     }
 
 

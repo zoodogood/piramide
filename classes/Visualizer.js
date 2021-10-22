@@ -1,12 +1,35 @@
 // Устаналивает цвет плитке, можете настроить по своему хотению и скинуть мне :D
 
+function randomColorizzeFunc(size){
+  const colorsFunc = [
+    {
+      func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
+      _weight: 1
+    },
+    {
+      func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)`,
+      _weight: 5
+    },
+    {
+      func: (n) => `hsl(${ random(50) }, 100%, 70%)`,
+      _weight: 15
+    },
+    {
+      func: (n) => n % 2 ? "#c6e44e" : "#70d729",
+      _weight: 25
+    }
+  ];
+  return colorsFunc.random(false, true).func;
+}
+
+
 let setSlabColor = [
   {
     func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
     _weight: 1
   },
   {
-    func: (n) => `hsl(${ random(50) + 190 }, ${70 / 15 * n + 30}%, 70%)`,
+    func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / 15 * n) + 30}%, 70%)`,
     _weight: 5
   },
   {
