@@ -118,9 +118,6 @@ codearea.addEventListener("input", e => {
 
 
 document.addEventListener("keydown", e => {
-  if (document.activeElement !== codearea)
-    return;
-
   if (e.code !== "Enter" || !e.ctrlKey)
     return;
 

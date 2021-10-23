@@ -100,7 +100,7 @@ class Game extends EventEmitter {
         return false;
 
 
-      let notSortedItem = full.find((num, index) => this.#arraySize - num !== index);
+      let notSortedItem = full.find((num, index) => num !== index + 1);
 
       if (notSortedItem)
         return false;

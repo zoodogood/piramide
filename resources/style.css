@@ -70,7 +70,17 @@ body {
   align-items: center;
   background-color: #36393f;
   color: #d5d0d4;
+  animation: win 500ms;
+  animation-delay: 1s;
 }
+
+/* body:hover {
+  opacity: 100%;
+  background: linear-gradient(316deg, #ffc857 0%, #32254a 74%);
+
+} */
+
+
 
 code {
   font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;

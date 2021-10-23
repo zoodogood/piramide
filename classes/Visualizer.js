@@ -206,7 +206,17 @@ class Tower {
       smallestSlab = Math.min( ...this.array );
 
     let name = Tower.namesList.random();
-    Alert.create(`<b>Характеристики:</b>\nКоличество элементов: ${ elementCount }\nРазмер самой большой плитки: ${ greatestSlab }\nСамой маленькой: ${ smallestSlab }`, "success", `Башня ${ name }`);
+
+    let description =
+      this.array.length === 1 ?
+      `<b>Характеристики:</b>\nИмеет всего один элемент со значением ${ this.array[0] };` :
+      this.array.length ?
+      `<b>Характеристики:</b>\nКоличество элементов: ${ elementCount }\nРазмер самой большой плитки: ${ greatestSlab }\nСамой маленькой: ${ smallestSlab }` :
+      `<b>Характеристики:</b>\nОна пустая; И это всегда отлично. Башня без плит — хорошее пространство для их вдумчивого размещения, а также знак того, что вы близки к победе!`
+
+
+
+    Alert.create(description, "success", `Башня ${ name }`);
   }
 
   static namesList = ["великого бездельника", "Енота", "Человека", "какого-то волшебника"];
@@ -274,7 +284,7 @@ let score = 0;
 Game.prototype.visualize = function(){
   this.on("generate", () => visualizer.generateHandle());
   this.on("step", e => visualizer.stepHandle(e));
-  this.on("win", () => visualizer.winHandle());
+  this.on("win", () => visualizer.gameWin = true);
 
 
   visualizer.generateHandle(this);
