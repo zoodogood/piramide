@@ -5,9 +5,8 @@
 Пользователю предстоит написать алгоритм для решения детской задачи — построить пирамидку, которая с высотой постепенно уменьшается в диаметре.  
 ![Мем](https://media.discordapp.net/attachments/770349221634244639/897401681778733096/unknown.png)
   
-123
 ***
-
+  
 ## Минимальные-необходимые знания о JS
 + [Хранение, чтение данных](https://github.com/zoodogood/piramide/blob/main/README.md#%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%87%D1%82%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)
 + [Строки](https://github.com/zoodogood/piramide/blob/main/README.md#%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8)
