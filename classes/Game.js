@@ -8,6 +8,7 @@ class Game extends EventEmitter {
     #hardmode
 
     constructor({ count: arrayCount = 3, size: arraySize = 15, hardmode = false }){
+      // Функция вызывающая EventEmmiter — позволяет работать ивентами
       super();
 
       if (arrayCount < 3)
@@ -29,6 +30,7 @@ class Game extends EventEmitter {
     }
 
 
+
     /*
     Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
     Он будет автоматически изменятся при "Шаге" игры
@@ -40,18 +42,22 @@ class Game extends EventEmitter {
     }
 
 
+
     #score;
     generate(){
       let size  = this.#arraySize;
       let count = this.#arrayCount;
-
+      
+      // Массив плит от 1 до `size` расположенных в случ. порядке
       let slabs = [...new Array(size)]
         .map((e, i) => i + 1)
         .sort(() => Math.random() - 0.5);
-
+      
+      // Создаётся набор Массивов
       this.#arrayList = [...new Array(count)]
         .map(e => []);
 
+      // Все плиты попадают в один из массивов созданных на прошлом этапе
       slabs.forEach(e => this.#arrayList[ random(0, this.#arrayList.length - 1) ].push(e));
 
       this.#score = 0;
@@ -64,7 +70,8 @@ class Game extends EventEmitter {
     */
     step(from = 0, to = 2){
       let first = this.#arrayList[from], second = this.#arrayList[to];
-
+      
+      // Если массива с таким номером не существует
       if (from < 0 || to > this.#arraySize)
         throw new Error(`Cannot step from array ${from} to ${to}`);
 
@@ -72,7 +79,7 @@ class Game extends EventEmitter {
       if (first.length === 0)
         throw new Error("You are trying to pull out an element of an empty array");
 
-
+      // Если не число, вызвать ошибку
       if (isNaN(from) || isNaN(to))
         throw new Error(`Argument's must be a number. from — ${from}, to — ${to}`);
 
@@ -92,20 +99,21 @@ class Game extends EventEmitter {
 
 
 
-
     #checkFilling(){
+      // Ищем заполненный массив
       let full = this.#arrayList.find(arr => arr.length === this.#arraySize);
-
+      
+      // Если такого не существует завершить функцию
       if (!full)
         return false;
 
-
+      // Проверяем все ли плиты на своих местах
       let notSortedItem = full.find((num, index) => num !== index + 1);
 
       if (notSortedItem)
         return false;
 
-
+      // Победа!
       this.#playerWinner();
       return true;
     }
