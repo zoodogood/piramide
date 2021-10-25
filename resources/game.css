@@ -7,7 +7,7 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  
+
   /* background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
                 radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
 
@@ -60,4 +60,29 @@
 
 .array .slab:first-child {
   border-radius: 15px 15px 0% 0%;
+}
+
+
+
+
+
+#title {
+  color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  letter-spacing: 9px;
+  font-size: 5.5em;
+  z-index: -1;
+  top: 10vh;
+  vertical-align: center;
+  text-align: center;
+
+  white-space: pre-wrap;
+  line-height: 90%;
+
+  transition: color 1s;
+
+  overflow: visible;
 }

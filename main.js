@@ -2,7 +2,7 @@
 console.warn = () => {}
 
 // Всплывающее сообщение
-Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Вы всегда можете <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>прокрутить</a> вниз страницы, чтобы прочитать короткую документацию или просмотреть основной код игры и её правила", "success", "Помощник");
+Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>снизу</a> страницы", "success", "Привет!");
 
 
 // Скролл вверх страницы при запуске
@@ -30,9 +30,9 @@ document.addEventListener("wheel", e => {
 
 
 // Срабатывает кнопкой Пуск или нажатием пробела
-function launch(){
+async function launch(){
   try {
-    eval(codearea.textContent);
+    await eval(`(async () => {${codearea.textContent}})()`);
   } catch (err) {
     Alert.create(err.message, "error", "Просто ошибка");
     console.error(err);

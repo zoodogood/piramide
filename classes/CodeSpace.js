@@ -95,7 +95,7 @@ const game = new Game({size: 15, count: 3}).visualize();
 game.step(0, 2);
 
 console.log( game.list );
-  `;
+ `;
 }
 
 function setDefaultCode(){
@@ -121,7 +121,7 @@ document.addEventListener("keydown", e => {
   if (e.code !== "Enter" || !e.ctrlKey)
     return;
 
-  launch();
+  document.querySelector("#play-button").click();
   e.preventDefault();
 });
 

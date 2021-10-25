@@ -7,16 +7,18 @@
 
 
 #code-space code {
+  box-sizing: border-box;
   display: block;
   resize: none;
   left: 0px;
-  width: 97.5vw;
+  width: 100vw;
   height: 26vh;
   min-height: 20vh;
   max-height: 94vh;
   border: none;
   padding-left: 2.5vw;
   padding-right: 0vw;
+  padding-bottom: 18vh;
 
   word-wrap: normal;
   white-space: pre-wrap;
@@ -39,6 +41,7 @@
   display: flex;
   height: 3vh;
   background-color: #1d1d1d;
+  user-select: none;
 }
 
 
@@ -60,4 +63,9 @@
 
 #code-space #control-buttons .button .icon {
   padding-right: 5px;
+}
+
+
+#code-space #control-buttons .button:active {
+  transform: scale(0.95);
 }

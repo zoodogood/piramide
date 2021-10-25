@@ -23,26 +23,6 @@ function randomColorizzeFunc(size){
 }
 
 
-let setSlabColor = [
-  {
-    func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
-    _weight: 1
-  },
-  {
-    func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / 15 * n) + 30}%, 70%)`,
-    _weight: 5
-  },
-  {
-    func: (n) => `hsl(${ random(50) }, 100%, 70%)`,
-    _weight: 15
-  },
-  {
-    func: (n) => n % 2 ? "#c6e44e" : "#70d729",
-    _weight: 25
-  }
-].random(false, true).func;
-
-
 
 class Visualizer {
   constructor(elementSelector = "#game"){
@@ -61,7 +41,7 @@ class Visualizer {
     this.gameElement._game = game;
 
     if (this.score){
-      scoreMap.push([score, game.isWin()]);
+      scoreMap.push([score, game.hasWin]);
       score = 0;
       localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
     }
@@ -85,9 +65,10 @@ class Visualizer {
   }
 
 
-
+  // Срабатывает при game.emit("win"), но не в момент победы по визуализации
   winHandle(){
-    Alert.create(`ЭТО ПОБЕДА! ⛊\nВыполнено ходов — ${ this.game.getScore() }`, "success", "Пришёл, увидел, Победил!");
+    // Учитывая синхронность операций мы можем точно быть уверены, что последний сделанный шаг привёл к победе
+    this.steps.at(-1).toWin = true;
   }
 
 
@@ -101,29 +82,44 @@ class Visualizer {
     while ( this.steps.length ){
       let move = this.steps.shift();
       await this.moveSlab(move);
+
+      if (move.toWin)
+        this.visualizeWin();
+
     }
 
     this.stepsHandler.handle = false;
   }
 
 
-  async moveSlab({ from, to }){
+  async moveSlab({ from, to, toWin = false }){
     let fromTower = this.gameElement.children.item( from );
+    let toTower = this.gameElement.children.item( to );
+
     let sameElement = [...fromTower.children][0];
-    await delay(15);
+
+    await delay(30);
 
     sameElement.style.transform = `translateY(-30vh)`;
     await delay(200);
 
-    let toTower = this.gameElement.children.item( to );
+
 
     // Расстояние между башнями
     let distance = toTower.getBoundingClientRect().left - fromTower.getBoundingClientRect().left;
 
 
     sameElement.style.transform = `translateY(-30vh) translateX(${distance}px)`;
-    await delay(175);
 
+    // if (toWin){
+    //   await delay(300);
+    //   sameElement.style.transform = `scale(1.5) translateY(-30vh) translateX(${distance}px)`;
+    // }
+    // else {
+    //
+    // }
+
+    await delay(175);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
     sameElement.style.transform = `translateY(${slabsHeight}vh) translateX(${distance}px)`;
@@ -160,8 +156,6 @@ class Visualizer {
   }
 
 }
-
-
 
 
 
@@ -219,9 +213,8 @@ class Tower {
     Alert.create(description, "success", `Башня ${ name }`);
   }
 
-  static namesList = ["великого бездельника", "Енота", "Человека", "какого-то волшебника"];
+  static namesList = ["великого бездельника", "Енота", "Человека", "какого-то волшебника", "великого алгоритма"];
 }
-
 
 
 
@@ -268,11 +261,7 @@ class Slab {
 
 
 
-Slab.ColorFunc( setSlabColor );
-
 const visualizer = new Visualizer("#game");
-
-
 
 
 
@@ -282,25 +271,30 @@ const scoreMap = JSON.parse(localStorage.getItem("scoreMap")) || [];
 let score = 0;
 
 Game.prototype.visualize = function(){
-  this.on("generate", () => visualizer.generateHandle());
+  this.on("win", () => visualizer.winHandle());
+  this.on("generate", () => mainGenerate(this));
   this.on("step", e => visualizer.stepHandle(e));
-  this.on("win", () => visualizer.gameWin = true);
 
 
-  visualizer.generateHandle(this);
+  mainGenerate(this);
 
   return this;
 }
 
 
+// Вызывается при generate
+function mainGenerate( game ){
+  let size = game.getGameParams().size;
+
+  Slab.ColorFunc( randomColorizzeFunc( size ) );
+  visualizer.generateHandle( game );
 
 
+  let tower = new Tower(  [...new Array(15)].map((e, i) => i + 1)  ).setSlabs( 15 ).toHTML();
 
+  document.querySelector("#towerExample").append(tower);
 
-let tower = new Tower(  [...new Array(15)].map((e, i) => i + 1)  ).setSlabs( 15 ).toHTML();
-
-document.querySelector("#towerExample").append(tower);
-
-tower.parentNode.style.display = "flex";
-tower.parentNode.style.justifyContent = "center";
-tower.parentNode.style.transform = "scale(0.8)";
+  tower.parentNode.style.display = "flex";
+  tower.parentNode.style.justifyContent = "center";
+  tower.parentNode.style.transform = "scale(0.8)";
+}

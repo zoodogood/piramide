@@ -11,6 +11,7 @@
   </head>
   <body>
     <main>
+      <span id = "title">0%</span>
       <section id = "game">
           Пока ничего не отображается...
       </section>
@@ -21,16 +22,16 @@
 
         </code>
         <div id = "control-buttons">
-          <span class = "button" title = "Запустить сценарий! *Пробел*" onclick = "launch()">
+          <span class = "button" id = "play-button"       onclick = "launch()" title = "Запустить сценарий! *Пробел*">
             <span class = "icon">p</span> Играть!
           </span>
-          <span class = "button" onclick = "checkScoreMap()">
+          <span class = "button" id = "scoreMap-button"   onclick = "checkScoreMap()">
             <span class = "icon">i</span> График ходов
           </span>
-          <span class = "button" onclick = "copyAllCode()">
+          <span class = "button" id = "copy-button"       onclick = "copyAllCode()">
             <span class = "icon"></span> Скопировать
           </span>
-          <span class = "button" onclick = "setDefaultCode()">
+          <span class = "button" id = "setDefault-button" onclick = "setDefaultCode()">
             <span class = "icon">h</span> Код по умолчанию
           </span>
         </div>
