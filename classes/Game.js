@@ -8,7 +8,7 @@ class Game extends EventEmitter {
     #hardmode
 
     constructor({ count: arrayCount = 3, size: arraySize = 15, hardmode = false }){
-      // Функция вызывающая EventEmmiter — позволяет работать ивентами
+      // super — техническая функция вызывающая EventEmmiter — позволяет работать с ивентами
       super();
 
       if (arrayCount < 3)
@@ -30,7 +30,6 @@ class Game extends EventEmitter {
     }
 
 
-
     /*
     Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
     Он будет автоматически изменятся при "Шаге" игры
@@ -42,20 +41,21 @@ class Game extends EventEmitter {
     }
 
 
-
     #score;
     generate(){
       let size  = this.#arraySize;
       let count = this.#arrayCount;
-      
+
       // Массив плит от 1 до `size` расположенных в случ. порядке
       let slabs = [...new Array(size)]
         .map((e, i) => i + 1)
         .sort(() => Math.random() - 0.5);
-      
+
+
       // Создаётся набор Массивов
       this.#arrayList = [...new Array(count)]
         .map(e => []);
+
 
       // Все плиты попадают в один из массивов созданных на прошлом этапе
       slabs.forEach(e => this.#arrayList[ random(0, this.#arrayList.length - 1) ].push(e));
@@ -70,16 +70,16 @@ class Game extends EventEmitter {
     */
     step(from = 0, to = 2){
       let first = this.#arrayList[from], second = this.#arrayList[to];
-      
+
       // Если массива с таким номером не существует
-      if (from < 0 || to > this.#arraySize)
+      if (to > this.#arraySize || from < 0)
         throw new Error(`Cannot step from array ${from} to ${to}`);
 
 
       if (first.length === 0)
         throw new Error("You are trying to pull out an element of an empty array");
 
-      // Если не число, вызвать ошибку
+
       if (isNaN(from) || isNaN(to))
         throw new Error(`Argument's must be a number. from — ${from}, to — ${to}`);
 
@@ -99,10 +99,11 @@ class Game extends EventEmitter {
 
 
 
+
     #checkFilling(){
       // Ищем заполненный массив
       let full = this.#arrayList.find(arr => arr.length === this.#arraySize);
-      
+
       // Если такого не существует завершить функцию
       if (!full)
         return false;
@@ -113,7 +114,7 @@ class Game extends EventEmitter {
       if (notSortedItem)
         return false;
 
-      // Победа!
+      // Если функция не завершена, здесь ждёт победа!
       this.#playerWinner();
       return true;
     }
@@ -135,22 +136,26 @@ class Game extends EventEmitter {
     getGameParams(){
       return {
         count: this.#arrayCount,
-        size:  this.#arraySize
+        size:  this.#arraySize,
+        hard:  this.#hardmode
       }
     }
 
 
 
-    #win;
-    // Срабатывает когда пользователь побеждает
+    #hasWin;
+    // Единожды срабатывает когда пользователь побеждает
     #playerWinner(){
+      if (this.#hasWin)
+        return;
+
       this.emit("win");
-      this.#win = true;
+      this.#hasWin = true;
     }
 
     // Проверка на то, одержал ли победу пользователь
-    isWin(){
-      return !!this.#win;
+    get hasWin(){
+      return !!this.#hasWin;
     }
 
 
