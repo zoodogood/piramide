@@ -33,3 +33,5 @@ new Game({ hardmode: true, size: 15, count: 3 });
 ## Другое
 Чтобы лучше понять как устроена игра, взгляните на её [код](https://github.com/zoodogood/piramide/blob/main/classes/Game.js). Вопреки наличию страшных символов он очень прост и имеет множество пояснений.  
 Делитесь интересными способами решения, ибо их достаточно много. Желаю удачи!
+
+![gameScreeWinner](https://cdn.discordapp.com/attachments/565126051496198164/902442790624059432/unknown.png)
