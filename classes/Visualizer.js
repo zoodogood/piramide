@@ -53,6 +53,7 @@ class Visualizer {
     console.log("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
 
     this.createTowers();
+    document.querySelector("#title").style.color = "";
   }
 
 
@@ -89,6 +90,7 @@ class Visualizer {
 
     }
 
+
     this.stepsHandler.handle = false;
   }
 
@@ -101,7 +103,7 @@ class Visualizer {
 
     await delay(30);
 
-    sameElement.style.transform = `translateY(-30vh)`;
+    sameElement.transform({value: "-30vh", property: "translateY"});
     await delay(200);
 
 
@@ -110,22 +112,27 @@ class Visualizer {
     let distance = toTower.getBoundingClientRect().left - fromTower.getBoundingClientRect().left;
 
 
-    sameElement.style.transform = `translateY(-30vh) translateX(${distance}px)`;
 
-    console.log(toWin);
-    // if (toWin){
-    //   await delay(300);
-    //   sameElement.style.transform = `scale(1.5) translateY(-30vh) translateX(${distance}px)`;
-    // }
-    // else {
-    //
-    // }
+    sameElement.transform({value: `${distance}px`, property: "translateX"});
+
+    if (toWin){
+      sameElement.transform({value: 1.2, property: "scale", ms: 700});
+      toTower.transform({value: 1.2, property: "scale", ms: 700});
+      await delay(1200);
+      sameElement.transform({value: "-37vh", property: "translateY", ms: 150});
+      await delay(150);
+    }
 
     await delay(175);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
-    sameElement.style.transform = `translateY(${slabsHeight}vh) translateX(${distance}px)`;
+    sameElement.transform({value: `translateY(${slabsHeight}vh`, property: "translateY"});
     await delay(200);
+
+
+    toTower.transform({value: 1, property: "scale", ms: 200});
+
+
 
     sameElement.style.transition = "";
     sameElement.style.transform = "";
@@ -161,7 +168,10 @@ class Visualizer {
 
   async visualizeWin(){
     const title = document.querySelector("#title");
+    await delay(500);
+
     title.style.color = "#ffffff";
+    await delay(800);
 
     let glitch = new GlitchText(title.textContent, "YOU VICTORY!");
 
@@ -313,7 +323,7 @@ function mainGenerate( game ){
 
   let tower = new Tower(  [...new Array(15)].map((e, i) => 15 - i + 1)  ).setSlabs( 15 ).toHTML();
 
-  document.innerHTML = "";
+  document.querySelector("#towerExample").innerHTML = "";
   document.querySelector("#towerExample").append(tower);
 
   tower.parentNode.style.display = "flex";
@@ -371,13 +381,27 @@ class GlitchText {
 
 
 
-// class Transform {
-//   constructor(element, {value, property, ms}){
-//     // Строка текущих трансформаций
-//     let now  = element.style.transform;
-//
-//     let list = nowTransformationStr.split(" ");
-//     list.forEach(e )
-//   }
-// }
-console.log( Object.getOwnPropertyNames(document.querySelector("#title")) );
+
+
+// Функция для трансформаций
+Object.defineProperty( HTMLElement.prototype, "transform", {
+  value: function ({value, property, ms}){
+    // Строка текущих трансформаций
+    let now  = this.style.transform;
+
+    if ( ms ){
+      this.style.transitionDuration = `${ ms }ms`;
+    }
+
+    let reg = new RegExp(`${property}\\s?\\((.+?)\\)`, "i");
+    let includes = now.match( reg );
+
+    if (includes){
+      this.style.transform = now.replace(includes[0], `${ property }(${ value })`);
+      return;
+    }
+
+    this.style.transform += ` ${ property }(${ value })`;
+
+  }
+});
