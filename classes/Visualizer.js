@@ -41,8 +41,8 @@ class Visualizer {
     this.gameElement._game = game;
 
     if (this.score){
-      scoreMap.push([score, game.hasWin]);
-      score = 0;
+      scoreMap.push([this.score, game.hasWin]);
+      this.score = 0;
       localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
     }
 
@@ -59,7 +59,6 @@ class Visualizer {
 
 
   stepHandle( move = {from: 0, to: 1} ){
-    score = this.game.getScore();
     this.steps.push(move);
 
     this.stepsHandler();
@@ -78,12 +77,18 @@ class Visualizer {
       return;
     }
 
+    const title = document.querySelector("#title");
+
     this.stepsHandler.handle = true;
-    await delay(100);
+    await delay(30);
 
     while ( this.steps.length ){
       let move = this.steps.shift();
       await this.moveSlab(move);
+
+      this.score++;
+      if (!this.hasWin)
+        title.textContent = `${Math.round(this.score / (this.score + this.steps.length) * 100)}%`;
 
       if (move.toWin)
         this.visualizeWin();
@@ -113,7 +118,7 @@ class Visualizer {
 
 
 
-    sameElement.transform({value: `${distance}px`, property: "translateX"});
+    sameElement.transform({value: `${distance}px`, property: "translateX", ms: 200});
 
     if (toWin){
       sameElement.transform({value: 1.2, property: "scale", ms: 700});
@@ -122,11 +127,10 @@ class Visualizer {
       sameElement.transform({value: "-37vh", property: "translateY", ms: 150});
       await delay(150);
     }
-
-    await delay(175);
+    await delay(100);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
-    sameElement.transform({value: `translateY(${slabsHeight}vh`, property: "translateY"});
+    sameElement.transform({value: `${slabsHeight}vh`, property: "translateY", ms: 200});
     await delay(200);
 
 
@@ -167,6 +171,7 @@ class Visualizer {
 
 
   async visualizeWin(){
+    this.hasWin = true;
     const title = document.querySelector("#title");
     await delay(500);
 
@@ -298,7 +303,6 @@ const visualizer = new Visualizer("#game");
 
 
 const scoreMap = JSON.parse(localStorage.getItem("scoreMap")) || [];
-let score = 0;
 
 
 Game.prototype.visualize = function(){
@@ -384,6 +388,7 @@ class GlitchText {
 
 
 // Функция для трансформаций
+// Синтаксис применения HTMLElement.transform({property: "scale", value: 1.2, ms: 200})
 Object.defineProperty( HTMLElement.prototype, "transform", {
   value: function ({value, property, ms}){
     // Строка текущих трансформаций

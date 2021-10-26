@@ -107,7 +107,7 @@ function checkScoreMap(){
   // Alert.create("Загляните в консоль.</br>Там статистика!");
   navigator.clipboard.writeText( codearea.textContent );
   console.log( localStorage.getItem("scoreMap") );
-  Alert.create("Ещё не готово</br>19.12", "warning", ":(");
+  Alert.create("Ещё не готово</br>19 Декабря", "warning", ":(");
 }
 
 

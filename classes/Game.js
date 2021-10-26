@@ -90,9 +90,9 @@ class Game extends EventEmitter {
 
 
       second.push( first.pop() );
+      this.#upScore();
       this.emit("step", {from, to});
 
-      this.#upScore();
       this.#checkFilling();
 
       return second;
