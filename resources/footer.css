@@ -11,6 +11,8 @@
 
   padding: 30px;
   padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 #readme main:hover {
@@ -41,4 +43,19 @@
 
 #readme a {
   color: #9a9ae5;
+}
+
+#taskInfo {
+  overflow: visible;
+}
+
+#advice {
+  line-height: 1.5;
+  overflow: visible;
+}
+
+#towerExample {
+  align-self: center;
+  margin-top: auto;
+  overflow: visible;
 }
