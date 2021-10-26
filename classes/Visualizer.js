@@ -78,6 +78,7 @@ class Visualizer {
     }
 
     this.stepsHandler.handle = true;
+    await delay(100);
 
     while ( this.steps.length ){
       let move = this.steps.shift();
@@ -111,6 +112,7 @@ class Visualizer {
 
     sameElement.style.transform = `translateY(-30vh) translateX(${distance}px)`;
 
+    console.log(toWin);
     // if (toWin){
     //   await delay(300);
     //   sameElement.style.transform = `scale(1.5) translateY(-30vh) translateX(${distance}px)`;
@@ -155,6 +157,24 @@ class Visualizer {
     return tower;
   }
 
+
+
+  async visualizeWin(){
+    const title = document.querySelector("#title");
+    title.style.color = "#ffffff";
+
+    let glitch = new GlitchText(title.textContent, "YOU VICTORY!");
+
+    for (let word of glitch){
+      title.textContent = word;
+      await delay(30);
+    }
+
+    title.style.color = "#ffffff";
+  }
+
+
+
 }
 
 
@@ -187,7 +207,7 @@ class Tower {
 
     for (let slab of this.array) {
       slab = new Slab( slab, size );
-      this.slabs.push(slab);
+      this.slabs.unshift(slab);
     }
 
     return this;
@@ -270,9 +290,10 @@ const visualizer = new Visualizer("#game");
 const scoreMap = JSON.parse(localStorage.getItem("scoreMap")) || [];
 let score = 0;
 
+
 Game.prototype.visualize = function(){
-  this.on("win", () => visualizer.winHandle());
   this.on("generate", () => mainGenerate(this));
+  this.on("win", () => visualizer.winHandle());
   this.on("step", e => visualizer.stepHandle(e));
 
 
@@ -290,11 +311,73 @@ function mainGenerate( game ){
   visualizer.generateHandle( game );
 
 
-  let tower = new Tower(  [...new Array(15)].map((e, i) => i + 1)  ).setSlabs( 15 ).toHTML();
+  let tower = new Tower(  [...new Array(15)].map((e, i) => 15 - i + 1)  ).setSlabs( 15 ).toHTML();
 
+  document.innerHTML = "";
   document.querySelector("#towerExample").append(tower);
 
   tower.parentNode.style.display = "flex";
   tower.parentNode.style.justifyContent = "center";
   tower.parentNode.style.transform = "scale(0.8)";
 }
+
+
+
+
+class GlitchText {
+  constructor(from = "", to = "hello, world"){
+    this.from = from;
+    this.to   = to;
+
+    this[Symbol.iterator] = this.iteratorFunction;
+  }
+
+  *iteratorFunction(){
+    let word = [...this.from];
+    const target = this.to;
+
+    while (word.length !== target.length){
+      if (word.length > target.length)
+        word.pop();
+
+      if (word.length < target.length)
+        word.push("#");
+
+      word = word.map(e => String.fromCharCode( random(20, 40) ));
+      yield word.join("");
+    }
+
+
+
+    while ( word.join("") !== target ){
+
+      word.forEach((letter, i) => {
+        if (letter === target[i]){
+          return;
+        }
+
+        let charCode = letter.charCodeAt(0), targetCode = target[i].charCodeAt(0);
+        word[i] = String.fromCharCode( charCode >= targetCode ? --charCode : 15 + charCode );
+      });
+
+      yield word.join("");
+    }
+
+
+    return;
+  }
+}
+
+
+
+
+// class Transform {
+//   constructor(element, {value, property, ms}){
+//     // Строка текущих трансформаций
+//     let now  = element.style.transform;
+//
+//     let list = nowTransformationStr.split(" ");
+//     list.forEach(e )
+//   }
+// }
+console.log( Object.getOwnPropertyNames(document.querySelector("#title")) );

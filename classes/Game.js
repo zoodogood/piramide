@@ -90,10 +90,11 @@ class Game extends EventEmitter {
 
 
       second.push( first.pop() );
+      this.emit("step", {from, to});
+
       this.#upScore();
       this.#checkFilling();
 
-      this.emit("step", {from, to});
       return second;
     }
 
@@ -109,7 +110,8 @@ class Game extends EventEmitter {
         return false;
 
       // Проверяем все ли плиты на своих местах
-      let notSortedItem = full.find((num, index) => num !== index + 1);
+      let notSortedItem = full.find((num, index) => this.#arraySize - num !== index );
+
 
       if (notSortedItem)
         return false;
