@@ -410,3 +410,9 @@ Object.defineProperty( HTMLElement.prototype, "transform", {
 
   }
 });
+
+
+
+class Console {
+  
+}

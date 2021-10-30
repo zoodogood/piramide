@@ -4,8 +4,137 @@
     <meta charset="utf-8">
     <title>Пирамидка</title>
     <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/settings.css">
   </head>
   <body>
+    <div id = "leftBackground">
+      <div class = "round-button" tabindex = "1" id = "exit">
+        <button type="button" id = "button-exit" name="exit"></button>
+        <span>ESC</span>
+      </div>
+      <div class = "round-button" tabindex = "2" id = "save">
+        <button type="button" id = "button-save" name="save"><span class = "icon">c</span></button>
+        <span>CTRL + S<br>Сохранить</span>
+      </div>
+      <div class = "round-button" tabindex = "3" id = "reset">
+        <button type="button" id = "button-reset" name="reset"><span class = "icon">h</span></button>
+        <span>CTRL + R<br>Отменить</span>
+      </div>
+    </div>
 
+
+
+    <main>
+      *Экспериментальная версия. На данный момент работают только: отключение автозапуска, изменение скорости плит, тёмная тема этого меню и цвета кнопок*
+      </br></br></br></br></br>
+      <h1>Основное:</h1>
+      <section>
+        <h2>Запускать алгоритм при загрузке страницы</h2>
+        <details close>
+          <summary>Подробности</summary>
+          <span>По умолчанию пользовательский код срабатывает для большей динамики происходящего, но это также может привести к нежелательным последствием, когда страница ломается и отредактировать скрипт нельзя.</span>
+          <br>
+          <span class = "margin-top"><br><b>Примечание:</b><br>Альтернативный способ открыть игру не запуская алгоритм — запускать страницу по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>(разница состоит в наличии <code>?ignore</code>)</span>
+        </details>
+        <label class = "switch margin-top">
+          <input type="checkbox" id = "ignoreOnStart">
+          <span class = "slider"></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Несколько плит двигаются вместе</h2>
+        <details close>
+          <summary>Подробности</summary>
+          <span>Мульти-плитки — несколько плиток может перемещаться параллельно, что значительно повышает скорость, но снижает очевидность происходящего и способно сбить столку.<br></span>
+        </details>
+        <label class = "switch margin-top">
+          <input type="checkbox" id = "multiSlab">
+          <span class = "slider"></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Сравнивать эффективность алгоритмов</h2>
+        <b>Экспериментальная функция*</b>
+        <details close>
+          <summary>Подробности</summary>
+          <span>Если вы серьёзно занялись оптимизацией вам может быть интересна статистика.<br>С момента активации этой функции будет сохранятся среднее количество шагов за которое код может одержать победу</span>
+          <br>
+          <span><br><b>Как это работает?</b><br>1. Когда вы одержали победу, незаметно для вас алгоритм ещё раз выполниться в тестовом полигоне со статичными условиями, которые были подобраны мной для наибольшего баланса.<br>2. Результат этого будет сохранён в браузере и в будущем может использоваться для сравнения</span>
+        </details>
+        <label class = "switch margin-top">
+          <input type="checkbox" id = "activatePoligon">
+          <span class = "slider"></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Скорость движения</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Множитель скорости перемещения плит от башни к башне.
+        </details>
+        <span class = "margin-top">Текущее значение: <input class = "text-input" id ="slabsSpeed" type = "number" value = "5"></input></span>
+        <input class = "range" type="range" id ="slabsSpeedRange" value = "5" min = "1" max = "100">
+      </section>
+
+      <section>
+        <h2>Окраска плит</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Это функции для покраски. Максимум 20 палитр.
+        </details>
+        <details open>
+          <summary>Содержимое</summary>
+        </details>
+      </section>
+
+      <h1>Редактор кода:</h1>
+      <section>
+        <h2>Шрифт</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Стиль текста кода невероятно сильно влияет на его восприятие. Дерзайте.
+        </details>
+        <details close>
+          <summary>Предпросмотр</summary>
+          <div width = "100%" heigth = "300px" background = "black"></div>
+        </details>
+      </section>
+
+      <section>
+        <h2>Цвет текста</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Выберите один оз вариантов окраски синтаксиса
+        </details>
+      </section>
+
+
+      <h1>Настройки этого меню</h1>
+      <section>
+        <h2>Дерзкий дизайн</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Переключите тему меню настроек с обычной на чёрную с красными оттенками.
+        </details>
+        <label class = "switch margin-top">
+          <input type="checkbox" id = "menuThemeDark">
+          <span class = "slider"></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Основной цвет кнопок</h2>
+        <details close>
+          <summary>Подробности</summary>
+          Просто попробуйте переместить джостик...
+        </details>
+        <input class = "range" type="range" id ="menuButtonsColor" value = "120" min = "0" max = "255">
+      </section>
+    </main>
   </body>
+  <script type="text/javascript" src = "settings.js"></script>
 </html>

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+@font-face {
+  font-family: Icons;
+  src: url('../fontello.ttf');
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  overflow-y: overlay;
+}
+
+::selection {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.icon {
+  font-family: 'Icons', 'Open Sans', sans-serif;
+}
+
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  opacity: 0%;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2f31;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-track {
+  opacity: 0%;
+}
+
+
+p {
+  display: inline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #0000ff;
+}
+
+a.lightLink {
+  color: #8a8af5;
+}
+
+li {
+  list-style-type: none;
+}
+
+body section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #36393f;
+  color: #d5d0d4;
+  overflow: hidden;
+}
+
+/*
+  background: linear-gradient(316deg, #ffc857 0%, #32254a 74%);
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
+
+
+
+
+
+code {
+  font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px;
+}

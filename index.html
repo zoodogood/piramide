@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title>Пирамидка</title>
     <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
-    <link rel="stylesheet" href="resources/style.css">
-    <link rel="stylesheet" href="resources/game.css">
-    <link rel="stylesheet" href="resources/code-space.css">
-    <link rel="stylesheet" href="resources/footer.css">
+    <link rel="stylesheet" href="resources/styles/style.css">
+    <link rel="stylesheet" href="resources/styles/game.css">
+    <link rel="stylesheet" href="resources/styles/code-space.css">
+    <link rel="stylesheet" href="resources/styles/footer.css">
   </head>
   <body>
     <main>
@@ -23,13 +23,13 @@
         </code>
         <div id = "control-buttons">
           <span class = "button" id = "play-button"       onclick = "launch()" title = "Запустить сценарий! *Пробел*">
-            <span class = "icon">p</span> Играть!
+            <span class = "icon">s</span> Играть!
           </span>
           <span class = "button" id = "scoreMap-button"   onclick = "checkScoreMap()">
-            <span class = "icon">i</span> График ходов
+            <span class = "icon">i</span> График эффектив.
           </span>
           <span class = "button" id = "copy-button"       onclick = "copyAllCode()">
-            <span class = "icon"></span> Скопировать
+            <span class = "icon">c</span> Скопировать
           </span>
           <span class = "button" id = "setDefault-button" onclick = "setDefaultCode()">
             <span class = "icon">h</span> Код по умолчанию
@@ -63,6 +63,8 @@
           4. Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.
           </br>
           5. Не используйте бесконечные циклы! Хотя визулизация плавная, все расчёты выполняются мгновенно.
+          </br>
+          <span id = "openSettings"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Откройте настройки</a></span>
         </div>
 
 
@@ -76,7 +78,7 @@
     <script type="text/javascript" src = "classes/EventEmitter.js"></script>
     <script type="text/javascript" src = "classes/Util.js"></script>
 
-    <link rel="stylesheet" href="resources/alert-field.css">
+    <link rel="stylesheet" href="resources/styles/alert-field.css">
     <script type="text/javascript" src = "classes/alerts.js"></script>
 
     <link rel="stylesheet" href="resources/highlight/styles/a11y-dark.min.css">

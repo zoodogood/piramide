@@ -1,0 +1,68 @@
+#readme {
+  margin-top: 30vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#readme main {
+  flex-grow: 1;
+  transition: all 300ms;
+
+  padding: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#readme main:hover {
+  /* color: #000000;
+  background-color: #ffffff; */
+}
+
+#readme footer {
+  height: 3vh;
+  flex-grow: 0;
+  background-color: #1d1d1d;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+
+#readme h1 {
+  text-align: left;
+  font-size: 2.2em;
+  font-weight: bold;
+}
+
+#readme h2 {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+#readme a {
+  color: #9a9ae5;
+}
+
+#taskInfo {
+  overflow: visible;
+}
+
+#advice {
+  line-height: 1.5;
+  overflow: visible;
+}
+
+#openSettings {
+  letter-spacing: 1.2px;
+  font-size: 1.05em;
+  margin-top: 5px;
+}
+
+
+#towerExample {
+  align-self: center;
+  margin-top: auto;
+  overflow: visible;
+}
