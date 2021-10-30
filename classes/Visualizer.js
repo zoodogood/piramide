@@ -1,5 +1,7 @@
 // Устаналивает цвет плитке, можете настроить по своему хотению и скинуть мне :D
 
+const params = new Params("userParams").getList();
+
 function randomColorizzeFunc(size){
   const colorsFunc = [
     {
@@ -73,9 +75,9 @@ class Visualizer {
 
 
   async stepsHandler(){
-    if (this.stepsHandler.handle === true){
+
+    if (this.stepsHandler.handle === true)
       return;
-    }
 
     const title = document.querySelector("#title");
 
@@ -105,11 +107,9 @@ class Visualizer {
     let toTower = this.gameElement.children.item( to );
 
     let sameElement = [...fromTower.children][0];
-
-    const k = 5 / 100;//params.slabsSpeed;
+    const k = 5 / params.slabsSpeed;
 
     await delay(30);
-
     await sameElement.transform({value: "-30vh", property: "translateY", ms: 200 * k});
 
 
@@ -121,12 +121,15 @@ class Visualizer {
 
     sameElement.transform({value: `${distance}px`, property: "translateX", ms: 200 * k});
 
+
     if (toWin){
-      sameElement.transform({value: 1.2, property: "scale", ms: 700 * k});
-      toTower.transform({value: 1.2, property: "scale", ms: 700 * k});
-      await delay(1200 * k);
-      await sameElement.transform({value: "-37vh", property: "translateY", ms: 150 * k});
+      sameElement.transform({value: 1.2, property: "scale", ms: 700});
+      toTower.transform({value: 1.2, property: "scale", ms: 700});
+      await delay(1200);
+      await sameElement.transform({value: "-37vh", property: "translateY", ms: 70});
     }
+
+
     await delay(100 * k);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
