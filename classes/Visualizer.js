@@ -106,10 +106,11 @@ class Visualizer {
 
     let sameElement = [...fromTower.children][0];
 
+    const k = 5 / 100;//params.slabsSpeed;
+
     await delay(30);
 
-    sameElement.transform({value: "-30vh", property: "translateY"});
-    await delay(200);
+    await sameElement.transform({value: "-30vh", property: "translateY", ms: 200 * k});
 
 
 
@@ -118,23 +119,21 @@ class Visualizer {
 
 
 
-    sameElement.transform({value: `${distance}px`, property: "translateX", ms: 200});
+    sameElement.transform({value: `${distance}px`, property: "translateX", ms: 200 * k});
 
     if (toWin){
-      sameElement.transform({value: 1.2, property: "scale", ms: 700});
-      toTower.transform({value: 1.2, property: "scale", ms: 700});
-      await delay(1200);
-      sameElement.transform({value: "-37vh", property: "translateY", ms: 150});
-      await delay(150);
+      sameElement.transform({value: 1.2, property: "scale", ms: 700 * k});
+      toTower.transform({value: 1.2, property: "scale", ms: 700 * k});
+      await delay(1200 * k);
+      await sameElement.transform({value: "-37vh", property: "translateY", ms: 150 * k});
     }
-    await delay(100);
+    await delay(100 * k);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
-    sameElement.transform({value: `${slabsHeight}vh`, property: "translateY", ms: 200});
-    await delay(200);
+    await sameElement.transform({value: `${slabsHeight}vh`, property: "translateY", ms: 200 * k});
 
 
-    toTower.transform({value: 1, property: "scale", ms: 200});
+    toTower.transform({value: 1, property: "scale", ms: 200 * k});
 
 
 
@@ -390,7 +389,7 @@ class GlitchText {
 // Функция для трансформаций
 // Синтаксис применения HTMLElement.transform({property: "scale", value: 1.2, ms: 200})
 Object.defineProperty( HTMLElement.prototype, "transform", {
-  value: function ({value, property, ms}){
+  value: async function ({value, property, ms}){
     // Строка текущих трансформаций
     let now  = this.style.transform;
 
@@ -403,16 +402,18 @@ Object.defineProperty( HTMLElement.prototype, "transform", {
 
     if (includes){
       this.style.transform = now.replace(includes[0], `${ property }(${ value })`);
+      await delay(ms);
       return;
     }
 
     this.style.transform += ` ${ property }(${ value })`;
-
+    await delay(ms);
+    return;
   }
 });
 
 
 
 class Console {
-  
+
 }
