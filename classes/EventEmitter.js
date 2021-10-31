@@ -21,7 +21,7 @@ class EventEmitter {
 
     let index = this.events[event].indexOf(listener);
     if (~index)
-      this.events[event].splice(idx, 1);
+      this.events[event].splice(index, 1);
 
   }
 

@@ -32,13 +32,14 @@ function randomColorizzeFunc(size){
 
 class Visualizer {
   constructor(elementSelector = "#game"){
-    this.steps = [];
     this.score = 0;
     this.gameElement = document.querySelector( elementSelector );
+
     if (!this.gameElement)
       throw new Error(`could not find item ${ elementSelector }`);
 
-
+    this.action = new ActionHandler();
+    this.multiSlab = params.multiSlab;
   }
 
 
@@ -46,13 +47,14 @@ class Visualizer {
     this.game = game;
     this.gameElement._game = game;
 
+    this.action.handle();
+
     if (this.score){
       scoreMap.push([this.score, game.hasWin]);
       this.score = 0;
       localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
     }
 
-    this.steps.length = 0;
     this.towers = [];
 
     console.log(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
@@ -65,18 +67,35 @@ class Visualizer {
 
 
 
-  stepHandle( move = {from: 0, to: 1} ){
-    this.steps.push(move);
+  stepHandle( action = {from: 0, to: 1} ){
+    action.type = "step";
+    action.allowNext = async ({action, next, processed}) => {
+      if ( next.type !== "step" )
+        return;
 
-    this.stepsHandler();
+      if ( !this.multiSlab )
+        return;
+
+      if ( [action, ...processed.map(e => e.action)].some(e => e.to === next.from || e.from === next.from || e.from === next.to) )
+        return;
+
+        // console.log("DOUBLE");
+      await delay( 20 );
+      return true;
+    };
+
+    action.func = this.moveSlab.bind(this);
+    this.action.push(action);
   }
 
 
   // Срабатывает при game.emit("win"), но не в момент победы по визуализации
   winHandle(){
-    // Учитывая синхронность операций мы можем точно быть уверены, что последний сделанный шаг привёл к победе
-    this.steps.at(-1).toWin = true;
+    this.action.trace.filter(e => e.type === "step").at(-1).toWin = true;
+    let action = { type: "win", func: this.visualizeWin };
+    this.action.push( action );
   }
+
 
 
   async stepsHandler(){
@@ -105,6 +124,7 @@ class Visualizer {
 
     this.stepsHandler.handle = false;
   }
+
 
 
   async moveSlab({ from, to, toWin = false }){
@@ -142,8 +162,6 @@ class Visualizer {
 
 
     toTower.transform({value: 1, property: "scale", ms: 200 * k});
-
-
 
     sameElement.style.transition = "";
     sameElement.style.transform = "";
@@ -322,10 +340,99 @@ class Slab {
 
 
 
-class ActionHandler{
+class ActionHandler {
+  #prevent = false;
+
   constructor(){
+    this[Symbol.asyncIterator] = this.iteratorFunction;
+    this.events = new EventEmitter();
+
+    this.trace = [];
+    this.index = 0;
+  }
+
+
+
+  iteratorFunction(){
+    return { next: this.iteratorNext.bind(this) };
+  }
+
+
+
+  async iteratorNext(){
+
+    if ( this.#prevent ){
+      this.#prevent = false;
+      this.trace    = [];
+      this.index    = 0;
+      return {
+        done: true,
+        value: { trace: this.trace, index: this.index }
+      };
+    }
+
+
+    if ( this.trace.length - 1 < this.index )
+      await new Promise(res => this.events.once("push", res));
+
+    let action = this.trace[ this.index++ ];
+
+    console.log(this.trace.indexOf(action));
+    let promise = action.func( action );
+    promise.action = action;
+    this.processed.push( promise );
+
+    let data = {
+      action,
+      next: this.trace.at( this.index ),
+      trace: this.trace,
+      processed: this.processed
+    };
+    /*
+      Если функция существует и возвращает истину,
+      Досрочно запустить следующее действие
+      Иначе ждать завершения всех активных действий
+    */
+    if ( await action.allowNext?.( data ) )
+      return { done: false, value: "pending" };
+
+    let values = await Promise.all( this.processed );
+    this.processed = [];
+    return { done: false, value: values };
+  }
+
+
+
+  async handle(){
+    let iterable = this;
+
+    if ( this.trace.length )
+      this.preventHundle();
+
+    this.processed = [];
+    console.log(iterable);
+    for await (let values of iterable)
+      this.events.emit("chunkHandled", values);
+      // На самом деле даже не важно что здесь будет
 
   }
+
+
+
+  preventHundle(){
+    this.push( {type: "beforeEnd"} );
+    this.#prevent = true;
+    this.push( {type: "afterEnd"} );
+  }
+
+
+
+  push( action ){
+    this.trace.push( action );
+    this.events.emit("push", action);
+  }
+
+
 }
 
 

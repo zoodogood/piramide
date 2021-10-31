@@ -16,8 +16,8 @@ class Params {
 
   static defaultValues = {
     ignoreOnStart: true,
-    // multiSlab: false,
-    // activatePoligon: false,
+    multiSlab: false,
+    activatePoligon: false,
     slabsSpeed: 5,
 
     colorizeFunc: [
