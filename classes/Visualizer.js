@@ -32,7 +32,6 @@ function randomColorizzeFunc(size){
 
 class Visualizer {
   constructor(elementSelector = "#game"){
-    this.score = 0;
     this.gameElement = document.querySelector( elementSelector );
 
     if (!this.gameElement)
@@ -49,11 +48,11 @@ class Visualizer {
 
     this.action.handle();
 
-    if (this.score){
-      scoreMap.push([this.score, game.hasWin]);
-      this.score = 0;
-      localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
-    }
+    // if (this.score){
+    //   scoreMap.push([this.score, game.hasWin]);
+    //   this.score = 0;
+    //   localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
+    // }
 
     this.towers = [];
 
@@ -79,7 +78,6 @@ class Visualizer {
       if ( [action, ...processed.map(e => e.action)].some(e => e.to === next.from || e.from === next.from || e.from === next.to) )
         return;
 
-        // console.log("DOUBLE");
       await delay( 20 );
       return true;
     };
@@ -94,35 +92,6 @@ class Visualizer {
     this.action.trace.filter(e => e.type === "step").at(-1).toWin = true;
     let action = { type: "win", func: this.visualizeWin };
     this.action.push( action );
-  }
-
-
-
-  async stepsHandler(){
-
-    if (this.stepsHandler.handle === true)
-      return;
-
-    const title = document.querySelector("#title");
-
-    this.stepsHandler.handle = true;
-    await delay(30);
-
-    while ( this.steps.length ){
-      let move = this.steps.shift();
-      await this.moveSlab(move);
-
-      this.score++;
-      if (!this.hasWin)
-        title.textContent = `${Math.round(this.score / (this.score + this.steps.length) * 100)}%`;
-
-      if (move.toWin)
-        this.visualizeWin();
-
-    }
-
-
-    this.stepsHandler.handle = false;
   }
 
 
@@ -168,6 +137,11 @@ class Visualizer {
     delete sameElement.style.transition;
 
     toTower.prepend(sameElement);
+
+
+    if ( !this.hasWin )
+      document.querySelector("#title").textContent = `${  Math.round((this.action.index + 1) / this.action.trace.length * 100)  }%`;
+      
     return;
   }
 
@@ -377,7 +351,6 @@ class ActionHandler {
 
     let action = this.trace[ this.index++ ];
 
-    console.log(this.trace.indexOf(action));
     let promise = action.func( action );
     promise.action = action;
     this.processed.push( promise );
@@ -410,7 +383,6 @@ class ActionHandler {
       this.preventHundle();
 
     this.processed = [];
-    console.log(iterable);
     for await (let values of iterable)
       this.events.emit("chunkHandled", values);
       // На самом деле даже не важно что здесь будет
