@@ -35,7 +35,7 @@
           <summary>Подробности</summary>
           <span>По умолчанию пользовательский код срабатывает для большей динамики происходящего, но это также может привести к нежелательным последствием, когда страница ломается и отредактировать скрипт нельзя.</span>
           <br>
-          <span class = "margin-top"><br><b>Примечание:</b><br>Альтернативный способ открыть игру не запуская алгоритм — запускать страницу по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>(разница состоит в наличии <code>?ignore</code>)</span>
+          <span class = "margin-top"><br><b>Примечание:</b><br>Альтернативный способ открыть игру не запуская алгоритм — запускать страницу по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>(Стоит <code>?ignore</code>  в конце ссылки.)</span>
         </details>
         <label class = "switch margin-top">
           <input type="checkbox" id = "ignoreOnStart">
@@ -86,12 +86,18 @@
           <summary>Подробности</summary>
           Это функции для покраски. Максимум 20 палитр.
         </details>
-        <details open>
+        <details close>
           <summary>Содержимое</summary>
+          <div class="form">
+            В будущем...
+          </div>
+          <input type = "button" value = "Применить" id = "colorizeFunc" class = "button-input"></input>
+          <input type = "button" value = "Отменить" class = "danger-button button-input"></input>
         </details>
       </section>
 
       <h1>Редактор кода:</h1>
+      Обе из ниже представленных пока не работают.</br>В будущем...
       <section>
         <h2>Шрифт</h2>
         <details close>
@@ -130,7 +136,7 @@
         <h2>Основной цвет кнопок</h2>
         <details close>
           <summary>Подробности</summary>
-          Просто попробуйте переместить джостик...
+          Просто попробуйте переместить ползунок...
         </details>
         <input class = "range" type="range" id ="menuButtonsColor" value = "120" min = "0" max = "255">
       </section>

@@ -5,20 +5,24 @@ const params = new Params("userParams").getList();
 function randomColorizzeFunc(size){
   const colorsFunc = [
     {
+      func: (n) => `hsl(240, 30%, ${25 - (n % 5) * 5}%)`,
+      _weight: 1
+    },
+    {
       func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
       _weight: 1
     },
     {
       func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)`,
-      _weight: 5
+      _weight: 10
     },
     {
       func: (n) => `hsl(${ random(50) }, 100%, 70%)`,
-      _weight: 15
+      _weight: 30
     },
     {
       func: (n) => n % 2 ? "#c6e44e" : "#70d729",
-      _weight: 25
+      _weight: 50
     }
   ];
   return colorsFunc.random(false, true).func;
@@ -51,11 +55,12 @@ class Visualizer {
     this.steps.length = 0;
     this.towers = [];
 
-    console.log("%c🦝 Игра сгенерированна. Старт! ", "color: green; padding: 30px;");
+    console.log(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
     console.log("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
 
     this.createTowers();
     document.querySelector("#title").style.color = "";
+    document.querySelector("#title").textContent = "";
   }
 
 
@@ -184,10 +189,27 @@ class Visualizer {
 
     for (let word of glitch){
       title.textContent = word;
+      await delay(40);
+    }
+
+    await delay(2000);
+
+    glitch = new GlitchText(title.textContent, "YES, YOU VICTORY !", {speed: 0.2});
+
+    for (let word of glitch){
+      title.textContent = word;
       await delay(30);
     }
 
-    title.style.color = "#ffffff";
+    await delay(5000);
+    title.style.color = "rgba(0, 0, 0, 0.15)";
+    await delay(2500);
+    glitch = new GlitchText(title.textContent, "0%", {speed: 0.2});
+
+    for (let word of glitch){
+      title.textContent = word;
+      await delay(30);
+    }
   }
 
 
@@ -298,6 +320,15 @@ class Slab {
 
 
 
+
+
+class ActionHandler{
+  constructor(){
+
+  }
+}
+
+
 const visualizer = new Visualizer("#game");
 
 
@@ -341,9 +372,11 @@ function mainGenerate( game ){
 
 
 class GlitchText {
-  constructor(from = "", to = "hello, world"){
+  constructor(from = "", to = "hello, world", {speed = 1} = {}){
     this.from = from;
     this.to   = to;
+
+    this.speed = speed;
 
     this[Symbol.iterator] = this.iteratorFunction;
   }
@@ -373,7 +406,7 @@ class GlitchText {
         }
 
         let charCode = letter.charCodeAt(0), targetCode = target[i].charCodeAt(0);
-        word[i] = String.fromCharCode( charCode >= targetCode ? --charCode : 15 + charCode );
+        word[i] = String.fromCharCode( charCode >= targetCode ? --charCode : Math.floor(15 * this.speed) + charCode );
       });
 
       yield word.join("");

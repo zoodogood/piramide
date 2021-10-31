@@ -164,7 +164,7 @@ new InputAction("slabsSpeedRange").connect("slabsSpeed")
     InputAction.setValue(input.connectedValue, input.element.value);
   })
   .setDisplay((input, value) => {
-    document.getElementById("slabsSpeedRange").value = value;
+    input.element.value = value;
   });
 
 
@@ -186,29 +186,37 @@ new InputAction("slabsSpeed").connect("slabsSpeed")
     InputAction.setValue(input.connectedValue, element.value);
   })
   .setDisplay((input, value) => {
-    document.getElementById("slabsSpeed").value = value;
+    input.element.value = value;
   });
 
+new InputAction("colorizeFunc").connect("colorizeFunc")
+  .setAction(input => {
+    console.log(input);
+
+    InputAction.setValue(input.connectedValue, 111);
+  })
+  .setDisplay((input, value) => {
+    input.element.value = 111;
+  });
 
 new InputAction("menuThemeDark").connect("menuThemeDark")
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
   .setDisplay((input, value) => {
-    document.getElementById("slabsSpeed").checked = value;
     document.body.style.background = value ? "linear-gradient(90deg, #782222, #000000 16%)" : "";
     input.element.checked = value;
   });
 
 
-  new InputAction("menuButtonsColor").connect("menuButtonsColor")
-    .setAction(input => {
-      InputAction.setValue(input.connectedValue, input.element.value);
-    })
-    .setDisplay((input, value) => {
-      input.value = value;
-      document.documentElement.style.setProperty('--buttonsMainColor', `hsl(${value}, 35%, 55%)`);
-    });
+new InputAction("menuButtonsColor").connect("menuButtonsColor")
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.value);
+  })
+  .setDisplay((input, value) => {
+    input.element.value = value;
+    document.documentElement.style.setProperty('--buttonsMainColor', `hsl(${value}, 35%, 55%)`);
+  });
 
 
 
@@ -221,7 +229,11 @@ InputAction.loadParams();
 
 
 
-  window.addEventListener("beforeunload", e => {
-    if ( Object.keys( InputAction.changes ).length )
-      e.returnValue = "Ваши изменения не сохранены, продолжить?";
-  });
+window.addEventListener("beforeunload", e => {
+  let before = new Params("userParams").getList();
+  let realChanges = Object.keys( InputAction.changes ).filter( k => before[k] !== InputAction.changes[k] );
+  if ( realChanges.length )
+    e.returnValue = "Ваши изменения не сохранены, продолжить?";
+
+  buttonSave.parentNode.classList.add("clickMe");
+});

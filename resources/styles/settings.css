@@ -85,6 +85,10 @@ main > h1::before {
   outline: none;
 }
 
+.round-button.clickMe {
+  filter: brightness(1.4);
+}
+
 
 
 #button-exit::before, #button-exit::after {
@@ -240,4 +244,49 @@ input:checked + .slider::before {
 .text-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+.button-input {
+  -webkit-appearance: none;
+  display: inline-block;
+  border: none;
+
+  min-width: 64px;
+  max-width: 150px;
+  min-height: 34px;
+  color: #ece8ea;
+  background: var( --buttonsMainColor );
+  letter-spacing: 1.5px;
+  padding: 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-style: italic;
+  transition: all 100ms;
+  margin-right: 15px;
+
+
+  white-space: pre-line;
+}
+
+.button-input:hover {
+  text-decoration: underline;
+}
+
+.button-input:active {
+  transform: scale(0.8);
+}
+
+
+
+.danger-button {
+  background: #bf4343;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.danger-button:hover {
+  background: #ffffff;
+  color: #ff0000;
 }
