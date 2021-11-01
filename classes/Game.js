@@ -60,7 +60,14 @@ class Game extends EventEmitter {
       // Все плиты попадают в один из массивов созданных на прошлом этапе
       slabs.forEach(e => this.#arrayList[ random(0, this.#arrayList.length - 1) ].push(e));
 
-      this.#score = 0;
+      this.nullifyScore();
+    }
+
+
+
+    nullifyScore(){
+      this.#hasWin = false;
+      this.#score  = 0;
     }
 
 
@@ -69,7 +76,9 @@ class Game extends EventEmitter {
       Возвращает массив `to`
     */
     step(from = 0, to = 2){
-      let first = this.#arrayList[from], second = this.#arrayList[to];
+      let
+        first  = this.#arrayList.at( from ),
+        second = this.#arrayList.at( to );
 
       // Если массива с таким номером не существует
       if (to > this.#arraySize || from < 0)
@@ -81,7 +90,7 @@ class Game extends EventEmitter {
 
 
       if (isNaN(from) || isNaN(to))
-        throw new Error(`Argument's must be a number. from — ${from}, to — ${to}`);
+        throw new Error(`Argument's must be a number. from — ${ from }, to — ${ to }`);
 
       // В хард режиме нельзя класть большую плитку на меньшую
       if ( this.#hardmode && second.at(-1) < from.at(-1) )
@@ -145,8 +154,8 @@ class Game extends EventEmitter {
 
 
 
-    #hasWin;
     // Единожды срабатывает когда пользователь побеждает
+    #hasWin;
     #playerWinner(){
       if (this.#hasWin)
         return;
@@ -155,9 +164,20 @@ class Game extends EventEmitter {
       this.#hasWin = true;
     }
 
+
+
     // Проверка на то, одержал ли победу пользователь
     get hasWin(){
       return !!this.#hasWin;
+    }
+
+
+
+    // Устаналивает кастомное расположение плит
+    // Обратите внимание, победы при этом не засчитываются
+    setUserArray( array ){
+      this.#arrayList = array;
+      this.nullifyScore();
     }
 
 
