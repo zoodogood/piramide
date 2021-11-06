@@ -41,7 +41,12 @@ class Params {
 
     // codespaceFontFamily: "111",
     // codespaceSyntaxColor: "111",
+    clearedConsole: true,
     menuThemeDark: false,
     menuButtonsColor: 120
   };
 }
+
+
+
+const params = new Params("userParams").getList();

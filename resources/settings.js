@@ -39,6 +39,7 @@ buttonExit.addEventListener("click", e => {
   document.activeElement.blur();
 });
 
+
 buttonSave.addEventListener("click", e => {
   let current = localStorage.getItem("userParams");
 
@@ -56,8 +57,10 @@ buttonSave.addEventListener("click", e => {
   document.activeElement.blur();
 });
 
+
 buttonReset.addEventListener("click", e => {
   InputAction.changes = {};
+  InputAction.loadParams();
   document.activeElement.blur();
 });
 
@@ -103,6 +106,9 @@ class InputAction {
 
   static setValue(valueName, value){
     InputAction.changes[valueName] = value;
+
+    if ( !this.events[valueName] )
+      throw new Error(`valueName without handler`);
 
     this.events[valueName].forEach( inputAction => inputAction.display(inputAction, value) );
   }
@@ -197,6 +203,15 @@ new InputAction("colorizeFunc").connect("colorizeFunc")
   })
   .setDisplay((input, value) => {
     input.element.value = 111;
+  });
+
+new InputAction("clearedConsole").connect("clearedConsole")
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay((input, value) => {
+
+    input.element.checked = value;
   });
 
 new InputAction("menuThemeDark").connect("menuThemeDark")

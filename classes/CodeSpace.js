@@ -81,10 +81,43 @@ codearea.addEventListener("keydown", e => {
 
 // ---- Кнопки
 
-function copyAllCode(){
+class Button {
+  constructor(id, func){
+    this.button = document.getElementById(id);
+    this.func   = func;
+    this.button.addEventListener("click", this.func);
+  }
+
+
+  hideIt(func){
+    if ( func() )
+      this.button.style.display = "none";
+
+    return this;
+  }
+}
+
+
+new Button("play-button", e => {
+  launch();
+});
+
+new Button("scoreMap-button", e => {
+  Alert.create("Отображение статистики появится в ближайшее время", "success", "Скоро реализация");
+}).hideIt(() => !params.activatePoligon);
+
+new Button("copy-button", e => {
   Alert.create("Весь код был скопирован в Ваш буфер обмена");
   navigator.clipboard.writeText( codearea.textContent );
-}
+});
+
+new Button("setDefault-button", e => {
+  codearea.textContent = defaultCode();
+  hljs.highlightElement(  codearea  );
+});
+
+
+
 
 
 function defaultCode(){
@@ -94,21 +127,9 @@ const game = new Game({ size: 15, count: 3 }).visualize();
 // Перемещает верхнюю плитку от первой башенки к третьей башне
 game.step(0, 2);
 
-//
-game.log( game.list );
+
+console.log( game.list );
  `;
-}
-
-function setDefaultCode(){
-  codearea.textContent = defaultCode();
-  hljs.highlightElement(  codearea  );
-}
-
-function checkScoreMap(){
-  // Alert.create("Загляните в консоль.</br>Там статистика!");
-  navigator.clipboard.writeText( codearea.textContent );
-  console.log( localStorage.getItem("scoreMap") );
-  Alert.create("Ещё не готово</br>19 Декабря", "warning", ":(");
 }
 
 

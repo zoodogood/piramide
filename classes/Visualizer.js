@@ -1,7 +1,5 @@
 // Устаналивает цвет плитке, можете настроить по своему хотению и скинуть мне :D
 
-const params = new Params("userParams").getList();
-
 function randomColorizzeFunc(size){
   const colorsFunc = [
     {
@@ -48,12 +46,6 @@ class Visualizer {
 
     this.action.handle();
 
-    // if (this.score){
-    //   scoreMap.push([this.score, game.hasWin]);
-    //   this.score = 0;
-    //   localStorage.setItem("scoreMap", JSON.stringify(scoreMap));
-    // }
-
     this.towers = [];
 
     console.log(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
@@ -69,7 +61,7 @@ class Visualizer {
   stepHandle( action = {from: 0, to: 1} ){
     action.type = "step";
     action.allowNext = async ({action, next, processed}) => {
-      if ( next.type !== "step" )
+      if ( next?.type !== "step" )
         return;
 
       if ( !this.multiSlab )
@@ -90,7 +82,7 @@ class Visualizer {
   // Срабатывает при game.emit("win"), но не в момент победы по визуализации
   winHandle(){
     this.action.trace.filter(e => e.type === "step").at(-1).toWin = true;
-    let action = { type: "win", func: this.visualizeWin };
+    let action = { type: "win", func: this.visualizeWin.bind(this) };
     this.action.push( action );
   }
 
@@ -140,8 +132,8 @@ class Visualizer {
 
 
     if ( !this.hasWin )
-      document.querySelector("#title").textContent = `${  Math.round((this.action.index + 1) / this.action.trace.length * 100)  }%`;
-      
+      document.querySelector("#title").textContent = `${  Math.round((this.action.index) / this.action.trace.length * 100)  }%`;
+
     return;
   }
 
@@ -170,6 +162,13 @@ class Visualizer {
 
 
   async visualizeWin(){
+
+    if (params.activatePoligon){
+      poligon.launch();
+    }
+
+    document.querySelector("#title").textContent = `${  Math.round((this.action.index) / this.action.trace.length * 100)  }%`;
+
     this.hasWin = true;
     const title = document.querySelector("#title");
     await delay(500);
@@ -202,6 +201,8 @@ class Visualizer {
       title.textContent = word;
       await delay(30);
     }
+
+    return;
   }
 
 
@@ -414,8 +415,6 @@ const visualizer = new Visualizer("#game");
 
 
 
-const scoreMap = JSON.parse(localStorage.getItem("scoreMap")) || [];
-
 
 Game.prototype.visualize = function(){
   this.on("generate", () => mainGenerate(this));
@@ -526,9 +525,3 @@ Object.defineProperty( HTMLElement.prototype, "transform", {
     return;
   }
 });
-
-
-
-class Console {
-
-}

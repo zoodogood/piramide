@@ -31,6 +31,9 @@ document.addEventListener("wheel", e => {
 
 // Срабатывает кнопкой Пуск или нажатием пробела
 async function launch(){
+  if (params.clearedConsole)
+    console.clear();
+
   try {
     await eval(`(async () => {${codearea.textContent}})()`);
   } catch (err) {

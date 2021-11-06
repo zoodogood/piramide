@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Пирамидка</title>
+
+    <meta property="og:title"       content="Пирамидка" />
+    <meta property="og:description" content="У вас уже есть планы на вечер..?" />
+    <meta property="og:image"       content="https://media.discordapp.net/attachments/565126051496198164/906115978637742090/G__111_PROJECTES_HTML_Project_CoolPyramid_index.html.png" />
+
+
     <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
     <link rel="stylesheet" href="resources/styles/style.css">
     <link rel="stylesheet" href="resources/styles/game.css">
@@ -11,7 +17,7 @@
   </head>
   <body>
     <main>
-      <span id = "title">Похоже, тут пусто</br>Нажмите Играть</span>
+      <span id = "title" title = "Показывает сколько шагов уже выполнено">Похоже, тут пусто</br>Нажмите Играть</span>
       <section id = "game">
           Пока ничего не отображается...
       </section>
@@ -22,16 +28,16 @@
 
         </code>
         <div id = "control-buttons">
-          <span class = "button" id = "play-button"       onclick = "launch()" title = "Запустить сценарий! *Пробел*">
+          <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*">
             <span class = "icon">s</span> Играть!
           </span>
-          <span class = "button" id = "scoreMap-button"   onclick = "checkScoreMap()">
+          <span class = "button" id = "scoreMap-button">
             <span class = "icon">i</span> График эффектив.
           </span>
-          <span class = "button" id = "copy-button"       onclick = "copyAllCode()">
+          <span class = "button" id = "copy-button">
             <span class = "icon">c</span> Скопировать
           </span>
-          <span class = "button" id = "setDefault-button" onclick = "setDefaultCode()">
+          <span class = "button" id = "setDefault-button">
             <span class = "icon">h</span> Код по умолчанию
           </span>
         </div>
@@ -64,7 +70,7 @@
           </br>
           5. Не используйте бесконечные циклы! Хотя визулизация плавная, все расчёты выполняются мгновенно.
           </br>
-          <span id = "openSettings"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Откройте настройки</a></span>
+          <span id = "openSettings"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
         </div>
 
 

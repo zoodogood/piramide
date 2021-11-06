@@ -2,7 +2,22 @@ function delay(ms){
   return new Promise(res => setTimeout(res, ms));
 }
 
+function ending(numb = 0, wordBase, zerofifth, first, second, opt = {}) {
+  numb = Number(numb) || 0;
+  let fix = Infinity;
 
+  if (numb > 20) fix = 10;
+  let end = (numb % fix > 4 || numb % fix == 0) ? zerofifth : (numb % fix > 1) ? second : first;
+
+  input = wordBase + end;
+  if (opt.bold) {
+    numb = "**" + numb + "**";
+  }
+  if (!opt.slice){
+    input = numb + " " + input;
+  }
+  return input;
+};
 
 function random(...arguments){
   let lastArgument = arguments.splice(-1)[0];
@@ -38,4 +53,78 @@ Array.prototype.random = function(pop, weights){
   let input = this[index];
   if (pop) this.splice(index, 1);
   return input;
+}
+
+
+
+class Timeout {
+  #identificator
+  #timer
+  #end
+  #freeze
+
+  constructor(callback, timer){
+    this.callback = callback;
+    this.#timer   = timer;
+
+    this.launch();
+    return this;
+  }
+
+
+
+  clear(){
+    clearTimeout( this.#identificator );
+    this.#identificator = null;
+
+    this.#end    = undefined;
+    this.#freeze = undefined;
+
+    return this;
+  }
+
+
+  launch(){
+    let ms = this.checkFreeze() || this.#timer;
+
+    this.clear();
+
+    this.#identificator = setTimeout(this.callback, ms);
+    this.#end = Date.now() + ms;
+
+
+    return this;
+  }
+
+
+  freeze(){
+    let timeLeft = this.getEndTimestamp() - Date.now();
+    this.clear();
+    this.#freeze = timeLeft;
+    return this;
+  }
+
+  checkFreeze(){
+    return this.#freeze ?? 0;
+  }
+
+
+  update(){
+    this.clear();
+
+    this.launch();
+    return this;
+  }
+
+
+  setMilliseconds(ms){
+    this.#timer = ms;
+    return this;
+  }
+
+
+  getEndTimestamp(){
+    return this.#end;
+  }
+
 }

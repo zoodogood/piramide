@@ -31,12 +31,20 @@ class Game extends EventEmitter {
 
 
     /*
-    Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
-    Он будет автоматически изменятся при "Шаге" игры
+      Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
+      Он будет автоматически изменятся при "Шаге" игры
     */
     get list(){
-      let proxyArray = [...this.#arrayList].map( arr => [...arr] );
-      this.on("step", ({from, to}) =>   proxyArray[to].push( proxyArray[from].pop()  ) );
+
+      // Создание точной копии массива
+      let proxyArray = [...this.#arrayList]
+        .map( arr => [...arr] );
+
+      const emulate = ({from, to}) => proxyArray[to].push(  proxyArray[from].pop()  );
+      this.on("step", emulate);
+
+      // Очистка при новой генерации
+      this.once("generate", () => this.removeListener("step", emulate));
       return proxyArray;
     }
 
@@ -44,16 +52,18 @@ class Game extends EventEmitter {
     #score;
     generate(){
       let size  = this.#arraySize;
-      let count = this.#arrayCount;
 
       // Массив плит от 1 до `size` расположенных в случ. порядке
-      let slabs = [...new Array(size)]
+      let slabs = [...new Array( size )]
         .map((e, i) => i + 1)
         .sort(() => Math.random() - 0.5);
 
 
+
+      let count = this.#arrayCount;
+
       // Создаётся набор Массивов
-      this.#arrayList = [...new Array(count)]
+      this.#arrayList = [...new Array( count )]
         .map(e => []);
 
 
@@ -61,6 +71,7 @@ class Game extends EventEmitter {
       slabs.forEach(e => this.#arrayList[ random(0, this.#arrayList.length - 1) ].push(e));
 
       this.nullifyScore();
+      this.emit("generate");
     }
 
 
@@ -76,21 +87,25 @@ class Game extends EventEmitter {
       Возвращает массив `to`
     */
     step(from = 0, to = 2){
+
+      if (isNaN(from) || isNaN(to))
+        throw new Error(`Argument's must be a number. from — ${ from }, to — ${ to }`);
+
+      // Если массива с таким номером не существует
+      if (to > this.#arraySize || from < -this.#arraySize)
+        throw new Error(`Cannot step from array ${from} to ${to}`);
+
+
+
+
       let
         first  = this.#arrayList.at( from ),
         second = this.#arrayList.at( to );
-
-      // Если массива с таким номером не существует
-      if (to > this.#arraySize || from < 0)
-        throw new Error(`Cannot step from array ${from} to ${to}`);
 
 
       if (first.length === 0)
         throw new Error("You are trying to pull out an element of an empty array");
 
-
-      if (isNaN(from) || isNaN(to))
-        throw new Error(`Argument's must be a number. from — ${ from }, to — ${ to }`);
 
       // В хард режиме нельзя класть большую плитку на меньшую
       if ( this.#hardmode && second.at(-1) < from.at(-1) )
@@ -98,12 +113,12 @@ class Game extends EventEmitter {
 
 
 
-      second.push( first.pop() );
       this.#upScore();
+
+      second.push( first.pop() );
       this.emit("step", {from, to});
 
       this.#checkFilling();
-
       return second;
     }
 
@@ -174,10 +189,23 @@ class Game extends EventEmitter {
 
 
     // Устаналивает кастомное расположение плит
-    // Обратите внимание, победы при этом не засчитываются
-    setUserArray( array ){
+    // Не должно использоваться в обычной игре
+    _setUserArray( array ){
+
+      const comprises = (arr) => arr instanceof Array && arr.every(n => typeof n === "number");
+      let isArrayList = array.every(comprises);
+
+      if ( !isArrayList )
+        throw new Error("Bad structure. Expected — [  [1,2,3], [], [7, 5], [6]  ] ");
+
       this.#arrayList = array;
+
+      this.#arrayCount = array.length;
+      this.#arraySize  = array.reduce((acc, arr) => acc + arr.length, 0);
+
       this.nullifyScore();
+
+      this.emit("generate");
     }
 
 

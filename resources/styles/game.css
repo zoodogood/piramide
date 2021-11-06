@@ -77,11 +77,11 @@
 
   transition: color 1s;
 
-  z-index: -2;
   overflow: visible;
 
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
+  user-select: none;
 }
