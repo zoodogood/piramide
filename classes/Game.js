@@ -40,7 +40,7 @@ class Game extends EventEmitter {
       let proxyArray = [...this.#arrayList]
         .map( arr => [...arr] );
 
-      const emulate = ({from, to}) => proxyArray[to].push(  proxyArray[from].pop()  );
+      const emulate = ({from, to}) => proxyArray.at(to).push(  proxyArray.at(from).pop()  );
       this.on("step", emulate);
 
       // Очистка при новой генерации
@@ -92,7 +92,7 @@ class Game extends EventEmitter {
         throw new Error(`Argument's must be a number. from — ${ from }, to — ${ to }`);
 
       // Если массива с таким номером не существует
-      if (to > this.#arraySize || from < -this.#arraySize)
+      if (to > this.#arrayCount || from < -this.#arrayCount)
         throw new Error(`Cannot step from array ${from} to ${to}`);
 
 

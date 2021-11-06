@@ -48,17 +48,19 @@ class Visualizer {
 
     this.towers = [];
 
-    console.log(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
-    console.log("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
+    console.info(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
+    console.info("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
 
     this.createTowers();
+
+    delete this.hasWin;
     document.querySelector("#title").style.color = "";
     document.querySelector("#title").textContent = "";
   }
 
 
 
-  stepHandle( action = {from: 0, to: 1} ){
+  stepHandle( action ){
     action.type = "step";
     action.allowNext = async ({action, next, processed}) => {
       if ( next?.type !== "step" )
@@ -89,13 +91,19 @@ class Visualizer {
 
 
   async moveSlab({ from, to, toWin = false }){
-    let fromTower = this.gameElement.children.item( from );
-    let toTower = this.gameElement.children.item( to );
+    let fromTower = [...this.gameElement.children].at( from );
+    let toTower = [...this.gameElement.children].at( to );
 
     let sameElement = [...fromTower.children][0];
+    // sameElement.parentNode.removeChild( sameElement );
+    //
+    // .append(sameElement)
+
     const k = 5 / params.slabsSpeed;
 
     await delay(30);
+
+
     await sameElement.transform({value: "-30vh", property: "translateY", ms: 200 * k});
 
 

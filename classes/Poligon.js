@@ -156,7 +156,7 @@ class Record {
 
 
 
-  const poligon = new Poligon( "poligonLog", { limit: 8000 } );
+  const poligon = new Poligon( { limit: 5000 } );
   poligon.setTakeCode(() => codearea.textContent);
 
   PoligonGame.setPoligon( poligon );
@@ -170,7 +170,7 @@ class Record {
       `Полигон завершён --- Резул.: ${
         type === "victory" ?
           `Победа! ${ ending(details, "Шаг", "ов", "", "а") }` :
-          `Неудача.`
+          `Неудача. ${details}`
       } ---`
     );
   });
