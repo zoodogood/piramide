@@ -69,10 +69,10 @@ class Visualizer {
       if ( !this.multiSlab )
         return;
 
-      if ( [action, ...processed.map(e => e.action)].some(e => e.to === next.from || e.from === next.from || e.from === next.to) )
+      if ( [action, ...processed.map(e => e.action)].some(e => e.to === next.from) )
         return;
 
-      await delay( 20 );
+      await delay( 70 );
       return true;
     };
 
@@ -91,20 +91,25 @@ class Visualizer {
 
 
   async moveSlab({ from, to, toWin = false }){
-    let fromTower = [...this.gameElement.children].at( from );
-    let toTower = [...this.gameElement.children].at( to );
+    let fromTower = this.gameElement.children.item( from );
+    let toTower = this.gameElement.children.item( to );
 
     let sameElement = [...fromTower.children][0];
-    // sameElement.parentNode.removeChild( sameElement );
-    //
-    // .append(sameElement)
+
+
+    let { top, left } = sameElement.getBoundingClientRect();
+    sameElement.parentNode.removeChild( sameElement );
+
+
+    document.getElementById("flyZone").append(sameElement);
+    sameElement.style.top = `${ top }px`;
+    sameElement.style.left = `${ left }px`;
 
     const k = 5 / params.slabsSpeed;
-
     await delay(30);
 
 
-    await sameElement.transform({value: "-30vh", property: "translateY", ms: 200 * k});
+    await sameElement.transform({ value: "-30vh", property: "translateY", ms: 200 * k });
 
 
 
@@ -113,24 +118,24 @@ class Visualizer {
 
 
 
-    sameElement.transform({value: `${distance}px`, property: "translateX", ms: 200 * k});
+    sameElement.transform({ value: `${distance}px`, property: "translateX", ms: 200 * k });
 
 
     if (toWin){
       sameElement.transform({value: 1.2, property: "scale", ms: 700});
       toTower.transform({value: 1.2, property: "scale", ms: 700});
       await delay(1200);
-      await sameElement.transform({value: "-37vh", property: "translateY", ms: 70});
+      await sameElement.transform({ value: "-37vh", property: "translateY", ms: 70 });
     }
 
 
     await delay(100 * k);
 
     let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
-    await sameElement.transform({value: `${slabsHeight}vh`, property: "translateY", ms: 200 * k});
+    await sameElement.transform({ value: `${slabsHeight}vh`, property: "translateY", ms: 200 * k });
 
 
-    toTower.transform({value: 1, property: "scale", ms: 200 * k});
+    toTower.transform({ value: 1, property: "scale", ms: 200 * k });
 
     sameElement.style.transition = "";
     sameElement.style.transform = "";
@@ -171,9 +176,9 @@ class Visualizer {
 
   async visualizeWin(){
 
-    if (params.activatePoligon){
+    if (params.activatePoligon)
       poligon.launch();
-    }
+
 
     document.querySelector("#title").textContent = `${  Math.round((this.action.index) / this.action.trace.length * 100)  }%`;
 
@@ -184,7 +189,7 @@ class Visualizer {
     title.style.color = "#ffffff";
     await delay(800);
 
-    let glitch = new GlitchText(title.textContent, "YOU VICTORY!");
+    let glitch = new GlitchText(title.textContent, "YOUR VICTORY!");
 
     for (let word of glitch){
       title.textContent = word;
@@ -193,7 +198,7 @@ class Visualizer {
 
     await delay(2000);
 
-    glitch = new GlitchText(title.textContent, "YES, YOU VICTORY !", {speed: 0.2});
+    glitch = new GlitchText(title.textContent, "YES, YOU ARE WON !", {speed: 0.2});
 
     for (let word of glitch){
       title.textContent = word;
@@ -294,7 +299,7 @@ class Slab {
     let slab = document.createElement("div");
     slab.classList.add("slab");
 
-    slab.style.width   = `${100 / this.size * this.number}%`;
+    slab.style.width   = `${40 / this.size * this.number}vh`;
     slab.style.height  = `${25 / this.size}vh`
 
     slab.style.backgroundColor = this.color;
@@ -417,7 +422,7 @@ class ActionHandler {
 }
 
 
-const visualizer = new Visualizer("#game");
+const visualizer = new Visualizer("#towersList");
 
 
 
@@ -444,7 +449,7 @@ function mainGenerate( game ){
   visualizer.generateHandle( game );
 
 
-  let tower = new Tower(  [...new Array(15)].map((e, i) => 15 - i + 1)  ).setSlabs( 15 ).toHTML();
+  let tower = new Tower(  [...new Array(15)].map((e, i) => 15 - i)  ).setSlabs( 15 ).toHTML();
 
   document.querySelector("#towerExample").innerHTML = "";
   document.querySelector("#towerExample").append(tower);

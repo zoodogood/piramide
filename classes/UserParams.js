@@ -19,6 +19,7 @@ class Params {
     multiSlab: false,
     activatePoligon: false,
     slabsSpeed: 5,
+    background: "#36393f",
 
     colorizeFunc: [
       {
@@ -39,7 +40,7 @@ class Params {
       }
     ],
 
-    // codespaceFontFamily: "111",
+    codeFont: "'Open Sans'",
     // codespaceSyntaxColor: "111",
     clearedConsole: true,
     menuThemeDark: false,

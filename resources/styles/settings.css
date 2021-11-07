@@ -2,6 +2,10 @@
   --buttonsMainColor: hsl(120, 35%, 50%);
 }
 
+:focus-visible {
+  outline: none;
+}
+
 body {
   flex-direction: row;
   align-items: flex-start;
@@ -231,7 +235,7 @@ input:checked + .slider::before {
 
 
 
-.text-input {
+.text-input, .content-input {
   background: none;
   border: none;
   outline: none;
@@ -240,10 +244,25 @@ input:checked + .slider::before {
   font-size: 1em;
 }
 
-.text-input::-webkit-outer-spin-button,
-.text-input::-webkit-inner-spin-button {
+.text-input[type="number"]::-webkit-outer-spin-button,
+.text-input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+.content-input {
+  padding: 5px;
+  border: 1px solid #505050;
+  border-radius: 3px;
+  min-width: 200px;
+  text-align: center;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.content-input:focus {
+  border: 1px solid #808080;
 }
 
 
@@ -289,4 +308,52 @@ input:checked + .slider::before {
 .danger-button:hover {
   background: #ffffff;
   color: #ff0000;
+}
+
+
+.select-input {
+  box-sizing: border-box;
+  display: block;
+  width: 55%;
+  height: 44px;
+  padding: 9px;
+  color: #808080;
+  background: none;
+}
+
+.select-input:focus {
+  outline: none;
+}
+
+
+.select-input option {
+  padding: 20px;
+  background: #000000;
+}
+
+.select-input option {
+  padding: 20px;
+  background: #000000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#codeFont option {
+  font-family: attr( data-name string );
 }

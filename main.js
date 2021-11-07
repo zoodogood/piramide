@@ -45,3 +45,8 @@ async function launch(){
 if ( !window.location.href.includes("ignore") ){
   launch();
 }
+
+
+
+if (params.background)
+  document.body.style.background = params.background;

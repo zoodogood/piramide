@@ -91,3 +91,12 @@ code {
   background: rgba(0, 0, 0, 0.2);
   padding: 1px;
 }
+
+code.no-wrap {
+  white-space: nowrap;
+}
+
+
+.spacing {
+  letter-spacing: 3px;
+}

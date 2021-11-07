@@ -70,21 +70,29 @@ buttonReset.addEventListener("click", e => {
 
 // Действия при использовании инпутов, а также их изменение, когда значение было установлено извне
 class InputAction {
-  constructor(elementId){
+  constructor(elementId, {eventType = "input"} = {}){
     this.element = document.getElementById( elementId );
-    this.element.addEventListener("input", e => this.action(this));
+    this.element.addEventListener(eventType, e => this.action(this, e));
   }
 
 
 
   connect(valueName){
     let constructor = this.constructor;
+
+    valueName ||= this.element.id;
+
     if (typeof constructor.events[valueName] !== "object")
       constructor.events[valueName] = [];
 
     constructor.events[valueName].push(this);
 
     this.connectedValue = valueName;
+    return this;
+  }
+
+  init(callback){
+    callback( this );
     return this;
   }
 
@@ -140,7 +148,8 @@ class InputAction {
 
 }
 
-new InputAction("ignoreOnStart").connect("ignoreOnStart")
+
+new InputAction("ignoreOnStart").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
@@ -148,7 +157,7 @@ new InputAction("ignoreOnStart").connect("ignoreOnStart")
     input.element.checked = value;
   });
 
-new InputAction("multiSlab").connect("multiSlab")
+new InputAction("multiSlab").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
@@ -156,7 +165,7 @@ new InputAction("multiSlab").connect("multiSlab")
     input.element.checked = value;
   });
 
-new InputAction("activatePoligon").connect("activatePoligon")
+new InputAction("activatePoligon").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
@@ -195,9 +204,18 @@ new InputAction("slabsSpeed").connect("slabsSpeed")
     input.element.value = value;
   });
 
-new InputAction("colorizeFunc").connect("colorizeFunc")
+new InputAction("background").connect()
   .setAction(input => {
-    console.log(input);
+    InputAction.setValue(input.connectedValue, input.element.value);
+  })
+  .setDisplay((input, value) => {
+    value = value.replace(/background(\S)*?:|\n|;/g, "");
+    input.element.value = value;
+    input.element.style.width = value.length * 7.7 + "px";
+  });
+
+new InputAction("colorizeFunc").connect()
+  .setAction(input => {
 
     InputAction.setValue(input.connectedValue, 111);
   })
@@ -205,7 +223,19 @@ new InputAction("colorizeFunc").connect("colorizeFunc")
     input.element.value = 111;
   });
 
-new InputAction("clearedConsole").connect("clearedConsole")
+new InputAction("codeFont", {eventType: "change"}).connect()
+  .init(input => {
+    let inner = ["'Open Sans'", "sans-serif", "cursive", "monospace", "fantasy"].map(font => `<option data-name = "${font}" value = ${font}>${font}</option>`).join("");
+    input.element.innerHTML = inner;
+  })
+  .setAction((input, e) => {
+    InputAction.setValue(input.connectedValue, input.element.value);
+  })
+  .setDisplay((input, value) => {
+    input.element.style.fontFamily = value;
+  });
+
+new InputAction("clearedConsole").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
@@ -214,7 +244,7 @@ new InputAction("clearedConsole").connect("clearedConsole")
     input.element.checked = value;
   });
 
-new InputAction("menuThemeDark").connect("menuThemeDark")
+new InputAction("menuThemeDark").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
@@ -224,7 +254,7 @@ new InputAction("menuThemeDark").connect("menuThemeDark")
   });
 
 
-new InputAction("menuButtonsColor").connect("menuButtonsColor")
+new InputAction("menuButtonsColor").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.value);
   })

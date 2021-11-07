@@ -96,11 +96,16 @@ class Game extends EventEmitter {
         throw new Error(`Cannot step from array ${from} to ${to}`);
 
 
+      if (from < 0)
+        from = this.#arrayCount + from;
+
+      if (to < 0)
+        to = this.#arrayCount + to;
 
 
       let
-        first  = this.#arrayList.at( from ),
-        second = this.#arrayList.at( to );
+        first  = this.#arrayList[ from ],
+        second = this.#arrayList[ to ];
 
 
       if (first.length === 0)
