@@ -220,7 +220,10 @@ new InputAction("colorizeFunc").connect()
     InputAction.setValue(input.connectedValue, 111);
   })
   .setDisplay((input, value) => {
-    input.element.value = 111;
+    let form = input.element.parentNode.children.item(1);
+    form.innerHTML = "";
+
+    Object.values(value).forEach(obj => form.innerHTML += `<div><code>${ obj.func }</code></div>`);
   });
 
 new InputAction("codeFont", {eventType: "change"}).connect()
@@ -233,6 +236,21 @@ new InputAction("codeFont", {eventType: "change"}).connect()
   })
   .setDisplay((input, value) => {
     input.element.style.fontFamily = value;
+  });
+
+
+new InputAction("codeSyntax", {eventType: "change"}).connect()
+  .init(input => {
+    let inner = ["a11y-dark", "16gray", "atom-one-dark", "atom-one-dark2", "black", "codepen-embed", "devibeans", "github", "github-dimmed", "gml", "gradient", "helios", "monokai", "myBonus", "nord", "owl", "purple", "studio"]
+      .map(font => `<option data-name = "${font}" value = ${font}>${font}</option>`).join("");
+
+    input.element.innerHTML = inner;
+  })
+  .setAction((input, e) => {
+    InputAction.setValue(input.connectedValue, input.element.value);
+  })
+  .setDisplay((input, value) => {
+    input.element.value = value;
   });
 
 new InputAction("clearedConsole").connect()

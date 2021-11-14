@@ -319,17 +319,13 @@ input:checked + .slider::before {
   padding: 9px;
   color: #808080;
   background: none;
+  cursor: pointer;
 }
 
 .select-input:focus {
   outline: none;
 }
 
-
-.select-input option {
-  padding: 20px;
-  background: #000000;
-}
 
 .select-input option {
   padding: 20px;

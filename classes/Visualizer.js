@@ -4,23 +4,23 @@ function randomColorizzeFunc(size){
   const colorsFunc = [
     {
       func: (n) => `hsl(240, 30%, ${25 - (n % 5) * 5}%)`,
-      _weight: 1
-    },
-    {
-      func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
-      _weight: 1
-    },
-    {
-      func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)`,
       _weight: 10
     },
     {
+      func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
+      _weight: 10
+    },
+    {
+      func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)`,
+      _weight: 100
+    },
+    {
       func: (n) => `hsl(${ random(50) }, 100%, 70%)`,
-      _weight: 30
+      _weight: 300
     },
     {
       func: (n) => n % 2 ? "#c6e44e" : "#70d729",
-      _weight: 50
+      _weight: 500
     }
   ];
   return colorsFunc.random(false, true).func;
@@ -61,6 +61,8 @@ class Visualizer {
 
 
   stepHandle( action ){
+    const k = 5 / params.slabsSpeed;
+
     action.type = "step";
     action.allowNext = async ({action, next, processed}) => {
       if ( next?.type !== "step" )
@@ -72,7 +74,7 @@ class Visualizer {
       if ( [action, ...processed.map(e => e.action)].some(e => e.to === next.from) )
         return;
 
-      await delay( 70 );
+      await delay( 120 * k );
       return true;
     };
 
@@ -100,6 +102,9 @@ class Visualizer {
     let { top, left } = sameElement.getBoundingClientRect();
     sameElement.parentNode.removeChild( sameElement );
 
+    // Для подсчёта начальной высоты
+    const towerSlabCount = [...fromTower.children].length;
+
 
     document.getElementById("flyZone").append(sameElement);
     sameElement.style.top = `${ top }px`;
@@ -126,16 +131,16 @@ class Visualizer {
       toTower.transform({value: 1.2, property: "scale", ms: 700});
       await delay(1200);
       await sameElement.transform({ value: "-37vh", property: "translateY", ms: 70 });
+
+      new Timeout(() => toTower.transform({ value: 1, property: "scale", ms: 700 }), 270 * k);
     }
 
 
-    await delay(100 * k);
+    await delay(70 * k);
 
-    let slabsHeight = sameElement.style.height.slice(0, -2) * ( [...fromTower.children].length - 1 - [...toTower.children].length );
+    let slabsHeight = sameElement.style.height.slice(0, -2) * (  towerSlabCount - [...toTower.children].length );
     await sameElement.transform({ value: `${slabsHeight}vh`, property: "translateY", ms: 200 * k });
 
-
-    toTower.transform({ value: 1, property: "scale", ms: 200 * k });
 
     sameElement.style.transition = "";
     sameElement.style.transform = "";
@@ -196,23 +201,34 @@ class Visualizer {
       await delay(40);
     }
 
-    await delay(2000);
+    await delay(2500);
 
-    glitch = new GlitchText(title.textContent, "YES, YOU ARE WON !", {speed: 0.2});
+    glitch = new GlitchText(title.textContent, `YES, YOU ARE WON !`, {speed: 0.1});
 
     for (let word of glitch){
       title.textContent = word;
-      await delay(30);
+      await delay(40);
+    }
+
+    await delay(500);
+
+    glitch = new GlitchText(title.textContent, `${ this.action.index }`, {speed: 0.1});
+    title.innerHTML = "YES, YOU ARE WON !\n<span class = 'small'>in ??? steps</span>";
+
+    for (let word of glitch){
+      title.children.item(0).textContent = `in ${ word } steps`;
+      await delay(20);
     }
 
     await delay(5000);
+
     title.style.color = "rgba(0, 0, 0, 0.15)";
-    await delay(2500);
-    glitch = new GlitchText(title.textContent, "0%", {speed: 0.2});
+    await delay(1400);
+    glitch = new GlitchText(title.textContent, "0%", {speed: 0.4});
 
     for (let word of glitch){
       title.textContent = word;
-      await delay(30);
+      await delay(20);
     }
 
     return;
@@ -302,7 +318,7 @@ class Slab {
     slab.style.width   = `${40 / this.size * this.number}vh`;
     slab.style.height  = `${25 / this.size}vh`
 
-    slab.style.backgroundColor = this.color;
+    slab.style.background = this.color;
     slab._parent = this;
     return slab;
   }
@@ -497,7 +513,7 @@ class GlitchText {
         }
 
         let charCode = letter.charCodeAt(0), targetCode = target[i].charCodeAt(0);
-        word[i] = String.fromCharCode( charCode >= targetCode ? --charCode : Math.floor(15 * this.speed) + charCode );
+        word[i] = String.fromCharCode( charCode >= targetCode ? charCode - 1 : Math.ceil(15 * this.speed) + charCode );
       });
 
       yield word.join("");

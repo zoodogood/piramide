@@ -77,6 +77,13 @@ body {
   overflow: hidden;
 }
 
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+
+
 /*
   background: linear-gradient(316deg, #ffc857 0%, #32254a 74%);
   background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),

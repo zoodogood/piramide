@@ -87,6 +87,10 @@
   user-select: none;
 }
 
+#title .small {
+  font-size: 0.4em;
+}
+
 
 #flyZone {
   width: 40vh;
@@ -97,6 +101,6 @@
 }
 
 #flyZone .slab {
-  position: absolute;
+  position: fixed;
   border-radius: 15px 15px 0% 0%;
 }

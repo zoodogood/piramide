@@ -1,4 +1,9 @@
 
+let codeareaStyle = document.createElement("link");
+codeareaStyle.href = `./resources/highlight/styles/${ params.codeSyntax }.min.css`;
+codeareaStyle.rel  = "stylesheet";
+document.body.append(codeareaStyle);
+
 const codespace = document.querySelector("#code-space");
 const codearea = codespace.children.item(1);
 

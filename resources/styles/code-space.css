@@ -35,6 +35,10 @@
   height: 2vh;
   width: 100vw;
   cursor: row-resize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
 #code-space #control-buttons {

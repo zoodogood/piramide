@@ -106,13 +106,12 @@
       </section>
 
       <h1>Редактор кода:</h1>
-      </br>В будущем...
-      Так же не работает...
+      Так же не работает.
       <section>
-        <h2>Шрифт</h2>
+        <h2>Шрифт (Недоступно)</h2>
         <details close>
           <summary>Подробности</summary>
-          Стиль текста кода невероятно сильно влияет на его восприятие. Дерзайте.
+          -
         </details>
         <details close>
           <summary>Предпросмотр</summary>
@@ -131,15 +130,19 @@
         <h2>Цвет текста</h2>
         <details close>
           <summary>Подробности</summary>
-          Выберите один оз вариантов окраски синтаксиса
+          Устанавливает цветовую тему в редакторе кода.</br>
+          Выберите один из вариантов окраски синтаксиса:
         </details>
+        <select id = "codeSyntax" class = "select-input margin-top">
+          <option selected>a11y-dark</option>
+        </select>
       </section>
 
       <section>
         <h2>Очищать консоль при каждом запуске кода</h2>
         <details close>
           <summary>Подробности</summary>
-          Чтобы не сбивать Вас с толку, консоль полностью очищается при нажатии кнопки Играть от "мусора" предыдущего запуска.
+          Чтобы не сбивать Вас с толку, консоль полностью очищается при нажатии кнопки Играть.<br>
         </details>
         <label class = "switch margin-top">
           <input type="checkbox" id = "clearedConsole">
@@ -165,7 +168,7 @@
         <h2>Основной цвет кнопок</h2>
         <details close>
           <summary>Подробности</summary>
-          Просто попробуйте переместить ползунок...
+          Друг, попробуй покрутить ползунок и выбрать приятный тебе цвет :)
         </details>
         <input class = "range" type="range" id ="menuButtonsColor" value = "120" min = "0" max = "255">
       </section>
