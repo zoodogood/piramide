@@ -1,6 +1,5 @@
 
 
-
 class Visualizer {
   constructor(elementSelector = "#game"){
     this.gameElement = document.querySelector( elementSelector );
@@ -517,6 +516,18 @@ class GlitchText {
 
 
 
+(async () => {
+  if (!params.letItSnow)
+    return;
+
+  let element = document.createElement("script");
+  element.src  = `./classes/LetItSnow.js`;
+  element.id   = "LetItSnow";
+  document.body.append(element);
+  await new Promise(res => (element.onload = res));
+
+  new SnowBackground();
+})();
 
 
 
