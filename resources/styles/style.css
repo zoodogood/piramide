@@ -31,7 +31,6 @@
 
 ::-webkit-scrollbar-thumb {
   background: #2d2f31;
-  opacity: 0.5;
 }
 
 ::-webkit-scrollbar-track {
@@ -96,7 +95,7 @@ body::-webkit-scrollbar {
 code {
   font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;
   background: rgba(0, 0, 0, 0.2);
-  padding: 1px;
+  padding: 2.5px;
 }
 
 code.no-wrap {

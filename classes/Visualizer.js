@@ -1,30 +1,3 @@
-// Устаналивает цвет плитке, можете настроить по своему хотению и скинуть мне :D
-
-function randomColorizzeFunc(size){
-  const colorsFunc = [
-    {
-      func: (n) => `hsl(240, 30%, ${25 - (n % 5) * 5}%)`,
-      _weight: 10
-    },
-    {
-      func: (n) => `hsl(${ random(255) }, 100%, 70%)`,
-      _weight: 10
-    },
-    {
-      func: (n) => `hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)`,
-      _weight: 100
-    },
-    {
-      func: (n) => `hsl(${ random(50) }, 100%, 70%)`,
-      _weight: 300
-    },
-    {
-      func: (n) => n % 2 ? "#c6e44e" : "#70d729",
-      _weight: 500
-    }
-  ];
-  return colorsFunc.random(false, true).func;
-}
 
 
 
@@ -454,6 +427,24 @@ Game.prototype.visualize = function(){
   mainGenerate(this);
 
   return this;
+}
+
+
+// Возвращает функцию, которая окрашивает плитки
+function randomColorizzeFunc(size){
+
+  // Создает функции rgba, hsl, rgb, они возвращают CSS строку типа "rgb(32, 33, 5)"
+  let toStringBase = (funcName) => (...colors) => {
+    let addPercent = (e, i) => funcName.startsWith("hsl") && (i === 1 || i === 2) ? `${e}%` : e;
+    colors = colors.map(addPercent).join(", ");
+    return `${ funcName }( ${colors} )`;
+  };
+  let colorsFunc = ["rgb", "rgba", "hsl", "hsla"];
+
+
+  let func = params.colorizeFunc.random(false, true).func;
+  func = new Function("n", "size", ...colorsFunc, `return ${ func }`);
+  return (n) => func( n, size, ...colorsFunc.map(toStringBase) );
 }
 
 

@@ -244,8 +244,8 @@ input:checked + .slider::before {
   font-size: 1em;
 }
 
-.text-input[type="number"]::-webkit-outer-spin-button,
-.text-input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -335,21 +335,53 @@ input:checked + .slider::before {
 
 
 
+pre {
+  padding: 20px;
+  max-height: 40vh;
+}
 
 
 
+.creator-element {
+  display: flex;
+  height: 54px;
+  cursor: pointer;
+  border-radius: 12px;
+  outline: var( --buttonsMainColor ) solid 2px;
+  outline-offset: -10px;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.self-destroy-element {
+  position: relative;
+  overflow: visible;
+}
+
+.self-destroy-_close-element {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+
+  border-radius: 50%;
+  left: auto;
+  right: 0px;
+  top: 0px;
+}
 
 
+.self-destroy-_close-element svg {
+  width: 14px;
+  height: 14px;
+  stroke: var( --buttonsMainColor );
+}
 
-
-
-
-
-
-
-
-
-
-#codeFont option {
-  font-family: attr( data-name string );
+.self-destroy-_close-element svg:hover {
+  filter: brightness(1.5);
 }

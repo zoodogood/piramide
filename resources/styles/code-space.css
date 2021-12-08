@@ -25,6 +25,14 @@
   overflow-y: overlay;
 }
 
+#code-space code::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+}
+
+#code-space code::-webkit-scrollbar-thumb:hover {
+  background: #5e6163;
+}
+
 
 #code-space code:focus {
   outline: none;
@@ -39,7 +47,9 @@
   justify-content: center;
   align-items: center;
   user-select: none;
+  overflow: hidden;
 }
+
 
 #code-space #control-buttons {
   display: flex;

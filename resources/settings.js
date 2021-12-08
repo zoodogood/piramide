@@ -1,3 +1,74 @@
+
+
+// ---
+let codeareaStyle = document.createElement("link");
+codeareaStyle.href = `highlight/styles/${ params.codeSyntax }.min.css`;
+codeareaStyle.rel  = "stylesheet";
+codeareaStyle.id   = "syntax-CSS";
+document.body.append(codeareaStyle);
+
+console.warn = () => {}
+// ---
+
+
+
+class CreatorElement {
+  constructor(innerElement, textContent = "Добавить"){
+    let element = document.createElement("div");
+    element.classList.add("creator-element");
+    element.textContent = textContent;
+
+    element.addEventListener("click", () => this.clickHandle());
+
+    this.innerElement = innerElement;
+    this.element = element;
+  }
+
+  clickHandle(){
+    let inner = typeof this.innerElement === "function" ? this.innerElement() : this.innerElement;
+    this.element.parentNode.insertBefore(inner, this.element);
+  }
+}
+
+
+class SelfDestroyedElement {
+  constructor(element){
+    element.classList.add("self-destroy-element");
+
+    this.element = element;
+
+    this.setCloseButton();
+  }
+
+  setCloseButton(){
+    const close = document.createElement("div");
+    close.title = "Убрать элемент"
+
+    close.insertAdjacentHTML("afterbegin",
+      `<svg viewPort="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <line x1="1" y1="11"
+              x2="11" y2="1"
+              stroke-width="2"/>
+        <line x1="1" y1="1"
+              x2="11" y2="11"
+              stroke-width="2"/>
+      </svg>`
+    );
+
+    close.classList.add("self-destroy-_close-element");
+
+    close.addEventListener("click", () => close.parentNode.remove(), {once: true});
+    this.element.append( close );
+  }
+}
+
+
+
+
+
+
+
+
 // Основные кнопки — выйти, сохранить, отменить.
 let
   buttonExit  = document.getElementById("button-exit"),
@@ -32,6 +103,8 @@ document.addEventListener("keydown", e => {
 
 });
 
+
+
 buttonExit.addEventListener("click", e => {
   // Меняет страницу
   let href = document.location.href.replace("/resources/usersettings", "/index");
@@ -40,22 +113,17 @@ buttonExit.addEventListener("click", e => {
 });
 
 
+
+
 buttonSave.addEventListener("click", e => {
-  let current = localStorage.getItem("userParams");
-
-  let newest = Object.assign( JSON.parse(current), InputAction.changes );
-
-  // Очищаем если равное "по умолчанию"
-  Object.entries( newest ).forEach( ([k, value]) => {
-    if ( value === InputAction.defaultValues[k] )
-      delete newest[ k ];
-  });
+  let newest = InputAction.changes;
 
   localStorage.setItem( "userParams", JSON.stringify(newest) );
-
-  InputAction.changes = {};
   document.activeElement.blur();
+  buttonSave.parentNode.classList.remove("clickMe");
 });
+
+
 
 
 buttonReset.addEventListener("click", e => {
@@ -63,6 +131,15 @@ buttonReset.addEventListener("click", e => {
   InputAction.loadParams();
   document.activeElement.blur();
 });
+
+
+
+
+
+
+
+
+
 
 
 
@@ -138,7 +215,6 @@ class InputAction {
   }
 
 
-
   static events  = {};
 
   static changes = {};
@@ -147,6 +223,10 @@ class InputAction {
 
 
 }
+
+
+
+
 
 
 new InputAction("ignoreOnStart").connect()
@@ -209,35 +289,87 @@ new InputAction("background").connect()
     InputAction.setValue(input.connectedValue, input.element.value);
   })
   .setDisplay((input, value) => {
-    value = value.replace(/background(\S)*?:|\n|;/g, "");
+    value = value.replace(/background(\S)*?:|\n|;/g, "").trim();
     input.element.value = value;
     input.element.style.width = value.length * 7.7 + "px";
   });
 
-new InputAction("colorizeFunc").connect()
-  .setAction(input => {
+new InputAction("colorizeFunc", {eventType: "click"}).connect()
+  .setAction(async input => {
+    input.element.parentNode.children[ 3 ].style.display = "none";
 
-    InputAction.setValue(input.connectedValue, 111);
+    let parse = [...input.element.parentNode.children[ 1 ].children]
+      .slice(0, -1)
+      .map(form => {
+        let span = form.children[0];
+
+        let [func, weight] = [...span.children]
+          .filter(e => e.nodeName === "INPUT")
+          .map(e => e.value);
+
+        if ( weight === "" )
+          weight = 0;
+
+        if ( func === "" )
+          return null;
+
+        return { func: func.replaceAll(`"`, `'`), _weight: +weight };
+      });
+    await InputAction.setValue(input.connectedValue, parse);
   })
   .setDisplay((input, value) => {
     let form = input.element.parentNode.children.item(1);
     form.innerHTML = "";
 
-    Object.values(value).forEach(obj => form.innerHTML += `<div><code>${ obj.func }</code></div>`);
+    const cololizeToHTML = obj => {
+      const element = document.createElement("div");
+
+      const placeholderColor = ["Чистый красный #ff0000", "Чистый синий #0000ff", "Чистый зелёный #00ff00", "rgb(RED 0-255, GREEN 0-255, BLUE 0-255)", "Чистый белый rgb(255, 255, 255)"];
+      element.innerHTML = `<span class = "spacing margin-top">Функция: <br><input class="content-input" style = "width: 70%; white-space: pre-wrap; height: 30px;" placeholder = "${ placeholderColor.random() }" value = "${ obj.func }"></input><br>   Шанс отобразится:<br><input class="content-input" style = "min-width: 0px; width: 35px;" type = "number" placeholder = "0" value = "${ obj._weight }"></input></span><br><br><br>`;
+      return new SelfDestroyedElement( element );
+    };
+
+    value
+      .filter(e => e)
+      .forEach(obj => form.append( cololizeToHTML(obj).element ));
+
+
+    let creator = new CreatorElement( () => cololizeToHTML({ func: "", _weight: "" }).element );
+    form.append( creator.element );
   });
 
-new InputAction("codeFont", {eventType: "change"}).connect()
-  .init(input => {
-    let inner = ["'Open Sans'", "sans-serif", "cursive", "monospace", "fantasy"].map(font => `<option data-name = "${font}" value = ${font}>${font}</option>`).join("");
-    input.element.innerHTML = inner;
-  })
-  .setAction((input, e) => {
-    InputAction.setValue(input.connectedValue, input.element.value);
+new InputAction("removeLibrary").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
   })
   .setDisplay((input, value) => {
-    input.element.style.fontFamily = value;
+    input.element.checked = value;
   });
 
+new InputAction("letItSnow").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay(async (input, value) => {
+    input.element.checked = value;
+
+    if (!value){
+      document.querySelector(".canvas-snow")?.remove();
+      return;
+    }
+
+    if (!document.getElementById("LetItSnow")){
+      let element = document.createElement("script");
+      element.src  = `../classes/LetItSnow.js`;
+      element.id   = "LetItSnow";
+      document.body.append(element);
+      await new Promise(res => (element.onload = res));
+    }
+
+    new SnowBackground();
+
+
+  });
 
 new InputAction("codeSyntax", {eventType: "change"}).connect()
   .init(input => {
@@ -245,12 +377,17 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
       .map(font => `<option data-name = "${font}" value = ${font}>${font}</option>`).join("");
 
     input.element.innerHTML = inner;
+    input.element.parentNode.querySelector(".hljs").textContent = localStorage.getItem("userCode");
   })
   .setAction((input, e) => {
     InputAction.setValue(input.connectedValue, input.element.value);
   })
   .setDisplay((input, value) => {
     input.element.value = value;
+
+    document.getElementById("syntax-CSS").href = `highlight/styles/${ value }.min.css`;
+    let codePreview = input.element.parentNode.querySelector(".hljs");
+    hljs.highlightElement(  codePreview  );
   });
 
 new InputAction("clearedConsole").connect()
@@ -292,10 +429,21 @@ InputAction.loadParams();
 
 
 
+
+
+
+
+
+
+
+
+
+
 window.addEventListener("beforeunload", e => {
-  let before = new Params("userParams").getList();
-  let realChanges = Object.keys( InputAction.changes ).filter( k => before[k] !== InputAction.changes[k] );
-  if ( realChanges.length )
+  let before  = localStorage.getItem("userParams");
+  let changes = JSON.stringify( InputAction.changes );
+
+  if ( before !== changes )
     e.returnValue = "Ваши изменения не сохранены, продолжить?";
 
   buttonSave.parentNode.classList.add("clickMe");

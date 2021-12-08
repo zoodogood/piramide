@@ -23,19 +23,19 @@ class Params {
 
     colorizeFunc: [
       {
-        func: "hsl(240, 30%, ${25 - (n % 5) * 5}%)",
+        func: "hsl(240, 30, 25 - (n % 5) * 5)",
         _weight: 1
       },
       {
-        func: "hsl(${ random(255) }, 100%, 70%)",
+        func: "hsl( random(255), 100, 70)",
         _weight: 1
       },
       {
-        func: "hsl(${ random(50) + 190 }, ${Math.round(70 / size * n) + 30}%, 70%)",
+        func: "hsl(random(50) + 190, Math.round(70 / size * n) + 30, 70)",
         _weight: 5
       },
       {
-        func: "hsl(${ random(50) }, 100%, 70%)",
+        func: "hsl(random(50), 100, 70)",
         _weight: 15
       },
       {
@@ -44,7 +44,9 @@ class Params {
       }
     ],
 
-    codeFont: "'Open Sans'",
+    removeLibrary: false,
+    letItSnow: false,
+
     codeSyntax: "a11y-dark",
     clearedConsole: true,
     menuThemeDark: false,
