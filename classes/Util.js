@@ -2,6 +2,7 @@ function delay(ms){
   return new Promise(res => setTimeout(res, ms));
 }
 
+
 function ending(numb = 0, wordBase, zerofifth, first, second, opt = {}) {
   numb = Number(numb) || 0;
   let fix = Infinity;
@@ -18,6 +19,8 @@ function ending(numb = 0, wordBase, zerofifth, first, second, opt = {}) {
   }
   return input;
 };
+
+
 
 function random(...arguments){
   let lastArgument = arguments.splice(-1)[0];
@@ -37,6 +40,22 @@ function random(...arguments){
   }
   return rand;
 }
+
+
+function displayDate({ ms = 0 }){
+  let now = Date.now();
+
+  if (now - ms < 86_400_000)
+    return "Сегодня, " + new Intl.DateTimeFormat("ru-ru", { hour: "2-digit", minute: "2-digit" }).format(ms);
+
+  if (now - ms < 172_800_000)
+    return "Вчера, " + new Intl.DateTimeFormat("ru-ru", { hour: "2-digit", minute: "2-digit" }).format(ms);
+
+  else
+    return new Intl.DateTimeFormat("ru-ru", { day: "2-digit", month: "2-digit" }).format(ms);
+
+}
+
 
 
 Array.prototype.random = function(pop, weights){

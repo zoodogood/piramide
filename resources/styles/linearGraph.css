@@ -1,0 +1,103 @@
+.linearGraph-container {
+  height: calc(100% - 15px);
+  position: relative;
+  overflow: hidden;
+}
+
+.linearGraph-dot {
+  position: absolute;
+  background: black;
+  width: 1.5%;
+  height: 1.5%;
+  border-radius: 4px;
+  outline: white solid 1px;
+}
+
+.linearGraph-dot:hover {
+  transform: scale(1.2);
+}
+
+
+.linearGraph-svg {
+  stroke: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  preserveAspectRatio: none;
+  stroke-width: 0.5px;
+}
+
+.linearGraph-svg line:hover {
+  filter: brightness(2);
+}
+
+
+.linearGraph-container .side {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  outline: 4px dotted rgba(255, 255, 255, 0.1);
+  overflow: visible;
+  font-size: 0.7em;
+  opacity: 80%;
+
+  word-wrap: break-word;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+
+
+
+.linearGraph-container .side:first-of-type::before {
+  content: "Шагов Дата";
+  text-align: center;
+  word-wrap: break-word;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  bottom: -10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-variant: small-caps;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.linearGraph-container .side:first-of-type {
+  flex-direction: column;
+  width: 10%;
+  height: 90%;
+}
+
+
+.linearGraph-container .side:last-of-type {
+  flex-direction: row;
+  width: 90%;
+  height: 10%;
+  top: 90%;
+  right: 0px;
+}
+
+.linearGraph-container hr {
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.linearGraph-container .side:last-of-type hr {
+  width: 2px;
+  height: 50%;
+}
+
+.linearGraph-container .side:first-of-type hr {
+  height: 2px;
+  width: 50%;
+}

@@ -134,20 +134,27 @@ class PoligonGame extends Game {
 
 
 
-// Ведёт журнал
+
 class Record {
   constructor({ timestamp, details = 0, type = "victory" }){
+    if (type !== "victory")
+      return;
 
+    const poligonLog = JSON.parse( localStorage.getItem("poligonLog") ) || [];
+    
+    let isSimmilar = poligonLog.at(-1)?.details === details  &&  poligonLog.at(-1).timestamp + this.constructor.TIME_THRESHOLD > timestamp;
+
+    if (isSimmilar){
+      let last = poligonLog.pop();
+      timestamp = (timestamp + last.timestamp) / 2;
+    }
+
+    poligonLog.push({ timestamp, details, type });
+    localStorage.setItem( "poligonLog", JSON.stringify(poligonLog) );
   }
+
+  static TIME_THRESHOLD = 2_419_200_000;
 }
-// const poligonLog = JSON.parse(localStorage.getItem("poligonLog")) || [];
-
-// if (this.score){
-//   poligonLog.push([this.score, game.hasWin]);
-//   this.score = 0;
-//   localStorage.setItem("poligonLog", JSON.stringify(poligonLog));
-// }
-
 
 
 
@@ -170,7 +177,7 @@ class Record {
       `Полигон завершён --- Резул.: ${
         type === "victory" ?
           `Победа! ${ ending(details, "Шаг", "ов", "", "а") }` :
-          `Неудача. ${details}`
+          `Неудача. ${ details }`
       } ---`
     );
   });

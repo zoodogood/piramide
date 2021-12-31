@@ -1,5 +1,5 @@
 #game {
-  max-width: 100vw;
+  width: 100vw;
   overflow-x: overlay;
   overflow: hidden;
   position: relative;
@@ -11,8 +11,11 @@
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding-left: 10vh;
+  padding-right: 10vh;
   height: 70vh;
 }
+
 
 .array {
   min-width: 40vh;
@@ -21,7 +24,7 @@
   margin-right: 10vh;
 
   border-bottom: 2vh dashed #000000;
-  backdrop-filter: opacity(0);
+  position: relative;
   transition: transform 300ms;
 
   display: flex;
@@ -47,6 +50,14 @@
   top: 10vh;
   box-shadow: 5px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 15px 15px 0% 0%;
+}
+
+.array:first-child {
+  margin-left: auto;
+}
+
+.array:last-child {
+  margin-right: auto;
 }
 
 .slab {
@@ -93,14 +104,12 @@
 
 
 #flyZone {
-  width: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  position: absolute;
+  overflow: visible;
 }
 
 #flyZone .slab {
-  position: fixed;
+  display: block;
+  position: absolute;
   border-radius: 15px 15px 0% 0%;
 }

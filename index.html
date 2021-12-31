@@ -10,7 +10,7 @@
 
 
     <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
-    
+
     <link rel="stylesheet" href="resources/styles/style.css">
     <link rel="stylesheet" href="resources/styles/game.css">
     <link rel="stylesheet" href="resources/styles/code-space.css">
@@ -31,16 +31,19 @@
         </code>
         <div id = "control-buttons">
           <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*">
-            <span class = "icon">s</span> Играть!
+            <span class = "icon">p</span> Играть!
           </span>
-          <span class = "button" id = "scoreMap-button">
+          <span class = "button" id = "scoreMap-button" title = "Показывает статистику собранную Полигоном">
             <span class = "icon">i</span> График эффектив.
           </span>
           <span class = "button" id = "copy-button">
             <span class = "icon">c</span> Скопировать
           </span>
-          <span class = "button" id = "setDefault-button">
+          <span class = "button" id = "setDefault-button" title = "Заменяет код стандартным">
             <span class = "icon">h</span> Код по умолчанию
+          </span>
+          <span class = "button" id = "showHelps-button" title = "Небольшой справочник">
+            <span class = "icon">l</span> Библиотека
           </span>
         </div>
       </section>
@@ -70,7 +73,7 @@
           </br>
           4. Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.
           </br>
-          5. Не используйте бесконечные циклы! Хотя визулизация плавная, все расчёты выполняются мгновенно.
+          5. Не используйте бесконечные циклы! Зависание страницы — явный признак такого цикла.
           </br>
           <span id = "openSettings"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
         </div>
@@ -89,6 +92,13 @@
 
     <link rel="stylesheet" href="resources/styles/alert-field.css">
     <script type="text/javascript" src = "classes/alerts.js"></script>
+    <link rel="stylesheet" href="resources/styles/modalWindow.css">
+    <script type="text/javascript" src = "classes/modalWindow.js"></script>
+
+    <link rel="stylesheet" href="resources/styles/linearGraph.css">
+    <script type="text/javascript" src = "classes/LinearGraph.js"></script>
+    <link rel="stylesheet" href="resources/styles/library.css">
+    <script type="text/javascript" src = "classes/Library.js"></script>
 
     <script type="text/javascript" src = "resources/highlight/highlight.min.js"></script>
     <script type="text/javascript" src = "classes/CodeSpace.js"></script>

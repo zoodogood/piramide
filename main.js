@@ -13,7 +13,12 @@ window.scrollTo({top: 0, behavior: "smooth"});
 document.addEventListener("wheel", e => {
   let difference = -e.deltaY;
 
-  if (document.activeElement === codearea)
+  let targetWithScroll = e.path.find(node => node.scrollHeight > node.clientHeight);
+
+  if (targetWithScroll !== document.documentElement)
+    return;
+
+  if (!difference)
     return;
 
   if (e.shiftKey)
@@ -50,3 +55,7 @@ if ( !window.location.href.includes("ignore") ){
 
 if (params.background)
   document.body.style.background = params.background;
+
+
+if (params.menuButtonsColor)
+  document.documentElement.style.setProperty('--mainThemeColor', `hsl(${ params.menuButtonsColor }, 35%, 55%)`);

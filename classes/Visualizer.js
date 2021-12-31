@@ -79,7 +79,7 @@ class Visualizer {
 
 
     document.getElementById("flyZone").append(sameElement);
-    sameElement.style.top = `${ top }px`;
+    sameElement.style.top  = `${ top }px`;
     sameElement.style.left = `${ left }px`;
 
     const k = 5 / params.slabsSpeed;
@@ -92,8 +92,6 @@ class Visualizer {
 
     // Расстояние между башнями
     let distance = toTower.getBoundingClientRect().left - fromTower.getBoundingClientRect().left;
-
-
 
     sameElement.transform({ value: `${distance}px`, property: "translateX", ms: 200 * k });
 
@@ -133,18 +131,19 @@ class Visualizer {
     this.gameElement.innerHTML = "";
     let list = this.game.list;
 
+    let size = this.game.getGameParams().size;
+
     this.towers = [];
 
     for (let tower of list) {
-      tower = this.createTower(tower, this).setSlabs( this.game.getGameParams().size );
-
+      tower = this.createTower( size ).setSlabs( tower );
       this.gameElement.append( tower.toHTML() );
     }
   }
 
 
-  createTower(array){
-    let tower = new Tower(array, this);
+  createTower(size){
+    let tower = new Tower(size);
     this.towers.push(tower);
     return tower;
   }
@@ -215,8 +214,8 @@ class Visualizer {
 
 
 class Tower {
-  constructor(array, visualizer){
-    this.array = array;
+  constructor(size){
+    this.size = size;
   }
 
 
@@ -235,11 +234,11 @@ class Tower {
     return tower;
   }
 
-  setSlabs(size){
+  setSlabs(array){
     this.slabs = [];
 
-    for (let slab of this.array) {
-      slab = new Slab( slab, size );
+    for (let slab of array) {
+      slab = new Slab( slab, this.size );
       this.slabs.unshift(slab);
     }
 
@@ -247,26 +246,9 @@ class Tower {
   }
 
   clickHandle(){
-    let
-      elementCount = this.array.length,
-      greatestSlab = Math.max( ...this.array ),
-      smallestSlab = Math.min( ...this.array );
 
-    let name = Tower.namesList.random();
-
-    let description =
-      this.array.length === 1 ?
-      `<b>Характеристики:</b>\nИмеет всего один элемент со значением ${ this.array[0] };` :
-      this.array.length ?
-      `<b>Характеристики:</b>\nКоличество элементов: ${ elementCount }\nРазмер самой большой плитки: ${ greatestSlab }\nСамой маленькой: ${ smallestSlab }` :
-      `<b>Характеристики:</b>\nОна пустая; И это всегда отлично. Башня без плит — хорошее пространство для их вдумчивого размещения, а также знак того, что вы близки к победе!`
-
-
-
-    Alert.create(description, "success", `Башня ${ name }`);
   }
 
-  static namesList = ["великого бездельника", "Енота", "Человека", "какого-то волшебника", "великого алгоритма"];
 }
 
 
@@ -348,7 +330,8 @@ class ActionHandler {
     }
 
 
-    if ( this.trace.length - 1 < this.index )
+    // Очередь
+    if ( this.trace.length <= this.index )
       await new Promise(res => this.events.once("push", res));
 
     let action = this.trace[ this.index++ ];
@@ -363,10 +346,11 @@ class ActionHandler {
       trace: this.trace,
       processed: this.processed
     };
+
     /*
-      Если функция существует и возвращает истину,
-      Досрочно запустить следующее действие
-      Иначе ждать завершения всех активных действий
+      Если функция allowNext существует и возвращает истину,
+      То досрочно запустить следующее действие
+      Иначе ждать завершения всех текущих активных действий
     */
     if ( await action.allowNext?.( data ) )
       return { done: false, value: "pending" };
@@ -385,18 +369,19 @@ class ActionHandler {
       this.preventHundle();
 
     this.processed = [];
+
     for await (let values of iterable)
       this.events.emit("chunkHandled", values);
-      // На самом деле даже не важно что здесь будет
-
   }
 
 
 
-  preventHundle(){
+  preventHundle({ clear = false } = {}){
     this.push( {type: "beforeEnd"} );
     this.#prevent = true;
     this.push( {type: "afterEnd"} );
+
+    if (clear) this.trace = [];
   }
 
 
@@ -455,7 +440,7 @@ function mainGenerate( game ){
   visualizer.generateHandle( game );
 
 
-  let tower = new Tower(  [...new Array(15)].map((e, i) => 15 - i)  ).setSlabs( 15 ).toHTML();
+  let tower = new Tower( 15 ).setSlabs(  [...new Array(15)].map((e, i) => 15 - i)  ).toHTML();
 
   document.querySelector("#towerExample").innerHTML = "";
   document.querySelector("#towerExample").append(tower);

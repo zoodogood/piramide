@@ -108,7 +108,24 @@ new Button("play-button", e => {
 });
 
 new Button("scoreMap-button", e => {
-  Alert.create("Отображение статистики появится в ближайшее время", "success", "Скоро реализация");
+  let modalWindow = new ModalWindow({size: { width: 640, height: 350, minWidth: 350, minHeight: 350 }});
+  let container = document.createElement("main");
+
+  container.classList.add("linearGraph-container");
+  modalWindow.element.append(container);
+
+  let graph = new LinearGraph();
+  graph.setDisplayDots((dot) => {
+    let date = new Intl.DateTimeFormat("ru-ru", {year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"}).format(dot.x);
+    return `Шагов: ${ dot.y }\n${ date }`;
+  });
+
+  graph.init({
+    container: container,
+    dots: JSON.parse(localStorage.getItem("poligonLog") || "[]")
+      .map(({ timestamp: x, details: y }) => ({x, y}))
+  });
+
 }).hideIt(() => !params.activatePoligon);
 
 new Button("copy-button", e => {
@@ -120,6 +137,16 @@ new Button("setDefault-button", e => {
   codearea.textContent = defaultCode();
   hljs.highlightElement(  codearea  );
 });
+
+new Button("showHelps-button", e => {
+  let modalWindow = new ModalWindow();
+  
+  let container = document.createElement("main");
+  modalWindow.element.append(container);
+
+  new Library({ container });
+
+}).hideIt(() => params.removeLibrary);
 
 
 
