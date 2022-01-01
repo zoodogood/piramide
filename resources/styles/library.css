@@ -4,10 +4,14 @@
   flex-direction: column;
   padding: 10px;
   padding-top: 35px;
-  user-select: none;
   display: flex;
   box-sizing: border-box;
   max-height: calc(100% - 15px);
+  user-select: none;
+  contain: style;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .library-container * {
@@ -58,4 +62,30 @@
   width: 100%;
   white-space: pre;
   margin-bottom: 15px;
+  cursor: default;
+}
+
+.library-container code * {
+  pointer-events: none;
+}
+
+
+.library-container code.dragged {
+  opacity: 40%;
+  outline: 5px dashed black;
+  outline-offset: -5px;
+}
+
+.library-container .dragzone {
+  opacity: 10%;
+  outline: 5px dashed white;
+  outline-offset: -5px;
+}
+
+
+.library-container .ephemeral {
+  position: absolute;
+  width: auto;
+  cursor: move;
+  pointer-events: none;
 }
