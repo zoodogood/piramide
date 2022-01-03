@@ -1,6 +1,13 @@
-const GUIDANCE = [
-
-]
+const GUIDANCES = [
+  [`const NEW_YEAR = "31.12";`, "Be Happy"],
+  [`// ---------------------- { } ----------------------\nВ этом меню Вы сможете найти как примеры небольшого кода,\nтак и советы которые помогут разобраться с написанием алгоритма.\nПлитки с подсказками можно перетаскивать, чтобы выделять главное.\nПопробуйте переместить этот совет в самый низ списка\n// -------------------------------------------------`, "Как приручить дракона"],
+  [`// Однозначно стоит понимать какие данные у Вас есть.\n\n// Массив башен\nlet towers = game.list;\nlet secondTower = towers.at(1);\n// Каждая башня — массив плит\nlet slab = secondTower.at(0);`, "мяу"],
+  [`// Чтобы перемещать плитки используются номера башен и функция \`step\`\ngame.step(1, 2);`, "Перемещение"],
+  [`// Пока истина — учись.\nwhile (true) learn();`, "Первое условие"],
+  [`console.log("С наступающим");`, "Вывод в консоль"],
+  [`// Совет:\nСтремитесь разобраться в том,\nчто из себя представляет каждая переменная; что делает та или иная функция...`, "Первый совет"],
+  [`123`, "Как понять, что перед вами переменная"]
+];
 
 
 class Library {
@@ -12,7 +19,7 @@ class Library {
 
     container.innerHTML = this.constructor.HTML
       .replace( "{ guidances }", this.getGuidances() )
-      // .replace( "{discoveries}", this.checkDiscoveries( symbolsCount ).toHTML() );
+      // .replace( "{discoveries}", this.getDiscoveriesHTML() );
 
     container.querySelectorAll("code")
       .forEach(hljs.highlightElement);
@@ -22,11 +29,11 @@ class Library {
 
 
   getGuidances(){
-    let opening = localStorage.getItem("guidances") || this.manager.constructor.BASIC_GUIDANCES;
     let codes = [];
+    let opening = this.manager.getOpening();
 
     for (let index of opening)
-      codes.push(  this.manager.constructor.GUIDANCES.at( index )  )
+      codes.push( GUIDANCES.at( index ) );
 
 
     let inner = codes.map(([code, title]) => `<code title = "${ title }">${ code }</code>`)
@@ -40,8 +47,14 @@ class Library {
     const isCode = (node) => node.nodeName === "CODE" && this.container.contains(node);
     const swipeBlocks = (node, targetNode) => {
       let next = targetNode.nextElementSibling;
+
+      if (next === node)
+        next = next.previousElementSibling;
+
       this.container.insertBefore(targetNode, node);
       this.container.insertBefore(node, next);
+
+      this.manager.update( this.container );
     }
 
     let ephemeral, codeNode;
@@ -113,6 +126,16 @@ class Library {
   }
 
 
+  getDiscoveriesHTML(count){
+    let target = this.manager.getSymbolsTarget();
+    if (target > count)
+      return "";
+
+
+    return new DiscoveriesHTML();
+  }
+
+
   static HTML = `
     <span><small>Примеры кода нельзя скопировать. T_T<br>Ручное написание положительно влияет на понимание того, что Вы делаете.</small></span>
     <br>
@@ -126,22 +149,72 @@ class Library {
 
 
 
-class GuidancesManager {
 
-  setSymbolsCount(){
+
+class GuidancesManager {
+  #opening;
+  constructor(){
+    this.#opening = JSON.parse( localStorage.getItem("guidances") ) || this.constructor.BASIC_GUIDANCES;
 
   }
 
 
-  static GUIDANCES = [
-    [`const NEW_YEAR = "31.12";`, "Be Happy"],
-    [`// Обычное условие\nwhile ( !!!NEW_YEAR ){\n  alert("Скоро всё случится");\n}`, "Первое условие"],
-    [`console.log("С наступающим");`, "Вывод в консоль"],
-    [`// Совет:\nСтремитесь разобраться в том,\nчто из себя представляет каждая переменная; что делает та или иная функция...`, "Первый совет"],
-    [`123`, "Как понять, что перед вами переменная"]
-  ]
+  getOpening(){
+    return this.#opening;
+  }
 
-  static BASIC_GUIDANCES = [0,1,2];
 
-  static getSymbolsCount = (openedCount) => 45 * openedCount;
+  getSymbolsTarget(count){
+    return Math.pow(1.16719, this.#opening.length + 1) * 50;
+  }
+
+
+  update( container ){
+    let childList = container.children;
+    let codeNodes = [...childList].filter(node => node.nodeName === "CODE");
+
+
+    for (let i in codeNodes){
+      const title = codeNodes[i].title;
+      const block = GUIDANCES.at( this.#opening[i] );
+
+      if ( block[1] === title )
+        continue;
+
+      if ( block === undefined )
+        this.#opening.push( GUIDANCES.findIndex(([code, id]) => id === title) );
+
+      // swipe
+      if ( block[1] !== title ) {
+        let swipeIndex = this.#opening.findIndex( index => GUIDANCES.at(index)[1] === title );
+        this.#opening[i] = this.#opening.splice(swipeIndex, 1, this.#opening[i]).at(0);
+      }
+
+    }
+
+    localStorage.setItem("guidances", JSON.stringify(this.#opening));
+  }
+
+
+  static BASIC_GUIDANCES = [0, 1, 2, 3, 4];
+}
+
+
+
+
+class DiscoveriesHTML {
+  constructor(){
+
+  }
+
+
+  clickHandler(){
+    console.log(123);
+  }
+
+  static HTML = `
+    <section onclick = "" class = "library-discoveries">
+      { buttons }
+    </section>
+  `;
 }

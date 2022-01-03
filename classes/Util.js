@@ -58,21 +58,23 @@ function displayDate({ ms = 0 }){
 
 
 
-Array.prototype.random = function(pop, weights){
-  let index;
-  if (weights) {
-    let last = 0;
-    let limites = this.map((e, i) => last = e._weight + last);
+Object.defineProperty(Array.prototype, "random", {
+  value: function (pop, weights){
+    let index;
+    if (weights) {
+      let last = 0;
+      let limites = this.map((e, i) => last = e._weight + last);
 
-    let rand = Math.random() * limites.at(-1);
-    index = limites.findIndex(e => e >= rand);
+      let rand = Math.random() * limites.at(-1);
+      index = limites.findIndex(e => e >= rand);
+    }
+    else index = Math.floor(Math.random() * this.length);
+
+    let input = this[index];
+    if (pop) this.splice(index, 1);
+    return input;
   }
-  else index = Math.floor(Math.random() * this.length);
-
-  let input = this[index];
-  if (pop) this.splice(index, 1);
-  return input;
-}
+});
 
 
 

@@ -107,6 +107,7 @@ new Button("play-button", e => {
   launch();
 });
 
+
 new Button("scoreMap-button", e => {
   let modalWindow = new ModalWindow({size: { width: 640, height: 350, minWidth: 350, minHeight: 350 }});
   let container = document.createElement("main");
@@ -128,19 +129,22 @@ new Button("scoreMap-button", e => {
 
 }).hideIt(() => !params.activatePoligon);
 
+
 new Button("copy-button", e => {
   Alert.create("Весь код был скопирован в Ваш буфер обмена");
   navigator.clipboard.writeText( codearea.textContent );
 });
+
 
 new Button("setDefault-button", e => {
   codearea.textContent = defaultCode();
   hljs.highlightElement(  codearea  );
 });
 
+
 new Button("showHelps-button", e => {
-  let modalWindow = new ModalWindow();
-  
+  let modalWindow = new ModalWindow({size: {width: 690, height: 490}});
+
   let container = document.createElement("main");
   modalWindow.element.append(container);
 
