@@ -1,36 +1,47 @@
 const GUIDANCES = [
-  [`const NEW_YEAR = "31.12";`, "Be Happy"],
-  [`// ---------------------- { } ----------------------\nВ этом меню Вы сможете найти как примеры небольшого кода,\nтак и советы которые помогут разобраться с написанием алгоритма.\nПлитки с подсказками можно перетаскивать, чтобы выделять главное.\nПопробуйте переместить этот совет в самый низ списка\n// -------------------------------------------------`, "Как приручить дракона"],
-  [`// Однозначно стоит понимать какие данные у Вас есть.\n\n// Массив башен\nlet towers = game.list;\nlet secondTower = towers.at(1);\n// Каждая башня — массив плит\nlet slab = secondTower.at(0);`, "мяу"],
+  [`const NEW_YEAR = "31.12";`, "Строка"],
+  [`// ---------------------- { } ----------------------\nВ этом меню Вы сможете найти примеры небольшого кода,\nкоторые помогут разобраться с написанием алгоритма.\nПеретаскивайте плитки с подсказками, чтобы выделить главное.\nПопробуйте переместить этот совет в самый низ списка\n// -------------------------------------------------`, "Как приручить дракона"],
+  [`// Как стоит представлять понятия башни и списка:\nlet tower = [7, 12, 3];\nlet list = [tower, tower1, tower2];`, "Массивы"],
+  [`// Доступные данные\n\n// Массив башен\nlet towers = game.list;\nlet secondTower = towers.at(1);\n// Каждая башня — массив плит\nlet slab = secondTower.at(0);`, "мяу"],
   [`// Чтобы перемещать плитки используются номера башен и функция \`step\`\ngame.step(1, 2);`, "Перемещение"],
-  [`// Пока истина — учись.\nwhile (true) learn();`, "Первое условие"],
+  [`// Вывести каждый элемент башни\nwhile (i < tower.length){\n  console.log( tower.at(i) );\n  i++;\n}`, "Перебор циклом"],
+  [`// НАЙТИ БАШНЮ С ПЛИТКОЙ РАЗМЕРОМ 15;\nfunction findTower(slab){\n  let i = 0;\n  while (i < list.length){\n    let tower = list.at(i);\n    let isIncludes = tower.includes(slab);\n\n    if (isIncludes)\n      return tower;\n\n    i++;\n  }\n}\n\nlet tower = findTower(15);`, "Башня с плиткой нужного размера"],
   [`console.log("С наступающим");`, "Вывод в консоль"],
   [`// Совет:\nСтремитесь разобраться в том,\nчто из себя представляет каждая переменная; что делает та или иная функция...`, "Первый совет"],
-  [`123`, "Как понять, что перед вами переменная"]
+  [`// Пока истина — учись.\nwhile (true) learn();`, "Первое условие"],
+  [`Вы достигли конца библиотеки 🔥\n/*\n░▄▀▀▀▀▄░░▄▄\n█░░░░░░▀▀░░█░░░░░░▄░▄\n█░║░░░░██░████████████\n█░░░░░░▄▄░░█░░░░░░▀░▀\n░▀▄▄▄▄▀░░▀▀\n*/`, "Откройте достижение"]
 ];
 
 
 class Library {
-  constructor({ container }){
+  constructor({ container, symbolsCount }){
     this.container = container;
+    this.symbolsCount = symbolsCount;
     container.classList.add("library-container");
 
     this.manager = new GuidancesManager();
 
     container.innerHTML = this.constructor.HTML
-      .replace( "{ guidances }", this.getGuidances() )
-      // .replace( "{discoveries}", this.getDiscoveriesHTML() );
+      .replace( "{ guidances }", this.getGuidancesHTML( this.manager.getOpening() ) )
+      .replace( "{ discoveries }", this.getDiscoveriesHTML( this.symbolsCount ) )
+      .replace( "{ symbolsNeeded }", this.displayTargetHTML() );
 
-    container.querySelectorAll("code")
-      .forEach(hljs.highlightElement);
-
+    this.handleElements();
     this.addDraggableHandlers();
   }
 
 
-  getGuidances(){
+  handleElements(){
+    this.container.querySelectorAll("code")
+      .forEach(hljs.highlightElement);
+
+    this.container.querySelector(".library-discoveries")
+      ?.addEventListener("click", this.manager.discoveries.clickHandler.bind(this));
+  }
+
+
+  getGuidancesHTML(opening = []){
     let codes = [];
-    let opening = this.manager.getOpening();
 
     for (let index of opening)
       codes.push( GUIDANCES.at( index ) );
@@ -131,8 +142,21 @@ class Library {
     if (target > count)
       return "";
 
+    this.manager.discoveries = new Discoveries(this.manager, count);
+    return this.manager.discoveries.toHTML();
+  }
 
-    return new DiscoveriesHTML();
+
+  displayTargetHTML(){
+    let target = this.manager.getSymbolsTarget() - this.symbolsCount;
+
+    if (target < 0)
+      return "";
+
+    if (this.manager.getOpening().length === GUIDANCES.length)
+      return "";
+
+    return `<center>Напишите ещё ${ ending(target, "символ", "ов", "", "а") }, чтобы открыть новые подсказки</center>`
   }
 
 
@@ -143,7 +167,7 @@ class Library {
     <br>
     { discoveries }
     <hr>
-    <center>Напишите ещё { symbolsNeeded }, чтобы открыть новые подсказки</center>
+    { symbolsNeeded }
   `
 }
 
@@ -164,8 +188,8 @@ class GuidancesManager {
   }
 
 
-  getSymbolsTarget(count){
-    return Math.pow(1.16719, this.#opening.length + 1) * 50;
+  getSymbolsTarget(){
+    return ~~( Math.pow(1.13099, this.#opening.length + 1) * 100 );
   }
 
 
@@ -174,15 +198,18 @@ class GuidancesManager {
     let codeNodes = [...childList].filter(node => node.nodeName === "CODE");
 
 
-    for (let i in codeNodes){
+    for (let i = 0; i < codeNodes.length; i++){
       const title = codeNodes[i].title;
-      const block = GUIDANCES.at( this.#opening[i] );
+      const block = GUIDANCES[ this.#opening[i] ];
+
+      if ( block === undefined ){
+        this.#opening.push( GUIDANCES.findIndex(([code, id]) => id === title) );
+        continue;
+      }
+
 
       if ( block[1] === title )
         continue;
-
-      if ( block === undefined )
-        this.#opening.push( GUIDANCES.findIndex(([code, id]) => id === title) );
 
       // swipe
       if ( block[1] !== title ) {
@@ -202,18 +229,45 @@ class GuidancesManager {
 
 
 
-class DiscoveriesHTML {
-  constructor(){
+class Discoveries {
+  constructor(manager){
+    let unavailable = GUIDANCES.filter((e, i) => !manager.getOpening().includes(i))
+      .slice(0, 3);
 
+    this.buttons = unavailable.map(([code, title]) => `<div title = "Нажмите, чтобы открыть">${ title }</div>`);
   }
 
 
-  clickHandler(){
-    console.log(123);
+  toHTML(){
+    if (!this.buttons)
+      return "";
+
+    let buttons = this.buttons;
+    return this.constructor.HTML
+      .replace("{ buttons }", buttons.join("\n"));
+  }
+
+
+  clickHandler(clickEvent){
+    if (clickEvent.target.nodeName === "SECTION")
+      return;
+
+    let library = this;
+    library.container.querySelector(".library-discoveries").remove();
+    let index = GUIDANCES.findIndex(([code, title]) => title === clickEvent.target.textContent);
+
+    if (!~index)
+      throw new Error("unknow Title");
+
+    let inner = library.getGuidancesHTML([index]);
+    library.container.querySelector("code:last-of-type").insertAdjacentHTML("afterend", inner);
+
+    hljs.highlightElement(library.container.querySelector("code:last-of-type"));
+    library.manager.update( library.container );
   }
 
   static HTML = `
-    <section onclick = "" class = "library-discoveries">
+    <section class = "library-discoveries">
       { buttons }
     </section>
   `;

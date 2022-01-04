@@ -148,7 +148,9 @@ new Button("showHelps-button", e => {
   let container = document.createElement("main");
   modalWindow.element.append(container);
 
-  new Library({ container });
+  let symbolsCount = codearea.textContent.length;
+
+  new Library({ container, symbolsCount });
 
 }).hideIt(() => params.removeLibrary);
 

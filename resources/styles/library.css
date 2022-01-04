@@ -89,3 +89,26 @@
   cursor: move;
   pointer-events: none;
 }
+
+
+
+.library-discoveries div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  white-space: pre;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: rgba(200, 200, 200, 0.2);
+  font-size: 0.9em;
+  transition: transform 300ms;
+}
+
+
+.library-discoveries div:active {
+  transform: scale(0.9, 1);
+}
