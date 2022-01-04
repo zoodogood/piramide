@@ -1,17 +1,19 @@
 .library-container {
-  width: 100%;
+  display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
+
+  box-sizing: border-box;
   padding: 10px;
   padding-top: 35px;
-  display: flex;
-  box-sizing: border-box;
+
+  width: 100%;
   max-height: calc(100% - 15px);
+
   user-select: none;
   contain: style;
-  max-width: 100%;
   overflow-x: hidden;
-  position: relative;
 }
 
 .library-container * {
@@ -20,11 +22,12 @@
 
 
 .library-container hr {
-  width: 70%;
   border: none;
-  height: 2px;
-  background: var(--mainThemeColor);
   opacity: 20%;
+  background: var(--mainThemeColor);
+
+  width: 70%;
+  height: 2px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -50,10 +53,20 @@
   height: 5px;
 }
 
+
+
 .library-container span {
   letter-spacing: 0.2px;
   text-align: center;
 }
+
+
+.library-container #codesBlocks {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
 
 .library-container code {
   display: block;
@@ -92,23 +105,47 @@
 
 
 
-.library-discoveries div {
+.library-container .discoveries {
+  width: 98%;
+
+}
+
+
+.library-container .discoveries div {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+
   box-sizing: border-box;
   height: 80px;
   width: 100%;
-  white-space: pre;
   margin-bottom: 10px;
-  cursor: pointer;
+
+  margin-bottom: 10px;
+  white-space: pre;
   background: rgba(200, 200, 200, 0.2);
-  font-size: 0.9em;
+
+
+
+  cursor: pointer;
   transition: transform 300ms;
 }
 
 
-.library-discoveries div:active {
+.library-container .discoveries div:active {
   transform: scale(0.9, 1);
+}
+
+.library-container .discoveries div:hover {
+  border-bottom: 5px black solid;
+}
+
+
+.library-container .discoveries span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2em;
 }
