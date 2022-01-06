@@ -214,8 +214,13 @@ input:checked + .slider::before {
   -moz-appearance: none;
   appearance: none;
 
-  display: block;
   width: 70%;
+  height: 28px;
+
+  overflow: hidden;
+  contain: style;
+
+  display: block;
   outline: 0;
   background: none;
 }
