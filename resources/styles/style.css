@@ -9,7 +9,10 @@
   font-family: 'Open Sans', sans-serif;
   padding: 0px;
   margin: 0px;
+  overflow-y: auto;
   overflow-y: overlay;
+
+  scrollbar-width: thin;
 }
 
 ::selection {
@@ -36,6 +39,7 @@
 ::-webkit-scrollbar-track {
   opacity: 0%;
 }
+
 
 
 p {

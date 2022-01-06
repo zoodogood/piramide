@@ -11,6 +11,11 @@ body {
   align-items: flex-start;
 }
 
+main {
+  min-width: 2560px;
+  grow: 1;
+}
+
 main > h1 {
   letter-spacing: 7px;
   margin-bottom: 20px;
@@ -206,6 +211,9 @@ input:checked + .slider::before {
 
 .range {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   display: block;
   width: 70%;
   outline: 0;
@@ -215,6 +223,20 @@ input:checked + .slider::before {
 
 .range::-webkit-slider-runnable-track {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  height: 28px;
+  background: #808080;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.range::-moz-range-track {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   height: 28px;
   background: #808080;
   border-radius: 14px;
@@ -223,8 +245,28 @@ input:checked + .slider::before {
 
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 28px;
+  -moz-appearance: none;
+  appearance: none;
+
   width: 28px;
+  height: 28px;
+
+  cursor: pointer;
+  background-color: white;
+  border-radius: 14px;
+  outline-offset: -5px;
+  box-shadow: calc(-50vw - 20px) 0 0 50vw var( --buttonsMainColor ), inset 0 0 0 5px white;
+}
+
+
+.range::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 28px;
+  height: 28px;
+
   cursor: pointer;
   background-color: white;
   border-radius: 14px;
@@ -245,9 +287,14 @@ input:checked + .slider::before {
 }
 
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+{
   -webkit-appearance: none;
   margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 
@@ -268,6 +315,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .button-input {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   display: inline-block;
   border: none;
 
