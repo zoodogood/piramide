@@ -20,8 +20,8 @@ class Visualizer {
 
     this.towers = [];
 
-    console.info(`%c🦝 Игра сгенерированна. СТАРТ!`, "color: green; padding: 30px;");
-    console.info("%cВсе, что вы помещаете в console.log будет отображено здесь!", "padding: 30px;");
+    console.info(`%c🦝 Игра запущена`, "color: green; padding: 30px; font-size: 0.9em;");
+    console.info("%cВсё, что Вы помещаете в console.log — будет отображено здесь!", "padding: 30px;");
 
     this.createTowers();
 
