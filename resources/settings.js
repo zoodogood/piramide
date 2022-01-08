@@ -390,6 +390,16 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
     hljs.highlightElement(  codePreview  );
   });
 
+new InputAction("codeSize").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.value);
+  })
+  .setDisplay((input, value) => {
+    input.element.value = value;
+    input.element.parentNode.querySelector("details")
+      .style.fontSize = `${ value / 100 }em`;
+  });
+
 new InputAction("clearedConsole").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);

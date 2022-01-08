@@ -25,6 +25,8 @@
   word-wrap: normal;
   white-space: pre-wrap;
   overflow-y: overlay;
+
+  font-size: calc(var( --codeFontSize ) / 100);
 }
 
 #code-space code::-webkit-scrollbar-thumb {
@@ -73,6 +75,7 @@
   align-items: center;
 
   min-width: fit-content;
+  overflow-y: hidden;
 }
 
 #code-space #control-buttons .button:hover {

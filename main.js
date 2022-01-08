@@ -59,3 +59,7 @@ if (params.background)
 
 if (params.menuButtonsColor)
   document.documentElement.style.setProperty('--mainThemeColor', `hsl(${ params.menuButtonsColor }, 35%, 55%)`);
+
+
+if (params.codeSize)
+  document.documentElement.style.setProperty('--codeFontSize', `${ params.codeSize }em`);

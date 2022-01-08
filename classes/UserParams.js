@@ -49,6 +49,8 @@ class Params {
 
     codeSyntax: "a11y-dark",
     clearedConsole: true,
+    codeSize: 100,
+
     menuThemeDark: false,
     menuButtonsColor: 120
   };
