@@ -10,7 +10,7 @@ class LinearGraph {
     container.innerHTML = "";
 
     if (dotsResolve.length < 2)
-      return container.innerHTML = `<center>Выиграйте ещё ${ ending(2 - dotsResolve.length, "раз", "", "", "а") }, чтобы увидеть статистику.<br>Обратите внимание, идентичные результаты не засчитываются</center>`;
+      return container.innerHTML = `<center>Выиграйте ещё ${ ending(2 - dotsResolve.length, "раз", "", "", "а") } с разными алгоритмами,<br>чтобы увидеть статистику.</center>`;
 
     let maxX = 0, minX = Infinity, maxY = 0, minY = Infinity;
     for (let {x, y} of dotsResolve){
