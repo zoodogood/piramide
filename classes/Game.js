@@ -20,7 +20,7 @@ class Game extends EventEmitter {
 
 
       if ( isNaN(arrayCount) || isNaN(arraySize) )
-        throw new Error(`Argument's must be a number size — ${arraySize}, count — ${arrayCount}`);
+        throw new Error(`Argument's must be a number size — ${ arraySize }, count — ${ arrayCount }`);
 
 
       this.#arrayCount = arrayCount;
@@ -89,7 +89,7 @@ class Game extends EventEmitter {
     step(from = 0, to = 2){
 
       if (isNaN(from) || isNaN(to))
-        throw new Error(`Argument's must be a number. from — ${ from }, to — ${ to }`);
+        throw new Error(`Argument's must be a number. Current from value — ${ from }, to — ${ to }`);
 
       // Если массива с таким номером не существует
       if (to > this.#arrayCount || from < -this.#arrayCount)
