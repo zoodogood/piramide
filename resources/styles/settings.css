@@ -157,6 +157,7 @@ details summary {
   cursor: pointer;
   user-select: none;
   width: fit-content;
+  overflow: hidden;
 }
 
 

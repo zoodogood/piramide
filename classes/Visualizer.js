@@ -55,6 +55,14 @@ class Visualizer {
   }
 
 
+  consoleHandle(log){
+    let action = {};
+    action.type = "console";
+    action.func = async () => console.log(log);
+    this.action.push(action);
+  }
+
+
   // Срабатывает при game.emit("win"), но не в момент победы по визуализации
   winHandle(){
     this.action.trace.filter(e => e.type === "step").at(-1).toWin = true;
@@ -401,17 +409,23 @@ const visualizer = new Visualizer("#towersList");
 
 
 
+Game.prototype.console = function(log){
+  this.emit("console", log);
+}
 
 Game.prototype.visualize = function(){
   this.on("generate", () => mainGenerate(this));
   this.on("win", () => visualizer.winHandle());
   this.on("step", e => visualizer.stepHandle(e));
+  this.on("console", log => visualizer.consoleHandle(log));
 
 
   mainGenerate(this);
 
   return this;
 }
+
+
 
 
 // Возвращает функцию, которая окрашивает плитки
@@ -501,18 +515,7 @@ class GlitchText {
 
 
 
-(async () => {
-  if (!params.letItSnow)
-    return;
 
-  let element = document.createElement("script");
-  element.src  = `./classes/LetItSnow.js`;
-  element.id   = "LetItSnow";
-  document.body.append(element);
-  await new Promise(res => (element.onload = res));
-
-  new SnowBackground();
-})();
 
 
 
