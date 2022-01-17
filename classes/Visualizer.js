@@ -56,9 +56,18 @@ class Visualizer {
 
 
   consoleHandle(log){
+    const consoleLog = async () => {
+      if (typeof log === "object")
+        console.table(log);
+
+      else
+        console.log(`%c${ log }`, "padding: 15px; border-bottom: 1px solid green;");
+
+    }
+
     let action = {};
     action.type = "console";
-    action.func = async () => console.log(log);
+    action.func = consoleLog;
     this.action.push(action);
   }
 
