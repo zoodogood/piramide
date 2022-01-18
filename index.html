@@ -12,6 +12,16 @@
     <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
     <meta name="google-site-verification" content="X-yOBvTd5FWAJ3wWp3xzzswE2DL6Bk0b3maC6iR72Dw" />
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BJ9HS0CPW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0BJ9HS0CPW');
+    </script>
+
     <link rel="stylesheet" href="resources/styles/style.css">
     <link rel="stylesheet" href="resources/styles/game.css">
     <link rel="stylesheet" href="resources/styles/code-space.css">
@@ -56,21 +66,21 @@
           <h1>ПОЯСНЕНИЕ ЗАДАЧИ</h1>
           Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.
           </br>
-          Напрямую взаимодействовать с ними никак нельзя. Используйте метод класса <code>game</code> — <code>step()</code>
+          Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,
           </br>
-          Функция "шаг" принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.
+          который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.
           </br>
-          Хотя прямая работа с башнями невозможна — получить их список можно с помощью свойства <code>game.list</code>
+          Получить массив башен — <code>game.list</code>
         </div>
 
 
         <div id = "advice">
           <h2>Прочитайте</h2>
-          1. Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.
+          1. Ищите в Интернете.
           </br>
-          2. Воспользуйтесь библиотекой.
+          2. Посетите <a href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
           </br>
-          3. Посетите <a href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
+          3. Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.
           <!-- 3. Раздел сверху создан для визуализации взаимодействия с игрой. Надеюсь, он будет вам полезен. Также можете отключить его ради производительности <code><i>.visualize()</i></code> -->
           </br>
           4. Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.

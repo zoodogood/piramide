@@ -89,7 +89,7 @@ class Game extends EventEmitter {
     step(from = 0, to = 2){
 
       if (isNaN(from) || isNaN(to))
-        throw new Error(`Argument's must be a number. Current from value — ${ from }, to — ${ to }`);
+        throw new Error(`Argument's must be a number. Current from value — ${ Object.prototype.toString.call(from) }, to — ${ Object.prototype.toString.call(to) }`);
 
       // Если массива с таким номером не существует
       if (to > this.#arrayCount || from < -this.#arrayCount)
