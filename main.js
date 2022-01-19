@@ -2,7 +2,7 @@
 console.warn = () => {}
 
 // Всплывающее сообщение
-Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>снизу</a> страницы", "success", "Привет!");
+Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>внизу</a> страницы", "success", "Привет!");
 
 
 // Скролл вверх страницы при запуске

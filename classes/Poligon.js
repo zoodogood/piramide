@@ -102,7 +102,6 @@ class PoligonGame extends Game {
 
 
   async activateStops( reject ){
-
     let timeout = new Timeout( () => this.#poligon.reject( "inactivity" ), 3000 );
 
     this.on("generate", () => this.#poligon.reject( "re-generated" ));
@@ -141,7 +140,7 @@ class Record {
       return;
 
     const poligonLog = JSON.parse( localStorage.getItem("poligonLog") ) || [];
-    
+
     let isSimmilar = poligonLog.at(-1)?.details === details  &&  poligonLog.at(-1).timestamp + this.constructor.TIME_THRESHOLD > timestamp;
 
     if (isSimmilar){
