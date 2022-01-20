@@ -18,6 +18,7 @@
 
 
 #readme footer {
+  display: flex;
   height: 3vh;
   flex-grow: 0;
   background-color: #1d1d1d;
@@ -64,4 +65,11 @@
   align-self: center;
   margin-top: auto;
   overflow: visible;
+}
+
+
+@media (max-width: 600px) {
+  #readme footer {
+    font-size: 0.8em;
+  }
 }
