@@ -122,7 +122,7 @@
 @media (max-width: 600px) {
   #towersList {
     align-items: start;
-    padding-left: calc( 50vw - 20vh );
+    padding-left:  calc( 50vw - 20vh );
     padding-right: calc( 50vw - 20vh );
   }
 }
