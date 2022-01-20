@@ -91,3 +91,22 @@
 #code-space #control-buttons .button:active {
   transform: scale(0.95);
 }
+
+
+@media (max-width: 600px) {
+  #code-space #control-buttons {
+    justify-content: space-around;
+    font-size: 0px;
+    height: 4vh;
+  }
+
+  #code-space #control-buttons .icon {
+    font-size: 1rem;
+  }
+
+  #code-space code {
+    min-height: 45vh;
+    white-space: pre;
+  }
+
+}

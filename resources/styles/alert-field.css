@@ -4,14 +4,13 @@
   top: 3vh;
   color: #000000;
   overflow: hidden;
-  font-size: 1.1em;
 }
 
 .alertField .alert {
   border-left: 7px solid;
   border-radius: 5px;
   min-width: 270px;
-  max-width: 370px;
+  max-width: 320px;
   animation: AlertBubble 0.5s ease;
   padding: 15px;
   padding-right: 30px;

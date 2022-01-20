@@ -40,6 +40,9 @@
   opacity: 0%;
 }
 
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
 
 
 p {

@@ -14,7 +14,7 @@
   padding-left: 10vh;
   padding-right: 10vh;
   height: 70vh;
-  
+
   overflow-y: hidden;
 }
 
@@ -115,4 +115,14 @@
   display: block;
   position: absolute;
   border-radius: 15px 15px 0% 0%;
+}
+
+
+
+@media (max-width: 600px) {
+  #towersList {
+    align-items: start;
+    padding-left: calc( 50vw - 20vh );
+    padding-right: calc( 50vw - 20vh );
+  }
 }
