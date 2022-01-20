@@ -51,3 +51,6 @@ class EventEmitter {
 
 
 }
+
+
+window.events = new EventEmitter();

@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <title>Ханойская Пирамидка</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta property="og:title"       content="Ханойская Пирамидка" />
     <meta property="og:description" content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду." />
     <meta property="og:image"       content="https://media.discordapp.net/attachments/565126051496198164/906115978637742090/G__111_PROJECTES_HTML_Project_CoolPyramid_index.html.png" />
 
-    <meta name="keywords"    content="игра для программистов, алгоритм, хайнойская башня, ханойская пирамидка, написание алгоритма, игра на JavaScript"/>
+    <meta name="keywords"    content="игра для программистов, алгоритм, хайнойская, башня, пирамида, ханойская пирамидка, написание алгоритма, игра на JavaScript"/>
     <meta name="description" content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду."/>
 
-    <link rel="shortcut icon" href="resources/favicon.png" type="image/png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BJ9HS0CPW"></script>
@@ -62,9 +64,9 @@
     </main>
 
     <section id = "readme">
-      <main>
-        <div id = "taskInfo">
-          <h1>ПОЯСНЕНИЕ ЗАДАЧИ</h1>
+      <article>
+        <h1>Пояснение задачи</h1>
+        <main id = "taskInfo">
           Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.
           </br>
           Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,
@@ -72,12 +74,12 @@
           который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.
           </br>
           Получить массив башен — <code>game.list</code>
-        </div>
+        </main>
 
 
         <div id = "advice">
           <h2>Прочитайте</h2>
-          1. Ищите в Интернете.
+          1. Ищите в Интернете то что Вам интересно.
           </br>
           2. Посетите <a href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
           </br>
@@ -88,12 +90,12 @@
           </br>
           5. Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.
           </br>
-          <span id = "openSettings"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
+          <span id = "openSettings" onclick = "gtag('event', 'click', { content_id: 'userSettings' });"><a href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
         </div>
 
 
-        <div id = "towerExample">
-      </main>
+        <div id = "towerExample"></div>
+      </article>
       <footer>
         <span>Самое время нажать *Ctrl + Enter*</span>
       </footer>

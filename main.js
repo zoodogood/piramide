@@ -5,6 +5,7 @@ console.warn = () => {}
 Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>внизу</a> страницы", "success", "Привет!");
 
 
+
 // Скролл вверх страницы при запуске
 window.scrollTo({top: 0, behavior: "smooth"});
 
@@ -38,6 +39,8 @@ document.addEventListener("wheel", e => {
 async function launch(){
   if (params.clearedConsole)
     console.clear();
+
+  window.events.emit();
 
   try {
     await eval(`(async () => {${codearea.textContent}})()`);

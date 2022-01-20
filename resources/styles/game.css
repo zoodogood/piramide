@@ -14,6 +14,8 @@
   padding-left: 10vh;
   padding-right: 10vh;
   height: 70vh;
+  
+  overflow-y: hidden;
 }
 
 
@@ -25,7 +27,8 @@
 
   border-bottom: 2vh dashed #000000;
   position: relative;
-  transition: transform 300ms;
+  transform-origin: center;
+  transition: transform 500ms, filter 500ms;
 
   display: flex;
   flex-direction: column;

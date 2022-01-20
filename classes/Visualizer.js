@@ -262,8 +262,34 @@ class Tower {
     return this;
   }
 
-  clickHandle(){
+  async clickHandle(){
+    let effectType = ["filter", "transform"].random();
+    if (this.html.style[effectType] !== "")
+      return;
 
+    let effects = {
+      filter: [
+        "blur(10px)",
+        "invert(1)",
+        "opacity(0.2)",
+        "contrast(2)",
+        "sepia(1)",
+        "saturate(2)",
+        "drop-shadow(0px 0px 2px black)",
+        `brightness(${ [1.7, 0.4].random() })`,
+        `hue-rotate(${ random(30, 360) }deg)`
+      ],
+      transform: [
+        "skew(125deg, 40deg)",
+        "translateX(120vw)",
+        "scale(0.5)",
+        `rotate(${ random(-8, 8) * 45 }deg)`,
+      ]
+    };
+
+    this.html.style[effectType] = effects[effectType].random();
+    await delay(700);
+    this.html.style[effectType] = "";
   }
 
 }
