@@ -78,26 +78,31 @@
 
 
 
+#scoreTitle {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 100vw;
+  justify-content: center;
+
+  top: 10vh;
+
+  overflow: hidden;
+}
+
 
 #title {
   color: rgba(0, 0, 0, 0.15);
-  position: absolute;
+
   letter-spacing: 9px;
   font-size: 5.5em;
-  top: 10vh;
-  text-align: center;
 
   white-space: pre-wrap;
   line-height: 90%;
+  text-align: center;
 
   transition: color 1s;
 
-  overflow: visible;
-
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
   user-select: none;
 }
 
@@ -124,5 +129,14 @@
     align-items: start;
     padding-left:  calc( 50vw - 20vh );
     padding-right: calc( 50vw - 20vh );
+  }
+
+  #title {
+    font-size: 2em;
+    letter-spacing: 5px;
+  }
+
+  #scoreTitle {
+    top: 5vh;
   }
 }
