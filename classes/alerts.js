@@ -11,7 +11,7 @@ class AlertBubble {
     let timeoutDelay = this.timeout - Date.now();
     if (timeoutDelay > 0){
       await delay(timeoutDelay);
-      return this.create(description, type, id);
+      return this.create(description, type, title);
     }
     this.timeout = Date.now() + 350;
 

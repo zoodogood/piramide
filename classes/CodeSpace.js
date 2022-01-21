@@ -90,9 +90,9 @@ class Button {
   constructor(id, func){
     this.button = document.getElementById(id);
     this.func   = func;
-    
+
     this.button.addEventListener("click", clickEvent => {
-      gtag("event", "click", { content_id: id });
+      gtag("event", `${ id }_pressed`);
       this.func(clickEvent);
     });
   }

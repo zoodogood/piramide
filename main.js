@@ -40,19 +40,24 @@ async function launch(){
   if (params.clearedConsole)
     console.clear();
 
-  window.events.emit();
+  window.events.emit("launchCode");
 
   try {
     await eval(`(async () => {${codearea.textContent}})()`);
-  } catch (err) {
+  }
+  catch (err) {
     Alert.create(err.message, "error", "Просто ошибка");
     console.error(err);
+    window.events.emit("error", err);
   }
+
+  console.log("executed");
+  window.events.emit("launchCodeEnd");
 }
 
-if ( !window.location.href.includes("ignore") ){
+if ( !window.location.href.includes("ignore") && crashDefender.check() )
   launch();
-}
+
 
 
 

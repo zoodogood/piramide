@@ -77,6 +77,8 @@ class Visualizer {
     this.action.trace.filter(e => e.type === "step").at(-1).toWin = true;
     let action = { type: "win", func: this.visualizeWin.bind(this) };
     this.action.push( action );
+
+    gtag("event", "victory");
   }
 
 
