@@ -51,7 +51,6 @@ async function launch(){
     window.events.emit("error", err);
   }
 
-  console.log("executed");
   window.events.emit("launchCodeEnd");
 }
 
