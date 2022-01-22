@@ -113,7 +113,7 @@ class Game extends EventEmitter {
 
 
       // В хард режиме нельзя класть большую плитку на меньшую
-      if ( this.#hardmode && second.at(-1) < from.at(-1) )
+      if ( this.#hardmode && second.at(-1) < first.at(-1) )
         throw new Error(`Into Hardmode You cannot put the larger slab on smaller`);
 
 
