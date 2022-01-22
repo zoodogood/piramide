@@ -1,6 +1,3 @@
 User-agent: *
 Allow: /index.html
 Dissalow: /resources/usersettings.html
-
-
-Sitemap: /resources/sitemap.xml
