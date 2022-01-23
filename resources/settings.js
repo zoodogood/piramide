@@ -429,6 +429,16 @@ new InputAction("menuButtonsColor").connect()
   });
 
 
+new InputAction("strangeClick").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay((input, value) => {
+    input.element.checked = value;
+  });
+
+
+
 
 
 

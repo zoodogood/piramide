@@ -145,6 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body section {
   width: 45vw;
+  min-width: 500px;
   margin-bottom: 60px;
 }
 
@@ -441,4 +442,45 @@ pre {
 
 .self-destroy-_close-element svg:hover {
   filter: brightness(1.5);
+}
+
+
+
+
+
+
+@media (max-width: 600px) {
+  body {
+    flex-direction: column-reverse;
+  }
+
+  main {
+    margin-left: 10vw;
+    margin-bottom: 70px;
+  }
+
+  #leftBackground {
+    padding: 10px;
+    height: 70px;
+    width: 100vw;
+
+    position: fixed;
+    z-index: 2;
+    bottom: 0;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-around;
+  }
+
+
+  .round-button {
+    margin-bottom: 0px;
+
+  }
+
+  .round-button > span {
+    display: none;
+  }
 }

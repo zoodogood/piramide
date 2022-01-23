@@ -52,7 +52,9 @@ class Params {
     codeSize: 100,
 
     menuThemeDark: false,
-    menuButtonsColor: 120
+    menuButtonsColor: 120,
+
+    strangeClick: false
   };
 }
 

@@ -265,6 +265,9 @@ class Tower {
   }
 
   async clickHandle(){
+    if (!params.strangeClick)
+      return;
+
     let effectType = ["filter", "transform"].random();
     if (this.html.style[effectType] !== "")
       return;
@@ -286,6 +289,7 @@ class Tower {
         "translateX(120vw)",
         "scale(0.5)",
         `rotate(${ random(-8, 8) * 45 }deg)`,
+        `rotate3d(1, 1, 1, -360deg`
       ]
     };
 

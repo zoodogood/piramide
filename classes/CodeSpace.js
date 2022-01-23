@@ -141,6 +141,9 @@ new Button("copy-button", e => {
 
 
 new Button("setDefault-button", e => {
+  if ( !confirm("Точно восстановить код по умолчанию?\nВсе несохраненные данные будут удалены.") )
+    return;
+
   codearea.textContent = defaultCode();
   hljs.highlightElement(  codearea  );
 });

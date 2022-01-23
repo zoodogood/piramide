@@ -107,5 +107,7 @@
   #code-space code {
     min-height: 36vh;
     white-space: pre;
+
+    padding-right: 25vw;
   }
 }
