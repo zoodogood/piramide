@@ -58,3 +58,44 @@
 .close-element::after {
   transform: rotate(-45deg);
 }
+
+
+
+
+
+@media (max-width: 600px) {
+  .modalWindow {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+
+    max-width: 100vw;
+    max-height: 100vh;
+
+    position: fixed;
+    top: 0px !important;
+    left: 0px !important;
+
+    resize: none !important;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+
+    overflow: hidden;
+  }
+
+
+  .modalWindow .move-element {
+    height: 30px;
+    cursor: default;
+  }
+
+  .close-element {
+    width: 50px;
+    padding-right: 20px;
+  }
+
+  .close-element::before, .close-element::after {
+    width: 5px;
+    height: 15px;
+    background: rgba(255, 255, 255, 1);
+  }
+}
