@@ -44,13 +44,13 @@ class Poligon {
 
 
   async launch(){
-    let takeCode = this.#takeCode;
 
-    if (typeof takeCode !== "function")
+    if (typeof this.#takeCode !== "function")
       throw new Error("Poligon haven't function code");
 
     let promise;
-    promise = await this.#execute( takeCode() ).catch(err => promise = err);
+    promise = await this.#execute( this.#takeCode() )
+      .catch(err => promise = err);
 
     this.#game = null;
 

@@ -102,7 +102,7 @@
   text-align: center;
 
   transition: color 1s;
-  overflow-y: hidden;
+  overflow: hidden;
 
   user-select: none;
 }

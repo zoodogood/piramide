@@ -37,10 +37,12 @@ class Game extends EventEmitter {
     get list(){
 
       // Создание точной копии массива
-      let proxyArray = [...this.#arrayList]
+      let proxyArray = this.#arrayList
         .map( arr => [...arr] );
 
-      const emulate = ({from, to}) => proxyArray.at(to).push(  proxyArray.at(from).pop()  );
+      const emulate = ({from, to}) => proxyArray.at(to)
+        .push(  proxyArray.at(from).pop()  );
+
       this.on("step", emulate);
 
       // Очистка при новой генерации
@@ -197,13 +199,14 @@ class Game extends EventEmitter {
     // Не должно использоваться в обычной игре
     _setUserArray( array ){
 
+
       const comprises = (arr) => arr instanceof Array && arr.every(n => typeof n === "number");
       let isArrayList = array.every(comprises);
 
       if ( !isArrayList )
         throw new Error("Bad structure. Expected — [  [1,2,3], [], [7, 5], [6]  ] ");
 
-      this.#arrayList = array;
+      this.#arrayList = array.map(arr => [...arr]);
 
       this.#arrayCount = array.length;
       this.#arraySize  = array.reduce((acc, arr) => acc + arr.length, 0);
