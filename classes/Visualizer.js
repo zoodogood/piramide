@@ -90,7 +90,10 @@ class Visualizer {
     let sameElement = [...fromTower.children][0];
 
 
-    let { top, left } = sameElement.getBoundingClientRect();
+    let [ top, left ] = [
+      sameElement.parentNode.offsetTop  + sameElement.offsetTop,
+      sameElement.parentNode.offsetLeft + sameElement.offsetLeft
+    ];
     sameElement.parentNode.removeChild( sameElement );
 
     // Для подсчёта начальной высоты
@@ -98,7 +101,7 @@ class Visualizer {
 
 
     document.getElementById("flyZone").append(sameElement);
-    sameElement.style.top  = `${ top }px`;
+    sameElement.style.top  = `${ top  }px`;
     sameElement.style.left = `${ left }px`;
 
     const k = 5 / params.slabsSpeed;
@@ -110,7 +113,7 @@ class Visualizer {
 
 
     // Расстояние между башнями
-    let distance = toTower.getBoundingClientRect().left - fromTower.getBoundingClientRect().left;
+    let distance = toTower.offsetLeft - fromTower.offsetLeft;
 
     sameElement.transform({ value: `${distance}px`, property: "translateX", ms: 200 * k });
 
