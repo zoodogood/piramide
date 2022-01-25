@@ -86,11 +86,12 @@
   .modalWindow .move-element {
     height: 30px;
     cursor: default;
+    box-sizing: border-box;
+    padding-right: 20px;
   }
 
   .close-element {
     width: 50px;
-    padding-right: 20px;
   }
 
   .close-element::before, .close-element::after {

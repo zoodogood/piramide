@@ -377,7 +377,8 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
       .map(font => `<option data-name = "${font}" value = ${font}>${font}</option>`).join("");
 
     input.element.innerHTML = inner;
-    input.element.parentNode.querySelector(".hljs").textContent = localStorage.getItem("userCode");
+    input.element.parentNode.querySelector(".hljs")
+      .textContent = localStorage.getItem("userCode");
   })
   .setAction((input, e) => {
     InputAction.setValue(input.connectedValue, input.element.value);

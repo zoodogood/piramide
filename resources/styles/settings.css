@@ -387,8 +387,11 @@ input[type="number"] {
 
 
 .select-input option {
-  padding: 20px;
-  background: #000000;
+  background: black;
+}
+
+option:hover {
+   box-shadow: 0 0 10px 100px var( --buttonsMainColor ) inset;
 }
 
 
