@@ -4,12 +4,14 @@
   top: 3vh;
   color: #000000;
   overflow: hidden;
+
+  font-size: clamp(0.75em, 3vw, 1em);
 }
 
 .alertField .alert {
   border-left: 7px solid;
   border-radius: 5px;
-  min-width: 270px;
+  width: 40vw;
   max-width: 320px;
   animation: AlertBubble 0.5s ease;
   padding: 15px;
@@ -19,7 +21,7 @@
 }
 
 .alertField .removed {
-  animation: hideAlert 350ms ease-in 1s;
+  animation: hideAlert 350ms ease-in;
 }
 
 .alertField .alert p {

@@ -1,7 +1,6 @@
 #game {
   width: 100vw;
   overflow-x: overlay;
-  position: relative;
   height: 70vh;
 
   contain: size;
@@ -90,7 +89,7 @@
 #scoreTitle {
   display: flex;
   flex-direction: row;
-  position: fixed;
+  position: absolute;
   width: 100vw;
   justify-content: center;
 

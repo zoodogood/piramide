@@ -1,9 +1,9 @@
 class AlertBubble {
-  constructor (hideIn){
+  constructor ({ delayMultiplayer = 1 } = {}){
     this.field = this.createField();
 
     this.limit = window.innerWidth > 950 ? 4 : 2;
-    this.hideIn = hideIn;
+    this.delayMultiplayer = delayMultiplayer;
   }
 
 
@@ -14,6 +14,8 @@ class AlertBubble {
       return this.create(description, type, title);
     }
     this.timeout = Date.now() + 350;
+
+    await delay(700);
 
     const alert = document.createElement("div");
     alert.type = "normalAlert";
@@ -40,14 +42,21 @@ class AlertBubble {
 
     this.field.append(alert);
 
-    [...this.field.children].slice(0, -this.limit).filter(e => e.deletable !== false).forEach(e => this.remove(e));
-    await delay(this.hideIn);
+    [...this.field.children].slice(0, -this.limit)
+      .filter(e => e.deletable !== false)
+      .forEach(e => this.remove(e));
+
+    this.field.onclick = this.remove.bind(this, alert);
+
+    await delay(this.delayMultiplayer * description.length * 30);
     this.remove(alert);
   }
 
   async remove(element){
+    await delay(100);
+
     element.classList.add("removed");
-    await delay(1350);
+    await delay(350);
     element.remove();
   }
 
@@ -60,4 +69,4 @@ class AlertBubble {
 }
 
 
-const Alert = new AlertBubble( 15000 );
+const Alert = new AlertBubble({ delayMultiplayer: 1 });
