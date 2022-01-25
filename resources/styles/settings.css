@@ -61,7 +61,7 @@ main > h1::before {
 
   letter-spacing: 1px;
   color: #989898;
-  margin-bottom: 25px;
+  margin-bottom: 2vh;
 }
 
 .round-button button {
@@ -78,10 +78,13 @@ main > h1::before {
 
   color: #989898;
   font-size: 1.5em;
+
+  flex-shrink: 0;
 }
 
 .round-button span {
   text-align: center;
+  overflow: hidden;
 }
 
 .round-button button:hover {
@@ -455,7 +458,7 @@ pre {
   }
 
   main {
-    margin-left: 10vw;
+    margin-left: 20px;
     margin-bottom: 70px;
   }
 
