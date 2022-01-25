@@ -12,8 +12,16 @@ body {
 }
 
 main {
-  min-width: 2560px;
-  grow: 1;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100vw;
+  padding: 80px;
+  margin-left: 25vw;
 }
 
 main > h1 {
@@ -130,16 +138,7 @@ details[open] > summary:first-of-type {
   margin-bottom: 10px;
 }
 
-main {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 80px;
-  width: 75vw;
-  margin-left: 25vw;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
   text-align: left;
@@ -148,7 +147,6 @@ h1, h2, h3, h4, h5, h6 {
 
 body section {
   width: 45vw;
-  min-width: 500px;
   margin-bottom: 60px;
 }
 
@@ -455,11 +453,20 @@ pre {
 @media (max-width: 600px) {
   body {
     flex-direction: column-reverse;
+    background-position: -45px;
+    background-size: calc(100vw + 45px);
+  }
+
+  body section {
+    width: calc(100vw - 90px);
+    min-width: 160px;
   }
 
   main {
-    margin-left: 20px;
+    margin-left: 0px;
+    padding: 50px;
     margin-bottom: 70px;
+    overflow: hidden;
   }
 
   #leftBackground {

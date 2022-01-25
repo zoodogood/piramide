@@ -414,7 +414,7 @@ new InputAction("menuThemeDark").connect()
     InputAction.setValue(input.connectedValue, input.element.checked);
   })
   .setDisplay((input, value) => {
-    document.body.style.background = value ? "linear-gradient(90deg, #782222, #000000 16%)" : "";
+    document.body.style.backgroundImage = value ? "linear-gradient(90deg, #621717, #000000 16%)" : "";
     input.element.checked = value;
   });
 
