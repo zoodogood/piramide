@@ -13,7 +13,7 @@ window.scrollTo({top: 0, behavior: "smooth"});
 // Новая, быстрая и плавная прокрутка
 document.addEventListener("wheel", wheelEvent => {
 
-  if (!wheelEvent.deltaY === 0)
+  if (wheelEvent.deltaY === 0)
     return;
 
   if (wheelEvent.shiftKey)
@@ -26,12 +26,18 @@ document.addEventListener("wheel", wheelEvent => {
       if (node.clientHeight === node.scrollHeight)
         return;
 
-      return isDirectionTop ?
+      let isCanScroll = isDirectionTop ?
         node.scrollTop !== 0 :
         node.scrollTop !== node.scrollHeight - node.clientHeight;
+
+      return isCanScroll;
     });
 
   if (targetWithScroll !== document.documentElement)
+    return;
+
+
+  if (targetWithScroll.scrollTop > window.innerHeight)
     return;
 
   wheelEvent.preventDefault();
