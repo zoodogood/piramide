@@ -58,6 +58,7 @@
 #code-space #control-buttons {
   display: flex;
   height: 3vh;
+  min-height: 25px;
   background-color: #1d1d1d;
   user-select: none;
   overflow: hidden;
