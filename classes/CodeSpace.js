@@ -8,78 +8,6 @@ const codespace = document.querySelector("#code-space");
 const codearea = codespace.children.item(1);
 
 
-// Заполняет код
-function setCode(){
-  codearea.textContent = localStorage.getItem("userCode") || defaultCode();
-  hljs.highlightElement(  codearea  );
-}
-setCode();
-
-
-const stretch = codespace.children.item(0);
-// Элемент можно тянуть изменяя его высоту
-stretch.addEventListener("mousedown", async () => {
-
-  let moveListener = (e) =>
-    codearea.style.height = `${window.innerHeight - e.pageY - 50}px`;
-
-
-  document.addEventListener("mousemove", moveListener);
-
-  await new Promise(res => document.addEventListener("mouseup", res, {once: true}));
-  document.removeEventListener( "mousemove", moveListener );
-});
-
-
-
-
-
-// При клике окрашивать синтаксис
-document.addEventListener("mousedown", e => {
-  if ( e.path.includes(codearea) )
-    return;
-
-  hljs.highlightElement(  codearea  );
-});
-
-
-
-
-
-// Поддержка Таба и Enter внутри Codearea
-codearea.addEventListener("keydown", e => {
-  if (e.key !== "Tab" && e.key !== "Enter")
-    return;
-
-  if (e.key === "Enter" && e.ctrlKey)
-    return;
-
-
-  const key = {Enter: "\n", Tab: "  "}[e.key];
-
-
-  const selection = window.getSelection();
-  let prev = selection.baseNode.nodeValue.substring(0, selection.baseOffset);
-  let end  = selection.baseNode.nodeValue.substring(selection.baseOffset);
-
-  selection.baseNode.nodeValue = `${  prev  }${ key }${  end  }`;
-
-  const range = document.createRange();
-  range.selectNodeContents( selection.baseNode );
-  range.collapse(false);
-
-  range.setStart( selection.baseNode, `${  prev  }${ key }`.length );
-  range.setEnd  ( selection.baseNode, `${  prev  }${ key }`.length );
-
-
-  selection.removeAllRanges();
-  selection.addRange(range);
-
-
-  //
-
-  e.preventDefault();
-});
 
 
 
@@ -107,12 +35,12 @@ class Button {
 }
 
 
-new Button("play-button", e => {
+new Button("play-button", clickEvent => {
   launch();
 });
 
 
-new Button("scoreMap-button", e => {
+new Button("scoreMap-button", clickEvent => {
   let modalWindow = new ModalWindow({size: { width: 640, height: 350, minWidth: 350, minHeight: 350 }});
   let container = document.createElement("main");
 
@@ -134,13 +62,13 @@ new Button("scoreMap-button", e => {
 }).hideIt(() => !params.activatePoligon);
 
 
-new Button("copy-button", e => {
+new Button("copy-button", clickEvent => {
   Alert.create("Весь код был скопирован в Ваш буфер обмена");
   navigator.clipboard.writeText( codearea.textContent );
 });
 
 
-new Button("setDefault-button", e => {
+new Button("setDefault-button", clickEvent => {
   if ( !confirm("Точно восстановить код по умолчанию?\nВсе несохраненные данные будут удалены.") )
     return;
 
@@ -149,7 +77,7 @@ new Button("setDefault-button", e => {
 });
 
 
-new Button("showHelps-button", e => {
+new Button("showHelps-button", clickEvent => {
   let modalWindow = new ModalWindow({size: {width: 690, height: 490}});
 
   let container = document.createElement("main");
@@ -160,6 +88,104 @@ new Button("showHelps-button", e => {
   new Library({ container, symbolsCount });
 
 }).hideIt(() => params.removeLibrary);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Заполняет код
+function setCode(){
+  codearea.textContent = localStorage.getItem("userCode") || defaultCode();
+  hljs.highlightElement(  codearea  );
+}
+setCode();
+
+
+// Элемент можно тянуть изменяя его высоту
+const stretch = codespace.children.item(0);
+stretch.addEventListener("mousedown", async () => {
+
+  let moveListener = (clickEvent) =>
+    codearea.style.height = `${window.innerHeight - clickEvent.pageY - 50}px`;
+
+
+  document.addEventListener("mousemove", moveListener);
+
+  await new Promise(res => document.addEventListener("mouseup", res, {once: true}));
+  document.removeEventListener( "mousemove", moveListener );
+});
+
+
+
+
+
+// При клике окрашивать синтаксис
+document.addEventListener("mousedown", clickEvent => {
+  if ( clickEvent.path.includes(codearea) )
+    return;
+
+  hljs.highlightElement(  codearea  );
+});
+
+document.addEventListener("keydown", keyEvent => {
+
+  if (!keyEvent.ctrlKey)
+    return;
+
+  if (keyEvent.code !== "KeyS")
+    return;
+
+  keyEvent.preventDefault();
+});
+
+
+
+
+
+// Поддержка Таба и Enter внутри Codearea
+codearea.addEventListener("keydown", keyEvent => {
+  if (keyEvent.key !== "Tab" && keyEvent.key !== "Enter")
+    return;
+
+  if (keyEvent.key === "Enter" && keyEvent.ctrlKey)
+    return;
+
+
+  const key = {Enter: "\n", Tab: "  "}[keyEvent.key];
+
+
+  const selection = window.getSelection();
+  let prev = selection.baseNode.nodeValue.substring(0, selection.baseOffset);
+  let end  = selection.baseNode.nodeValue.substring(selection.baseOffset);
+
+  selection.baseNode.nodeValue = `${  prev  }${ key }${  end  }`;
+
+  const range = document.createRange();
+  range.selectNodeContents( selection.baseNode );
+  range.collapse(false);
+
+  range.setStart( selection.baseNode, `${  prev  }${ key }`.length );
+  range.setEnd  ( selection.baseNode, `${  prev  }${ key }`.length );
+
+
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+
+  //
+
+  keyEvent.preventDefault();
+});
 
 
 
@@ -178,28 +204,28 @@ console.log( game.list );
 }
 
 
-codearea.addEventListener("input", e => {
+codearea.addEventListener("input", () => {
   localStorage.setItem("userCode", codearea.textContent);
 });
 
 
 
-document.addEventListener("keydown", e => {
-  if (e.code !== "Enter" || !e.ctrlKey)
+document.addEventListener("keydown", keyEvent => {
+  if (keyEvent.code !== "Enter" || !keyEvent.ctrlKey)
     return;
 
   document.querySelector("#play-button").click();
-  e.preventDefault();
+  keyEvent.preventDefault();
 });
 
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", keyEvent => {
   if (document.activeElement !== codearea)
     return;
 
-  if (e.code !== "Escape")
+  if (keyEvent.code !== "Escape")
     return;
 
   codearea.blur();
-  e.preventDefault();
+  keyEvent.preventDefault();
 });

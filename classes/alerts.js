@@ -48,7 +48,7 @@ class AlertBubble {
 
     this.field.onclick = this.remove.bind(this, alert);
 
-    await delay(this.delayMultiplayer * description.length * 30);
+    await delay(this.delayMultiplayer * description.length * 20 + 3500);
     this.remove(alert);
   }
 
