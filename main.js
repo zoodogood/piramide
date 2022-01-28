@@ -74,6 +74,9 @@ if ( !window.location.href.includes("ignore") && crashDefender.check() )
   launch();
 
 
+if ( "codeareaHeight" in localStorage )
+  document.querySelector("#code-area").style.height = localStorage.getItem("codeareaHeight");
+
 
 
 if (params.background)

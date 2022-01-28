@@ -123,6 +123,8 @@ stretch.addEventListener("mousedown", async () => {
 
   await new Promise(res => document.addEventListener("mouseup", res, {once: true}));
   document.removeEventListener( "mousemove", moveListener );
+
+  localStorage.setItem("codeareaHeight", codearea.style.height);
 });
 
 
