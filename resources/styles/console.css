@@ -1,0 +1,29 @@
+.console-container{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+}
+.console-msg{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    border-left: 4px solid;
+    padding-left: 4px;
+}
+.console-msg-line{
+    display: flex;
+    flex-direction: row;
+}
+.console-msg-log{
+    border-color: dodgerblue;
+}
+.console-msg-warn{
+    border-color: yellow;
+}
+.console-msg-error{
+    border-color: tomato;
+}
+.console-msg-clean{
+    color: gray;
+    font-style: italic;
+}
