@@ -1,10 +1,10 @@
 const nativeConsole = {
-    log: console.log,
-    warn: console.warn,
-    error: console.error,
-    debug: console.debug,
-    clear: console.clear,
-    info: console.info
+    log:    console.log,
+    warn:   console.warn,
+    error:  console.error,
+    debug:  console.debug,
+    clear:  console.clear,
+    info:   console.info
 };
 
 let messages = [];
@@ -12,26 +12,32 @@ let messages = [];
 const log = (type, ...args) => {
     const obj = {
         type,
-        text: args.map((v) => {
-            if(typeof v == 'object') return JSON.stringify(v, null, 2);
-            if(typeof v == 'number') return v.toString();
-            if(typeof v == 'string') return v;
+        text: args.map((value) => {
+            if (typeof value == 'object')
+                return JSON.stringify(value, null, 2);
             
-            return String(v);
+            if (typeof value == 'number')
+                return value.toString();
+            
+            if (typeof value == 'string')
+                return value;
+            
+            return String(value);
         }).join(' '),
     };
     messages.push(obj);
     nativeConsole[type](...args);
-    if(onLog) onLog(obj);
+    if (onLog) onLog(obj);
 }
 
 let onLog = null;
 let onLogClear = null;
 
-console.log = (...args) => log('log', ...args);
-console.warn = (...args) => log('warn', ...args);
+console.log   = (...args) => log('log',   ...args);
+console.warn  = (...args) => log('warn',  ...args);
 console.error = (...args) => log('error', ...args);
 console.debug = (...args) => log('debug', ...args);
+
 console.clear = () => {
     messages = [
         {
@@ -39,8 +45,9 @@ console.clear = () => {
             text: 'Консоль очищена'
         }
     ];
+    
     nativeConsole['clear']();
-    if(onLogClear) onLogClear();
+    if (onLogClear) onLogClear();
 };
 
 class Console {
@@ -79,6 +86,6 @@ class Console {
         this.container.append(div);
     }
     #clear(){
-        this.container.innerHTML = '';
+        // this.container.innerHTML = '';
     }
 }
