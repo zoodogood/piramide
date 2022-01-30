@@ -43,7 +43,7 @@ console.clear = () => {
   messages = [
     {
       type: 'clean',
-      content: 'Консоль очищена'
+      content: 'Консоль очищена.'
     }
   ];
 
@@ -54,11 +54,17 @@ console.clear = () => {
 
 class Console {
   constructor({ container }){
-    this.container = container;
-    this.container.className = 'console-container';
-    this.constructor.events.on("log", this.#push.bind(this));
+    container.className = "console-container";
 
-    messages.forEach((v) => this.#push(v));
+    let logsNode  = this.#createListNode(container);
+    let inputNode = this.#createInputNode(container);
+
+    this.loggs = logsNode;
+    this.inputNode = inputNode;
+
+    let pushMessage = this.#push.bind(this);
+    this.constructor.events.on("log", pushMessage);
+    messages.forEach( pushMessage );
   }
 
 
@@ -67,12 +73,46 @@ class Console {
     node.textContent = msg.content.trim();
 
     node.className = `console-msg console-msg-${ msg.type }`;
-    this.container.append(node);
+    this.loggs.append(node);
   }
 
 
   #clear(){
-    this.container.innerHTML = '';
+    this.loggs.innerHTML = "";
+  }
+
+
+  #createListNode(container){
+    const node = document.createElement("ul");
+    node.className = "console-loggs";
+    container.append(node);
+    return node;
+  }
+
+  #createInputNode(container){
+    const node = document.createElement("input");
+    node.className = "console-input";
+    container.append(node);
+
+    node.onchange = (changeEvent) => {
+      const nodeValue = changeEvent.target.value;
+
+      let evalValue, type = "log";
+
+      try {
+        evalValue = JSON.stringify( eval( nodeValue ), null, 3 );
+      }
+      catch (err){
+        type = "error";
+        evalValue = `${ err.name }\n${ err.message }`;
+      }
+
+      console[type](`> ${ nodeValue };\n${ evalValue }`);
+      changeEvent.target.value = "";
+    }
+
+    node.setAttribute("placeholder", "Введите 2 + 2 . . .");
+    return node;
   }
 
 

@@ -1,7 +1,40 @@
 .console-container {
+  box-sizing: border-box;
+  height: calc(100% - 15px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.console-input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 15px;
+  color: #d5d0d4;
+
+  letter-spacing: 1px;
+  font-size: 1.1em;
+  background: #202020;
+
+  box-sizing: border-box;
+  flex-shrink: 0;
+  margin-top: 50px;
+}
+
+.console-input:placeholder-shown {
+  font-style: italic;
+}
+
+
+.console-loggs {
   display: flex;
   flex-direction: column;
   padding: 4px;
+
+  flex-shrink: 0;
 }
 
 
@@ -12,8 +45,10 @@
   border-left: 4px solid;
   padding-left: 4px;
 
-  white-space: pre-line;
+  white-space: pre;
+  font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;
 }
+
 
 .console-msg-line {
   display: flex;
@@ -21,7 +56,7 @@
 }
 
 .console-msg-log {
-  border-color: #8ac291;
+  border-color: var( --mainThemeColor );
 }
 
 .console-msg-warn {
@@ -33,6 +68,8 @@
 }
 
 .console-msg-clean {
-  color: #303030;
+  border-color: #909090;
+
+  color: #909090;
   font-style: italic;
 }

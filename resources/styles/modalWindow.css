@@ -80,6 +80,9 @@
     border-top-right-radius: 0%;
 
     overflow: hidden;
+
+    padding-bottom: 30px;
+    box-sizing: border-box;
   }
 
 

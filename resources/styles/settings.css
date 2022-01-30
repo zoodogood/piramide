@@ -454,6 +454,10 @@ pre {
 
 
 @media (max-width: 600px) {
+  .range {
+    width: 100%;
+  }
+  
   body {
     flex-direction: column-reverse;
     background-position: -45px;
