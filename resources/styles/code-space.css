@@ -13,18 +13,20 @@
   display: block;
   resize: none;
   left: 0px;
+
   width: 100vw;
   height: 26vh;
   min-height: 20vh;
   max-height: 95vh;
-  border: none;
+
   padding-left: 2.5vw;
   padding-right: 0vw;
-  padding-bottom: 18vh;
+  padding-bottom: 24vh;
 
   word-wrap: normal;
   white-space: pre-wrap;
   overflow-y: overlay;
+  border: none;
 
   font-size: calc(var( --codeFontSize ) / 100);
 }
