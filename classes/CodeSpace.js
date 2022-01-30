@@ -89,6 +89,16 @@ new Button("showHelps-button", clickEvent => {
 
 }).hideIt(() => params.removeLibrary);
 
+new Button("showConsole-button", clickEvent => {
+  let modalWindow = new ModalWindow({size: {width: 690, height: 490}});
+
+  let container = document.createElement("main");
+  modalWindow.element.append(container);
+
+  new Console({ container });
+
+}).hideIt(() => params.removeLibrary);
+
 
 
 
