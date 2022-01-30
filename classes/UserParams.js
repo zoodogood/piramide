@@ -54,7 +54,8 @@ class Params {
     menuThemeDark: false,
     menuButtonsColor: 120,
 
-    strangeClick: false
+    strangeClick: false,
+    alternativeConsole: false
   };
 }
 

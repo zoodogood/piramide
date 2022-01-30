@@ -67,6 +67,15 @@ new Button("copy-button", clickEvent => {
   navigator.clipboard.writeText( codearea.textContent );
 });
 
+new Button("showConsole-button", clickEvent => {
+  let modalWindow = new ModalWindow({size: {width: 790, height: 620}});
+
+  let container = document.createElement("main");
+  modalWindow.element.append(container);
+
+  new Console({ container });
+
+}).hideIt(() => !params.alternativeConsole);
 
 new Button("setDefault-button", clickEvent => {
   if ( !confirm("Точно восстановить код по умолчанию?\nВсе несохраненные данные будут удалены.") )
@@ -89,15 +98,7 @@ new Button("showHelps-button", clickEvent => {
 
 }).hideIt(() => params.removeLibrary);
 
-new Button("showConsole-button", clickEvent => {
-  let modalWindow = new ModalWindow({size: {width: 690, height: 490}});
 
-  let container = document.createElement("main");
-  modalWindow.element.append(container);
-
-  new Console({ container });
-
-}).hideIt(() => params.removeLibrary);
 
 
 

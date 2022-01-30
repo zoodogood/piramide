@@ -1,29 +1,38 @@
-.console-container{
-    display: flex;
-    flex-direction: column;
-    padding: 4px;
+.console-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
 }
-.console-msg{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 4px;
-    border-left: 4px solid;
-    padding-left: 4px;
+
+
+.console-msg {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+  border-left: 4px solid;
+  padding-left: 4px;
+
+  white-space: pre-line;
 }
-.console-msg-line{
-    display: flex;
-    flex-direction: row;
+
+.console-msg-line {
+  display: flex;
+  flex-direction: row;
 }
-.console-msg-log{
-    border-color: dodgerblue;
+
+.console-msg-log {
+  border-color: #8ac291;
 }
-.console-msg-warn{
-    border-color: yellow;
+
+.console-msg-warn {
+  border-color: #c2c03f;
 }
-.console-msg-error{
-    border-color: tomato;
+
+.console-msg-error {
+  border-color: #a41010;
 }
-.console-msg-clean{
-    color: gray;
-    font-style: italic;
+
+.console-msg-clean {
+  color: #303030;
+  font-style: italic;
 }

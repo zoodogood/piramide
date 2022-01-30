@@ -439,6 +439,13 @@ new InputAction("strangeClick").connect()
   });
 
 
+new InputAction("alternativeConsole").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay((input, value) => {
+    input.element.checked = value;
+  });
 
 
 
