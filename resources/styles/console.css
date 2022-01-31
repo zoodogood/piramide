@@ -37,6 +37,16 @@
   flex-shrink: 0;
 }
 
+.console-loggs:empty::after {
+  content: "В консоли пусто";
+
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #909090;
+  font-style: italic;
+}
 
 .console-msg {
   display: flex;
@@ -45,19 +55,19 @@
   border-left: 4px solid;
   padding-left: 4px;
 
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;
 }
 
-
-.console-msg-line {
-  display: flex;
-  flex-direction: row;
+.console-msg:hover {
+  background-color: #191920;
 }
+
 
 .console-msg-log {
   border-color: var( --mainThemeColor );
 }
+
 
 .console-msg-warn {
   border-color: #c2c03f;
