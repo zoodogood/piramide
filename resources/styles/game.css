@@ -9,8 +9,8 @@
 
 #game {
   width: 100vw;
-  overflow-x: overlay;
   height: 70vh;
+  overflow-x: overlay;
 
   contain: size;
 }
