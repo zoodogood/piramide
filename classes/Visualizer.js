@@ -321,8 +321,11 @@ class Slab {
     let slab = document.createElement("div");
     slab.classList.add("slab");
 
-    slab.style.width   = `${40 / this.size * this.number}vh`;
-    slab.style.height  = `${25 / this.size}vh`
+    // slab.style.width   = `${40 / this.size * this.number}em`;
+    // slab.style.height  = `${25 / this.size}em`
+    slab.style.setProperty("--my-width",  this.number / this.size);
+    slab.style.setProperty("--my-height", this.size);
+
 
     slab.style.background = this.color;
     slab._parent = this;
