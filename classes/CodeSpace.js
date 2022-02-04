@@ -117,9 +117,7 @@ new Button("showHelps-button", clickEvent => {
 // Заполняет код
 function setCode(){
   codearea.textContent = localStorage.getItem("userCode") || defaultCode();
-  console.log(codearea.textContent);
   hljs.highlightElement(  codearea  );
-  console.log(codearea.textContent);
 }
 setCode();
 
@@ -149,6 +147,7 @@ document.addEventListener("mousedown", clickEvent => {
   if ( clickEvent.path.includes(codearea) )
     return;
 
+  console.log(codearea.textContent);
   hljs.highlightElement(  codearea  );
 });
 
