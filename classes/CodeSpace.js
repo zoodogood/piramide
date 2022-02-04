@@ -117,7 +117,9 @@ new Button("showHelps-button", clickEvent => {
 // Заполняет код
 function setCode(){
   codearea.textContent = localStorage.getItem("userCode") || defaultCode();
+  console.log(codearea.textContent);
   hljs.highlightElement(  codearea  );
+  console.log(codearea.textContent);
 }
 setCode();
 
@@ -167,28 +169,41 @@ document.addEventListener("keydown", keyEvent => {
 
 // Поддержка Таба и Enter внутри Codearea
 codearea.addEventListener("keydown", keyEvent => {
-  if (keyEvent.key !== "Tab" && keyEvent.key !== "Enter")
+  const symbol = {
+    Enter: "\n",
+    Tab:   "  "
+  }[keyEvent.key];
+
+  if (symbol === undefined)
     return;
 
   if (keyEvent.key === "Enter" && keyEvent.ctrlKey)
     return;
 
 
-  const key = {Enter: "\n", Tab: "  "}[keyEvent.key];
-
 
   const selection = window.getSelection();
-  let prev = selection.baseNode.nodeValue.substring(0, selection.baseOffset);
-  let end  = selection.baseNode.nodeValue.substring(selection.baseOffset);
 
-  selection.baseNode.nodeValue = `${  prev  }${ key }${  end  }`;
+  let prev = "", end = "";
+  if (selection.baseNode.nodeValue !== null){
+    prev = selection.baseNode.nodeValue.substring(0, selection.baseOffset);
+    end  = selection.baseNode.nodeValue.substring(selection.baseOffset);
+  }
+
+  // костыль
+  if (symbol === "\n" && end === "")
+    symbol = "\n\n";
+
+  selection.baseNode.nodeValue = `${  prev  }${ symbol }${  end  }`;
+
 
   const range = document.createRange();
   range.selectNodeContents( selection.baseNode );
   range.collapse(false);
 
-  range.setStart( selection.baseNode, `${  prev  }${ key }`.length );
-  range.setEnd  ( selection.baseNode, `${  prev  }${ key }`.length );
+  const position = prev.length + symbol.length;
+  range.setStart( selection.baseNode, position);
+  range.setEnd  ( selection.baseNode, position);
 
 
   selection.removeAllRanges();
