@@ -26,12 +26,18 @@ document.addEventListener("wheel", wheelEvent => {
       if (node.clientHeight === node.scrollHeight)
         return;
 
+
       let isCanScroll = isDirectionTop ?
         node.scrollTop !== 0 :
         node.scrollTop !== node.scrollHeight - node.clientHeight;
 
-      return isCanScroll;
+      if (!isCanScroll)
+        return;
+
+      let overflowType = window.getComputedStyle(node)["overflow-y"];
+      return !["", "hidden", "visible"].includes( overflowType );
     });
+
 
   if (targetWithScroll !== document.documentElement)
     return;

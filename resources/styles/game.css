@@ -1,5 +1,5 @@
 :root {
-  --arraySize: 20vw;
+  --arraySize: 20vmax;
   --beamPercent: 0.75;
   --beamWidthMultiplayer: 0.5;
   --slabsHeightMultiplayer: 0.85;
@@ -10,8 +10,8 @@
 #game {
   width: 100vw;
   height: 70vh;
-  overflow-x: overlay;
 
+  overflow-x: overlay;
   contain: size;
 }
 
@@ -23,12 +23,12 @@
 
 #towersList {
   display: flex;
+
   align-items: center;
+  justify-content: center;
+
   flex-direction: row;
   flex-wrap: nowrap;
-
-  padding: calc( var( --arraySize ) * var( --arrayMarginMultiplayer ) );
-  box-sizing: border-box;
 
   height: 100%;
 
@@ -73,13 +73,6 @@
   border-radius: 15px 15px 0% 0%;
 }
 
-.array:first-child {
-  margin-left: auto;
-}
-
-.array:last-child {
-  margin-right: auto;
-}
 
 .slab {
   background-color: #ffffff;
@@ -147,6 +140,9 @@
 
 
 @media (max-width: 600px) {
+  :root {
+    --arraySize: 22vw;
+  }
 
   #title {
     font-size: 2em;

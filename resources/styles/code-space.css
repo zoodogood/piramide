@@ -16,12 +16,12 @@
 
   width: 100vw;
   height: 26vh;
-  min-height: 20vh;
+  min-height: 18vh;
   max-height: 95vh;
 
   padding-left: 2.5vw;
   padding-right: 0vw;
-  padding-bottom: 24vh;
+  padding-bottom: 18vh;
 
   word-wrap: normal;
   white-space: pre-wrap;
@@ -109,7 +109,7 @@
 
   #code-space code {
     min-height: 36vh;
-    white-space: pre-wrap;
+    white-space: pre;
 
     padding-right: 25vw;
   }

@@ -87,42 +87,42 @@ class Visualizer {
     let fromTower = this.gameElement.children.item( from );
     let toTower = this.gameElement.children.item( to );
 
-    let sameElement = [...fromTower.children][0];
+    let slabElement = [...fromTower.children][0];
 
 
     let [ top, left ] = [
-      sameElement.parentNode.offsetTop  + sameElement.offsetTop,
-      sameElement.parentNode.offsetLeft + sameElement.offsetLeft
+      slabElement.parentNode.offsetTop  + slabElement.offsetTop,
+      slabElement.parentNode.offsetLeft + slabElement.offsetLeft
     ];
-    sameElement.parentNode.removeChild( sameElement );
+    slabElement.parentNode.removeChild( slabElement );
 
     // Для подсчёта начальной высоты
     const towerSlabCount = [...fromTower.children].length;
 
 
-    document.getElementById("flyZone").append(sameElement);
-    sameElement.style.top  = `${ top  }px`;
-    sameElement.style.left = `${ left }px`;
+    document.getElementById("flyZone").append(slabElement);
+    slabElement.style.top  = `${ top  }px`;
+    slabElement.style.left = `${ left }px`;
 
     const k = 5 / params.slabsSpeed;
     await delay(30);
 
 
-    await sameElement.transform({ value: "-30vh", property: "translateY", ms: 200 * k });
+    await slabElement.transform({ value: "-30vh", property: "translateY", ms: 200 * k });
 
 
 
     // Расстояние между башнями
     let distance = toTower.offsetLeft - fromTower.offsetLeft;
 
-    sameElement.transform({ value: `${distance}px`, property: "translateX", ms: 200 * k });
+    slabElement.transform({ value: `${distance}px`, property: "translateX", ms: 200 * k });
 
 
     if (toWin){
-      sameElement.transform({value: 1.2, property: "scale", ms: 700});
+      slabElement.transform({value: 1.2, property: "scale", ms: 700});
       toTower.transform({value: 1.2, property: "scale", ms: 700});
       await delay(1200);
-      await sameElement.transform({ value: "-37vh", property: "translateY", ms: 70 });
+      await slabElement.transform({ value: "-37vh", property: "translateY", ms: 70 });
 
       new Timeout(() => toTower.transform({ value: 1, property: "scale", ms: 700 }), 270 * k);
     }
@@ -130,15 +130,13 @@ class Visualizer {
 
     await delay(70 * k);
 
-    let slabsHeight = sameElement.style.height.slice(0, -2) * (  towerSlabCount - [...toTower.children].length );
-    await sameElement.transform({ value: `${slabsHeight}vh`, property: "translateY", ms: 200 * k });
+    let slabsHeight = slabElement.offsetHeight * (towerSlabCount - [...toTower.children].length);
+    await slabElement.transform({ value: `${ slabsHeight }px`, property: "translateY", ms: 200 * k });
 
 
-    sameElement.style.transition = "";
-    sameElement.style.transform = "";
-    delete sameElement.style.transition;
-
-    toTower.prepend(sameElement);
+    slabElement.style.transform  = "";
+    slabElement.style.transition = "";
+    toTower.prepend(slabElement);
 
 
     if ( !this.hasWin )
@@ -321,11 +319,8 @@ class Slab {
     let slab = document.createElement("div");
     slab.classList.add("slab");
 
-    // slab.style.width   = `${40 / this.size * this.number}em`;
-    // slab.style.height  = `${25 / this.size}em`
     slab.style.setProperty("--my-width",  this.number / this.size);
     slab.style.setProperty("--my-height", this.size);
-
 
     slab.style.background = this.color;
     slab._parent = this;
@@ -569,19 +564,18 @@ class GlitchText {
 // Функция для трансформаций
 // Синтаксис применения HTMLElement.transform({property: "scale", value: 1.2, ms: 200})
 Object.defineProperty( HTMLElement.prototype, "transform", {
-  value: async function ({value, property, ms}){
+  value: async function ({ value, property, ms }){
     // Строка текущих трансформаций
     let now  = this.style.transform;
 
-    if ( ms ){
+    if ( ms )
       this.style.transitionDuration = `${ ms }ms`;
-    }
 
-    let reg = new RegExp(`${property}\\s?\\((.+?)\\)`, "i");
-    let includes = now.match( reg );
+    let reg = new RegExp(`${ property }\\s?\\((.+?)\\)`, "i");
+    let alreadyIncludes = now.match( reg );
 
-    if (includes){
-      this.style.transform = now.replace(includes[0], `${ property }(${ value })`);
+    if (alreadyIncludes){
+      this.style.transform = now.replace(alreadyIncludes[0], `${ property }(${ value })`);
       await delay(ms);
       return;
     }
