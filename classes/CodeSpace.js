@@ -143,6 +143,7 @@ stretch.addEventListener("mousedown", async () => {
 
 
 codearea.addEventListener("blur", focusEvent => {
+  console.log(123);
 
   if ( codearea.querySelector("br") ){
     let position = 0;
@@ -153,6 +154,7 @@ codearea.addEventListener("blur", focusEvent => {
       nodesPositions.push(position) :
       position += node.textContent.length;
 
+    console.log(nodesPositions);
     for (const index in nodesPositions){
       const
         position = nodesPositions[ index ] + index,

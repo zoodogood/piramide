@@ -10,7 +10,7 @@
 
 #code-space code {
   box-sizing: border-box;
-  display: block;
+  display: inline-block;
   resize: none;
   left: 0px;
 
