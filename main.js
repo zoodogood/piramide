@@ -110,3 +110,6 @@ if (params.codeSize)
 
   new SnowBackground();
 })();
+
+
+window.events.emit("main");

@@ -65,6 +65,9 @@
   align-self: center;
   margin-top: auto;
   overflow: visible;
+
+  display: flex;
+  justify-content: center;
 }
 
 

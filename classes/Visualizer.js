@@ -496,17 +496,20 @@ function mainGenerate( game ){
   visualizer.generateHandle( game );
 
 
+  displayTowerExample();
+}
+
+window.events.on("main", () => {
+  Slab.ColorFunc( randomColorizzeFunc( 15 ) );
+  displayTowerExample();
+});
+
+function displayTowerExample(){
   let tower = new Tower( 15 ).setSlabs(  [...new Array(15)].map((e, i) => 15 - i)  ).toHTML();
 
   document.querySelector("#towerExample").innerHTML = "";
   document.querySelector("#towerExample").append(tower);
-
-  tower.parentNode.style.display = "flex";
-  tower.parentNode.style.justifyContent = "center";
-  tower.parentNode.style.transform = "scale(0.8)";
 }
-
-
 
 
 class GlitchText {
