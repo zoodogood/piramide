@@ -144,8 +144,10 @@ stretch.addEventListener("mousedown", async () => {
 
 codearea.addEventListener("blur", focusEvent => {
   console.log(123);
+  console.log( [...codearea.children].forEach( node => console.log(node.tagName) ));
 
   if ( codearea.querySelector("br") ){
+    console.log("BR");
     let position = 0;
     const nodesPositions = [];
 
