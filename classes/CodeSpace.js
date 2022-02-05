@@ -27,7 +27,7 @@ class Button {
 
 
   hideIt(func){
-    if ( func() )
+    if ( func() === true )
       this.button.style.display = "none";
 
     return this;
@@ -142,11 +142,7 @@ stretch.addEventListener("mousedown", async () => {
 
 
 
-// При клике окрашивать синтаксис
-document.addEventListener("mousedown", clickEvent => {
-  if ( clickEvent.path.includes(codearea) )
-    return;
-
+codearea.addEventListener("blur", focusEvent => {
   console.log(codearea.textContent);
   hljs.highlightElement(  codearea  );
 });
@@ -209,7 +205,6 @@ codearea.addEventListener("keydown", keyEvent => {
   selection.addRange(range);
 
 
-  //
 
   keyEvent.preventDefault();
 });
