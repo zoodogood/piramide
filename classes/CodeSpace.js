@@ -143,7 +143,32 @@ stretch.addEventListener("mousedown", async () => {
 
 
 codearea.addEventListener("blur", focusEvent => {
-  console.log(codearea.textContent);
+
+  if ( codearea.querySelector("br") ){
+    let position = 0;
+    const nodesPositions = [];
+
+    for (let node of codearea.children)
+    node.tagName === "BR" ?
+      nodesPositions.push(position) :
+      position += node.textContent.length;
+
+    for (const index in nodesPositions){
+      const
+        position = nodesPositions[ index ] + index,
+        starts   = codearea.textContent.slice(0, position),
+        ends     = codearea.textContent.slice(position),
+        BR       = "\n";
+
+      codearea.textContent = `${ starts }${ BR }${ ends }`;
+    }
+
+  }
+
+
+
+
+  codearea.textContent = codearea.textContent;
   hljs.highlightElement(  codearea  );
 });
 
