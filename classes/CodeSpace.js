@@ -143,34 +143,36 @@ stretch.addEventListener("mousedown", async () => {
 
 
 codearea.addEventListener("blur", focusEvent => {
-  console.log(123);
-  console.log( [...codearea.children].forEach( node => console.log("TAG:", node.tagName) ));
+  // console.log(123);
+  // console.log( [...codearea.children].forEach( node => console.log("TAG:", node.tagName) ));
+  //
+  // if ( codearea.querySelector("br") ){
+  //   console.log( codearea.querySelectorAll("br").length );
+  //   let position = 0;
+  //   const nodesPositions = [];
+  //
+  //   for (let node of codearea.children)
+  //   node.tagName === "BR" ?
+  //     nodesPositions.push(position) :
+  //     position += node.textContent.length;
+  //
+  //   console.log(nodesPositions);
+  //   for (const index in nodesPositions){
+  //     const
+  //       position = nodesPositions[ index ] + index,
+  //       starts   = codearea.textContent.slice(0, position),
+  //       ends     = codearea.textContent.slice(position),
+  //       BR       = "\n";
+  //
+  //     codearea.textContent = `${ starts }${ BR }${ ends }`;
+  //   }
+  //
+  // }
+  //
 
-  if ( codearea.querySelector("br") ){
-    console.log( codearea.querySelectorAll("br").length );
-    let position = 0;
-    const nodesPositions = [];
-
-    for (let node of codearea.children)
-    node.tagName === "BR" ?
-      nodesPositions.push(position) :
-      position += node.textContent.length;
-
-    console.log(nodesPositions);
-    for (const index in nodesPositions){
-      const
-        position = nodesPositions[ index ] + index,
-        starts   = codearea.textContent.slice(0, position),
-        ends     = codearea.textContent.slice(position),
-        BR       = "\n";
-
-      codearea.textContent = `${ starts }${ BR }${ ends }`;
-    }
-
-  }
-
-
-
+  [...codearea.children]
+    .filter(node => node.tagName === "DIV")
+    .forEach(node => node.textContent += "\n");
 
   codearea.textContent = codearea.textContent;
   hljs.highlightElement(  codearea  );
