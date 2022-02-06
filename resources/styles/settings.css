@@ -93,6 +93,7 @@ main > h1::before {
 .round-button span {
   text-align: center;
   overflow: hidden;
+  user-select: none;
 }
 
 .round-button button:hover {
@@ -499,8 +500,13 @@ pre {
   }
 
   .round-button button {
+    border-radius: 0px;
     border: none;
     width: 72px;
+  }
+
+  .round-button.clickMe button {
+    border-bottom: 3px solid rgba(85, 85, 85, 1);
   }
 
   .round-button > span {

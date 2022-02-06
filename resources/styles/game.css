@@ -38,13 +38,13 @@
 
 
 .array {
-  min-width:  var( --arraySize );
-  min-height: var( --arraySize );
+  width:  var( --arraySize );
+  height: var( --arraySize );
   margin: calc( var( --arraySize ) * var( --arrayMarginMultiplayer ) );
 
   border-bottom: dashed #000000;
   border-width: calc( var( --arraySize ) / 20 );
-  
+
   position: relative;
   transform-origin: center;
   transition: transform 500ms, filter 500ms;

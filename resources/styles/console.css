@@ -87,7 +87,7 @@
 
 @media (max-width: 600px) {
   .console-input:focus {
-    position: sticky;
+    position: fixed;
     bottom: 0px;
   }
 }
