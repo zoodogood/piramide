@@ -1,9 +1,9 @@
 :root {
-  --arraySize: 20vmax;
+  --arraySize: min( 20vw, 40vh );
   --beamPercent: 0.75;
   --beamWidthMultiplayer: 0.5;
   --slabsHeightMultiplayer: 0.85;
-  --arrayMarginMultiplayer: 0.2;
+  --arrayMarginMultiplayer: 0.15;
 }
 
 
@@ -42,7 +42,9 @@
   min-height: var( --arraySize );
   margin: calc( var( --arraySize ) * var( --arrayMarginMultiplayer ) );
 
-  border-bottom: calc( var( --arraySize ) / 20 ) dashed #000000;
+  border-bottom: dashed #000000;
+  border-width: calc( var( --arraySize ) / 20 );
+  
   position: relative;
   transform-origin: center;
   transition: transform 500ms, filter 500ms;
