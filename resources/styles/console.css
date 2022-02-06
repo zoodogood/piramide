@@ -83,3 +83,11 @@
   color: #909090;
   font-style: italic;
 }
+
+
+@media (max-width: 600px) {
+  .console-input:focus {
+    position: sticky;
+    bottom: 0px;
+  }
+}

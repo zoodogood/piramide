@@ -348,101 +348,7 @@ class Slab {
 
 
 
-class ActionHandler {
-  #prevent = false;
 
-  constructor(){
-    this[Symbol.asyncIterator] = this.iteratorFunction;
-    this.events = new EventEmitter();
-
-    this.trace = [];
-    this.index = 0;
-  }
-
-
-
-  iteratorFunction(){
-    return { next: this.iteratorNext.bind(this) };
-  }
-
-
-
-  async iteratorNext(){
-
-    if ( this.#prevent ){
-      this.#prevent = false;
-      this.trace    = [];
-      this.index    = 0;
-      return {
-        done: true,
-        value: { trace: this.trace, index: this.index }
-      };
-    }
-
-
-    // Очередь
-    if ( this.trace.length <= this.index )
-      await new Promise(res => this.events.once("push", res));
-
-    let action = this.trace[ this.index++ ];
-
-    let promise = action.func( action );
-    promise.action = action;
-    this.processed.push( promise );
-
-    let data = {
-      action,
-      next: this.trace.at( this.index ),
-      trace: this.trace,
-      processed: this.processed
-    };
-
-    /*
-      Если функция allowNext существует и возвращает истину,
-      То досрочно запустить следующее действие
-      Иначе ждать завершения всех текущих активных действий
-    */
-    if ( await action.allowNext?.( data ) )
-      return { done: false, value: "pending" };
-
-    let values = await Promise.all( this.processed );
-    this.processed = [];
-    return { done: false, value: values };
-  }
-
-
-
-  async handle(){
-    let iterable = this;
-
-    if ( this.trace.length )
-      this.preventHundle();
-
-    this.processed = [];
-
-    for await (let values of iterable)
-      this.events.emit("chunkHandled", values);
-  }
-
-
-
-  preventHundle({ clear = false } = {}){
-    this.push( {type: "beforeEnd"} );
-    this.#prevent = true;
-    this.push( {type: "afterEnd"} );
-
-    if (clear) this.trace = [];
-  }
-
-
-
-  push( action ){
-    this.trace.push( action );
-    this.events.emit("push", action);
-  }
-
-
-}
 
 
 const visualizer = new Visualizer("#towersList");
@@ -499,92 +405,18 @@ function mainGenerate( game ){
   displayTowerExample();
 }
 
+
+
 window.events.on("main", () => {
   Slab.ColorFunc( randomColorizzeFunc( 15 ) );
   displayTowerExample();
 });
 
 function displayTowerExample(){
-  let tower = new Tower( 15 ).setSlabs(  [...new Array(15)].map((e, i) => 15 - i)  ).toHTML();
+  let tower = new Tower( 15 )
+    .setSlabs(  [...new Array(15)].map((e, i) => 15 - i)  )
+    .toHTML();
 
   document.querySelector("#towerExample").innerHTML = "";
   document.querySelector("#towerExample").append(tower);
 }
-
-
-class GlitchText {
-  constructor(from = "", to = "hello, world", {speed = 1} = {}){
-    this.from = from;
-    this.to   = to;
-
-    this.speed = speed;
-
-    this[Symbol.iterator] = this.iteratorFunction;
-  }
-
-  *iteratorFunction(){
-    let word = [...this.from];
-    const target = this.to;
-
-    while (word.length !== target.length){
-      if (word.length > target.length)
-        word.pop();
-
-      if (word.length < target.length)
-        word.push("#");
-
-      word = word.map(e => String.fromCharCode( random(20, 40) ));
-      yield word.join("");
-    }
-
-
-
-    while ( word.join("") !== target ){
-
-      word.forEach((letter, i) => {
-        if (letter === target[i]){
-          return;
-        }
-
-        let charCode = letter.charCodeAt(0), targetCode = target[i].charCodeAt(0);
-        word[i] = String.fromCharCode( charCode >= targetCode ? charCode - 1 : Math.ceil(15 * this.speed) + charCode );
-      });
-
-      yield word.join("");
-    }
-
-
-    return;
-  }
-}
-
-
-
-
-
-
-
-// Функция для трансформаций
-// Синтаксис применения HTMLElement.transform({property: "scale", value: 1.2, ms: 200})
-Object.defineProperty( HTMLElement.prototype, "transform", {
-  value: async function ({ value, property, ms }){
-    // Строка текущих трансформаций
-    let now  = this.style.transform;
-
-    if ( ms )
-      this.style.transitionDuration = `${ ms }ms`;
-
-    let reg = new RegExp(`${ property }\\s?\\((.+?)\\)`, "i");
-    let alreadyIncludes = now.match( reg );
-
-    if (alreadyIncludes){
-      this.style.transform = now.replace(alreadyIncludes[0], `${ property }(${ value })`);
-      await delay(ms);
-      return;
-    }
-
-    this.style.transform += ` ${ property }(${ value })`;
-    await delay(ms);
-    return;
-  }
-});

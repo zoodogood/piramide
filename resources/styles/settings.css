@@ -457,7 +457,7 @@ pre {
   .range {
     width: 100%;
   }
-  
+
   body {
     flex-direction: column-reverse;
     background-position: -45px;
@@ -489,12 +489,18 @@ pre {
 
     align-items: center;
     justify-content: space-around;
+
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
   }
 
 
   .round-button {
     margin-bottom: 0px;
+  }
 
+  .round-button button {
+    border: none;
+    width: 72px;
   }
 
   .round-button > span {

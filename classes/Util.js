@@ -149,3 +149,31 @@ class Timeout {
   }
 
 }
+
+
+
+
+// Функция для трансформаций
+// Синтаксис применения HTMLElement.transform({property: "scale", value: 1.2, ms: 200})
+Object.defineProperty( HTMLElement.prototype, "transform", {
+  value: async function ({ value, property, ms }){
+    // Строка текущих трансформаций
+    let now  = this.style.transform;
+
+    if ( ms )
+      this.style.transitionDuration = `${ ms }ms`;
+
+    let reg = new RegExp(`${ property }\\s?\\((.+?)\\)`, "i");
+    let alreadyIncludes = now.match( reg );
+
+    if (alreadyIncludes){
+      this.style.transform = now.replace(alreadyIncludes[0], `${ property }(${ value })`);
+      await delay(ms);
+      return;
+    }
+
+    this.style.transform += ` ${ property }(${ value })`;
+    await delay(ms);
+    return;
+  }
+});
