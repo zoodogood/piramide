@@ -40,8 +40,16 @@ class Game extends EventEmitter {
       let proxyArray = this.#arrayList
         .map( arr => [...arr] );
 
-      const emulate = ({from, to}) => proxyArray.at(to)
-        .push(  proxyArray.at(from).pop()  );
+      let ref = new WeakRef( proxyArray );
+
+      const emulate = ({from, to}) => {
+        let array = ref.deref();
+        if (array === null)
+          this.removeListener("step", emulate);
+
+        array.at(to)
+          .push(  array.at(from).pop()  );
+        }
 
       this.on("step", emulate);
 
