@@ -49,6 +49,7 @@ class Game extends EventEmitter {
 
         array.at(to)
           .push(  array.at(from).pop()  );
+
         }
 
       this.on("step", emulate);
@@ -206,7 +207,6 @@ class Game extends EventEmitter {
     // Устаналивает кастомное расположение плит
     // Не должно использоваться в обычной игре
     _setUserArray( array ){
-
 
       const comprises = (arr) => arr instanceof Array && arr.every(n => typeof n === "number");
       let isArrayList = array.every(comprises);

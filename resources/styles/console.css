@@ -7,7 +7,7 @@
 }
 
 
-.console-input {
+.console-node-input {
   width: 100%;
   background: none;
   border: none;
@@ -29,7 +29,7 @@
 }
 
 
-.console-loggs {
+.console-node-loggs {
   display: flex;
   flex-direction: column;
   padding: 4px;

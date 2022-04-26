@@ -27,9 +27,9 @@ const log = (type, ...args) => {
       return String(value);
     }).join(' '),
   };
-  this.constructor.messages.push(obj);
-  nativeConsole[type](...args);
 
+  nativeConsole[type](...args);
+  Console.messages.push(obj);
   Console.events.emit("log", obj);
 }
 
@@ -62,6 +62,7 @@ class Console {
   constructor({ container }){
     container.className = "console-container";
 
+    this.container = container;
 
     this.loggs     = this.#createListNode(container);
     this.inputNode = this.#createInputNode(container);
@@ -77,27 +78,30 @@ class Console {
     node.textContent = msg.content.trim();
 
     node.className = `console-msg console-msg-${ msg.type }`;
-    this.loggs.append(node);
+    this.loggs.node.append(node);
   }
 
 
   #clear(){
-    this.loggs.innerHTML = "";
+    this.loggs.node.innerHTML = "";
   }
 
 
-  #createListNode(container){
-    const node = document.createElement("ul");
-    node.className = "console-loggs";
-    container.append(node);
-    return node;
+  #createListNode(){
+    const component = new ListNode();
+    this.container.append(component.node);
+    return component;
   }
 
-  #createInputNode(container){
-    const node = new InputNode();
-    this.node.append(node);
+  #createInputNode(){
+    const component = new InputNode();
+    this.container.append(component.node);
+    return component;
   }
 
+  static TYPES = {
+
+  }
 
   static messages = [];
 
@@ -113,8 +117,8 @@ class InputNode {
     this.node = document.createElement("input");
     this.node.className = "console-node-input";
 
-    node.onchange = this.#changeHandle.bind(this);
-    node.setAttribute("placeholder", this.constructor.PLACEHOLDER);
+    this.node.onchange = this.#changeHandle.bind(this);
+    this.node.setAttribute("placeholder", this.constructor.PLACEHOLDER);
   }
 
   #changeHandle(changeEvent){
@@ -130,7 +134,11 @@ class InputNode {
     catch (err)
     {
       type = "error";
-      output = `${ err.name }\n${ err.message }`;
+      let { name, message } = err;
+      name    ||= "Uncaused";
+      message ||= "";
+
+      output = `${ name }\n${ message || "" }`;
     }
 
     console[type](`> ${ input };\n${ output }`);
@@ -138,6 +146,14 @@ class InputNode {
   }
 
   static PLACEHOLDER = "Введите 2 + 2 . . .";
+}
+
+
+class ListNode {
+  constructor(){
+    this.node = document.createElement("ul");
+    this.node.className = "console-node-loggs";
+  }
 }
 
 globalThis.Console = Console;
