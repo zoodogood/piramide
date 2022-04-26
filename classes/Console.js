@@ -1,5 +1,37 @@
 (() => {
 
+const METHODS_TYPES = {
+  "default": {
+    toElement: (...args) => {
+      const node = document.createElement("span");
+
+      node.textContent = args
+        .map(contents => {
+          if (typeof content === "object")
+            contents = JSON.stringify(contents, null, 2);
+
+          return contents;
+        })
+        .join("\n");
+
+      return node;
+    }
+  },
+
+  "clear": {
+    useBefore: () => {
+      Console.events.emit("clear");
+      Console.messages = [];
+    },
+    toElement: () => {
+      const node = document.createElement("span");
+      node.textContent = "Консоль очищена.";
+      return node;
+    }
+
+  }
+};
+
 const nativeConsole = {
   log:    console.log,
   warn:   console.warn,
@@ -10,48 +42,37 @@ const nativeConsole = {
   group:  console.group,
   table:  console.table
 };
+console.native = nativeConsole;
 
-const log = (type, ...args) => {
-  const obj = {
-    type,
-    content: args.map((value) => {
-      if (typeof value == 'object')
-          return JSON.stringify(value, null, 2);
 
-      if (typeof value == 'number')
-          return value.toString();
+class LogResolve {
+  static log(type, ...args){
+    const message = {type, args};
+    const typeInfo = METHODS_TYPES[type] || METHODS_TYPES.default;
+    typeInfo.useBefore?.(...args);
 
-      if (typeof value == 'string')
-          return value;
+    const node = LogResolve.takeNode(message);
 
-      return String(value);
-    }).join(' '),
-  };
 
-  nativeConsole[type](...args);
-  Console.messages.push(obj);
-  Console.events.emit("log", obj);
+
+    nativeConsole[type](...args);
+    Console.messages.push(message);
+    Console.events.emit("log", node, message);
+  }
+
+
+  static takeNode(message){
+    const typeInfo = METHODS_TYPES[ message.type ] || METHODS_TYPES.default;
+    const node = typeInfo.toElement(message.args);
+    node.classList.add("console-msg", `console-msg-${ message.type }`);
+
+    return node;
+  }
 }
 
 
-console.log   = (...args) => log('log',   ...args);
-console.warn  = (...args) => log('warn',  ...args);
-console.error = (...args) => log('error', ...args);
-console.debug = (...args) => log('debug', ...args);
 
-console.clear = () => {
-  Console.messages = [
-    {
-      type: 'clean',
-      content: 'Консоль очищена.'
-    }
-  ];
 
-  nativeConsole['clear']();
-  Console.events.emit("clear");
-};
-
-console.native = nativeConsole;
 
 
 
@@ -67,17 +88,20 @@ class Console {
     this.loggs     = this.#createListNode(container);
     this.inputNode = this.#createInputNode(container);
 
-    let pushMessage = this.#push.bind(this);
-    this.constructor.events.on("log", pushMessage);
-    this.constructor.messages.forEach( pushMessage );
+
+    this.#setHandlers();
+    this.#fillLogger();
   }
 
 
-  #push(msg){
-    const node = document.createElement("span");
-    node.textContent = msg.content.trim();
+  #append(node, message){
+    LogResolve.takeNode(node)
+    node = node.cloneNode(true);
 
-    node.className = `console-msg console-msg-${ msg.type }`;
+    const typeInfo = METHODS_TYPES[ message.type ] || METHODS_TYPES.default;
+    if ("specialProperties" in typeInfo)
+      node.specialProperties(node);
+
     this.loggs.node.append(node);
   }
 
@@ -86,6 +110,12 @@ class Console {
     this.loggs.node.innerHTML = "";
   }
 
+  #setHandlers(){
+    const appendMessage = this.#append.bind(this);
+    this.constructor.events.on("log", appendMessage);
+
+    this.constructor.events.on("clear", () => this.loggs.node.textContent = "");
+  }
 
   #createListNode(){
     const component = new ListNode();
@@ -99,8 +129,13 @@ class Console {
     return component;
   }
 
-  static TYPES = {
-
+  #fillLogger(){
+    this.constructor.messages
+      .map(message => {
+        const node = LogResolve.takeNode(message);
+        return {node, message};
+      })
+      .forEach( ({node, message}) => this.#append(node, message) );
   }
 
   static messages = [];
@@ -157,4 +192,12 @@ class ListNode {
 }
 
 globalThis.Console = Console;
+
+Object.keys(nativeConsole)
+  .forEach(key => {
+    const method = (...args) => LogResolve.log(key, ...args);
+    console[ key ] = method;
+  });
+
+
 })();
