@@ -98,9 +98,13 @@
 
 @media (max-width: 600px) {
   #code-space #control-buttons {
-    justify-content: space-around;
     font-size: 0px;
     height: 4vh;
+  }
+
+  #code-space #control-buttons .button {
+    width: 100%;
+    justify-content: center;
   }
 
   #code-space #control-buttons .icon {
