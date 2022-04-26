@@ -1,3 +1,5 @@
+(() => {
+
 const nativeConsole = {
   log:    console.log,
   warn:   console.warn,
@@ -50,6 +52,8 @@ console.clear = () => {
   nativeConsole['clear']();
   Console.events.emit("clear");
 };
+
+console.native = nativeConsole;
 
 
 class Console {
@@ -115,6 +119,8 @@ class Console {
     return node;
   }
 
-
   static events = new EventEmitter();
 }
+
+globalThis.Console = Console;
+})();
