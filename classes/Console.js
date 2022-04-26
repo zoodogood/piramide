@@ -11,8 +11,6 @@ const nativeConsole = {
   table:  console.table
 };
 
-let messages = [];
-
 const log = (type, ...args) => {
   const obj = {
     type,
@@ -29,7 +27,7 @@ const log = (type, ...args) => {
       return String(value);
     }).join(' '),
   };
-  messages.push(obj);
+  this.constructor.messages.push(obj);
   nativeConsole[type](...args);
 
   Console.events.emit("log", obj);
@@ -42,7 +40,7 @@ console.error = (...args) => log('error', ...args);
 console.debug = (...args) => log('debug', ...args);
 
 console.clear = () => {
-  messages = [
+  Console.messages = [
     {
       type: 'clean',
       content: 'Консоль очищена.'
@@ -56,19 +54,21 @@ console.clear = () => {
 console.native = nativeConsole;
 
 
+
+
+
+
 class Console {
   constructor({ container }){
     container.className = "console-container";
 
-    let logsNode  = this.#createListNode(container);
-    let inputNode = this.#createInputNode(container);
 
-    this.loggs = logsNode;
-    this.inputNode = inputNode;
+    this.loggs     = this.#createListNode(container);
+    this.inputNode = this.#createInputNode(container);
 
     let pushMessage = this.#push.bind(this);
     this.constructor.events.on("log", pushMessage);
-    messages.forEach( pushMessage );
+    this.constructor.messages.forEach( pushMessage );
   }
 
 
@@ -94,32 +94,50 @@ class Console {
   }
 
   #createInputNode(container){
-    const node = document.createElement("input");
-    node.className = "console-input";
-    container.append(node);
-
-    node.onchange = (changeEvent) => {
-      const nodeValue = changeEvent.target.value;
-
-      let evalValue, type = "log";
-
-      try {
-        evalValue = JSON.stringify( eval( nodeValue ), null, 3 );
-      }
-      catch (err){
-        type = "error";
-        evalValue = `${ err.name }\n${ err.message }`;
-      }
-
-      console[type](`> ${ nodeValue };\n${ evalValue }`);
-      changeEvent.target.value = "";
-    }
-
-    node.setAttribute("placeholder", "Введите 2 + 2 . . .");
-    return node;
+    const node = new InputNode();
+    this.node.append(node);
   }
 
+
+  static messages = [];
+
   static events = new EventEmitter();
+}
+
+
+
+
+
+class InputNode {
+  constructor(){
+    this.node = document.createElement("input");
+    this.node.className = "console-node-input";
+
+    node.onchange = this.#changeHandle.bind(this);
+    node.setAttribute("placeholder", this.constructor.PLACEHOLDER);
+  }
+
+  #changeHandle(changeEvent){
+    const input = changeEvent.target.value;
+
+    let output, type = "log";
+
+    try
+    {
+      const value = eval( input );
+      output = JSON.stringify( value, null, 3 );
+    }
+    catch (err)
+    {
+      type = "error";
+      output = `${ err.name }\n${ err.message }`;
+    }
+
+    console[type](`> ${ input };\n${ output }`);
+    changeEvent.target.value = "";
+  }
+
+  static PLACEHOLDER = "Введите 2 + 2 . . .";
 }
 
 globalThis.Console = Console;
