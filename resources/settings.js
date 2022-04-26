@@ -439,6 +439,15 @@ new InputAction("strangeClick").connect()
   });
 
 
+new InputAction("disableCustomScroll").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay((input, value) => {
+    input.element.checked = value;
+  });
+
+
 new InputAction("alternativeConsole").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);

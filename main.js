@@ -13,6 +13,8 @@ window.scrollTo({top: 0, behavior: "smooth"});
 // Новая, быстрая и плавная прокрутка
 document.addEventListener("wheel", wheelEvent => {
 
+  if (params.disableCustomScroll)
+    return;
 
   if (wheelEvent.deltaY === 0)
     return;
