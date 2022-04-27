@@ -1,5 +1,8 @@
 (() => {
 
+if (!params.alternativeConsole)
+  return;
+
 const METHODS_TYPES = {
   "default": {
     toElement: (...args) => {
