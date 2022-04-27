@@ -34,16 +34,16 @@
   </head>
   <body>
     <main>
-      <section id = "game">
+      <section id = "game" itemscope itemtype = "https://schema.org/Game">
           <div id = "scoreTitle">
             <span id = "title" title = "Показывает сколько шагов уже выполнено">Похоже, тут пусто.<br><small>Нажмите Играть</small></span>
           </div>
-          <div class="container">
+          <div class="container" itemscope itemtype = "https://schema.org/gameLocation">
             <div id = "flyZone"></div>
             <main id = "towersList"></main>
           </div>
       </section>
-      <section id = "code-space">
+      <section id = "code-space" itemscope itemtype = "https://schema.org/accessibilityControl">
           <div id = "stretch-container" class = "hljs">•••</div>
           <code contenteditable placeholder = "Поле для ввода кода" id = "code-area" class = "hljs language-javascript"></code>
         <div id = "control-buttons">
@@ -69,7 +69,7 @@
       </section>
     </main>
 
-    <section id = "readme">
+    <section id = "readme" itemscope itemtype = "https://schema.org/usageInfo">
       <article>
         <h1>Пояснение задачи</h1>
         <main id = "taskInfo">
@@ -83,7 +83,7 @@
         </main>
 
 
-        <div id = "advice">
+        <div id = "advice" itemscope itemtype = "https://schema.org/gameTip">
           <h2>Прочитайте</h2>
           1. Ищите в Интернете то что Вам интересно.
           </br>
