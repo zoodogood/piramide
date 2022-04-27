@@ -49,9 +49,15 @@
   overflow: visible;
 }
 
+
 #advice {
   line-height: 1.5;
   overflow: visible;
+}
+
+#advice li {
+  list-style-type: decimal;
+  list-style-position: inside;
 }
 
 #openSettings {

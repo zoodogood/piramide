@@ -9,6 +9,8 @@
   font-family: 'Open Sans', sans-serif;
   padding: 0px;
   margin: 0px;
+
+  /* double for Mozilla */
   overflow-y: auto;
   overflow-y: overlay;
 

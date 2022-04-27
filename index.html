@@ -44,8 +44,9 @@
           </div>
       </section>
       <section id = "code-space" itemscope itemtype = "https://schema.org/accessibilityControl">
-          <div id = "stretch-container" class = "hljs">•••</div>
-          <code contenteditable placeholder = "Поле для ввода кода" id = "code-area" class = "hljs language-javascript"></code>
+        <div id = "stretch-container" class = "hljs">•••</div>
+        <code contenteditable placeholder = "Поле для ввода кода" id = "code-area" class = "hljs language-javascript"></code>
+
         <div id = "control-buttons">
           <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*">
             <span class = "icon">p</span> Играть!
@@ -66,6 +67,7 @@
             <span class = "icon">l</span> Библиотека
           </span>
         </div>
+        
       </section>
     </main>
 
@@ -73,31 +75,32 @@
       <article>
         <h1>Пояснение задачи</h1>
         <main id = "taskInfo">
-          Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.
-          </br>
-          Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,
-          </br>
-          который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.
-          </br>
+          Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
+          Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
+          который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
           Получить массив башен — <code>game.list</code>
         </main>
 
 
-        <div id = "advice" itemscope itemtype = "https://schema.org/gameTip">
+        <ol id = "advice" itemscope itemtype = "https://schema.org/gameTip">
           <h2>Прочитайте</h2>
-          1. Ищите в Интернете то что Вам интересно.
-          </br>
-          2. Посетите <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
-          </br>
-          3. Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.
-          <!-- 3. Раздел сверху создан для визуализации взаимодействия с игрой. Надеюсь, он будет вам полезен. Также можете отключить его ради производительности <code><i>.visualize()</i></code> -->
-          </br>
-          4. Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.
-          </br>
-          5. Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.
-          </br>
+          <li>
+            Ищите в Интернете то что Вам интересно.
+          </li>
+          <li>
+            Посетите <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
+          </li>
+          <li>
+            Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.
+          </li>
+          <li>
+            Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.
+          </li>
+          <li>
+            Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.
+          </li>
           <span id = "openSettings" onclick = "gtag('event', 'open_settings');"><a title = "Настройки" href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
-        </div>
+        </ol>
 
 
         <div id = "towerExample" style = "--arraySize: 35vh;"></div>
