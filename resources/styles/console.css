@@ -68,6 +68,10 @@
   border-color: var( --mainThemeColor );
 }
 
+.console-msg-info {
+  border-color: #6068eb;
+  padding-bottom: 20px;
+}
 
 .console-msg-warn {
   border-color: #c2c03f;
