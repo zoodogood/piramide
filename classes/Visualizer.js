@@ -269,11 +269,16 @@ class Tower {
     if (!params.strangeClick)
       return;
 
-    let effectType = ["filter", "transform"].random();
-    if (this.html.style[effectType] !== "")
+    const effectType = ["filter", "transform"].random();
+    const target = this.html.style;
+
+    if (target.transform === "scale(1)")
+      target.transform = "";
+
+    if (target[effectType] !== "")
       return;
 
-    let effects = {
+    const effects = {
       filter: [
         "blur(10px)",
         "invert(1)",
@@ -294,9 +299,9 @@ class Tower {
       ]
     };
 
-    this.html.style[effectType] = effects[effectType].random();
+    target[effectType] = effects[effectType].random();
     await delay(700);
-    this.html.style[effectType] = "";
+    target[effectType] = "";
   }
 
 }
