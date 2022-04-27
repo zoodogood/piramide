@@ -48,7 +48,7 @@ console.native = nativeConsole;
 class LogResolve {
   static log(type, ...args){
     const message = {type, args};
-    const typeInfo = METHODS_TYPES[type] || METHODS_TYPES.default;
+    const typeInfo = LogResolve.getTypeInfo(type);
     typeInfo.useBefore?.(...args);
 
     const node = LogResolve.takeNode(message);
@@ -62,11 +62,15 @@ class LogResolve {
 
 
   static takeNode(message){
-    const typeInfo = METHODS_TYPES[ message.type ] || METHODS_TYPES.default;
+    const typeInfo = this.getTypeInfo( message.type );
     const node = typeInfo.toElement(message.args);
     node.classList.add("console-msg", `console-msg-${ message.type }`);
 
     return node;
+  }
+
+  static getTypeInfo(type){
+    return METHODS_TYPES[type] || METHODS_TYPES.default;
   }
 }
 
@@ -98,9 +102,9 @@ class Console {
     LogResolve.takeNode(node)
     node = node.cloneNode(true);
 
-    const typeInfo = METHODS_TYPES[ message.type ] || METHODS_TYPES.default;
+    const typeInfo = LogResolve.getTypeInfo(message.type);
     if ("specialProperties" in typeInfo)
-      node.specialProperties(node);
+      typeInfo.specialProperties(node);
 
     this.loggs.node.append(node);
   }
