@@ -1,6 +1,7 @@
 .console-container {
   box-sizing: border-box;
   height: calc(100% - 15px);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,20 +9,22 @@
 
 
 .console-node-input {
+  position: sticky;
+  bottom: 0;
+
   width: 100%;
-  background: none;
-  border: none;
-  outline: none;
   padding: 15px;
-  color: #d5d0d4;
-
-  letter-spacing: 1px;
-  font-size: 1.1em;
-  background: #202020;
-
   box-sizing: border-box;
   flex-shrink: 0;
   margin-top: 50px;
+
+  border: none;
+  outline: none;
+  background: #202020;
+
+  letter-spacing: 1px;
+  font-size: 1.1em;
+  color: #d5d0d4;
 }
 
 .console-input:placeholder-shown {
