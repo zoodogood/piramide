@@ -1,4 +1,3 @@
 User-agent: *
-Allow: /index.html
-Allow: /resources/external/sitemap.xml
-Allow: /resources/usersettings.html
+Allow: *
+Sitemap: /resources/external/sitemap.xml
