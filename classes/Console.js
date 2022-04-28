@@ -32,6 +32,14 @@ const METHODS_TYPES = {
       return node;
     }
 
+  },
+
+  "error": {
+    toElement: (...args) => {
+      const node = document.createElement("span");
+      node.textContent = args.map(String).join(";\n");
+      return node;
+    }
   }
 };
 
@@ -165,6 +173,7 @@ class InputNode {
 
   #changeHandle(changeEvent){
     const input = changeEvent.target.value;
+    changeEvent.target.value = "";
 
     let output, type = "log";
 
@@ -175,16 +184,11 @@ class InputNode {
     }
     catch (err)
     {
-      type = "error";
-      let { name, message } = err;
-      name    ||= "Uncaused";
-      message ||= "";
-
-      output = `${ name }\n${ message || "" }`;
+      console.error(err);
+      return;
     }
 
     console[type](`> ${ input };\n${ output }`);
-    changeEvent.target.value = "";
   }
 
   static PLACEHOLDER = "Введите 2 + 2 . . .";
