@@ -8,6 +8,7 @@ function i18n(key, ...replaces){
   replaces = [...replaces];
 
   let string = globalThis.i18nLanguages[ i18nSelected ][key];
+
   if (string === undefined)
     return undefined;
 
@@ -43,9 +44,11 @@ class I18nManager {
   }
 
   static replaceNode(node, ...replaces){
-    const {getter, setter} = this.TARGET_METHODS[  node.getAttribute("i18n")  ];
+    const type = node.getAttribute("i18n") || node.parentNode.getAttribute("i18n-childs");
+
+    const {getter, setter} = this.TARGET_METHODS[ type ];
     const raw = getter(node, ...replaces);
-    const value = raw.replaceAll(/\{\{(.+?)\}\}/g, (all, content) => i18n(content, ...replaces));
+    const value = raw.replaceAll(/\{\{\s*(.+?)\s*\}\}/g, (all, content) => i18n(content, ...replaces));
     setter(node, value);
   }
 

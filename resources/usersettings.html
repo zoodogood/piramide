@@ -251,12 +251,12 @@
       </section>
 
       <section>
-        <h2>Язык:</h2>
+        <h2 i18n = "content">{{ settings-action-lang-h2 }}</h2>
         <small>i18n</small>
-        <select id = "lang" class = "select-input margin-top" style = "text-transform: uppercase; font-style: italic;">
-          <option value = "en">Английский</option>
-          <option value = "ru">Русский</option>
-          <option value = "ua">Украинский</option>
+        <select id = "lang" class = "select-input margin-top" style = "text-transform: uppercase; font-style: italic;" i18n-childs = "content">
+          <option value = "en">{{ settings-action-lang-en }}</option>
+          <option value = "ru">{{ settings-action-lang-ru }}</option>
+          <option value = "ua">{{ settings-action-lang-ua }}</option>
         </select>
       </section>
 
@@ -266,7 +266,12 @@
 
     </main>
   </body>
+
   <script type="text/javascript" src = "../classes/Util.js"></script>
+
+  <script src = "../resources/i18n.json.js" charset = "utf-8"></script>
+  <script src = "../classes/I18n.js" charset="utf-8"></script>
+
   <script type="text/javascript" src = "highlight/highlight.min.js"></script>
   <script type="text/javascript" src = "../classes/UserParams.js"></script>
   <script type="text/javascript" src = "settings.js"></script>

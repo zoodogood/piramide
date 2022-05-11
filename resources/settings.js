@@ -460,8 +460,11 @@ new InputAction("lang", {eventType: "change"}).connect()
   .setAction(input => {
     const value = input.element.value;
     InputAction.setValue(input.connectedValue, value);
+
+    alert( i18n("settings-action-lang-changesAfterRefresh") );
   })
   .setDisplay((input, value) => {
+    I18nManager.setLang(value);
     input.element.value = value;
   });
 
@@ -493,3 +496,6 @@ window.addEventListener("beforeunload", e => {
 
   buttonSave.parentNode.classList.add("clickMe");
 });
+
+
+I18nManager.replaceAll();
