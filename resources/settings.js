@@ -70,10 +70,10 @@ class SelfDestroyedElement {
 
 
 // Основные кнопки — выйти, сохранить, отменить.
-let
-  buttonExit  = document.getElementById("button-exit"),
-  buttonSave  = document.getElementById("button-save"),
-  buttonReset = document.getElementById("button-reset")
+const
+  buttonExit  = document.getElementById("button-exit").parentNode,
+  buttonSave  = document.getElementById("button-save").parentNode,
+  buttonReset = document.getElementById("button-reset").parentNode
 
 
 document.addEventListener("keydown", e => {
@@ -116,6 +116,7 @@ buttonExit.addEventListener("click", e => {
 
 
 buttonSave.addEventListener("click", e => {
+  console.log(123);
   let newest = InputAction.changes;
 
   localStorage.setItem( "userParams", JSON.stringify(newest) );
