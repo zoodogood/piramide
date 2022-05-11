@@ -79,6 +79,18 @@
 
   min-width: fit-content;
   overflow-y: hidden;
+
+  animation: codespace-buttons-appearance 0.3s;
+}
+
+@keyframes codespace-buttons-appearance {
+  0% {
+    transform: translateY(-100vw);
+  }
+
+  100% {
+    transform: translateY(0vw);
+  }
 }
 
 #code-space #control-buttons .button:hover {
