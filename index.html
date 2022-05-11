@@ -51,20 +51,20 @@
           <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*" i18n = "content">
             <span class = "icon">p</span> {{codeSpace-controlButtons-play}}
           </span>
-          <span class = "button" id = "scoreMap-button" title = "Показывает статистику собранную Полигоном">
-            <span class = "icon">i</span> График эффектив.
+          <span class = "button" id = "scoreMap-button" title = "Показывает статистику собранную Полигоном" i18n = "content">
+            <span class = "icon">i</span> {{codeSpace-controlButtons-scoreMap}}
           </span>
-          <span class = "button" id = "copy-button">
-            <span class = "icon">c</span> Скопировать
+          <span class = "button" id = "copy-button" i18n = "content">
+            <span class = "icon">c</span> {{codeSpace-controlButtons-copy}}
           </span>
-          <span class = "button" id = "showConsole-button" title = "Логи скрипта">
-            <span class = "icon">t</span> Консоль
+          <span class = "button" id = "showConsole-button" title = "Логи скрипта" i18n = "content">
+            <span class = "icon">t</span> {{codeSpace-controlButtons-showConsole}}
           </span>
-          <span class = "button" id = "setDefault-button" title = "Заменяет код стандартным">
-            <span class = "icon">h</span> Код по умолчанию
+          <span class = "button" id = "setDefault-button" title = "Заменяет код стандартным" i18n = "content">
+            <span class = "icon">h</span> {{codeSpace-controlButtons-setDefault}}
           </span>
-          <span class = "button" id = "showHelps-button" title = "Небольшой справочник">
-            <span class = "icon">l</span> Библиотека
+          <span class = "button" id = "showHelps-button" title = "Небольшой справочник" i18n = "content">
+            <span class = "icon">l</span> {{codeSpace-controlButtons-showHelps}}
           </span>
         </div>
 
@@ -73,7 +73,7 @@
 
     <section id = "readme" itemscope itemtype = "https://schema.org/usageInfo">
       <article>
-        <h1>Пояснение задачи</h1>
+        <h1 i18n = "content">{{footer-article-h1}}</h1>
         <main id = "taskInfo">
           Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
           Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
@@ -83,7 +83,7 @@
 
 
         <ol id = "advice" itemscope itemtype = "https://schema.org/gameTip">
-          <h2>Прочитайте</h2>
+          <h2 i18n = "content">{{ footer-advice-h2 }}</h2>
           <li>
             Ищите в Интернете то что Вам интересно.
           </li>
@@ -99,7 +99,7 @@
           <li>
             Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.
           </li>
-          <span id = "openSettings" onclick = "gtag('event', 'open_settings');"><a title = "Настройки" href = "./resources/usersettings.html"><span class = "icon">a</span> Измените настройки</a></span>
+          <span id = "openSettings" onclick = "gtag('event', 'open_settings');"><a title = "Настройки" href = "./resources/usersettings.html" i18n = "content"><span class = "icon">a</span> {{ footer-advice-settings }}</a></span>
         </ol>
 
 
