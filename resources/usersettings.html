@@ -150,7 +150,7 @@
       <h1>Редактор кода:</h1>
 
       <section>
-        <h2>Цвет текста</h2>
+        <h2>Стиль шрифта</h2>
         <details close>
           <summary>Подробности</summary>
           Устанавливает цветовую тему в редакторе кода.</br>
@@ -185,15 +185,6 @@
         </details>
         <input class = "range margin-top" type="range" id ="codeSize" value = "100" min = "80" max = "150">
       </section>
-
-      <!-- <section>
-        <h2>Высота редактора</h2>
-        <details close>
-          <summary>Подробности</summary>
-          Изменяет размер шрифта в редакторе кода.
-        </details>
-        <input class = "range margin-top" type="range" id ="codeSize" value = "100" min = "80" max = "150">
-      </section> -->
 
 
       <h1>Настройки этого меню</h1>
@@ -257,6 +248,16 @@
           <input type="checkbox" id = "alternativeConsole">
           <span class = "slider"></span>
         </label>
+      </section>
+
+      <section>
+        <h2>Язык:</h2>
+        <small>i18n</small>
+        <select id = "lang" class = "select-input margin-top" style = "text-transform: uppercase; font-style: italic;">
+          <option value = "en">Английский</option>
+          <option value = "ru">Русский</option>
+          <option value = "ua">Украинский</option>
+        </select>
       </section>
 
 

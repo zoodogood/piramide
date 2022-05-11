@@ -120,5 +120,5 @@ if (params.codeSize)
 
 window.events.emit("main");
 
-
+I18nManager.setLang(params.lang);
 I18nManager.replaceAll();

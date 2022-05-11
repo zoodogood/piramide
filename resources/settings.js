@@ -456,6 +456,14 @@ new InputAction("alternativeConsole").connect()
     input.element.checked = value;
   });
 
+new InputAction("lang", {eventType: "change"}).connect()
+  .setAction(input => {
+    const value = input.element.value;
+    InputAction.setValue(input.connectedValue, value);
+  })
+  .setDisplay((input, value) => {
+    input.element.value = value;
+  });
 
 
 

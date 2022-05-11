@@ -56,7 +56,8 @@ class Params {
 
     strangeClick: false,
     disableCustomScroll: false,
-    alternativeConsole: false
+    alternativeConsole: false,
+    lang: "en"
   };
 }
 

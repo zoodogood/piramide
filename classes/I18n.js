@@ -1,12 +1,13 @@
 (() => {
 if (!globalThis.i18nLanguages)
   throw new Error("locales not connected");
-globalThis.i18nSelected = "en";
+
+let i18nSelected = "en";
 
 function i18n(key, ...replaces){
   replaces = [...replaces];
 
-  let string = globalThis.i18nLanguages[ globalThis.i18nSelected ][key];
+  let string = globalThis.i18nLanguages[ i18nSelected ][key];
   if (string === undefined)
     return undefined;
 
@@ -54,6 +55,10 @@ class I18nManager {
       setter: (node, value) => node.innerHTML = value
     }
   };
+
+  static setLang(lang){
+    i18nSelected = lang;
+  }
 };
 
 globalThis.i18n = i18n;
