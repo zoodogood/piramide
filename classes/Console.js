@@ -175,7 +175,8 @@ class InputNode {
     const input = changeEvent.target.value;
     changeEvent.target.value = "";
 
-    let output, type = "log";
+    let output;
+    console.log("%c> %c%s", "color: rgba(200, 200, 200, 0.4);", "", `${ input };`);
 
     try
     {
@@ -188,7 +189,8 @@ class InputNode {
       return;
     }
 
-    console[type](`> ${ input };\n${ output }`);
+
+    console.log( String(output) );
   }
 
   static PLACEHOLDER = "Введите 2 + 2 . . .";
