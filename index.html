@@ -48,8 +48,8 @@
         <code contenteditable placeholder = "Поле для ввода кода" id = "code-area" class = "hljs language-javascript"></code>
 
         <div id = "control-buttons">
-          <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*">
-            <span class = "icon">p</span> Играть!
+          <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*" i18n = "content">
+            <span class = "icon">p</span> {{codeSpace-controlButtons-play}}
           </span>
           <span class = "button" id = "scoreMap-button" title = "Показывает статистику собранную Полигоном">
             <span class = "icon">i</span> График эффектив.
@@ -67,7 +67,7 @@
             <span class = "icon">l</span> Библиотека
           </span>
         </div>
-        
+
       </section>
     </main>
 
@@ -120,6 +120,9 @@
     <script type="text/javascript" src = "classes/alerts.js"></script>
     <link rel="stylesheet" href="resources/styles/modalWindow.css">
     <script type="text/javascript" src = "classes/modalWindow.js"></script>
+
+    <script src="resources/i18n.json.js" charset="utf-8"></script>
+    <script src="classes/I18n.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="resources/styles/linearGraph.css">
     <script type="text/javascript" src = "classes/LinearGraph.js"></script>

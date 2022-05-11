@@ -1,7 +1,7 @@
 (() => {
 if (!globalThis.i18nLanguages)
   throw new Error("locales not connected");
-globalThis.i18nSelected = "ru";
+globalThis.i18nSelected = "en";
 
 function i18n(key, ...replaces){
   replaces = [...replaces];

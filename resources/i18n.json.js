@@ -1,5 +1,7 @@
 globalThis.i18nLanguages = {
-  ua: {},
+  ua: {
+    "codeSpace-controlButtons-play": "Грати"
+  },
 
 
 
@@ -14,5 +16,7 @@ globalThis.i18nLanguages = {
 
 
 
-  en: {}
+  en: {
+    "codeSpace-controlButtons-play": "Play"
+  }
 }

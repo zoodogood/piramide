@@ -119,3 +119,6 @@ if (params.codeSize)
 
 
 window.events.emit("main");
+
+
+I18nManager.replaceAll();
