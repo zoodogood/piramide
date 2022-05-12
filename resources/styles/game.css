@@ -54,7 +54,7 @@
   justify-content: flex-end;
   align-items: center;
 
-  overflow: visible;
+  overflow: hidden;
   contain: size;
 }
 
@@ -156,12 +156,6 @@
   }
 }
 
-
-
-.tower-example
-{
-  overflow: hidden;
-}
 
 
 .ghost-tower
