@@ -157,6 +157,8 @@ class Visualizer {
 
     for (let tower of list) {
       tower = this.createTower( size ).setSlabs( tower );
+      tower.eachSlab(slab => slab.setColor(null, {towerSize: tower.size}));
+
       this.gameElement.append( tower.toHTML() );
     }
   }
@@ -265,6 +267,11 @@ class Tower {
     return this;
   }
 
+  eachSlab(callback){
+    this.slabs.forEach(callback);
+    return this;
+  }
+
   async clickHandle(){
     if (!params.strangeClick)
       return;
@@ -314,8 +321,6 @@ class Slab {
   constructor( number, size = 15 ){
     this.number = number;
     this.size   = size;
-
-    this.setColor( this.constructor.colorFunc );
   }
 
 
@@ -334,19 +339,19 @@ class Slab {
 
 
 
-  setColor( color ){
-    if (typeof color === "function")
-      color = color( this.number );
+  setColor( colorizze, {towerSize} ){
+    colorizze ||= this.constructor.globalColorizze;
 
-    this.color = color;
+
+    if (typeof colorizze === "function")
+      colorizze = colorizze( this.number, {towerSize} );
+
+    this.color = colorizze;
   }
 
 
 
-  static ColorFunc(func){
-    this.colorFunc = func;
-    return this;
-  }
+  static globalColorizze = (n) => n % 2 ? '#c6e44e' : '#70d729';
 }
 
 
@@ -382,28 +387,37 @@ Game.prototype.visualize = function(){
 
 
 // Возвращает функцию, которая окрашивает плитки
-function randomColorizzeFunc(size){
+function resolveColorizzeFuncions(){
 
-  // Создает функции rgba, hsl, rgb, они возвращают CSS строку типа "rgb(32, 33, 5)"
-  let toStringBase = (funcName) => (...colors) => {
-    let addPercent = (e, i) => funcName.startsWith("hsl") && (i === 1 || i === 2) ? `${e}%` : e;
-    colors = colors.map(addPercent).join(", ");
-    return `${ funcName }( ${colors} )`;
+  // Создает JS-функции rgba, hsl, rgb, которые возвращают CSS строку типа "rgb(32, 33, 5)"
+  const toCode = (funcName) => (...colors) => {
+    const simplifyPercent = (color, i) => funcName.startsWith("hsl") && (i === 1 || i === 2) ? `${ color }%` : color;
+    colors = colors.map(simplifyPercent).join(", ");
+    return `${ funcName }(${ colors })`;
   };
   let colorsFunc = ["rgb", "rgba", "hsl", "hsla"];
 
 
-  let func = params.colorizeFunc.random(false, true).func;
-  func = new Function("n", "size", ...colorsFunc, `return ${ func }`);
-  return (n) => func( n, size, ...colorsFunc.map(toStringBase) );
+  const painters = params.colorizeFunc.map(painter => {
+    const code = painter.func;
+    const func = new Function("n", "size", ...colorsFunc, `return ${ code }`);
+    const method = (n, {towerSize}) => func.call( null, n, towerSize, ...colorsFunc.map(toCode) );
+    painter.colorizze = method;
+
+    return painter;
+  });
+
+  return painters;
 }
+Slab.colorizeFunctions = resolveColorizzeFuncions();
 
 
 // Вызывается при generate
 function mainGenerate( game ){
   let size = game.getGameParams().size;
+  const colorizze = Slab.colorizeFunctions.random().colorizze;
+  Slab.globalColorizze = colorizze;
 
-  Slab.ColorFunc( randomColorizzeFunc( size ) );
   visualizer.generateHandle( game );
 
 
@@ -413,15 +427,35 @@ function mainGenerate( game ){
 
 
 window.events.on("main", () => {
-  Slab.ColorFunc( randomColorizzeFunc( 15 ) );
+  const colorizze = Slab.colorizeFunctions.random().colorizze;
+  Slab.globalColorizze = colorizze;
   displayTowerExample();
+
+  if (!visualizer.game){
+    displayGhostTowers();
+  }
 });
 
-function displayTowerExample(){
-  let tower = new Tower( 15 )
-    .setSlabs(  [...new Array(15)].map((e, i) => 15 - i)  )
+
+function displayTower(node, slabs, {colorizze} = {}){
+  let tower = new Tower( slabs )
+    .setSlabs(  [...new Array(slabs)].map((_, i) => slabs - i)  )
+    .eachSlab((slab, index) => slab.setColor(colorizze, {towerSize: slabs}))
     .toHTML();
 
-  document.querySelector("#towerExample").innerHTML = "";
-  document.querySelector("#towerExample").append(tower);
+  node.innerHTML = "";
+  node.append(tower);
+}
+
+function displayTowerExample(){
+  const node = document.querySelector("#towerExample");
+  return displayTower(node, 15);
+}
+
+
+function displayGhostTowers(){
+  const colors = resolveColorizzeFuncions();
+  const nodes = [...document.querySelectorAll(".ghost-tower")];
+
+  nodes.forEach( node => displayTower(node, 9, {colorizze: colors.random().colorizze}) );
 }
