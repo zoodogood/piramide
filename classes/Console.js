@@ -6,17 +6,37 @@ if (!params.alternativeConsole)
 const METHODS_TYPES = {
   "default": {
     toElement: (...args) => {
-      const node = document.createElement("span");
-      
-
-      node.textContent = args
+      args = args
         .map(contents => {
           if (typeof contents === "object")
             contents = JSON.stringify(contents, null, 2);
 
           return contents;
-        })
-        .join("\n");
+        });
+
+      const node = document.createElement("span");
+      const isParsible = args.at(1) && args.at(0).match(/%[csn]/);
+
+      if (isParsible){
+        let line = args.shift();
+        let currentStyle = "";
+
+        line = line.replaceAll(/%([csn])/g, (full, symbol) => {
+          const option = args.shift();
+          if (symbol === "c"){
+            currentStyle = option;
+            return "";
+          }
+
+          return `<span style = "${ currentStyle }">${ option }</span>`;
+        });
+
+        node.innerHTML = line;
+        return node;
+      }
+
+
+      node.textContent = args.join("\n");
 
       return node;
     }
@@ -75,7 +95,7 @@ class LogResolve {
 
   static takeNode(message){
     const typeInfo = this.getTypeInfo( message.type );
-    const node = typeInfo.toElement(message.args);
+    const node = typeInfo.toElement(...message.args);
     node.classList.add("console-msg", `console-msg-${ message.type }`);
 
     return node;
@@ -111,7 +131,7 @@ class Console {
 
 
   #append(node, message){
-    LogResolve.takeNode(node)
+    LogResolve.takeNode(message)
     node = node.cloneNode(true);
 
     const typeInfo = LogResolve.getTypeInfo(message.type);
@@ -177,7 +197,7 @@ class InputNode {
     changeEvent.target.value = "";
 
     let output;
-    console.log("%c> %c%s", "color: rgba(200, 200, 200, 0.4);", "", `${ input };`);
+    console.log(`%c%s${ input };`, "color: rgba(200, 200, 200, 0.5);", ">  ");
 
     try
     {
