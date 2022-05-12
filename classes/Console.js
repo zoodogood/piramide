@@ -7,10 +7,11 @@ const METHODS_TYPES = {
   "default": {
     toElement: (...args) => {
       const node = document.createElement("span");
+      
 
       node.textContent = args
         .map(contents => {
-          if (typeof content === "object")
+          if (typeof contents === "object")
             contents = JSON.stringify(contents, null, 2);
 
           return contents;
