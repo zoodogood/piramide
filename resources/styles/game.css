@@ -155,3 +155,16 @@
     top: 5vh;
   }
 }
+
+
+
+.tower-example
+{
+  overflow: hidden;
+}
+
+
+.ghost-tower
+{
+  opacity: 0.5;
+}
