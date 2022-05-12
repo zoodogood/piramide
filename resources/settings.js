@@ -116,7 +116,6 @@ buttonExit.addEventListener("click", e => {
 
 
 buttonSave.addEventListener("click", e => {
-  console.log(123);
   let newest = InputAction.changes;
 
   localStorage.setItem( "userParams", JSON.stringify(newest) );
