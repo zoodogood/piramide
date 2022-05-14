@@ -177,6 +177,7 @@
 
 .ghost-tower:nth-child(2){
   animation: game-ghostTower-translate 3s infinite alternate;
+  margin-left: 1vh;
 }
 
 @keyframes game-ghostTower-translate {
