@@ -157,6 +157,10 @@
 }
 
 
+.tower-example
+{
+  overflow: hidden;
+}
 
 .ghost-tower
 {
