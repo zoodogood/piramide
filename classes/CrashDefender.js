@@ -27,7 +27,9 @@ class Defender {
       return true;
 
     gtag("event", "'what's happens?'");
-    Alert.create("Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл.", "warning", "Страница остановилась?");
+
+
+    Alert.create(i18n("crashDefender-crash-message"), "warning", i18n("crashDefender-crash-title"));
   }
 }
 

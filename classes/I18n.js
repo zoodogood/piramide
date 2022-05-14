@@ -36,6 +36,7 @@ class I18nManager {
       ...document.querySelectorAll("[i18n-childs] > *")
     ];
 
+    console.log(nodes);
 
     for (let index = 0; index < nodes.length; index++)
       this.replaceNode(  nodes[ index ]  );

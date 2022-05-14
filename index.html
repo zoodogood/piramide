@@ -41,9 +41,9 @@
           <div class="container" itemscope itemtype = "https://schema.org/gameLocation">
             <div id = "flyZone"></div>
             <main id = "towersList">
-              <div class = "ghost-tower tower-example" style = "--arraySize: 10vh;"></div>
-              <div class = "ghost-tower tower-example" style = "--arraySize: 15vh;"></div>
-              <div class = "ghost-tower tower-example" style = "--arraySize: 10vh;"></div>
+              <div class = "ghost-tower tower-example" style = "--arraySize: 4vh;"></div>
+              <div class = "ghost-tower tower-example" style = "--arraySize: 8vh;"></div>
+              <div class = "ghost-tower tower-example" style = "--arraySize: 4vh;"></div>
             </main>
           </div>
       </section>
@@ -78,30 +78,27 @@
     <section id = "readme" itemscope itemtype = "https://schema.org/usageInfo">
       <article>
         <h1 i18n = "content">{{footer-article-h1}}</h1>
-        <main id = "taskInfo">
-          Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
-          Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
-          который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
-          Получить массив башен — <code>game.list</code>
+        <main id = "taskInfo" i18n = "content">
+          {{ footer-article-taskInfo }}
         </main>
 
 
-        <ol id = "advice" itemscope itemtype = "https://schema.org/gameTip">
-          <h2 i18n = "content">{{ footer-advice-h2 }}</h2>
+        <ol id = "advice" itemscope itemtype = "https://schema.org/gameTip" i18n-childs = "content">
+          <h2>{{ footer-advice-h2 }}</h2>
           <li>
-            Ищите в Интернете то что Вам интересно.
+            {{ footer-advice-#1 }}
           </li>
           <li>
-            Посетите <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>
+            {{ footer-advice-#2 }}
           </li>
           <li>
-            Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.
+            {{ footer-advice-#3 }}
           </li>
           <li>
-            Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.
+            {{ footer-advice-#4 }}
           </li>
           <li>
-            Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.
+            {{ footer-advice-#5 }}
           </li>
           <span id = "openSettings" onclick = "gtag('event', 'open_settings');"><a title = "Настройки" href = "./resources/usersettings.html" i18n = "content"><span class = "icon">a</span> {{ footer-advice-settings }}</a></span>
         </ol>
@@ -110,7 +107,7 @@
         <div id = "towerExample" class = "tower-example" style = "--arraySize: 35vh;"></div>
       </article>
       <footer>
-        <span>Самое время нажать *Ctrl + Enter*</span>
+        <span>{{ footer-bottom-hidden }}</span>
       </footer>
     </section>
 
