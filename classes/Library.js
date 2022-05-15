@@ -140,7 +140,7 @@ class Library {
     if (this.manager.getOpening().length === GUIDANCES.length)
       return "";
 
-    return `<center>Напишите ещё ${ ending(target, "символ", "ов", "", "а") }, чтобы открыть новые подсказки</center>`
+    return `<center>Напишите ещё ${ ending(target, "символ", "ов", "", "а") } кода, чтобы открыть новые подсказки</center>`
   }
 
 

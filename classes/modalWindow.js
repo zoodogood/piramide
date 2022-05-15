@@ -29,10 +29,14 @@ class ModalWindow {
      });
 
      this.installMoveElement();
+     this.setHandlers();
 
 
      document.body.append(element);
-     element.modalWindow = element;
+     element.modalWindow = this;
+
+     this.createdTimestamp = Date.now();
+     ModalsStateManager.addState(this);
   }
 
   installMoveElement(){
@@ -40,9 +44,31 @@ class ModalWindow {
     return this;
   }
 
+  setHandlers(){
+    const observer = new MutationObserver(mutationRecords => {
+      const removed = mutationRecords.at(-1).removedNodes;
+      const isRemoved = [...removed].some(node => node === this.element);
+
+      if (isRemoved)
+        this.close();
+
+    });
+    observer.observe(document.body, {childList: true});
+    this.setHandlers.MutationObserver = observer;
+  }
+
   close(){
+    if (this.closed)
+      return;
+
     this.element.remove();
-    // Нужно Провести оптимизацию с завершением всех слушаетелей
+    delete this.element.modalWindow;
+
+    ModalsStateManager.remove(this);
+
+    this.setHandlers.MutationObserver.disconnect();
+
+    this.closed = true;
   }
 }
 
@@ -53,7 +79,7 @@ class MoveElement {
     this.element = element;
 
     element.classList.add("move-element");
-    element.addEventListener("mousedown", (e) => this.mouseDownHandler(e));
+    element.addEventListener("mousedown", (mouseEvent) => this.mouseDownHandler(mouseEvent));
     this.installCloseElement();
   }
 
@@ -94,7 +120,7 @@ class CloseElement {
     this.element = element;
 
     element.classList.add("close-element");
-    element.addEventListener("click", (e) => this.clickHandler(e));
+    element.addEventListener("click", (clickEvent) => this.clickHandler(clickEvent));
   }
 
 
@@ -108,3 +134,48 @@ class CloseElement {
     this.moveElement.modalWindow.close();
   }
 }
+
+
+
+class ModalsStateManager {
+  static states = [];
+
+
+  static handle(){
+    window.addEventListener("popstate", this.popStateHandler.bind(this));
+  };
+
+
+  static remove(modal){
+    const index = this.states.indexOf( modal.createdTimestamp );
+    if (!~index)
+      return;
+
+    this.states.splice(index, 1);
+
+    if (this.states.length === 0)
+      history.back();
+  };
+
+
+  static addState(modal){
+    const timestamp = modal.createdTimestamp;
+
+    history.pushState({}, "");
+    this.states.push(timestamp);
+  };
+
+
+  static popStateHandler(popStateEvent){
+    const modals = [...document.getElementsByClassName("modalWindow")];
+    const node = modals.find(node =>
+      node.modalWindow.createdTimestamp === this.states.at(-1)
+    );
+
+    if (!node)
+      return;
+
+    node.modalWindow.close();
+  };
+}
+ModalsStateManager.handle();
