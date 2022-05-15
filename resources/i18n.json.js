@@ -43,6 +43,13 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ua": "Україньска",
     "settings-action-lang-changesAfterRefresh": "Зміни набудуть чинності після перезавантаження сторінки",
 
+    "settings-section-main": "Основне:",
+
+    "settings-section-codeEditor": "Редактор коду:",
+
+    "settings-section-other": "Інше:",
+
+
     "console-clear-message": "Консоль очищена.",
     "console-input-placeholder": "Введіть 2 + 2 . . .",
 
@@ -102,6 +109,13 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ru": "Русский",
     "settings-action-lang-ua": "Украинский",
     "settings-action-lang-changesAfterRefresh": "Изменения вступят в силу после перезагрузки страницы",
+
+    "settings-section-main": "Основное:",
+
+    "settings-section-codeEditor": "Редактор кода:",
+
+    "settings-section-other": "Другое:",
+
 
     "console-clear-message": "Консоль очищена.",
     "console-input-placeholder": "Введите 2 + 2 . . .",
@@ -163,6 +177,13 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ru": "Russian",
     "settings-action-lang-ua": "Ukrainian",
     "settings-action-lang-changesAfterRefresh": "The changes will take effect after the page is reloaded",
+
+    "settings-section-main": "Main:",
+
+    "settings-section-codeEditor": "Code editor:",
+
+    "settings-section-other": "Other:",
+
 
     "console-clear-message": "Console clear.",
     "console-input-placeholder": "Enter 2 + 2 . . .",
