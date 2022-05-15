@@ -155,10 +155,9 @@ class ModalsStateManager {
     this.states.splice(index, 1);
 
 
-    if (this._data.preventNext)
+    if (!(this._data.preventNext ^= 1))
       return;
 
-    this._data.preventNext = true;
     history.go(-1);
   };
 
@@ -179,19 +178,19 @@ class ModalsStateManager {
     if (!isBack)
       return;
 
+    if (!(this._data.preventNext ^= 1))
+      return;
+
     const modals = [...document.getElementsByClassName("modalWindow")];
     const node = modals.find(node =>
       node.modalWindow.createdTimestamp === this.states.at(-1)
     );
 
-    if (!node)
-      return;
-
-    if (this._data.preventNext){
-      this._data.preventNext = false;
+    if (!node){
+      this._data.preventNext = 0;
       return;
     }
-    this._data.preventNext = true;
+
 
     node.modalWindow.close();
   };
