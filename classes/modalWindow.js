@@ -35,7 +35,7 @@ class ModalWindow {
      document.body.append(element);
      element.modalWindow = this;
 
-     this.createdTimestamp = Date.now();
+     this.createdTimestamp = performance.now();
      ModalsStateManager.addState(this);
   }
 
@@ -139,6 +139,7 @@ class CloseElement {
 
 class ModalsStateManager {
   static states = [];
+  static _data = {lastState: 0};
 
 
   static handle(){
@@ -152,18 +153,32 @@ class ModalsStateManager {
       return;
 
     this.states.splice(index, 1);
+
+
+    if (this._data.preventNext)
+      return;
+
+    this._data.preventNext = true;
+    history.go(-1);
   };
 
 
   static addState(modal){
     const timestamp = modal.createdTimestamp;
 
-    history.pushState({}, "");
+    history.pushState({modal: timestamp}, "");
+    this._data.lastState = timestamp;
     this.states.push(timestamp);
   };
 
 
   static popStateHandler(popStateEvent){
+    const isBack = popStateEvent.state === null || this._data.lastState > popStateEvent.state.modal;
+    this._data.lastState = popStateEvent.state?.modal || 0;
+
+    if (!isBack)
+      return;
+
     const modals = [...document.getElementsByClassName("modalWindow")];
     const node = modals.find(node =>
       node.modalWindow.createdTimestamp === this.states.at(-1)
@@ -171,6 +186,12 @@ class ModalsStateManager {
 
     if (!node)
       return;
+
+    if (this._data.preventNext){
+      this._data.preventNext = false;
+      return;
+    }
+    this._data.preventNext = true;
 
     node.modalWindow.close();
   };
