@@ -1,5 +1,7 @@
 globalThis.i18nLanguages = {
   ua: {
+    "game-title": "Схоже, тут пусто.<br><small>Натисніть Грати</small>",
+
     "codeSpace-controlButtons-play": "Грати",
     "codeSpace-controlButtons-scoreMap": "Графік эфектив.",
     "codeSpace-controlButtons-copy": "Копіювати",
@@ -24,6 +26,10 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Самий час нажати *Ctrl + Enter*",
 
+
+    "settings-panel-save": "Зберегти",
+    "settings-panel-restore": "Скасувати",
+
     "settings-action-lang-h2": "Вибрана Мова",
     "settings-action-lang-en": "Англійська",
     "settings-action-lang-ru": "Російська",
@@ -39,6 +45,8 @@ globalThis.i18nLanguages = {
 
 
   ru: {
+    "game-title": "Похоже, здесь пусто.<br><small>Нажмите Играть</small>",
+
     "codeSpace-controlButtons-play": "Играть!",
     "codeSpace-controlButtons-scoreMap": "График эффектив.",
     "codeSpace-controlButtons-copy": "Скопировать",
@@ -63,6 +71,10 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Самое время нажать *Ctrl + Enter*",
 
+
+    "settings-panel-save": "Сохранить",
+    "settings-panel-restore": "Отменить",
+
     "settings-action-lang-h2": "Выбранный Язык",
     "settings-action-lang-en": "Английский",
     "settings-action-lang-ru": "Русский",
@@ -79,6 +91,8 @@ globalThis.i18nLanguages = {
 
 
   en: {
+    "game-title": "Looks like here empty<br><small>Click Play!</small>",
+    
     "codeSpace-controlButtons-play": "Play",
     "codeSpace-controlButtons-scoreMap": "Show graph",
     "codeSpace-controlButtons-copy": "Copy",
@@ -88,15 +102,24 @@ globalThis.i18nLanguages = {
 
     "footer-article-h1": "Task info",
     "footer-article-taskInfo":
-      `Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
+      `Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br> (NEED TRANSLATE #ff0000)
       Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
       который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
       Получить массив башен — <code>game.list</code>`,
 
     "footer-advice-h2": "You! Read me! NOW!",
+    "footer-advice-#1": "Ищите в Интернете то, что Вам интересно. (NEED TRANSLATE #ff0000)",
+    "footer-advice-#2": `Посетите <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>`,
+    "footer-advice-#3": "Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.",
+    "footer-advice-#4": "Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.",
+    "footer-advice-#5": "Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.",
     "footer-advice-settings": "Change Settings",
 
     "footer-bottom-hidden": "Can you press *Ctrl + Enter* :0",
+
+
+    "settings-panel-save": "Save",
+    "settings-panel-restore": "Restore",
 
     "settings-action-lang-h2": "Selected Language",
     "settings-action-lang-en": "English",
@@ -104,7 +127,7 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ua": "Ukrainian",
     "settings-action-lang-changesAfterRefresh": "The changes will take effect after the page is reloaded",
 
-    "crashDefender-crash-title": "Страница остановилась?",
+    "crashDefender-crash-title": "Страница остановилась? (NEED TRANSLATE #ff0000)",
     "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."
   }
 }
