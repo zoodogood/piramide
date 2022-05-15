@@ -152,9 +152,6 @@ class ModalsStateManager {
       return;
 
     this.states.splice(index, 1);
-
-    if (this.states.length === 0)
-      history.back();
   };
 
 
