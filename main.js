@@ -87,7 +87,7 @@ async function launch(){
 }
 
 
-if ( !window.location.href.includes("ignore") && !params.ignoreOnStart && crashDefender.check() )
+if ( !window.location.href.includes("ignore") && params.launchOnStart && crashDefender.check() )
   launch();
 
 

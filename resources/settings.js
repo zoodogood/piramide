@@ -229,7 +229,7 @@ class InputAction {
 
 
 
-new InputAction("ignoreOnStart").connect()
+new InputAction("launchOnStart").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.checked);
   })

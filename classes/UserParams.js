@@ -15,7 +15,7 @@ class Params {
 
 
   static defaultValues = {
-    ignoreOnStart: true,
+    launchOnStart: true,
     multiSlab: false,
     activatePoligon: false,
     slabsSpeed: 5,
