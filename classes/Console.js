@@ -52,7 +52,7 @@ const METHODS_TYPES = {
     },
     toElement: () => {
       const node = document.createElement("span");
-      node.textContent = "Консоль очищена.";
+      node.textContent = i18n("console-clear-message");
       return node;
     }
 
@@ -192,7 +192,7 @@ class InputNode {
     this.node.className = "console-node-input";
 
     this.node.onchange = this.#changeHandle.bind(this);
-    this.node.setAttribute("placeholder", this.constructor.PLACEHOLDER);
+    this.node.setAttribute("placeholder", i18n("console-input-placeholder"));
   }
 
   #changeHandle(changeEvent){
@@ -216,8 +216,6 @@ class InputNode {
 
     console.log( String(output) );
   }
-
-  static PLACEHOLDER = "Введите 2 + 2 . . .";
 }
 
 

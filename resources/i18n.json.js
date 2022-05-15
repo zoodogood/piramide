@@ -2,6 +2,11 @@ globalThis.i18nLanguages = {
   ua: {
     "game-title": "Схоже, тут пусто.<br><small>Натисніть Грати</small>",
 
+    "main-alert-title-hello": "Привіт",
+    "main-alert-name": "Гра Пірамідка ⛊",
+    "main-alert-description": "Напишіть алгоритм, щоб вирішити просту задачу",
+    "main-alert-detail": "Дізнатися більше <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>знизу</a> сторінки",
+
     "codeSpace-controlButtons-play": "Грати",
     "codeSpace-controlButtons-scoreMap": "Графік эфектив.",
     "codeSpace-controlButtons-copy": "Копіювати",
@@ -26,6 +31,8 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Самий час нажати *Ctrl + Enter*",
 
+    "alert-title-error": "Просто ошибка",
+
 
     "settings-panel-save": "Зберегти",
     "settings-panel-restore": "Скасувати",
@@ -35,6 +42,9 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ru": "Російська",
     "settings-action-lang-ua": "Україньска",
     "settings-action-lang-changesAfterRefresh": "Зміни набудуть чинності після перезавантаження сторінки",
+
+    "console-clear-message": "Консоль очищена.",
+    "console-input-placeholder": "Введіть 2 + 2 . . .",
 
     "crashDefender-crash-title": "Сторінка запинилася?",
     "crashDefender-crash-message": "На нашу думку, у процесі виконання алгоритму прошлого разу, гра зависла.\nЯкщо все було в порядку, проігноруйте це повідомлення и спокійно натисніть \"Грати!\"\n\nВ обратному випадку з ймовірністю 99.9% це був нескінченний цикл."
@@ -46,6 +56,11 @@ globalThis.i18nLanguages = {
 
   ru: {
     "game-title": "Похоже, здесь пусто.<br><small>Нажмите Играть</small>",
+
+    "main-alert-title-hello": "Привет",
+    "main-alert-name": "Игра Пирамидка ⛊",
+    "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу",
+    "main-alert-detail": "Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>внизу</a> страницы",
 
     "codeSpace-controlButtons-play": "Играть!",
     "codeSpace-controlButtons-scoreMap": "График эффектив.",
@@ -71,6 +86,8 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Самое время нажать *Ctrl + Enter*",
 
+    "alert-title-error": "Просто ошибка",
+
 
     "settings-panel-save": "Сохранить",
     "settings-panel-restore": "Отменить",
@@ -80,6 +97,9 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ru": "Русский",
     "settings-action-lang-ua": "Украинский",
     "settings-action-lang-changesAfterRefresh": "Изменения вступят в силу после перезагрузки страницы",
+
+    "console-clear-message": "Консоль очищена.",
+    "console-input-placeholder": "Введите 2 + 2 . . .",
 
     "crashDefender-crash-title": "Страница остановилась?",
     "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."
@@ -92,7 +112,12 @@ globalThis.i18nLanguages = {
 
   en: {
     "game-title": "Looks like here empty<br><small>Click Play!</small>",
-    
+
+    "main-alert-title-hello": "Hello",
+    "main-alert-name": "Game Piramide ⛊",
+    "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу (NEED TRANSLATE #ff0000)",
+    "main-alert-detail": "More detail at the <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>bottom</a> of page",
+
     "codeSpace-controlButtons-play": "Play",
     "codeSpace-controlButtons-scoreMap": "Show graph",
     "codeSpace-controlButtons-copy": "Copy",
@@ -117,6 +142,8 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Can you press *Ctrl + Enter* :0",
 
+    "alert-title-error": "Simple error",
+
 
     "settings-panel-save": "Save",
     "settings-panel-restore": "Restore",
@@ -126,6 +153,9 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ru": "Russian",
     "settings-action-lang-ua": "Ukrainian",
     "settings-action-lang-changesAfterRefresh": "The changes will take effect after the page is reloaded",
+
+    "console-clear-message": "Console clear.",
+    "console-input-placeholder": "Enter 2 + 2 . . .",
 
     "crashDefender-crash-title": "Страница остановилась? (NEED TRANSLATE #ff0000)",
     "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."

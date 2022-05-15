@@ -2,7 +2,7 @@
 console.warn = () => {}
 
 // Всплывающее сообщение
-Alert.create("<b>Игра Пирамидка ⛊</b><br><small>Напишите алгоритм, чтобы решить простую задачу</small><br>Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>внизу</a> страницы", "success", "Привет!");
+Alert.create(`<b>${ i18n("main-alert-name") }</b><br><small>${ i18n("main-alert-description") }</small><br>${ i18n("main-alert-detail") }`, "success", i18n("main-alert-title-hello"));
 
 
 
@@ -74,7 +74,7 @@ async function launch(){
     await eval(`(async () => {${codearea.textContent}})()`);
   }
   catch (err) {
-    Alert.create(err.message, "error", "Просто ошибка");
+    Alert.create(err.message, "error", i18n("main-alert-title-error"));
     console.error(err);
     window.events.emit("error", err);
   }
