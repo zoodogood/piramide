@@ -46,9 +46,14 @@ globalThis.i18nLanguages = {
     "console-clear-message": "Консоль очищена.",
     "console-input-placeholder": "Введіть 2 + 2 . . .",
 
+    "library-container-message": "Приклади коду не можна скопіювати. T_T<br>Ручне написання позитивно впливає на розуміння того, що Ви робите.",
+    "library-container-take": "Добре подумайте, перш ніж щось вибрати",
+    "library-container-lacks": "*Напишіть ще ${ ending(replaces.at(0), 'символ', 'ів', '', 'а') }, щоб відкрити нові підсказки",
+
     "crashDefender-crash-title": "Сторінка запинилася?",
     "crashDefender-crash-message": "На нашу думку, у процесі виконання алгоритму прошлого разу, гра зависла.\nЯкщо все було в порядку, проігноруйте це повідомлення и спокійно натисніть \"Грати!\"\n\nВ обратному випадку з ймовірністю 99.9% це був нескінченний цикл."
   },
+
 
 
 
@@ -101,9 +106,14 @@ globalThis.i18nLanguages = {
     "console-clear-message": "Консоль очищена.",
     "console-input-placeholder": "Введите 2 + 2 . . .",
 
+    "library-container-message": "Примеры кода нельзя скопировать. T_T<br>Ручное написание положительно влияет на понимание того, что Вы делаете.",
+    "library-container-take": "Хорошо подумайте перед тем, как что-то выбрать",
+    "library-container-lacks": "*Напишите ещё ${ ending(replaces.at(0), 'символ', 'ов', '', 'а') }, чтобы открыть новые подсказки",
+
     "crashDefender-crash-title": "Страница остановилась?",
     "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."
   },
+
 
 
 
@@ -156,6 +166,10 @@ globalThis.i18nLanguages = {
 
     "console-clear-message": "Console clear.",
     "console-input-placeholder": "Enter 2 + 2 . . .",
+
+    "library-container-message": "Примеры кода нельзя скопировать. T_T<br>Ручное написание положительно влияет на понимание того, что Вы делаете.(NEED TRANSLATE #ff0000)",
+    "library-container-take": "Think carefully before choosing something",
+    "library-container-lacks": "*Напишите ещё ${ ending(replaces.at(0), 'символ', 'ов', '', 'а') }, чтобы открыть новые подсказки (NEED TRANSLATE #ff0000)",
 
     "crashDefender-crash-title": "Страница остановилась? (NEED TRANSLATE #ff0000)",
     "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."

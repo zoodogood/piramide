@@ -129,8 +129,6 @@ class Library {
       swipeBlocks(codeNode, targetNode);
     });
   }
-
-
   displayTargetHTML(){
     let target = this.manager.getSymbolsTarget() - this.symbolsCount;
 
@@ -140,7 +138,7 @@ class Library {
     if (this.manager.getOpening().length === GUIDANCES.length)
       return "";
 
-    return `<center>Напишите ещё ${ ending(target, "символ", "ов", "", "а") } кода, чтобы открыть новые подсказки</center>`
+    return ;
   }
 
 
@@ -152,7 +150,7 @@ class Library {
 
 
   static HTML = `
-    <span><small>Примеры кода нельзя скопировать. T_T<br>Ручное написание положительно влияет на понимание того, что Вы делаете.</small></span>
+    <span><small>${ i18n("library-container-message") }</small></span>
     <br>
     <main id = "codesBlocks"></main>
     <hr>
@@ -262,7 +260,7 @@ class Discoveries {
 
   displayLacks(){
     let node = document.createElement("span");
-    node.textContent = `Напишите ещё ${ ending(this.lacks, "символ", "ов", "", "а") }, чтобы открыть новые подсказки`;
+    node.textContent = i18n("library-container-lacks", this.lacks);
     this.container.append(node);
   }
 
@@ -288,7 +286,7 @@ class Discoveries {
   }
 
   static HTML = `
-      <center>Хорошо подумайте перед тем, как что-то выбрать</center>
+      <center>${ i18n("library-container-take")}</center>
       { buttons }
   `;
 }

@@ -67,3 +67,6 @@ class I18nManager {
 globalThis.i18n = i18n;
 globalThis.I18nManager = I18nManager;
 })();
+
+
+I18nManager.setLang(params.lang);
