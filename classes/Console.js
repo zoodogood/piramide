@@ -8,6 +8,9 @@ const METHODS_TYPES = {
     toElement: (...args) => {
       args = args
         .map(contents => {
+          if (contents instanceof HTMLElement)
+            contents = contents.toString();
+
           if (typeof contents === "object")
             contents = JSON.stringify(contents, null, 2);
 
