@@ -1,6 +1,10 @@
 // Предупреждения консоли даже невозможно отловить. Пусть это и костыль, но им пользуется половина интернета
 console.warn = () => {}
 
+I18nManager.setLang(params.lang);
+
+
+
 // Всплывающее сообщение
 Alert.create(`<b>${ i18n("main-alert-name") }</b><br><small>${ i18n("main-alert-description") }</small><br>${ i18n("main-alert-detail") }`, "success", i18n("main-alert-title-hello"));
 
@@ -121,5 +125,5 @@ if (params.codeSize)
 
 window.events.emit("main");
 
-I18nManager.setLang(params.lang);
+
 I18nManager.replaceAll();
