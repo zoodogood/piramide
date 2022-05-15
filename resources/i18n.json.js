@@ -47,6 +47,8 @@ globalThis.i18nLanguages = {
 
     "settings-section-codeEditor": "Редактор коду:",
 
+    "settings-section-paramsPage": "Параметри цього меню:",
+
     "settings-section-other": "Інше:",
 
 
@@ -113,6 +115,8 @@ globalThis.i18nLanguages = {
     "settings-section-main": "Основное:",
 
     "settings-section-codeEditor": "Редактор кода:",
+
+    "settings-section-paramsPage": "Настройки этого меню:",
 
     "settings-section-other": "Другое:",
 
@@ -181,6 +185,8 @@ globalThis.i18nLanguages = {
     "settings-section-main": "Main:",
 
     "settings-section-codeEditor": "Code editor:",
+
+    "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
 
     "settings-section-other": "Other:",
 
