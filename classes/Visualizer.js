@@ -196,7 +196,7 @@ class Visualizer {
 
     await delay(2500);
 
-    glitch = new GlitchText(title.textContent, `YES, YOU ARE WON !`, {speed: 0.1});
+    glitch = new GlitchText(title.textContent, `YES, YOU ARE WON !`, { step: 1, maximum: null });
 
     for (let word of glitch){
       title.textContent = word;
@@ -205,7 +205,7 @@ class Visualizer {
 
     await delay(500);
 
-    glitch = new GlitchText(title.textContent, `${ this.action.index }`, {speed: 0.1});
+    glitch = new GlitchText(title.textContent, `${ this.action.index }`, { step: 2 });
     title.innerHTML = "YES, YOU ARE WON !\n<span class = 'small'>in ??? steps</span>";
 
     for (let word of glitch){
@@ -217,7 +217,7 @@ class Visualizer {
 
     title.style.color = "rgba(0, 0, 0, 0.15)";
     await delay(1400);
-    glitch = new GlitchText(title.textContent, "0%", {speed: 0.4});
+    glitch = new GlitchText(title.textContent, "0%", { step: 7 });
 
     for (let word of glitch){
       title.textContent = word;
