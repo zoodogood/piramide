@@ -38,6 +38,29 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Скасувати",
 
     "settings-sections-details": "Подробніше",
+    "settings-sections-experimentalFeature": "Експеріментальна функція*",
+
+
+
+    "settings-section-main": "Основне:",
+
+    "settings-action-launchOnStart-h2": "Вмикати алгоритм при завантаженні сторінки",
+    "settings-action-launchOnStart-details":
+      `<span>За замовчуванням сценарій користувача автоматично запускається для більшої динаміки, але це також може привести до небажаних наслідків — коли сторінка ламається і відредагувати скрипт неможливо.</span><br><br>
+      <span class = "margin-top">
+        <b>Примітка:</b>
+        Альтернативний спосіб відкрити гру не вмикаючи алгоритм — переходити за цією адресою <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
+        (Наявне <code>?ignore</code> у кінці посилання.)
+      </span>`,
+
+
+    "settings-section-codeEditor": "Редактор коду:",
+
+
+    "settings-section-paramsPage": "Параметри цього меню:",
+
+
+    "settings-section-other": "Інше:",
 
     "settings-action-lang-h2": "Вибрана Мова",
     "settings-action-lang-en": "Англійська",
@@ -45,13 +68,6 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ua": "Україньска",
     "settings-action-lang-changesAfterRefresh": "Зміни набудуть чинності після перезавантаження сторінки",
 
-    "settings-section-main": "Основне:",
-
-    "settings-section-codeEditor": "Редактор коду:",
-
-    "settings-section-paramsPage": "Параметри цього меню:",
-
-    "settings-section-other": "Інше:",
 
 
     "console-clear-message": "Консоль очищена.",
@@ -109,6 +125,29 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Отменить",
 
     "settings-sections-details": "Подробности",
+    "settings-sections-experimentalFeature": "Экспериментальная функция*",
+
+
+
+    "settings-section-main": "Основное:",
+
+    "settings-action-launchOnStart-h2": "Запускать алгоритм при загрузке страницы",
+    "settings-action-launchOnStart-details":
+      `<span>По умолчанию пользовательский сценарий срабатывает сразу для большей динамики происходящего, но это также может привести к нежелательным последствием — когда страница ломается и отредактировать скрипт никак нельзя.</span><br><br>
+      <span class = "margin-top">
+        <b>Примечание:</b>
+        Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
+        (Стоит <code>?ignore</code> в конце ссылки.)
+      </span>`,
+
+
+    "settings-section-codeEditor": "Редактор кода:",
+
+
+    "settings-section-paramsPage": "Настройки этого меню:",
+
+
+    "settings-section-other": "Другое:",
 
     "settings-action-lang-h2": "Выбранный Язык",
     "settings-action-lang-en": "Английский",
@@ -116,13 +155,6 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ua": "Украинский",
     "settings-action-lang-changesAfterRefresh": "Изменения вступят в силу после перезагрузки страницы",
 
-    "settings-section-main": "Основное:",
-
-    "settings-section-codeEditor": "Редактор кода:",
-
-    "settings-section-paramsPage": "Настройки этого меню:",
-
-    "settings-section-other": "Другое:",
 
 
     "console-clear-message": "Консоль очищена.",
@@ -181,6 +213,29 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Restore",
 
     "settings-sections-details": "details",
+    "settings-sections-experimentalFeature": "Experimental feature*",
+
+
+
+    "settings-section-main": "Main:",
+
+    "settings-action-launchOnStart-h2": "Launched you code on page loaded (possible translation errors #ff0000)",
+    "settings-action-launchOnStart-details":
+      `(NEED TRANSLATE #ff0000)<span>По умолчанию пользовательский код срабатывает для большей динамики происходящего, но это также может привести к нежелательным последствием — когда страница ломается и отредактировать скрипт никак нельзя.</span><br><br>
+      <span class = "margin-top">
+        <b>Примечание:</b>
+        Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
+        (Стоит <code>?ignore</code> в конце ссылки.)
+      </span>`,
+
+
+    "settings-section-codeEditor": "Code editor:",
+
+
+    "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
+
+
+    "settings-section-other": "Other:",
 
     "settings-action-lang-h2": "Selected Language",
     "settings-action-lang-en": "English",
@@ -188,13 +243,6 @@ globalThis.i18nLanguages = {
     "settings-action-lang-ua": "Ukrainian",
     "settings-action-lang-changesAfterRefresh": "The changes will take effect after the page is reloaded",
 
-    "settings-section-main": "Main:",
-
-    "settings-section-codeEditor": "Code editor:",
-
-    "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
-
-    "settings-section-other": "Other:",
 
 
     "console-clear-message": "Console clear.",
