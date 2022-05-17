@@ -48,7 +48,7 @@ globalThis.i18nLanguages = {
     "settings-action-launchOnStart-details":
       `<span>За замовчуванням сценарій користувача автоматично запускається для більшої динаміки, але це також може привести до небажаних наслідків — коли сторінка ламається і відредагувати скрипт неможливо.</span><br><br>
       <span class = "margin-top">
-        <b>Примітка:</b>
+        <b>Примітка:</b><br>
         Альтернативний спосіб відкрити гру не вмикаючи алгоритм — переходити за цією адресою <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
         (Наявне <code>?ignore</code> у кінці посилання.)
       </span>`,
@@ -135,7 +135,7 @@ globalThis.i18nLanguages = {
     "settings-action-launchOnStart-details":
       `<span>По умолчанию пользовательский сценарий срабатывает сразу для большей динамики происходящего, но это также может привести к нежелательным последствием — когда страница ломается и отредактировать скрипт никак нельзя.</span><br><br>
       <span class = "margin-top">
-        <b>Примечание:</b>
+        <b>Примечание:</b><br>
         Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
         (Стоит <code>?ignore</code> в конце ссылки.)
       </span>`,

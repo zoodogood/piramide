@@ -137,8 +137,12 @@ main > h1::before {
 
 details[open] > summary:first-of-type {
   margin-bottom: 10px;
+
 }
 
+details[open] {
+  
+}
 
 
 h1, h2, h3, h4, h5, h6 {
