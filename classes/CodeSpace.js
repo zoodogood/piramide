@@ -170,7 +170,7 @@ document.addEventListener("keydown", keyEvent => {
 codearea.addEventListener("keydown", keyEvent => {
   const symbol = {
     Enter: "\n",
-    Tab:   "\t"
+    Tab:   "  "
   }[keyEvent.key];
 
   if (symbol === undefined)
