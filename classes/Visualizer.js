@@ -191,7 +191,7 @@ class Visualizer {
 
     for (let word of glitch){
       title.textContent = word;
-      await delay(40);
+      await delay(30);
     }
 
     await delay(2500);
@@ -415,7 +415,7 @@ Slab.colorizeFunctions = resolveColorizzeFuncions();
 // Вызывается при generate
 function mainGenerate( game ){
   let size = game.getGameParams().size;
-  const colorizze = Slab.colorizeFunctions.random().colorizze;
+  const colorizze = Slab.colorizeFunctions.random(false, true).colorizze;
   Slab.globalColorizze = colorizze;
 
   visualizer.generateHandle( game );
@@ -427,7 +427,7 @@ function mainGenerate( game ){
 
 
 window.events.on("main", () => {
-  const colorizze = Slab.colorizeFunctions.random().colorizze;
+  const colorizze = Slab.colorizeFunctions.random(false, true).colorizze;
   Slab.globalColorizze = colorizze;
   displayTowerExample();
 
@@ -457,5 +457,5 @@ function displayGhostTowers(){
   const colors = resolveColorizzeFuncions();
   const nodes = [...document.querySelectorAll(".ghost-tower")];
 
-  nodes.forEach( node => displayTower(node, 9, {colorizze: colors.random().colorizze}) );
+  nodes.forEach( node => displayTower(node, 9, {colorizze: colors.random(false, true).colorizze}) );
 }
