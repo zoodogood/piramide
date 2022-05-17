@@ -53,6 +53,9 @@ globalThis.i18nLanguages = {
         (Наявне <code>?ignore</code> у кінці посилання.)
       </span>`,
 
+    "settings-action-multiSlab-h2": "Декілька плит рухаються разом",
+    "settings-action-multiSlab-details": "Мульти-плитки — декілька плиток може переміщуватися паралельно, це суттєво підвищує швидкість, але знижує очевидність відтворюваного та здатно збити з пантелику.<br>Ефективність даної функції найбільш відчутна у складних алгоритмах*<br>",
+
 
     "settings-section-codeEditor": "Редактор коду:",
 
@@ -139,6 +142,9 @@ globalThis.i18nLanguages = {
         Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
         (Стоит <code>?ignore</code> в конце ссылки.)
       </span>`,
+
+    "settings-action-multiSlab-h2": "Несколько плит двигаются вместе",
+    "settings-action-multiSlab-details": "Мульти-плитки — несколько плиток может перемещаться параллельно, что значительно повышает скорость, но снижает очевидность происходящего и способно сбить столку.<br>Эффективность этой функции наиболее ощутима в сложных алгоритмах*<br>",
 
 
     "settings-section-codeEditor": "Редактор кода:",
@@ -227,6 +233,9 @@ globalThis.i18nLanguages = {
         Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
         (Стоит <code>?ignore</code> в конце ссылки.)
       </span>`,
+
+    "settings-action-multiSlab-h2": "Несколько плит двигаются вместе (NEED TRANSLATE #ff0000)",
+    "settings-action-multiSlab-details": "Мульти-плитки — несколько плиток может перемещаться параллельно, что значительно повышает скорость, но снижает очевидность происходящего и способно сбить столку.<br>Эффективность этой функции наиболее ощутима в сложных алгоритмах*<br>",
 
 
     "settings-section-codeEditor": "Code editor:",
