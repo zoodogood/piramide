@@ -37,6 +37,8 @@ globalThis.i18nLanguages = {
     "settings-panel-save": "Зберегти",
     "settings-panel-restore": "Скасувати",
 
+    "settings-sections-details": "Подробніше",
+
     "settings-action-lang-h2": "Вибрана Мова",
     "settings-action-lang-en": "Англійська",
     "settings-action-lang-ru": "Російська",
@@ -106,6 +108,8 @@ globalThis.i18nLanguages = {
     "settings-panel-save": "Сохранить",
     "settings-panel-restore": "Отменить",
 
+    "settings-sections-details": "Подробности",
+
     "settings-action-lang-h2": "Выбранный Язык",
     "settings-action-lang-en": "Английский",
     "settings-action-lang-ru": "Русский",
@@ -168,13 +172,15 @@ globalThis.i18nLanguages = {
     "footer-advice-#5": "Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.",
     "footer-advice-settings": "Change Settings",
 
-    "footer-bottom-hidden": "Can you press *Ctrl + Enter* :0",
+    "footer-bottom-hidden": "Can you press *Ctrl + Enter* ?",
 
     "alert-title-error": "Simple error",
 
 
     "settings-panel-save": "Save",
     "settings-panel-restore": "Restore",
+
+    "settings-sections-details": "details",
 
     "settings-action-lang-h2": "Selected Language",
     "settings-action-lang-en": "English",
