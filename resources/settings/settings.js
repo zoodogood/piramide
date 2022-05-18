@@ -378,7 +378,7 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
 
     input.element.innerHTML = inner;
     input.element.parentNode.querySelector(".hljs")
-      .textContent = localStorage.getItem("userCode");
+      .textContent = localStorage.getItem("userCode") || "const game = new Game({size: 15, count: 10}).visualize();";
   })
   .setAction((input, e) => {
     InputAction.setValue(input.connectedValue, input.element.value);
