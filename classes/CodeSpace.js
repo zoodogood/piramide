@@ -26,8 +26,8 @@ class Button {
   }
 
 
-  hideIt(func){
-    if ( func() === true )
+  hideIt(callback){
+    if ( callback() === true )
       this.button.style.display = "none";
 
     return this;
