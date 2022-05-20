@@ -141,7 +141,7 @@ details[open] > summary:first-of-type {
 }
 
 details[open] {
-  
+
 }
 
 
@@ -482,9 +482,9 @@ pre {
   }
 
   #leftBackground {
-    padding: 10px;
-    height: 70px;
-    width: 100vw;
+    padding: 0;
+    height: 50px;
+    width: 100%;
 
     position: fixed;
     z-index: 2;
@@ -496,11 +496,15 @@ pre {
     justify-content: space-around;
 
     border-top: 3px solid rgba(255, 255, 255, 0.2);
+    background: #191919;
   }
 
 
   .round-button {
     margin-bottom: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
   .round-button button {
@@ -515,5 +519,9 @@ pre {
 
   .round-button > span {
     display: none;
+  }
+
+  .canvas-snow {
+    top: 0;
   }
 }
