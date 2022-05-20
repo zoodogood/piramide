@@ -5,7 +5,7 @@ globalThis.i18nLanguages = {
     "main-alert-title-hello": "Привіт",
     "main-alert-name": "Гра Пірамідка ⛊",
     "main-alert-description": "Напишіть алгоритм, щоб вирішити просту задачу",
-    "main-alert-detail": "Дізнатися більше <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>знизу</a> сторінки",
+    "main-alert-detail": "Дізнатися більше <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>знизу</a> сторінки",
 
     "codeSpace-controlButtons-play": "Грати",
     "codeSpace-controlButtons-scoreMap": "Графік эфектив.",
@@ -101,7 +101,7 @@ globalThis.i18nLanguages = {
     "main-alert-title-hello": "Привет",
     "main-alert-name": "Игра Пирамидка ⛊",
     "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу",
-    "main-alert-detail": "Подробнее <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>внизу</a> страницы",
+    "main-alert-detail": "*Подробнее <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>внизу</a> страницы",
 
     "codeSpace-controlButtons-play": "Играть!",
     "codeSpace-controlButtons-scoreMap": "График эффектив.",
@@ -198,7 +198,7 @@ globalThis.i18nLanguages = {
     "main-alert-title-hello": "Hello",
     "main-alert-name": "Game Piramide ⛊",
     "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу (NEED TRANSLATE #ff0000)",
-    "main-alert-detail": "More detail at the <a href = '#' onclick = 'window.scrollTo({top: window.innerHeight, behavior: \"smooth\"});'>bottom</a> of page",
+    "main-alert-detail": "More detail at the <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>bottom</a> of page",
 
     "codeSpace-controlButtons-play": "Play",
     "codeSpace-controlButtons-scoreMap": "Show graph",

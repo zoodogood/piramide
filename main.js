@@ -6,7 +6,7 @@ console.warn = () => {}
 
 
 // Всплывающее сообщение
-Alert.create(`<b>${ i18n("main-alert-name") }</b><br><small>${ i18n("main-alert-description") }</small><br>${ i18n("main-alert-detail") }`, "success", i18n("main-alert-title-hello"));
+Alert.create(`<b>${ i18n("main-alert-name") }</b><br><small>${ i18n("main-alert-description") }</small><br>${ i18n("main-alert-detail", `window.scrollTo({top: window.innerHeight, behavior: "smooth"});`) }`, "success", i18n("main-alert-title-hello"));
 
 
 
