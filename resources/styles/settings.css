@@ -53,23 +53,26 @@ main > h1::before {
   background-color: #2b2b2b;
   width: 160px;
   height: 100vh;
+
   position: fixed;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding-block: 1vh;
   align-items: flex-start;
 }
 
 .round-button {
-  width: 100px;
+  width: 100%;
   display: flex;
+  padding-block: 1vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   letter-spacing: 1px;
   color: #989898;
-  margin-bottom: 2vh;
+
+  cursor: pointer;
 }
 
 .round-button button {
@@ -81,8 +84,6 @@ main > h1::before {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  cursor: pointer;
 
   color: #989898;
   font-size: 1.5em;
@@ -96,8 +97,9 @@ main > h1::before {
   user-select: none;
 }
 
-.round-button button:hover {
+.round-button:hover {
   filter: brightness(1.2);
+  backdrop-filter: brightness(1.2);
 }
 
 
@@ -501,9 +503,8 @@ pre {
 
 
   .round-button {
-    margin-bottom: 0px;
+    padding: 0;
     height: 100%;
-    width: 100%;
     overflow: hidden;
   }
 
