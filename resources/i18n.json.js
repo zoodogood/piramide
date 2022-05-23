@@ -62,6 +62,13 @@ globalThis.i18nLanguages = {
        <span><br><b>Як це працює?</b><br>
        1. З кожним тріумфом, алгоритм непомітно ще раз виконається у тестовому полігоні зі статичними умовами, котрі були підібрані мною для найбільшого балансу.<br>2. Результат виконання буде записан у браузері для майбутнього порівняння</span>`,
 
+    "settings-action-slabsSpeed-h2": "Швидкість руху",
+    "settings-action-slabsSpeed-details": "Множник швидкості переміщення плит від вежі до вежі.",
+    "settings-action-slabsSpeed-currentValue": "Швидкість:",
+
+    "settings-action-background-h2": "Задній план у грі",
+    "settings-action-background-details": `Бажаєте по справжньому гарно? Спробуйте таке — <code class = "no-wrap">linear-gradient(316deg, #ffc857 0%, #32254a 75%)</code><br><a class = "lightLink" href = "https://jemimaabu.github.io/random-gradient-generator/">https://random-gradient</a> — або скористайтесь генератором градієнтів<br><br>З невеликими знаннями про CSS сможете ставити власні зображення і навіть більше!`,
+
 
     "settings-section-codeEditor": "Редактор коду:",
 
@@ -157,6 +164,13 @@ globalThis.i18nLanguages = {
       `<span>Серьёзно занялись оптимизацией, быть может Вам интересна статистика?<br>С момента включения этой функции будет вестись учёт среднего количества шагов, за которое Ваш код может одержать победу</span><br>
        <span><br><b>Как это работает?</b><br>
        1. С каждым выигрышом, алгоритм незаметно ещё раз выполниться в тестовом полигоне со статичными условиями, которые были подобраны мной для наибольшего баланса.<br>2. Результат выполнения будет записан в браузере для будущего сравнения</span>`,
+
+    "settings-action-slabsSpeed-h2": "Скорость движения",
+    "settings-action-slabsSpeed-details": "Множитель скорости перемещения плит от башни к башне.",
+    "settings-action-slabsSpeed-currentValue": "Текущее значение:",
+
+    "settings-action-background-h2": "Задний фон в игре",
+    "settings-action-background-details": `Хотите по настоящему красиво? Попробуйте это — <code class = "no-wrap">linear-gradient(316deg, #ffc857 0%, #32254a 75%)</code><br><a class = "lightLink" href = "https://jemimaabu.github.io/random-gradient-generator/">https://random-gradient</a> — или воспользуйтесь генератором градиентов<br><br>С небольшими знаниями о CSS, сможете ставить свои изображения и даже больше!`,
 
 
     "settings-section-codeEditor": "Редактор кода:",
@@ -254,6 +268,13 @@ globalThis.i18nLanguages = {
       `<span>Серьёзно занялись оптимизацией, быть может Вам интересна статистика?<br>С момента включения этой функции будет вестись учёт среднего количества шагов, за которое Ваш код может одержать победу</span><br>
        <span><br><b>Как это работает?</b><br>
        1. С каждым выигрышом, алгоритм незаметно ещё раз выполниться в тестовом полигоне со статичными условиями, которые были подобраны мной для наибольшего баланса.<br>2. Результат выполнения будет записан в браузере для будущего сравнения</span>`,
+
+    "settings-action-slabsSpeed-h2": "Movement speed",
+    "settings-action-slabsSpeed-details": "The speed multiplier for moving slabs from tower to tower.",
+    "settings-action-slabsSpeed-currentValue": "Current value:",
+
+    "settings-action-background-h2": "Background",
+    "settings-action-background-details": `(NEED TRANSLATE #ff0000)Хотите по настоящему красиво? Попробуйте это — <code class = "no-wrap">linear-gradient(316deg, #ffc857 0%, #32254a 75%)</code><br><a class = "lightLink" href = "https://jemimaabu.github.io/random-gradient-generator/">https://random-gradient</a> — или воспользуйтесь генератором случайных цветов<br><br>При небольших знаниях о CSS сможете ставить свои изображения или гифки`,
 
 
     "settings-section-codeEditor": "Code editor:",

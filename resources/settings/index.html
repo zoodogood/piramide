@@ -70,20 +70,20 @@
       </section>
 
       <section>
-        <h2>Скорость движения</h2>
+        <h2 i18n = "content">{{settings-action-slabsSpeed-h2}}</h2>
         <details close>
           <summary i18n = "content">{{settings-sections-details}}</summary>
-          Множитель скорости перемещения плит от башни к башне.
+          <span i18n = "content">{{settings-action-slabsSpeed-details}}</span>
         </details>
-        <span class = "margin-top">Текущее значение: <input class = "text-input" id ="slabsSpeed" type = "number" value = "5"></input></span>
+        <span i18n = "content" class = "margin-top">{{settings-action-slabsSpeed-currentValue}} <input class = "text-input" id ="slabsSpeed" type = "number" value = "5"></input></span>
         <input class = "range" type="range" id ="slabsSpeedRange" value = "5" min = "1" max = "100">
       </section>
 
       <section>
-        <h2>Задний фон в игре</h2>
+        <h2 i18n = "content">{{settings-action-background-h2}}</h2>
         <details close>
           <summary i18n = "content">{{settings-sections-details}}</summary>
-          Хотите по настоящему красиво? Попробуйте это — <code class = "no-wrap">linear-gradient(316deg, #ffc857 0%, #32254a 75%)</code><br><a class = "lightLink" href = "https://jemimaabu.github.io/random-gradient-generator/">https://random-gradient</a> — или воспользуйтесь генератором случайных цветов<br><br>При небольших знаниях о CSS сможете ставить свои изображения или гифки
+          <span i18n = "content">{{settings-action-background-details}}</span>
         </details>
         <span class = "margin-top spacing">CSS—BACKGROUND: <input class = "content-input" id ="background" value = "#36393f"></input></span>
       </section>
