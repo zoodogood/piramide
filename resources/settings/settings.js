@@ -326,11 +326,11 @@ new InputAction("colorizeFunc", {eventType: "click"}).connect()
       const inputStyle = `style = "max-width: calc(100% - 22px); width: 800px; white-space: pre-wrap; height: 30px;"`;
       const oddsStyle = `style = "min-width: 0px; width: 35px;"`;
 
-      const placeholderColors = ["Чистый красный #ff0000", "Чистый синий #0000ff", "Чистый зелёный #00ff00", "rgb(RED 0-255, GREEN 0-255, BLUE 0-255)", "Чистый белый rgb(255, 255, 255)"];
+      const placeholderColors = [...new Array(6)].map((_, i) => i18n(`settings-action-colorizeFunc-form-function-placeholderColor-#${ i + 1 }`));
       element.innerHTML = `
         <span class = "spacing margin-top">
-          Функция: <br><input ${ inputStyle } class="content-input" placeholder = "${ placeholderColors.random() }" value = "${ obj.func }"></input><br>
-          Шанс отобразится: <br><input class="content-input" ${ oddsStyle } type = "number" placeholder = "0" value = "${ obj._weight }"></input>
+          ${ i18n("settings-action-colorizeFunc-form-function") } <br><input ${ inputStyle } class="content-input" placeholder = "${ placeholderColors.random() }" value = "${ obj.func }"></input><br>
+          ${ i18n("settings-action-colorizeFunc-form-odds") } <br><input class="content-input" ${ oddsStyle } type = "number" placeholder = "0" value = "${ obj._weight }"></input>
         </span><br><br><br>
       `;
       return new SelfDestroyedElement( element );
@@ -341,7 +341,7 @@ new InputAction("colorizeFunc", {eventType: "click"}).connect()
       .forEach(obj => form.append( cololizeToHTML(obj).element ));
 
 
-    let creator = new CreatorElement( () => cololizeToHTML({ func: "", _weight: "" }).element );
+    const creator = new CreatorElement( () => cololizeToHTML({ func: "", _weight: "" }).element, i18n("settings-action-colorizeFunc-form-new") );
     form.append( creator.element );
   });
 
