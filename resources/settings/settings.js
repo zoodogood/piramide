@@ -323,9 +323,16 @@ new InputAction("colorizeFunc", {eventType: "click"}).connect()
 
     const cololizeToHTML = obj => {
       const element = document.createElement("div");
+      const inputStyle = `style = "max-width: calc(100% - 22px); width: 800px; white-space: pre-wrap; height: 30px;"`;
+      const oddsStyle = `style = "min-width: 0px; width: 35px;"`;
 
-      const placeholderColor = ["Чистый красный #ff0000", "Чистый синий #0000ff", "Чистый зелёный #00ff00", "rgb(RED 0-255, GREEN 0-255, BLUE 0-255)", "Чистый белый rgb(255, 255, 255)"];
-      element.innerHTML = `<span class = "spacing margin-top">Функция: <br><input class="content-input" style = "width: 70%; white-space: pre-wrap; height: 30px;" placeholder = "${ placeholderColor.random() }" value = "${ obj.func }"></input><br>   Шанс отобразится:<br><input class="content-input" style = "min-width: 0px; width: 35px;" type = "number" placeholder = "0" value = "${ obj._weight }"></input></span><br><br><br>`;
+      const placeholderColors = ["Чистый красный #ff0000", "Чистый синий #0000ff", "Чистый зелёный #00ff00", "rgb(RED 0-255, GREEN 0-255, BLUE 0-255)", "Чистый белый rgb(255, 255, 255)"];
+      element.innerHTML = `
+        <span class = "spacing margin-top">
+          Функция: <br><input ${ inputStyle } class="content-input" placeholder = "${ placeholderColors.random() }" value = "${ obj.func }"></input><br>
+          Шанс отобразится: <br><input class="content-input" ${ oddsStyle } type = "number" placeholder = "0" value = "${ obj._weight }"></input>
+        </span><br><br><br>
+      `;
       return new SelfDestroyedElement( element );
     };
 

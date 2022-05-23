@@ -68,6 +68,10 @@ li {
   list-style-type: none;
 }
 
+br {
+  user-select: none;
+}
+
 body section {
   width: 100%;
   display: flex;
