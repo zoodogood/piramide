@@ -56,6 +56,10 @@ class I18nManager {
     content: {
       getter: node => node.innerHTML,
       setter: (node, value) => node.innerHTML = value
+    },
+    attribute: {
+      getter: node => node.getAttribute( node.getAttribute("data-i18-attribute-target") ),
+      setter: (node, value) => node.setAttribute( node.getAttribute("data-i18-attribute-target"), value )
     }
   };
 
