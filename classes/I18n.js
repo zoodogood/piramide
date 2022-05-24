@@ -73,4 +73,11 @@ globalThis.I18nManager = I18nManager;
 })();
 
 
+if (location.href.match(/lang=\w+/)){
+  const value = location.href.match(/(?<=lang=)\w+/).at(0);
+  Params.setValue("lang", value);
+  params.lang = value;
+}
+
+
 I18nManager.setLang(params.lang);

@@ -89,6 +89,12 @@ globalThis.i18nLanguages = {
     "settings-action-colorizeFunc-form-apply": "Зберегти",
     "settings-action-colorizeFunc-form-restore": "Скасувати",
 
+    "settings-action-removeLibrary-h2": "Вимкнути Підказки",
+    "settings-action-removeLibrary-details": `Будемо відверті, підказки не потрібні, а ця кнопка тільки заважає! Можете приховати вкладку "Бібліотека" з нижньої панелі.`,
+
+    "settings-action-letItSnow-h2": "Увімкнути сніг",
+    "settings-action-letItSnow-details": `Скоро ж новий рік? Хоча.. Це залежить від того, який сьогодні день.`,
+
 
     "settings-section-codeEditor": "Редактор коду:",
 
@@ -212,6 +218,12 @@ globalThis.i18nLanguages = {
     "settings-action-colorizeFunc-form-apply": "Применить",
     "settings-action-colorizeFunc-form-restore": "Отменить",
 
+    "settings-action-removeLibrary-h2": "Отключить Подсказки",
+    "settings-action-removeLibrary-details": `Будем честны, подсказки не нужны, а эта кнопка только мешает! Можете скрыть вкладку "Библиотека" из нижней панели.`,
+
+    "settings-action-letItSnow-h2": "Включить снег",
+    "settings-action-letItSnow-details": `Скоро ведь новый год? Хотя.. Это зависит от того, какой сегодня день.`,
+
     "settings-section-codeEditor": "Редактор кода:",
 
 
@@ -334,6 +346,12 @@ globalThis.i18nLanguages = {
     "settings-action-colorizeFunc-form-new": "Create",
     "settings-action-colorizeFunc-form-apply": "Save",
     "settings-action-colorizeFunc-form-restore": "Restore",
+
+    "settings-action-removeLibrary-h2": "Remove Library",
+    "settings-action-removeLibrary-details": `Let's be honest, no tips are needed, and this button only interferes! You can hide the "Library" tab from the bottom panel.`,
+
+    "settings-action-letItSnow-h2": "Let it snow",
+    "settings-action-letItSnow-details": `Скоро ведь новый год? Хотя.. Это зависит от того, какой сегодня день. (NEED TRANSLATE #ff0000)`,
 
 
     "settings-section-codeEditor": "Code editor:",

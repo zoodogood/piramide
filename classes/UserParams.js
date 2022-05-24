@@ -12,7 +12,15 @@ class Params {
     return Object.assign({ ..._default }, user);
   }
 
+  static setValue(key, value){
+    const params = JSON.parse(
+      localStorage.getItem( "userParams" )
+    );
 
+    params[key] = value;
+    const newest = JSON.stringify(params);
+    localStorage.setItem( "userParams", newest );
+  }
 
   static defaultValues = {
     launchOnStart: true,
