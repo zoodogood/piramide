@@ -88,6 +88,7 @@ main > h1::before {
   color: #989898;
   font-size: 1.5em;
 
+  cursor: pointer;
   flex-shrink: 0;
 }
 

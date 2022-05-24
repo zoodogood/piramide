@@ -149,7 +149,7 @@ buttonReset.addEventListener("click", e => {
 class InputAction {
   constructor(elementId, {eventType = "input"} = {}){
     this.element = document.getElementById( elementId );
-    this.element.addEventListener(eventType, e => this.action(this, e));
+    this.element.addEventListener(eventType, inputEvent => this.action(this, inputEvent));
   }
 
 
@@ -277,11 +277,11 @@ new InputAction("slabsSpeed").connect("slabsSpeed")
     if ( +element.value < 1 )
       element.value = 1;
 
-
     InputAction.setValue(input.connectedValue, element.value);
   })
   .setDisplay((input, value) => {
-    input.element.value = value;
+    const node = input.element;
+    node.value = value;
   });
 
 new InputAction("background").connect()
