@@ -140,14 +140,13 @@
       <h1 i18n = "content">{{settings-section-codeEditor}}</h1>
 
       <section>
-        <h2>Стиль шрифта</h2>
+        <h2 i18n = "content">{{settings-action-codeSyntax-h2}}</h2>
         <details close>
           <summary i18n = "content">{{settings-sections-details}}</summary>
-          Устанавливает цветовую тему в редакторе кода.</br>
-          Выберите один из вариантов окраски синтаксиса:
+          <span i18n = "content">{{settings-action-codeSyntax-details}}</span>
         </details>
         <details close>
-          <summary>Предпросмотр</summary>
+          <summary i18n = "content">{{settings-sections-preview}}</summary>
           <pre class = "hljs" background = "black"></pre>
         </details>
         <select id = "codeSyntax" class = "select-input margin-top">
@@ -156,11 +155,10 @@
       </section>
 
       <section>
-        <h2>Очищать консоль при каждом запуске кода</h2>
+        <h2 i18n = "content">{{settings-action-clearedConsole-h2}}</h2>
         <details close>
           <summary i18n = "content">{{settings-sections-details}}</summary>
-          Очень большое количество данных может оказываться в консоли разработчика.. Чтобы выделить важное, иногда, нужно убрать ненужное.
-          Поэтому включив этот параметр консоль будет чистится при нажатии кнопки Играть.<br>
+          <span i18n = "content">{{settings-action-clearedConsole-details}}</span>
         </details>
         <label class = "switch margin-top">
           <input type="checkbox" id = "clearedConsole">
@@ -169,10 +167,10 @@
       </section>
 
       <section>
-        <h2>Размер шрифта</h2>
+        <h2 i18n = "content">{{settings-action-codeSize-h2}}</h2>
         <details close>
           <summary i18n = "content">{{settings-sections-details}}</summary>
-          Устанавливает размер шрифта в редакторе кода.
+          <span i18n = "content">{{settings-action-codeSize-details}}</span>
         </details>
         <input class = "range margin-top" type="range" id ="codeSize" value = "100" min = "80" max = "150">
       </section>

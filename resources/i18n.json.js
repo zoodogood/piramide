@@ -38,6 +38,7 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Скасувати",
 
     "settings-sections-details": "Докладніше",
+    "settings-sections-preview": "Перегляд",
     "settings-sections-experimentalFeature": "Експеріментальна функція*",
 
 
@@ -97,6 +98,15 @@ globalThis.i18nLanguages = {
 
 
     "settings-section-codeEditor": "Редактор коду:",
+
+    "settings-action-codeSyntax-h2": "Стиль синтаксису",
+    "settings-action-codeSyntax-details": `Встановлює тему покраски тексту в редакторі коду.</br>Оберіть один із варіантів забарвлення:`,
+
+    "settings-action-clearedConsole-h2": "Чистити консоль при кожному запуску коду",
+    "settings-action-clearedConsole-details": "У консолі розробника може виявитися дуже велика кількість даних. Щоб виділити важливе, іноді, потрібно прибрати непотрібне.<br>Коли цей параметр увімкнено, консоль буде очищатися при натисканні кнопки Грати.<br>",
+
+    "settings-action-codeSize-h2": "Розмір тексту",
+    "settings-action-codeSize-details": "Встановлює розмір тексту у редакторі коду.",
 
 
     "settings-section-paramsPage": "Параметри цього меню:",
@@ -167,6 +177,7 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Отменить",
 
     "settings-sections-details": "Подробности",
+    "settings-sections-preview": "Предпросмотр",
     "settings-sections-experimentalFeature": "Экспериментальная функция*",
 
 
@@ -224,8 +235,17 @@ globalThis.i18nLanguages = {
     "settings-action-letItSnow-h2": "Включить снег",
     "settings-action-letItSnow-details": `Скоро ведь новый год? Хотя.. Это зависит от того, какой сегодня день.`,
 
+
     "settings-section-codeEditor": "Редактор кода:",
 
+    "settings-action-codeSyntax-h2": "Стиль шрифта",
+    "settings-action-codeSyntax-details": `Устанавливает цветовую тему в редакторе кода.</br>Выберите один из вариантов окраски синтаксиса:`,
+
+    "settings-action-clearedConsole-h2": "Очищать консоль при каждом запуске кода",
+    "settings-action-clearedConsole-details": "В консоли разработчика может оказываться очень большое количество данных.. Чтобы выделить важное, иногда, нужно убрать ненужное.<br>Когда этот параметр включён, консоль будет чистится при нажатии кнопки Играть.<br>",
+
+    "settings-action-codeSize-h2": "Размер шрифта",
+    "settings-action-codeSize-details": "Устанавливает размер шрифта в редакторе кода.",
 
     "settings-section-paramsPage": "Настройки этого меню:",
 
@@ -296,6 +316,7 @@ globalThis.i18nLanguages = {
     "settings-panel-restore": "Restore",
 
     "settings-sections-details": "details",
+    "settings-sections-preview": "preview",
     "settings-sections-experimentalFeature": "Experimental feature*",
 
 
@@ -355,6 +376,15 @@ globalThis.i18nLanguages = {
 
 
     "settings-section-codeEditor": "Code editor:",
+
+    "settings-action-codeSyntax-h2": "Code syntax",
+    "settings-action-codeSyntax-details": `Sets the color theme in the code editor.</br>Choose one of the syntax coloring options:`,
+
+    "settings-action-clearedConsole-h2": "Очищать консоль при каждом запуске кода (NEED TRANSLATE #ff0000)",
+    "settings-action-clearedConsole-details": "(NEED TRANSLATE #ff0000)В консоли разработчика может оказываться очень большое количество данных.. Чтобы выделить важное, иногда, нужно убрать ненужное.<br>Когда этот параметр включён, консоль будет чистится при нажатии кнопки Играть.<br>",
+
+    "settings-action-codeSize-h2": "Font size",
+    "settings-action-codeSize-details": "Sets the font size in the code editor.",
 
 
     "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
