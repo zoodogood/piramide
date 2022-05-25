@@ -7,6 +7,10 @@ globalThis.i18nLanguages = {
     "main-alert-description": "Напишіть алгоритм, щоб вирішити просту задачу",
     "main-alert-detail": "*Дізнатися більше <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>знизу</a> сторінки",
 
+    "main-onLaunch-console-gameStart": "🦝 Гра запущена",
+    "main-onLaunch-console-message": "Все, що попадає до console.log — буде відображатися тут!",
+
+
     "codeSpace-controlButtons-play": "Грати",
     "codeSpace-controlButtons-scoreMap": "Графік эфектив.",
     "codeSpace-controlButtons-copy": "Копіювати",
@@ -146,6 +150,10 @@ globalThis.i18nLanguages = {
     "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу",
     "main-alert-detail": "*Подробнее <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>внизу</a> страницы",
 
+    "main-onLaunch-console-gameStart": "🦝 Игра запущена",
+    "main-onLaunch-console-message": "Всё, что Вы помещаете в console.log — будет отображено здесь!",
+
+
     "codeSpace-controlButtons-play": "Играть!",
     "codeSpace-controlButtons-scoreMap": "График эффектив.",
     "codeSpace-controlButtons-copy": "Скопировать",
@@ -284,6 +292,10 @@ globalThis.i18nLanguages = {
     "main-alert-name": "Game Piramide ⛊",
     "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу (NEED TRANSLATE #ff0000)",
     "main-alert-detail": "*More detail at the <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>bottom</a> of page",
+
+    "main-onLaunch-console-gameStart": "🦝 Game started",
+    "main-onLaunch-console-message": `Anything you put in "console.log" will be displayed here!`,
+
 
     "codeSpace-controlButtons-play": "Play",
     "codeSpace-controlButtons-scoreMap": "Show graph",
