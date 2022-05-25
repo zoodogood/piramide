@@ -21,11 +21,11 @@ class Visualizer {
     this.towers = [];
 
     if (!params.clearedConsole){
-      console.info(`%c%s`, "color: green; padding: 30px; font-size: 0.9em;", "🦝 Игра запущена");
-      console.info("%c%s", "padding: 30px;", "Всё, что Вы помещаете в console.log — будет отображено здесь!");
+      console.info(`%c%s`, "color: green; padding: 30px; font-size: 0.9em;", i18n("main-onLaunch-console-gameStart"));
+      console.info("%c%s", "padding: 30px;", i18n("main-onLaunch-console-message"));
     }
 
-    
+
     this.createTowers();
 
     delete this.hasWin;
