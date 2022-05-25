@@ -61,6 +61,24 @@ main > h1::before {
   align-items: flex-start;
 }
 
+#settings-footer-towers {
+  flex-direction: row;
+  gap: 1.5vh;
+  margin-top: 15vh;
+}
+
+#settings-footer-towers img {
+  opacity: 0.5;
+  transition: opacity 300ms, height 0s;
+  height: 5vh;
+}
+
+#settings-footer-towers img:hover {
+  height: 100vh;
+  opacity: 1;
+  transition: opacity 300ms, height 30s;
+}
+
 .round-button {
   width: 100%;
   display: flex;
@@ -104,8 +122,8 @@ main > h1::before {
 }
 
 
-.round-button button:focus {
-  animation: click 50ms ease-in 0s 2 alternate;
+.round-button:active {
+  animation: click 50ms ease-in 0s 2 alternate forwards;
   outline: none;
 }
 
@@ -480,7 +498,6 @@ pre {
   main {
     margin-left: 0px;
     padding: 50px;
-    margin-bottom: 70px;
     overflow: hidden;
   }
 
