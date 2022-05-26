@@ -74,8 +74,9 @@ main > h1::before {
 }
 
 #settings-footer-towers img:hover {
-  height: 100vh;
+  height: min(100vh, 80vw);
   opacity: 1;
+  flex-shrink: 0;
   transition: opacity 300ms, height 30s;
 }
 
