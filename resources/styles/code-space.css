@@ -125,5 +125,6 @@
   #code-space code {
     white-space: pre;
     padding-right: 25vw;
+    padding-top: calc(var(--codeSpace-code-height, 26vh) - 85vh);
   }
 }

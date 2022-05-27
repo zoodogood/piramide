@@ -418,17 +418,17 @@ new InputAction("codeSize").connect()
   });
 
 new InputAction("codeareaHeight").connect()
-  .init(input => {
-    const height = window.innerHeight;
-    console.log(height);
-    input.element.setAttribute("max", height);
-  })
   .setAction(input => {
-    const value = `${ input.element.value }px`;
+    const value = `${ input.element.value }vh`;
     InputAction.setValue(input.connectedValue, value);
   })
   .setDisplay((input, value) => {
+    const isPixels = !!value.match("px");
     value = parseInt(value, 10);
+
+    if (isPixels)
+      value = value * (100 / document.documentElement.clientWidth);
+
     input.element.value = value;
   });
 
