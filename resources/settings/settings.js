@@ -398,6 +398,15 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
     hljs.highlightElement(  codePreview  );
   });
 
+new InputAction("clearedConsole").connect()
+  .setAction(input => {
+    InputAction.setValue(input.connectedValue, input.element.checked);
+  })
+  .setDisplay((input, value) => {
+
+    input.element.checked = value;
+  });
+
 new InputAction("codeSize").connect()
   .setAction(input => {
     InputAction.setValue(input.connectedValue, input.element.value);
@@ -408,14 +417,22 @@ new InputAction("codeSize").connect()
       .style.fontSize = `${ value / 100 }em`;
   });
 
-new InputAction("clearedConsole").connect()
+new InputAction("codeareaHeight").connect()
   .setAction(input => {
-    InputAction.setValue(input.connectedValue, input.element.checked);
+    const value = `${ input.element.value }vh`;
+    InputAction.setValue(input.connectedValue, value);
   })
   .setDisplay((input, value) => {
+    const isPixels = !!value.match("px");
+    value = parseInt(value, 10);
 
-    input.element.checked = value;
+    if (isPixels)
+      value = value * (100 / document.documentElement.clientWidth);
+
+    input.element.value = value;
   });
+
+
 
 new InputAction("menuThemeDark").connect()
   .setAction(input => {

@@ -9,7 +9,10 @@
 
 #game {
   width: 100vw;
-  height: 70vh;
+  height: max(
+    70vh,
+    calc(95.5vh - var(--codeSpace-code-height, 26vh))
+  );
 
   overflow-x: overlay;
   contain: size;

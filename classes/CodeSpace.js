@@ -67,6 +67,7 @@ new Button("copy-button", clickEvent => {
   navigator.clipboard.writeText( codearea.textContent );
 });
 
+
 new Button("showConsole-button", clickEvent => {
   let modalWindow = new ModalWindow({size: {width: 790, height: 620}});
 
@@ -76,6 +77,7 @@ new Button("showConsole-button", clickEvent => {
   new Console({ container });
 
 }).hideIt(() => !params.alternativeConsole);
+
 
 new Button("setDefault-button", clickEvent => {
   if ( !confirm("Точно восстановить код по умолчанию?\nВсе несохраненные данные будут удалены.") )
@@ -124,18 +126,22 @@ setCode();
 
 // Элемент можно тянуть изменяя его высоту
 const stretch = codespace.children.item(0);
+
 stretch.addEventListener("mousedown", async () => {
+  const styleTarget = document.querySelector("body > main").style;
 
-  let moveListener = (clickEvent) =>
-    codearea.style.height = `${window.innerHeight - clickEvent.pageY - 50}px`;
+  const moveListener = (clickEvent) => {
+    const value = Math.max(0, window.innerHeight - clickEvent.pageY - 50);
+    styleTarget.setProperty("--codeSpace-code-height", `${ value }px`);
+  }
 
 
-  document.addEventListener("mousemove", moveListener);
+  document.addEventListener( "mousemove", moveListener );
 
-  await new Promise(res => document.addEventListener("mouseup", res, {once: true}));
+  await new Promise(res => document.addEventListener("mouseup", res, { once: true }));
   document.removeEventListener( "mousemove", moveListener );
 
-  localStorage.setItem("codeareaHeight", codearea.style.height);
+  Params.setValue("codeareaHeight", styleTarget.getPropertyValue("--codeSpace-code-height"));
 });
 
 

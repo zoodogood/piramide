@@ -91,8 +91,8 @@ if ( !window.location.href.includes("ignore") && params.launchOnStart && crashDe
   launch();
 
 
-if ( "codeareaHeight" in localStorage )
-  document.querySelector("#code-area").style.height = localStorage.getItem("codeareaHeight");
+if (params.codeareaHeight)
+  document.querySelector("body > main").style.setProperty("--codeSpace-code-height", params.codeareaHeight);
 
 
 
