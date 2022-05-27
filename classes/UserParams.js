@@ -58,7 +58,7 @@ class Params {
     codeSyntax: "a11y-dark",
     clearedConsole: true,
     codeSize: 100,
-    codeareaHeight: "26vh",
+    codeareaHeight: "26%",
 
     menuThemeDark: false,
     menuButtonsColor: 120,

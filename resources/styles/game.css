@@ -11,7 +11,7 @@
   width: 100vw;
   height: max(
     70vh,
-    calc(95.5vh - var(--codeSpace-code-height, 26vh))
+    calc(95.5% - var(--codeSpace-code-height, 26%))
   );
 
   overflow-x: overlay;
