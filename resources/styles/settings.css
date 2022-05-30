@@ -245,7 +245,8 @@ input:checked + .slider::before {
   -moz-appearance: none;
   appearance: none;
 
-  width: 70%;
+  width: calc(50px + 70%);
+  max-width: 550px;
   height: 28px;
 
   overflow: hidden;
