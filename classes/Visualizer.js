@@ -343,7 +343,9 @@ class Slab {
 
 
   setColor( colorizze, {towerSize} ){
+
     colorizze ||= this.constructor.globalColorizze;
+
 
 
     if (typeof colorizze === "function")
@@ -423,8 +425,8 @@ function mainGenerate( game ){
 
   visualizer.generateHandle( game );
 
-
   displayTowerExample();
+  console.log(123);
 }
 
 
@@ -432,10 +434,10 @@ function mainGenerate( game ){
 window.events.on("main", () => {
   const colorizze = Slab.colorizeFunctions.random(false, true).colorizze;
   Slab.globalColorizze = colorizze;
-  displayTowerExample();
 
   if (!visualizer.game){
     displayGhostTowers();
+    displayTowerExample();
   }
 });
 
