@@ -112,11 +112,28 @@ globalThis.i18nLanguages = {
     "settings-action-codeSize-h2": "Розмір тексту",
     "settings-action-codeSize-details": "Встановлює розмір тексту у редакторі коду.",
 
+    "settings-action-codeareaHeight-h2": "Висота редактору",
+    "settings-action-codeareaHeight-details": "Ви можете розтягнути редактор во весь екран або, виставив мінімальний розмір, зовсім закрити",
 
     "settings-section-paramsPage": "Параметри цього меню:",
 
+    "settings-action-menuThemeDark-h2": "Зухвалий дизайн",
+    "settings-action-menuThemeDark-details": "Перемкніть тему цього меню на чорну з червоними тонами. Для чого це було зроблено?..",
+
+    "settings-action-menuButtonsColor-h2": "Основний колір кнопок",
+    "settings-action-menuButtonsColor-details": "Перемістіть повзунок, щоб обрати відтінок кольору.",
+
 
     "settings-section-other": "Інше:",
+
+    "settings-action-strangeClick-h2": "Ефект вежі при кліку",
+    "settings-action-strangeClick-details": "Тепер вежі будуть програвати випадкову анімацію коли по ним клікають<br>*Click* *click*",
+
+    "settings-action-disableCustomScroll-h2": "Вимкнути кастомний скролл",
+    "settings-action-disableCustomScroll-details": "Якщо Ви користувач комп'ютера, то напевно помітили — скролл незвичайний.<br>Перемкніть повзунок тільки в випадку виникнення проблем. В іншому випадку, насолоджуйтесь!",
+
+    "settings-action-alternativeConsole-h2": "Альтернативна консоль",
+    "settings-action-alternativeConsole-details": "Додає у нижню панель кнопку для запуску спрощеної консолі.<br.Працює для телефонів!",
 
     "settings-action-lang-h2": "Вибрана Мова",
     "settings-action-lang-en": "Англійська",
@@ -255,10 +272,29 @@ globalThis.i18nLanguages = {
     "settings-action-codeSize-h2": "Размер шрифта",
     "settings-action-codeSize-details": "Устанавливает размер шрифта в редакторе кода.",
 
+    "settings-action-codeareaHeight-h2": "Высота редактора",
+    "settings-action-codeareaHeight-details": "Вы можете растянуть редактор во весь экран или, установив минимальный размер, закрыть его",
+
+
     "settings-section-paramsPage": "Настройки этого меню:",
+
+    "settings-action-menuThemeDark-h2": "Дерзкий дизайн",
+    "settings-action-menuThemeDark-details": "Переключите тему этого меню на чёрную с красными тонами. Для чего это было сделано?..",
+
+    "settings-action-menuButtonsColor-h2": "Основной цвет кнопок",
+    "settings-action-menuButtonsColor-details": "Переместите ползунок, чтобы выбрать оттенок цвета.",
 
 
     "settings-section-other": "Другое:",
+
+    "settings-action-strangeClick-h2": "Эффект башни при клике",
+    "settings-action-strangeClick-details": "Теперь пирамидки будут проигрывать случайную анимацию когда по ним кликают<br>*Click* *click*",
+
+    "settings-action-disableCustomScroll-h2": "Отключить кастомный скролл",
+    "settings-action-disableCustomScroll-details": "Если Вы пользователь компьютера, то навярняка заметили — скроллинг необычный.<br>Переключите ползунок только случае возникновения проблем. В ином случае, наслаждайтесь!",
+
+    "settings-action-alternativeConsole-h2": "Альтернативная консоль",
+    "settings-action-alternativeConsole-details": "Добавляет в нижнюю панель кнопку для включения упрощенной консоли.<br>Работает для телефонов!",
 
     "settings-action-lang-h2": "Выбранный Язык",
     "settings-action-lang-en": "Английский",
@@ -398,11 +434,29 @@ globalThis.i18nLanguages = {
     "settings-action-codeSize-h2": "Font size",
     "settings-action-codeSize-details": "Sets the font size in the code editor.",
 
+    "settings-action-codeareaHeight-h2": "Editor heigth",
+    "settings-action-codeareaHeight-details": "You can stretch the editor to fill the screen or, by setting a minimum size, close it",
+
 
     "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
 
+    "settings-action-menuThemeDark-h2": "Dark design",
+    "settings-action-menuThemeDark-details": "Switch the theme of this menu to black with red tones. (NEED TRANSLATE #ff0000) Для чего это было сделано?..",
+
+    "settings-action-menuButtonsColor-h2": "Основной цвет кнопок (NEED TRANSLATE #ff0000)",
+    "settings-action-menuButtonsColor-details": "Переместите ползунок, чтобы выбрать оттенок цвета.",
+
 
     "settings-section-other": "Other:",
+
+    "settings-action-strangeClick-h2": "Tower effect on click",
+    "settings-action-strangeClick-details": "Towers will play a random animation when they are clicked<br>*Click* *click*",
+
+    "settings-action-disableCustomScroll-h2": "Disable custom scroll",
+    "settings-action-disableCustomScroll-details": "(NEED TRANSLATE #ff0000) Если Вы пользователь компьютера, то навярняка заметили — скроллинг необычный.<br>Переключите ползунок только случае возникновения проблем. В ином случае, наслаждайтесь!",
+
+    "settings-action-alternativeConsole-h2": "Alternative console",
+    "settings-action-alternativeConsole-details": "Adds a button to the bottom panel to enable a simplified console.<br>Works for phones!",
 
     "settings-action-lang-h2": "Selected Language",
     "settings-action-lang-en": "English",

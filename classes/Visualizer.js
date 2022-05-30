@@ -377,13 +377,13 @@ Game.prototype.console = function(log){
 }
 
 Game.prototype.visualize = function(){
-  this.on("generate", () => mainGenerate(this));
+  this.on("generate", () => generateGame(this));
   this.on("win", () => visualizer.winHandle());
   this.on("step", e => visualizer.stepHandle(e));
   this.on("console", log => visualizer.consoleHandle(log));
 
 
-  mainGenerate(this);
+  generateGame(this);
 
   return this;
 }
@@ -417,8 +417,8 @@ function resolveColorizzeFuncions(){
 Slab.colorizeFunctions = resolveColorizzeFuncions();
 
 
-// Вызывается при generate
-function mainGenerate( game ){
+
+function generateGame( game ){
   let size = game.getGameParams().size;
   const colorizze = Slab.colorizeFunctions.random(false, true).colorizze;
   Slab.globalColorizze = colorizze;
@@ -426,7 +426,6 @@ function mainGenerate( game ){
   visualizer.generateHandle( game );
 
   displayTowerExample();
-  console.log(123);
 }
 
 
