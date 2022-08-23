@@ -1,18 +1,18 @@
 const GUIDANCES = [
-  [i18n("library-advice-#0-advice"),  i18n("library-advice-#0-title")],
-  [i18n("library-advice-#1-advice"),  i18n("library-advice-#1-title")],
-  [i18n("library-advice-#2-advice"),  i18n("library-advice-#2-title")],
-  [i18n("library-advice-#3-advice"),  i18n("library-advice-#3-title")],
-  [i18n("library-advice-#4-advice"),  i18n("library-advice-#4-title")],
-  [i18n("library-advice-#5-advice"),  i18n("library-advice-#5-title")],
-  [i18n("library-advice-#6-advice"),  i18n("library-advice-#6-title")],
-  [i18n("library-advice-#7-advice"),  i18n("library-advice-#7-title")],
-  [i18n("library-advice-#8-advice"),  i18n("library-advice-#8-title")],
-  [i18n("library-advice-#9-advice"),  i18n("library-advice-#9-title")],
-  [i18n("library-advice-#10-advice"), i18n("library-advice-#10-title")],
-  [i18n("library-advice-#11-advice"), i18n("library-advice-#11-title")],
-  [i18n("library-advice-#12-advice"), i18n("library-advice-#12-title")],
-  [i18n("library-advice-#13-advice"), i18n("library-advice-#13-title")]
+  [ i18n("library-advice-#0-advice"),  i18n("library-advice-#0-title")  ],
+  [ i18n("library-advice-#1-advice"),  i18n("library-advice-#1-title")  ],
+  [ i18n("library-advice-#2-advice"),  i18n("library-advice-#2-title")  ],
+  [ i18n("library-advice-#3-advice"),  i18n("library-advice-#3-title")  ],
+  [ i18n("library-advice-#4-advice"),  i18n("library-advice-#4-title")  ],
+  [ i18n("library-advice-#5-advice"),  i18n("library-advice-#5-title")  ],
+  [ i18n("library-advice-#6-advice"),  i18n("library-advice-#6-title")  ],
+  [ i18n("library-advice-#7-advice"),  i18n("library-advice-#7-title")  ],
+  [ i18n("library-advice-#8-advice"),  i18n("library-advice-#8-title")  ],
+  [ i18n("library-advice-#9-advice"),  i18n("library-advice-#9-title")  ],
+  [ i18n("library-advice-#10-advice"), i18n("library-advice-#10-title") ],
+  [ i18n("library-advice-#11-advice"), i18n("library-advice-#11-title") ],
+  [ i18n("library-advice-#12-advice"), i18n("library-advice-#12-title") ],
+  [ i18n("library-advice-#13-advice"), i18n("library-advice-#13-title") ]
 ];
 
 
