@@ -37,41 +37,37 @@ class Game extends EventEmitter {
     get list(){
 
       // Создание точной копии массива
-      let proxyArray = this.#arrayList
+      const array = this.#arrayList
         .map( arr => [...arr] );
 
-      let ref = new WeakRef( proxyArray );
 
       const emulate = ({from, to}) => {
-        let array = ref.deref();
-        if (array === null)
-          this.removeListener("step", emulate);
 
         array.at(to)
           .push(  array.at(from).pop()  );
 
-        }
+      }
 
       this.on("step", emulate);
 
       // Очистка при новой генерации
       this.once("generate", () => this.removeListener("step", emulate));
-      return proxyArray;
+      return array;
     }
 
 
     #score;
     generate(){
-      let size  = this.#arraySize;
+      const size  = this.#arraySize;
 
       // Массив плит от 1 до `size` расположенных в случ. порядке
-      let slabs = [...new Array( size )]
+      const slabs = [...new Array( size )]
         .map((e, i) => i + 1)
         .sort(() => Math.random() - 0.5);
 
 
 
-      let count = this.#arrayCount;
+      const count = this.#arrayCount;
 
       // Создаётся набор Массивов
       this.#arrayList = [...new Array( count )]
@@ -114,7 +110,7 @@ class Game extends EventEmitter {
         to = this.#arrayCount + to;
 
 
-      let
+      const
         first  = this.#arrayList[ from ],
         second = this.#arrayList[ to ];
 
