@@ -22,7 +22,7 @@ class Defender {
 
 
   check(){
-    let isCrash = this.paramName in localDB.hasItem(this.paramName);
+    let isCrash = localDB.hasItem(this.paramName);
     if (!isCrash)
       return true;
 
