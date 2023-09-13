@@ -107,7 +107,9 @@ if (params.menuButtonsColor)
 if (params.codeSize)
   document.documentElement.style.setProperty('--codeFontSize', `${ params.codeSize }em`);
 
-
+if (localDB.getItem("statistic?.win") > 0){
+  document.querySelector("#game").classList.add("post-initial");
+}
 
 (async () => {
   if (!params.letItSnow)
