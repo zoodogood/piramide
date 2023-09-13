@@ -177,6 +177,8 @@ class Visualizer {
 
   async visualizeWin(){
 
+    setDisableStatusForNodeBySelector("#play-button", true);
+
     if (params.activatePoligon)
       poligon.launch();
 
@@ -227,6 +229,9 @@ class Visualizer {
       await delay(20);
     }
 
+
+
+    setDisableStatusForNodeBySelector("#play-button", false);
     return;
   }
 
