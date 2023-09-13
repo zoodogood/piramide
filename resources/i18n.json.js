@@ -35,7 +35,9 @@ globalThis.i18nLanguages = {
 
     "footer-bottom-hidden": "Самий час нажати *Ctrl + Enter*",
 
-    "alert-title-error": "Просто ошибка",
+    "alert-title-error": "Просто помилка",
+    "visualizer-tower-tip": "Вежа, яку треба зібрати",
+    "remove-element": "Прибрати елемент",
 
 
     "settings-panel-save": "Зберегти",
@@ -227,6 +229,8 @@ globalThis.i18nLanguages = {
     "footer-bottom-hidden": "Самое время нажать *Ctrl + Enter*",
 
     "alert-title-error": "Просто ошибка",
+    "visualizer-tower-tip": "Башня, которую надо собрать",
+    "remove-element": "Убрать элемент",
 
 
     "settings-panel-save": "Сохранить",
@@ -423,12 +427,14 @@ globalThis.i18nLanguages = {
     "footer-bottom-hidden": "Can you press *Ctrl + Enter* ?",
 
     "alert-title-error": "Simple error",
+    "visualizer-tower-tip": "A tower to be built",
+    "remove-element": "Remove-element",
 
 
     "settings-panel-save": "Save",
     "settings-panel-restore": "Restore",
 
-    "settings-sections-details": "details",
+    "settings-sections-details": "Details",
     "settings-sections-preview": "preview",
     "settings-sections-experimentalFeature": "Experimental feature*",
 
