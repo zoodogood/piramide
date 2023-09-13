@@ -20,6 +20,10 @@ class Button {
     this.func   = func;
 
     this.button.addEventListener("click", clickEvent => {
+      if (this.button.hasAttribute("disabled")){
+        return;
+      }
+      
       gtag("event", `${ id }_pressed`);
       this.func(clickEvent);
     });

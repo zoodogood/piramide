@@ -92,7 +92,7 @@
   }
 }
 
-#code-space #control-buttons .button:hover {
+#code-space #control-buttons .button:not([disabled]):hover {
   filter: brightness(1.5);
   backdrop-filter: brightness(1.5);
 }
@@ -102,8 +102,13 @@
 }
 
 
-#code-space #control-buttons .button:active {
+#code-space #control-buttons .button:not([disabled]):active {
   transform: scale(0.95);
+}
+
+#code-space #control-buttons .button[disabled]{
+  cursor: default;
+  filter: brightness(0.5);
 }
 
 
