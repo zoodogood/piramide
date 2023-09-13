@@ -177,3 +177,9 @@ Object.defineProperty( HTMLElement.prototype, "transform", {
     return;
   }
 });
+
+
+function setDisableStatusForNodeBySelector(selector, disabled = true){
+  const node = document.querySelector(selector);
+  disabled ? node.setAttribute("disabled", true) : node.removeAttribute("disabled");
+}
