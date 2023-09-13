@@ -33,8 +33,19 @@ class ActionHandler {
     // Очередь
     if ( this.trace.length <= this.index )
       await new Promise(res => this.events.once("push", res));
+    
+    
 
     let action = this.trace[ this.index++ ];
+    
+
+    if (!action){
+      this.index--;
+      
+      return { done: false, values: null };
+    }
+
+    localDB.setItem(`statistic?.${ action.type }`, (current) => current + 1);
 
     let promise = action.func( action );
     promise.action = action;
@@ -72,6 +83,7 @@ class ActionHandler {
 
     for await (let values of iterable)
       this.events.emit("chunkHandled", values);
+
   }
 
 
@@ -81,7 +93,11 @@ class ActionHandler {
     this.#prevent = true;
     this.push( {type: "afterEnd"} );
 
-    if (clear) this.trace = [];
+    localDB.saveData();
+
+    if (clear) {
+      this.trace = [];
+    }
   }
 
 
