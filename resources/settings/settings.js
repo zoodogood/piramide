@@ -13,7 +13,7 @@ console.warn = () => {}
 
 
 class CreatorElement {
-  constructor(innerElement, textContent = "Добавить"){
+  constructor(innerElement, textContent){
     let element = document.createElement("div");
     element.classList.add("creator-element");
     element.textContent = textContent;
@@ -42,7 +42,7 @@ class SelfDestroyedElement {
 
   setCloseButton(){
     const close = document.createElement("div");
-    close.title = "Убрать элемент"
+    close.title = i18n("remove-element");
 
     close.insertAdjacentHTML("afterbegin",
       `<svg viewPort="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
