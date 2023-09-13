@@ -251,7 +251,7 @@ class Tower {
 
 
   toHTML(){
-    let tower = document.createElement("div");
+    let tower = document.createElement("tower-element");
     tower.classList.add("array");
 
 
