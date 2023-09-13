@@ -1,25 +1,19 @@
 class Params {
-  constructor( property ){
+  constructor(property) {
     this.property = property;
   }
 
-
-
-  getList(){
+  getList() {
     let _default = this.constructor.defaultValues;
-    let user = JSON.parse(  localStorage.getItem( this.property )  );
+    let user = localDB.getItem(this.property);
 
     return Object.assign({ ..._default }, user);
   }
 
-  static setValue(key, value){
-    const params = JSON.parse(
-      localStorage.getItem( "userParams" )
-    );
-
-    params[key] = value;
-    const newest = JSON.stringify(params);
-    localStorage.setItem( "userParams", newest );
+  static setValue(key, value) {
+    localDB.setItem(`${ this.prototype }.${key}`, value, {
+      forceSave: true
+    });
   }
 
   static defaultValues = {
@@ -32,24 +26,24 @@ class Params {
     colorizeFunc: [
       {
         func: "hsl(240, 30, 25 - (n % 5) * 5)",
-        _weight: 1
+        _weight: 1,
       },
       {
         func: "hsl( random(255), 100, 70)",
-        _weight: 1
+        _weight: 1,
       },
       {
         func: "hsl(random(50) + 190, Math.round(70 / size * n) + 30, 70)",
-        _weight: 5
+        _weight: 5,
       },
       {
         func: "hsl(random(50), 100, 70)",
-        _weight: 15
+        _weight: 15,
       },
       {
         func: "n % 2 ? '#c6e44e' : '#70d729'",
-        _weight: 25
-      }
+        _weight: 25,
+      },
     ],
 
     removeLibrary: false,
@@ -66,10 +60,8 @@ class Params {
     strangeClick: false,
     disableCustomScroll: false,
     alternativeConsole: false,
-    lang: "en"
+    lang: "en",
   };
 }
-
-
 
 const params = new Params("userParams").getList();

@@ -59,7 +59,7 @@ new Button("scoreMap-button", clickEvent => {
 
   graph.init({
     container: container,
-    dots: JSON.parse(localStorage.getItem("poligonLog") || "[]")
+    dots: localDB.getItem("poligonLog", {default: []})
       .map(({ timestamp: x, details: y }) => ({x, y}))
   });
 
@@ -122,7 +122,7 @@ new Button("showHelps-button", clickEvent => {
 
 // Заполняет код
 function setCode(){
-  codearea.textContent = localStorage.getItem("userCode") || defaultCode();
+  codearea.textContent = localDB.getItem("userCode", {default: defaultCode()});
   hljs.highlightElement(  codearea  );
 }
 setCode();
@@ -241,7 +241,7 @@ console.log( game.list );
 
 
 codearea.addEventListener("input", () => {
-  localStorage.setItem("userCode", codearea.textContent);
+  localDB.setItem("userCode", codearea.textContent, {forceSave: true});
 });
 
 

@@ -118,7 +118,7 @@ buttonExit.addEventListener("click", e => {
 buttonSave.addEventListener("click", e => {
   let newest = InputAction.changes;
 
-  localStorage.setItem( "userParams", JSON.stringify(newest) );
+  localDB.setItem( "userParams", newest, {forceSave: true} );
   document.activeElement.blur();
   buttonSave.parentNode.classList.remove("clickMe");
 });
@@ -201,12 +201,12 @@ class InputAction {
 
 
   static loadParams(){
-    let params = localStorage.getItem("userParams");
+    let params = localDB.getItem("userParams");
     if (!params)
-      params = localStorage["userParams"] = "{}";
+      params = localDB.setItem("userParams", {});
 
 
-    params = JSON.parse(params);
+    
 
     Object.keys( this.defaultValues ).forEach( k => {
       this.setValue( k, params[ k ] ?? this.defaultValues[ k ] );
@@ -385,7 +385,7 @@ new InputAction("codeSyntax", {eventType: "change"}).connect()
 
     input.element.innerHTML = inner;
     input.element.parentNode.querySelector(".hljs")
-      .textContent = localStorage.getItem("userCode") || "const game = new Game({size: 15, count: 10}).visualize();";
+      .textContent = localDB.getItem("userCode", {default: "const game = new Game({size: 15, count: 10}).visualize();"});
   })
   .setAction((input, e) => {
     InputAction.setValue(input.connectedValue, input.element.value);
@@ -517,7 +517,7 @@ InputAction.loadParams();
 
 
 window.addEventListener("beforeunload", e => {
-  let before  = localStorage.getItem("userParams");
+  let before  = JSON.stringify( localDB.getItem("userParams") );
   let changes = JSON.stringify( InputAction.changes );
 
   if ( before !== changes )

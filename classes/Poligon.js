@@ -139,7 +139,7 @@ class Record {
     if (type !== "victory")
       return;
 
-    const poligonLog = JSON.parse( localStorage.getItem("poligonLog") ) || [];
+    const poligonLog = localDB.getItem("poligonLog", {default: []});
 
     let isSimmilar = poligonLog.at(-1)?.details === details  &&  poligonLog.at(-1).timestamp + this.constructor.TIME_THRESHOLD > timestamp;
 
@@ -149,7 +149,7 @@ class Record {
     }
 
     poligonLog.push({ timestamp, details, type });
-    localStorage.setItem( "poligonLog", JSON.stringify(poligonLog) );
+    localDB.setItem( "poligonLog", poligonLog, {forceSave: true} );
   }
 
   static TIME_THRESHOLD = 2_419_200_000;

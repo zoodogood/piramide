@@ -12,17 +12,17 @@ class Defender {
 
 
   #launchHandler(){
-    localStorage.setItem(this.paramName, "true");
+    localDB.setItem(this.paramName, true, {forceSave: true});
   }
 
 
   #launchEndHandler(){
-    localStorage.removeItem(this.paramName);
+    localDB.removeItem(this.paramName, {forceSave: true});
   }
 
 
   check(){
-    let isCrash = this.paramName in localStorage;
+    let isCrash = this.paramName in localDB.hasItem(this.paramName);
     if (!isCrash)
       return true;
 

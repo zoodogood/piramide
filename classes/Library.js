@@ -166,7 +166,7 @@ class Library {
 class GuidancesManager {
   #opening;
   constructor(){
-    this.#opening = JSON.parse( localStorage.getItem("guidances") ) || this.constructor.BASIC_GUIDANCES;
+    this.#opening = localDB.getItem("guidances", {default: this.constructor.BASIC_GUIDANCES});
 
   }
 
@@ -207,7 +207,7 @@ class GuidancesManager {
 
     }
 
-    localStorage.setItem("guidances", JSON.stringify(this.#opening));
+    localDB.setItem("guidances", this.#opening, {forceSave: true});
   }
 
 
