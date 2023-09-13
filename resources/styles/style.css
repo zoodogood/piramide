@@ -78,6 +78,10 @@ body section {
   transition: transform 200ms;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 
 body {
   display: flex;
