@@ -542,8 +542,5 @@ pre {
   .round-button > span {
     display: none;
   }
-
-  .canvas-snow {
-    top: 0;
-  }
+  
 }

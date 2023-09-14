@@ -122,3 +122,8 @@ code.no-wrap {
 .spacing {
   letter-spacing: 3px;
 }
+
+
+.canvas-snow {
+  top: 0;
+}
