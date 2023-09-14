@@ -11,7 +11,7 @@ class LocalDB {
 
 	getItem(key, options = {}) {
 		const { parent, lastSegment } = this.getParentAndlastSegmentByNotatedKey(key);
-		return parent[lastSegment] ?? options.default ?? null;
+		return parent?.[lastSegment] ?? options.default ?? null;
 	}
 
 	setItem(key, value, options = {}) {
