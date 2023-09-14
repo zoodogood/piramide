@@ -59,8 +59,10 @@ a {
   color: #0000ff;
 }
 
-a.lightLink {
+.lightLink {
+  cursor: pointer;
   color: #8a8af5;
+  width: fit-content;
 }
 
 li {
