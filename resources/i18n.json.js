@@ -18,10 +18,12 @@ globalThis.i18nLanguages = {
     "codeSpace-controlButtons-setDefault": "Відновити код",
     "codeSpace-controlButtons-showHelps": "Біблиотека",
 
+    "codeSpace-default-code-comment-game-step": `Переміщує найвищу плитку вежі "один" до вежі "три"`,
+
     "footer-article-h1": "Пояснення задачі",
     "footer-article-taskInfo":
       `Напишіть алгоритм, щоб зібрати всі плитки всередині одного масиву, вежі.<br>
-       Для їх переміщення використовуйте метод класа <code>game</code> — <code>step()</code>,<br>
+       Для їх переміщення використовуйте метод класа: <code>game</code> — <code>step()</code>,<br>
        який приймає два аргументи: номер масиву з якого перенести плитку і того, в котрий її перенести.<br>
        Отримати масив веж — <code>game.state</code>`,
 
@@ -211,10 +213,12 @@ globalThis.i18nLanguages = {
     "codeSpace-controlButtons-setDefault": "Код по умолчанию",
     "codeSpace-controlButtons-showHelps": "Библиотека",
 
+    "codeSpace-default-code-comment-game-step": "Перемещает верхнюю плитку от первой башенки к третьей башне",
+
     "footer-article-h1": "Пояснение задачи",
     "footer-article-taskInfo":
       `Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
-       Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
+       Чтобы их перемещать используйте метод класса: <code>game</code> — <code>step()</code>,<br>
        который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
        Получить массив башен — <code>game.state</code>`,
 
@@ -395,7 +399,7 @@ globalThis.i18nLanguages = {
 
     "main-alert-title-hello": "Hello",
     "main-alert-name": "Game Piramide ⛊",
-    "main-alert-description": "Напишите алгоритм, чтобы решить простую задачу (NEED TRANSLATE #ff0000)",
+    "main-alert-description": "Write an algorithm to solve a simple problem",
     "main-alert-detail": "*More detail at the <a href = 'javascript:void(0);' onclick = '${ replaces.at(0) }'>bottom</a> of page",
 
     "main-onLaunch-console-gameStart": "🦝 Game started",
@@ -409,19 +413,21 @@ globalThis.i18nLanguages = {
     "codeSpace-controlButtons-setDefault": "Reset code",
     "codeSpace-controlButtons-showHelps": "Library",
 
+    "codeSpace-default-code-comment-game-step": "Moves the top tile from the first tower to the third tower",
+
     "footer-article-h1": "Task info",
     "footer-article-taskInfo":
-      `Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br> (NEED TRANSLATE #ff0000)
-       Чтобы их перемещать используйте метод класса <code>game</code> — <code>step()</code>,<br>
-       который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
-       Получить  массив башен — <code>game.state</code>`,
+      `Write an algorithm to collect all the tiles inside a single array, <i>tower</i>.<br>
+       To move them, use the class method: <code>game</code> — <code>step()</code>,<br>
+       which takes two arguments: the number of the array from which to move the tile and the array to which to move it to.<br>
+       Get array of towers — <code>game.state</code>`,
 
     "footer-advice-h2": "You! Read me! NOW!",
-    "footer-advice-#1": "Ищите в Интернете то, что Вам интересно. (NEED TRANSLATE #ff0000)",
-    "footer-advice-#2": `Посетите <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> страницу Гитхаба.</a>`,
-    "footer-advice-#3": "Используйте консоль разработчика (по умолчанию F12) Это поможет получить информацию о процессе выполнения вашего алгоритма.",
-    "footer-advice-#4": "Помните, Ваш код и статистика сохраняются даже при перезагрузке страницы.",
-    "footer-advice-#5": "Осторожнее с бесконечными циклами, их условие всегда верно. Зависание страницы — явный признак такого цикла.",
+    "footer-advice-#1": "Search the Internet for what you are interested in. (NEED TRANSLATE #ff0000)",
+    "footer-advice-#2": `Visit the <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> Github page.</a>`,
+    "footer-advice-#3": "Use the developer console (default is F12) This will help to get information about the process of executing your algorithm.",
+    "footer-advice-#4": "Remember, your code and stats are saved even if you reload the page.",
+    "footer-advice-#5": "Be careful with infinite loops, their condition is always true. A page freeze is a clear sign of such a loop.",
     "footer-advice-settings": "Change Settings",
 
     "footer-bottom-hidden": "Can you press *Ctrl + Enter* ?",
