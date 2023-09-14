@@ -73,6 +73,7 @@ async function launch(){
     console.clear();
 
   window.events.emit("launchCode");
+  localDB.setItem("statistic.launch", (current) => current + 1);
 
   try {
     await eval(`(async () => {${codearea.textContent}})()`);
@@ -81,6 +82,7 @@ async function launch(){
     Alert.create(err.message, "error", i18n("main-alert-title-error"));
     console.error(err);
     window.events.emit("error", err);
+    localDB.setItem("statistic.launchEndWithError", (current) => current + 1);
   }
 
   window.events.emit("launchCodeEnd");
