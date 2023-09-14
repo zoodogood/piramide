@@ -1,6 +1,6 @@
 
 let codeareaStyle = document.createElement("link");
-codeareaStyle.href = `./resources/highlight/styles/${ params.codeSyntax }.min.css`;
+codeareaStyle.href = `./resources/highlight/styles/${ userParams.codeSyntax }.min.css`;
 codeareaStyle.rel  = "stylesheet";
 document.body.append(codeareaStyle);
 
@@ -63,7 +63,7 @@ new Button("scoreMap-button", clickEvent => {
       .map(({ timestamp: x, details: y }) => ({x, y}))
   });
 
-}).hideIt(() => !params.activatePoligon);
+}).hideIt(() => !userParams.activatePoligon);
 
 
 new Button("copy-button", clickEvent => {
@@ -80,7 +80,7 @@ new Button("showConsole-button", clickEvent => {
 
   new Console({ container });
 
-}).hideIt(() => !params.alternativeConsole);
+}).hideIt(() => !userParams.alternativeConsole);
 
 
 new Button("setDefault-button", clickEvent => {
@@ -102,7 +102,7 @@ new Button("showHelps-button", clickEvent => {
 
   new Library({ container, symbolsCount });
 
-}).hideIt(() => params.removeLibrary);
+}).hideIt(() => userParams.removeLibrary);
 
 
 

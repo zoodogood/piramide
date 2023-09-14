@@ -2,7 +2,7 @@
 
 // ---
 let codeareaStyle = document.createElement("link");
-codeareaStyle.href = `resources/highlight/styles/${ params.codeSyntax }.min.css`;
+codeareaStyle.href = `resources/highlight/styles/${ userParams.codeSyntax }.min.css`;
 codeareaStyle.rel  = "stylesheet";
 codeareaStyle.id   = "syntax-CSS";
 document.body.append(codeareaStyle);
@@ -85,7 +85,7 @@ document.addEventListener("keydown", e => {
   
 
 
-  if (e.code === "KeyR" && e.ctrlKey){
+  if (e.code === "KeyZ" && e.ctrlKey){
     buttonReset.click();
     buttonReset.focus();
 
@@ -112,8 +112,15 @@ buttonExit.addEventListener("click", e => {
 
 
 buttonReset.addEventListener("click", e => {
-  InputAction.changes = {};
-  InputAction.loadParams();
+  
+  
+  const lastChange = InputAction.changes.pop() ?? null;
+  if (lastChange === null){
+    return;
+  }
+
+  const {valueName, from} = lastChange;
+  InputAction.setValue(valueName, from, {isOnInteract: false});
   document.activeElement.blur();
 });
 
@@ -172,10 +179,19 @@ class InputAction {
     return this;
   }
 
+  static getValue(valueName){
+    return Params.getValue(valueName)
+  }
 
 
-  static setValue(valueName, value){
-    InputAction.changes[valueName] = value;
+
+  static setValue(valueName, value, {isOnInteract = true} = {}){
+    isOnInteract && InputAction.changes.push({
+      valueName,
+      from: InputAction.getValue(valueName),
+      to: value
+    });
+    Params.setValue(valueName, value, {forceSave: isOnInteract});
 
     if ( !this.events[valueName] )
       throw new Error(`valueName without handler`);
@@ -186,15 +202,15 @@ class InputAction {
 
 
   static loadParams(){
-    let params = localDB.getItem("userParams");
+    let params = localDB.getItem(Params.prefix);
     if (!params)
-      params = localDB.setItem("userParams", {});
+      params = localDB.setItem(Params.prefix, {});
 
 
     
 
     Object.keys( this.defaultValues ).forEach( k => {
-      this.setValue( k, params[ k ] ?? this.defaultValues[ k ] );
+      this.setValue( k, params[ k ] ?? this.defaultValues[ k ], {isOnInteract: false} );
     });
 
   }
@@ -202,7 +218,7 @@ class InputAction {
 
   static events  = {};
 
-  static changes = {};
+  static changes = [];
 
   static defaultValues = Params.defaultValues;
 

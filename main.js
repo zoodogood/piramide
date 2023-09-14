@@ -17,7 +17,7 @@ window.scrollTo({top: 0, behavior: "smooth"});
 // Новая, быстрая и плавная прокрутка
 document.addEventListener("wheel", wheelEvent => {
 
-  if (params.disableCustomScroll)
+  if (userParams.disableCustomScroll)
     return;
 
   if (wheelEvent.deltaY === 0)
@@ -69,7 +69,7 @@ document.addEventListener("wheel", wheelEvent => {
 
 // Срабатывает кнопкой Пуск или нажатием пробела
 async function launch(){
-  if (params.clearedConsole)
+  if (userParams.clearedConsole)
     console.clear();
 
   window.events.emit("launchCode");
@@ -89,32 +89,32 @@ async function launch(){
 }
 
 
-if ( !window.location.href.includes("ignore") && params.launchOnStart && crashDefender.check() )
+if ( !window.location.href.includes("ignore") && userParams.launchOnStart && crashDefender.check() )
   launch();
 
 
-if (params.codeareaHeight)
-  document.querySelector("body > main").style.setProperty("--codeSpace-code-height", params.codeareaHeight);
+if (userParams.codeareaHeight)
+  document.querySelector("body > main").style.setProperty("--codeSpace-code-height", userParams.codeareaHeight);
 
 
 
-if (params.background)
-  document.body.style.background = params.background;
+if (userParams.background)
+  document.body.style.background = userParams.background;
 
 
-if (params.menuButtonsColor)
-  document.documentElement.style.setProperty('--mainThemeColor', `hsl(${ params.menuButtonsColor }, 35%, 55%)`);
+if (userParams.menuButtonsColor)
+  document.documentElement.style.setProperty('--mainThemeColor', `hsl(${ userParams.menuButtonsColor }, 35%, 55%)`);
 
 
-if (params.codeSize)
-  document.documentElement.style.setProperty('--codeFontSize', `${ params.codeSize }em`);
+if (userParams.codeSize)
+  document.documentElement.style.setProperty('--codeFontSize', `${ userParams.codeSize }em`);
 
 if (localDB.getItem("statistic?.win") > 0){
   document.querySelector("#game").classList.add("post-initial");
 }
 
 (async () => {
-  if (!params.letItSnow)
+  if (!userParams.letItSnow)
     return;
 
   let element = document.createElement("script");

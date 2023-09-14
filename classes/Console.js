@@ -1,6 +1,6 @@
 (() => {
 
-if (!params.alternativeConsole)
+if (!userParams.alternativeConsole)
   return;
 
 const METHODS_TYPES = {

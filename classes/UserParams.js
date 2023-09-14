@@ -1,19 +1,22 @@
 class Params {
-  constructor(property) {
-    this.property = property;
-  }
+
+  static prefix = "userParams";
 
   getList() {
     let _default = this.constructor.defaultValues;
-    let user = localDB.getItem(this.property);
+    let user = localDB.getItem(this.constructor.prefix);
 
     return Object.assign({ ..._default }, user);
   }
 
-  static setValue(key, value) {
-    localDB.setItem(`${ this.prototype }.${key}`, value, {
-      forceSave: true
+  static setValue(key, value, {forceSave} = {}) {
+    localDB.setItem(`${ this.prefix }.${key}`, value, {
+      forceSave
     });
+  }
+
+  static getValue(key){
+    return localDB.getItem(`${ this.prefix }.${ key }`);
   }
 
   static defaultValues = {
@@ -64,4 +67,4 @@ class Params {
   };
 }
 
-const params = new Params("userParams").getList();
+const userParams = new Params().getList();

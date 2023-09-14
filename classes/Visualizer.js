@@ -8,7 +8,7 @@ class Visualizer {
       throw new Error(`could not find item ${ elementSelector }`);
 
     this.action = new ActionHandler();
-    this.multiSlab = params.multiSlab;
+    this.multiSlab = userParams.multiSlab;
   }
 
 
@@ -20,7 +20,7 @@ class Visualizer {
 
     this.towers = [];
 
-    if (!params.clearedConsole){
+    if (!userParams.clearedConsole){
       console.info(`%c%s`, "color: green; padding: 30px; font-size: 0.9em;", i18n("main-onLaunch-console-gameStart"));
       console.info("%c%s", "padding: 30px;", i18n("main-onLaunch-console-message"));
     }
@@ -36,7 +36,7 @@ class Visualizer {
 
 
   stepHandle( action ){
-    const k = 5 / params.slabsSpeed;
+    const k = 5 / userParams.slabsSpeed;
 
     action.type = "step";
     action.allowNext = async ({action, next, processed}) => {
@@ -107,7 +107,7 @@ class Visualizer {
     slabElement.style.top  = `${ top  }px`;
     slabElement.style.left = `${ left }px`;
 
-    const k = 5 / params.slabsSpeed;
+    const k = 5 / userParams.slabsSpeed;
     await delay(30);
 
 
@@ -179,7 +179,7 @@ class Visualizer {
 
     setDisableStatusForNodeBySelector("#play-button", true);
 
-    if (params.activatePoligon)
+    if (userParams.activatePoligon)
       poligon.launch();
 
 
@@ -281,7 +281,7 @@ class Tower {
   }
 
   async clickHandle(){
-    if (!params.strangeClick)
+    if (!userParams.strangeClick)
       return;
 
     const effectType = ["filter", "transform"].random();
@@ -408,7 +408,7 @@ function resolveColorizzeFuncions(){
   let colorsFunc = ["rgb", "rgba", "hsl", "hsla"];
 
 
-  const painters = params.colorizeFunc.map(painter => {
+  const painters = userParams.colorizeFunc.map(painter => {
     const code = painter.func;
     const func = new Function("n", "size", ...colorsFunc, `return ${ code }`);
     const method = (n, {towerSize}) => func.call( null, n, towerSize, ...colorsFunc.map(toCode) );
