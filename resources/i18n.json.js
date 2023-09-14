@@ -423,7 +423,7 @@ globalThis.i18nLanguages = {
        Get array of towers — <code>game.state</code>`,
 
     "footer-advice-h2": "You! Read me! NOW!",
-    "footer-advice-#1": "Search the Internet for what you are interested in. (NEED TRANSLATE #ff0000)",
+    "footer-advice-#1": "Search the Internet for what you are interested in.",
     "footer-advice-#2": `Visit the <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> Github page.</a>`,
     "footer-advice-#3": "Use the developer console (default is F12) This will help to get information about the process of executing your algorithm.",
     "footer-advice-#4": "Remember, your code and stats are saved even if you reload the page.",
