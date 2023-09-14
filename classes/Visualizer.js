@@ -152,13 +152,13 @@ class Visualizer {
 
   createTowers(){
     this.gameElement.innerHTML = "";
-    let list = this.game.list;
+    let towers = this.game.state;
 
     let size = this.game.getGameParams().size;
 
     this.towers = [];
 
-    for (let tower of list) {
+    for (let tower of towers) {
       tower = this.createTower( size ).setSlabs( tower );
       tower.eachSlab(slab => slab.setColor(null, {towerSize: tower.size}));
 

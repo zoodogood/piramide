@@ -234,8 +234,8 @@ const game = new Game({ size: 15, count: 3 }).visualize();
 // Перемещает верхнюю плитку от первой башенки к третьей башне
 game.step(0, 2);
 
-
-console.log( game.list );
+const towers = game.state;
+console.log( towers );
  `;
 }
 
