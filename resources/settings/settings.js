@@ -72,7 +72,6 @@ class SelfDestroyedElement {
 // Основные кнопки — выйти, сохранить, отменить.
 const
   buttonExit  = document.getElementById("button-exit").parentNode,
-  buttonSave  = document.getElementById("button-save").parentNode,
   buttonReset = document.getElementById("button-reset").parentNode
 
 
@@ -83,13 +82,7 @@ document.addEventListener("keydown", e => {
     return;
   }
 
-  if (e.code === "KeyS" && e.ctrlKey){
-    buttonSave.click();
-    buttonSave.focus();
-
-    e.preventDefault();
-    return;
-  }
+  
 
 
   if (e.code === "KeyR" && e.ctrlKey){
@@ -114,14 +107,6 @@ buttonExit.addEventListener("click", e => {
 
 
 
-
-buttonSave.addEventListener("click", e => {
-  let newest = InputAction.changes;
-
-  localDB.setItem( "userParams", newest, {forceSave: true} );
-  document.activeElement.blur();
-  buttonSave.parentNode.classList.remove("clickMe");
-});
 
 
 
@@ -516,15 +501,7 @@ InputAction.loadParams();
 
 
 
-window.addEventListener("beforeunload", e => {
-  let before  = JSON.stringify( localDB.getItem("userParams") );
-  let changes = JSON.stringify( InputAction.changes );
 
-  if ( before !== changes )
-    e.returnValue = "Ваши изменения не сохранены, продолжить?";
-
-  buttonSave.parentNode.classList.add("clickMe");
-});
 
 
 I18nManager.replaceAll();
