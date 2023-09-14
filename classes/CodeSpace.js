@@ -231,7 +231,7 @@ function defaultCode(){
   return `
 const game = new Game({ size: 15, count: 3 }).visualize();
 
-// Перемещает верхнюю плитку от первой башенки к третьей башне
+// ${ i18n("codeSpace-default-code-comment-game-step") }
 game.step(0, 2);
 
 const towers = game.state;
