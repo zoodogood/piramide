@@ -499,25 +499,80 @@ new InputAction("lang", {eventType: "change"}).connect()
   });
 
 
+  new InputAction("backup-restoreFromFile", {eventType: "click"}).connect()
+    .setAction(async input => {
+      const node = document.createElement("input");
+      node.type = "file";
+      node.accept = ".json";
+      const whenResolve = new Promise(resolve => addEventListener("focus", resolve, {once: true}));
+      node.click();
+
+      await whenResolve;
+      const file = node.files[0];
+      if (!file){
+        return;
+      }
+      
+      const reader = new FileReader();
+      const whenRead = new Promise(resolve => reader.addEventListener("load", resolve, {once: true}));
+      reader.readAsText(file);
+      const {target: {result}} = await whenRead;
+      const data = JSON.parse(result);
+
+      const modalWindow = new ModalWindow({size: { width: 640, height: 350, minWidth: 350, minHeight: 350 }});
+      const container = document.createElement("article");
+      container.style.cssText = "display: flex; flex-direction: column; padding: 1em; align-items: start";
+      container.innerHTML = `
+        1) <button data-restore-all>Восстановить все данные</button>
+        2) <button data-restore-params>Восстановить только настройки</button>
+        3) <button data-restore-stats>Восстановить только статистику</button>
+        4) <button data-set-default>Сбросить к параметрам по умолчанию</button>
+        5) <button data-cancel>Отменить операцию</button>
+      `;
+      container.querySelector("[data-restore-all]").onclick = () => {
+        localDB.data = data;
+        localDB.saveData();
+        InputAction.loadParams();
+        modalWindow.close();
+      }
+      container.querySelector("[data-restore-params]").onclick = () => {
+        localDB.data.userParams = data.userParams;
+        localDB.saveData();
+        InputAction.loadParams();
+        modalWindow.close();
+      }
+      container.querySelector("[data-restore-stats]").onclick = () => {
+        const {statistic} = data;
+        Object.assign(localDB.data, {statistic});
+        localDB.saveData();
+        InputAction.loadParams();
+        modalWindow.close();
+      };
+      container.querySelector("[data-set-default]").onclick = () => {
+        const isConfirmed = prompt(`Введите "сброс", чтобы подтвердить`)?.toUpperCase() === "СБРОС";
+        if (!isConfirmed){
+          return;
+        }
+
+        localDB.data.userParams = structuredClone(Params.defaultValues);
+        localDB.saveData();
+        InputAction.loadParams();
+        modalWindow.close();
+      };
+      container.querySelector("[data-cancel]").onclick = () => {
+        modalWindow.close();
+      }
+      modalWindow.element.append(container);
+    });
+
+  new InputAction("backup-saveFile", {eventType: "click"}).connect()
+    .setAction(async input => {
+      const data = localDB.data;
+      saveAsFile(`piramide-backup-where-${ document.location.href }.json`, data, {beautify: true});
+    });
+
 
 
 InputAction.loadParams();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 I18nManager.replaceAll();

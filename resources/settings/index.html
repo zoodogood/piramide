@@ -245,6 +245,8 @@
         </label>
       </section>
 
+     
+
       <section>
         <h2 i18n = "content">{{ settings-action-lang-h2 }}</h2>
         <small>i18n</small>
@@ -253,6 +255,13 @@
           <option value = "ru">{{ settings-action-lang-ru }}</option>
           <option value = "ua">{{ settings-action-lang-ua }}</option>
         </select>
+      </section>
+
+      <section>
+        <h2 i18n = "content">Резервное копирование</h2>
+        <br>
+        <span class = "lightLink" id = "backup-restoreFromFile">Восстановить из файла</span>
+        <span class = "lightLink" id = "backup-saveFile">Скачать файл</span>
       </section>
 
 
@@ -277,4 +286,7 @@
   <script type="text/javascript" src = "resources/settings/settings.js"></script>
 
   <script type="text/javascript" src = "classes/GlitchText.js"></script>
+  <script type="text/javascript" src = "classes/modalWindow.js"></script>
+
+  <link rel="stylesheet" href="resources/styles/modalWindow.css">
 </html>
