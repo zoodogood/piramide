@@ -11,7 +11,7 @@ body {
   align-items: flex-start;
 }
 
-main {
+body > main {
   box-sizing: border-box;
 
   display: flex;
@@ -173,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   cursor: default;
 }
 
-body section {
+body > main > section {
   width: 45vw;
   margin-bottom: 60px;
 }
