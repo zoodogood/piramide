@@ -183,3 +183,14 @@ function setDisableStatusForNodeBySelector(selector, disabled = true){
   const node = document.querySelector(selector);
   disabled ? node.setAttribute("disabled", true) : node.removeAttribute("disabled");
 }
+
+function saveAsFile(filename, data, {beautify = false} = {}) {
+  const beautifySpaces = beautify ? 2 : 0;
+
+  const blob = new Blob([JSON.stringify(data, null, beautifySpaces)]);
+  const node = document.createElement("a");
+  node.download = filename;
+  node.href = window.URL.createObjectURL(blob);
+  node.click()
+};
+
