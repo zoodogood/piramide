@@ -15,6 +15,7 @@
   overflow-y: overlay;
 
   scrollbar-width: thin;
+  scrollbar-color: #253015 #36393f;
 }
 
 ::selection {
