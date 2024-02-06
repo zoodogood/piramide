@@ -1,7 +1,7 @@
 const CACHE_NAME = "fetch-first";
 
 async function respondCached(event) {
-  const cache = await caches.open(STATIC_CACHE_NAME);
+  const cache = await caches.open(CACHE_NAME);
   return fetch(event.request.url)
     .then((fetchedResponse) => {
       cache.put(event.request, fetchedResponse.clone());
