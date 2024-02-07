@@ -144,12 +144,27 @@ stretch.addEventListener("mousedown", async () => {
   document.addEventListener( "mousemove", moveListener );
 
   await new Promise(res => document.addEventListener("mouseup", res, { once: true }));
-  document.removeEventListener( "mousemove", moveListener );
+  document.removeEventListener("mousemove", moveListener);
+  
+  const current = styleTarget.getPropertyValue("--codeSpace-code-height");
+  const isHided = current === "0";
+  if (isHided) {
+    return;
+  }
 
+  
+  
   Params.setValue("codeareaHeight", styleTarget.getPropertyValue("--codeSpace-code-height"));
 });
 
 
+stretch.addEventListener("dblclick", () => {
+  const styleTarget = document.querySelector("body > main").style;
+  const current = styleTarget.getPropertyValue("--codeSpace-code-height");
+  const isHided = current === "0";
+
+  styleTarget.setProperty("--codeSpace-code-height", isHided ? Params.getValue("codeareaHeight") : "0");
+})
 
 
 
