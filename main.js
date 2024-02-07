@@ -136,10 +136,8 @@ I18nManager.replaceAll();
 (function registerPWAWorker() {
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("pwa.worker.js", { scope: "." }).then(() => {
-      console.log('Service Worker registered successfully.');
-    }).catch(error => {
-      console.log('Service Worker registration failed:', error);
+    navigator.serviceWorker.register("pwa.worker.js", { scope: "." }).catch(error => {
+      console.error("Service Worker registration failed:", error);
     });
   }
 })();
