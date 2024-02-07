@@ -154,7 +154,7 @@ stretch.addEventListener("mousedown", async () => {
 
   
   
-  Params.setValue("codeareaHeight", styleTarget.getPropertyValue("--codeSpace-code-height"));
+  Params.setValue("codeareaHeight", styleTarget.getPropertyValue("--codeSpace-code-height"), {forceSave: true});
 });
 
 
