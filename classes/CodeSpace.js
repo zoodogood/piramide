@@ -67,6 +67,7 @@ new Button("scoreMap-button", clickEvent => {
 
 
 new Button("copy-button", clickEvent => {
+  Alert.setDelayMultiplayer(1);
   Alert.create("Весь код был скопирован в Ваш буфер обмена");
   navigator.clipboard.writeText( codearea.textContent );
 });

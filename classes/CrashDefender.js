@@ -29,6 +29,7 @@ class Defender {
     gtag("event", "'what's happens?'");
 
 
+    Alert.setDelayMultiplayer(2.5);
     Alert.create(i18n("crashDefender-crash-message"), "warning", i18n("crashDefender-crash-title"));
   }
 }

@@ -6,6 +6,11 @@ class AlertBubble {
     this.delayMultiplayer = delayMultiplayer;
   }
 
+  setDelayMultiplayer(delay) {
+    this.delayMultiplayer = delay;
+    return this;
+  }
+
 
   async create(description, type = "success", title = false, {deletable: deletable, id: id} = {}){
     let timeoutDelay = this.timeout - Date.now();
@@ -48,7 +53,7 @@ class AlertBubble {
 
     this.field.onclick = this.remove.bind(this, alert);
 
-    await delay(this.delayMultiplayer * description.length * 20 + 3500);
+    await delay(this.delayMultiplayer * (description.length * 20 + 3500));
     this.remove(alert);
   }
 
