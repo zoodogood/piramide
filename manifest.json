@@ -6,7 +6,13 @@
     {
       "src": "resources/images/icon.webp",
       "sizes": "any",
-      "type": "image/png"
+      "type": "image/webp"
+    },
+    {
+      "src": "resources/images/icon.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "masked"
     }
   ],
   "theme_color": "#282741",
