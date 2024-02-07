@@ -186,7 +186,7 @@ globalThis.i18nLanguages = {
 
 
     "crashDefender-crash-title": "Сторінка запинилася?",
-    "crashDefender-crash-message": "На нашу думку, у процесі виконання алгоритму прошлого разу, гра зависла.\nЯкщо все було в порядку, проігноруйте це повідомлення и спокійно натисніть \"Грати!\"\n\nВ обратному випадку з ймовірністю 99.9% це був нескінченний цикл."
+    "crashDefender-crash-message": "Якщо все було добре, ігноруйте це повідомлення і спокійно натискайте \"Грати!\" Якщо ні, то з ймовірністю «99.9%» це був нескінченний цикл."
   },
 
 
@@ -382,7 +382,7 @@ globalThis.i18nLanguages = {
 
 
     "crashDefender-crash-title": "Страница остановилась?",
-    "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."
+    "crashDefender-crash-message": "Если все было в порядке, проигнорируйте это сообщение и спокойно нажмите кнопку \"Играть!\". Если нет, то с вероятностью «99,9%» это был бесконечный цикл."
 
 
 
@@ -448,23 +448,23 @@ globalThis.i18nLanguages = {
 
     "settings-section-main": "Main:",
 
-    "settings-action-launchOnStart-h2": "Launched you code on page loaded (possible translation errors #ff0000)",
+    "settings-action-launchOnStart-h2": "Runs you code on page loaded",
     "settings-action-launchOnStart-details":
-      `(NEED TRANSLATE #ff0000)<span>По умолчанию пользовательский код срабатывает для большей динамики происходящего, но это также может привести к нежелательным последствием — когда страница ломается и отредактировать скрипт никак нельзя.</span><br><br>
+      `<span>By default, custom code is triggered to make things more dynamic, but this can also lead to unintended consequences — when the page crashes and there is no way to edit the script.</span><br><br>
        <span class = "margin-top">
-         <b>Примечание:</b><br>
-         Альтернативный способ открыть игру не запуская алгоритм — производить запуск по этому адресу <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
-         (Стоит <code>?ignore</code> в конце ссылки.)
+         <b>Note:</b><br>
+         An alternative way to open the game without running the algorithm is to launch at this address <a href = "https://zoodogood.github.io/piramide/?ignore" class = "lightLink">https://zoodogood.github.io/piramide/?ignore</a><br>
+         (There is a <code>?ignore</code> at the end of the link.)
        </span>`,
 
-    "settings-action-multiSlab-h2": "Несколько плит двигаются вместе (NEED TRANSLATE #ff0000)",
-    "settings-action-multiSlab-details": "Мульти-плитки — несколько плиток может перемещаться параллельно, что значительно повышает скорость, но снижает очевидность происходящего и способно сбить столку.<br>Эффективность этой функции наиболее ощутима в сложных алгоритмах*<br>",
+    "settings-action-multiSlab-h2": "Multiple plates moving together",
+    "settings-action-multiSlab-details": "Multi-tiles - several tiles can be moved in parallel, which significantly increases speed, but reduces the obviousness of what is happening and can be confusing.<br>The effectiveness of this feature is most noticeable in complex algorithms*<br>.",
 
-    "settings-action-activatePoligon-h2": "Сравнивать эффективность алгоритмов (NEED TRANSLATE #ff0000)",
+    "settings-action-activatePoligon-h2": "Compare the efficiency of algorithms",
     "settings-action-activatePoligon-details":
-      `<span>Серьёзно занялись оптимизацией, быть может Вам интересна статистика?<br>С момента включения этой функции будет вестись учёт среднего количества шагов, за которое Ваш код может одержать победу</span><br>
-       <span><br><b>Как это работает?</b><br>
-       1. С каждым выигрышом, алгоритм незаметно ещё раз выполниться в тестовом полигоне со статичными условиями, которые были подобраны мной для наибольшего баланса.<br>2. Результат выполнения будет записан в браузере для будущего сравнения</span>`,
+      `<span>Serious about optimization, maybe you are interested in statistics?<br>Since this feature has been enabled, the average number of steps your code can win in will be kept track of</span><br>
+       <span><br><b>How it works?</b><br>
+       1. With each win, the algorithm will stealthily run one more time in a test polygon with static conditions that I have chosen for the greatest balance.<br>2. The result of the execution will be recorded in the browser for future comparison</span>`,
 
     "settings-action-slabsSpeed-h2": "Movement speed",
     "settings-action-slabsSpeed-details": "The speed multiplier for moving slabs from tower to tower.",
@@ -497,7 +497,7 @@ globalThis.i18nLanguages = {
     "settings-action-removeLibrary-details": `Let's be honest, no tips are needed, and this button only interferes! You can hide the "Library" tab from the bottom panel.`,
 
     "settings-action-letItSnow-h2": "Let it snow",
-    "settings-action-letItSnow-details": `Скоро ведь новый год? Хотя.. Это зависит от того, какой сегодня день. (NEED TRANSLATE #ff0000)`,
+    "settings-action-letItSnow-details": `New Year's Eve is coming up, right? Well, that depends on what day it is.`,
 
 
     "settings-section-codeEditor": "Code editor:",
@@ -505,8 +505,8 @@ globalThis.i18nLanguages = {
     "settings-action-codeSyntax-h2": "Code syntax",
     "settings-action-codeSyntax-details": `Sets the color theme in the code editor.</br>Choose one of the syntax coloring options:`,
 
-    "settings-action-clearedConsole-h2": "Очищать консоль при каждом запуске кода (NEED TRANSLATE #ff0000)",
-    "settings-action-clearedConsole-details": "(NEED TRANSLATE #ff0000)В консоли разработчика может оказываться очень большое количество данных.. Чтобы выделить важное, иногда, нужно убрать ненужное.<br>Когда этот параметр включён, консоль будет чистится при нажатии кнопки Играть.<br>",
+    "settings-action-clearedConsole-h2": "Clear the console each time the code is run",
+    "settings-action-clearedConsole-details": "There can be a lot of data in the developer's console... To highlight important data, sometimes it is necessary to remove unnecessary data.<br>When this option is enabled, the console will be cleaned when the Play button is pressed.<br>",
 
     "settings-action-codeSize-h2": "Font size",
     "settings-action-codeSize-details": "Sets the font size in the code editor.",
@@ -515,13 +515,13 @@ globalThis.i18nLanguages = {
     "settings-action-codeareaHeight-details": "You can stretch the editor to fill the screen or, by setting a minimum size, close it",
 
 
-    "settings-section-paramsPage": "Настройки этого меню (NEED TRANSLATE #ff0000)",
+    "settings-section-paramsPage": "Setup page settings",
 
     "settings-action-menuThemeDark-h2": "Dark design",
-    "settings-action-menuThemeDark-details": "Switch the theme of this menu to black with red tones. (NEED TRANSLATE #ff0000) Для чего это было сделано?..",
+    "settings-action-menuThemeDark-details": "Switch the theme of this menu to black with red tones. What was it done for..?",
 
-    "settings-action-menuButtonsColor-h2": "Основной цвет кнопок (NEED TRANSLATE #ff0000)",
-    "settings-action-menuButtonsColor-details": "Переместите ползунок, чтобы выбрать оттенок цвета.",
+    "settings-action-menuButtonsColor-h2": "Accent color",
+    "settings-action-menuButtonsColor-details": "Move the slider to select the color hue.",
 
 
     "settings-section-other": "Other:",
@@ -530,7 +530,7 @@ globalThis.i18nLanguages = {
     "settings-action-strangeClick-details": "Towers will play a random animation when they are clicked<br>*Click* *click*",
 
     "settings-action-disableCustomScroll-h2": "Disable custom scroll",
-    "settings-action-disableCustomScroll-details": "(NEED TRANSLATE #ff0000) Если Вы пользователь компьютера, то навярняка заметили — скроллинг необычный.<br>Переключите ползунок только случае возникновения проблем. В ином случае, наслаждайтесь!",
+    "settings-action-disableCustomScroll-details": "If you are a computer user, you will surely notice that the scrolling is unusual. <br>Switch the slider only in case of problems. Otherwise, enjoy!",
 
     "settings-action-alternativeConsole-h2": "Alternative console",
     "settings-action-alternativeConsole-details": "Adds a button to the bottom panel to enable a simplified console.<br>Works for phones!",
@@ -581,7 +581,7 @@ globalThis.i18nLanguages = {
     "library-advice-#13-title": "Получите решение и распишитесь",
 
 
-    "crashDefender-crash-title": "Страница остановилась? (NEED TRANSLATE #ff0000)",
-    "crashDefender-crash-message": "Мы думаем, в процессе выполнения алгоритма в прошлый раз, игра зависла.\nЕсли всё было впорядке, проигнорируйте это сообщение и спокойно нажмите \"Играть!\"\n\nВ обратном случае с вероятностью 99.9% это был бесконечный цикл."
+    "crashDefender-crash-title": "Did the page stop?",
+    "crashDefender-crash-message": "If everything was fine, ignore this message and calmly click \"Play!\" If not, there is a «99.9%» chance that it was an infinite loop."
   }
 }
