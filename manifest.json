@@ -4,14 +4,14 @@
   "description": "The game. Write an algorithm to build the Tower of Hanoi",
   "icons": [
     {
-      "src": "/resources/images/icon.webp",
+      "src": "resources/images/icon.webp",
       "sizes": "any",
       "type": "image/png"
     }
   ],
   "theme_color": "#282741",
   "background_color": "#282741",
-  "start_url": "/",
+  "start_url": ".",
   "display": "fullscreen",
   "orientation": "natural"
 }
