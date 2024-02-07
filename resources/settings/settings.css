@@ -174,7 +174,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body > main > section {
-  width: 45vw;
   margin-bottom: 60px;
 }
 
@@ -246,7 +245,7 @@ input:checked + .slider::before {
   appearance: none;
 
   width: calc(50px + 70%);
-  max-width: 550px;
+  max-width: 400px;
   height: 28px;
 
   overflow: hidden;
