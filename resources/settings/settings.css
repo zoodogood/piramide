@@ -494,13 +494,13 @@ pre {
   }
 
   body section {
-    width: calc(100vw - 90px);
+    width: calc(100vw - 90px) !important;
     min-width: 160px;
   }
 
   main {
-    margin-left: 0px;
-    padding: 50px;
+    margin-left: 0px !important;
+    padding: 50px !important;
     overflow: hidden;
   }
 
