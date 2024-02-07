@@ -93,6 +93,7 @@ body {
   background-color: #36393f;
   color: #d5d0d4;
   overflow: hidden;
+  accent-color: var( --mainThemeColor );
 }
 
 body::-webkit-scrollbar {
