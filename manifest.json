@@ -12,7 +12,7 @@
       "src": "resources/images/icon.webp",
       "sizes": "any",
       "type": "image/webp",
-      "purpose": "masked"
+      "purpose": "maskable"
     }
   ],
   "theme_color": "#282741",
