@@ -147,7 +147,7 @@ stretch.addEventListener("mousedown", async () => {
   document.removeEventListener("mousemove", moveListener);
   
   const current = styleTarget.getPropertyValue("--codeSpace-code-height");
-  const isHided = current === "0";
+  const isHided = current === "0em";
   if (isHided) {
     return;
   }
@@ -161,9 +161,9 @@ stretch.addEventListener("mousedown", async () => {
 stretch.addEventListener("dblclick", () => {
   const styleTarget = document.querySelector("body > main").style;
   const current = styleTarget.getPropertyValue("--codeSpace-code-height");
-  const isHided = current === "0";
+  const isHided = current === "0em";
 
-  styleTarget.setProperty("--codeSpace-code-height", isHided ? Params.getValue("codeareaHeight") : "0");
+  styleTarget.setProperty("--codeSpace-code-height", isHided ? Params.getValue("codeareaHeight") : "0em");
 })
 
 
