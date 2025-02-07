@@ -2,223 +2,210 @@
 Для взаимодействия существует лишь одна публичная функция step (см. ниже) */
 
 class Game extends EventEmitter {
-    #arrayList
-    #arraySize
-    #arrayCount
-    #hardmode
+	#arrayList;
+	#arraySize;
+	#arrayCount;
+	#hardmode;
+	#original_rules;
 
-    constructor({ count: arrayCount = 3, size: arraySize = 15, hardmode = false }){
-      // super — техническая функция вызывающая EventEmmiter — позволяет работать с ивентами
-      super();
+	constructor({
+		count: arrayCount = 3,
+		size: arraySize = 15,
+		hardmode = false,
+		original_rules = false,
+	}) {
+		// super — техническая функция вызывающая EventEmmiter — позволяет работать с ивентами
+		super();
 
-      if (arrayCount < 3)
-        throw new Error("Minimum count — three array");
+		if (arrayCount < 3) throw new Error("Minimum count — three array");
 
+		if (arraySize < 4) throw new Error("Minimum size — four slabs");
 
-      if (arraySize < 4)
-        throw new Error("Minimum size — four slabs");
+		if (isNaN(arrayCount) || isNaN(arraySize))
+			throw new Error(
+				`Argument's must be a number size — ${arraySize}, count — ${arrayCount}`
+			);
 
+		if (original_rules) {
+			this.#original_rules = original_rules;
+			arrayCount = 3;
+			hardmode = true;
+		}
+		this.#arrayCount = arrayCount;
+		this.#arraySize = arraySize;
+		this.#hardmode = hardmode;
+		this.generate();
+	}
 
-      if ( isNaN(arrayCount) || isNaN(arraySize) )
-        throw new Error(`Argument's must be a number size — ${ arraySize }, count — ${ arrayCount }`);
-
-
-      this.#arrayCount = arrayCount;
-      this.#arraySize  = arraySize;
-      this.#hardmode   = hardmode;
-      this.generate();
-    }
-
-
-    /*
+	/*
       Создается новый Proxy-объект оригинального массива (Это означает, что на массивы напрямую нельзя будет повлиять извне)
       Он будет автоматически изменятся при "Шаге" игры
     */
-    get state(){
+	get state() {
+		// Создание точной копии массива
+		const array = this.#arrayList.map((arr) => [...arr]);
 
-      // Создание точной копии массива
-      const array = this.#arrayList
-        .map( arr => [...arr] );
+		const emulate = ({ from, to }) => {
+			array.at(to).push(array.at(from).pop());
+		};
 
+		this.on("step", emulate);
 
-      const emulate = ({from, to}) => {
+		// Очистка при новой генерации
+		this.once("generate", () => this.removeListener("step", emulate));
+		return array;
+	}
 
-        array.at(to)
-          .push(  array.at(from).pop()  );
+	#score;
+	generate() {
+		const size = this.#arraySize;
 
-      }
+		// Массив плит от 1 до `size` расположенных в случ. порядке
+		const slabs = [...new Array(size)]
+			.map((e, i) => i + 1)
+			.sort(() => Math.random() - 0.5);
 
-      this.on("step", emulate);
+		const count = this.#arrayCount;
 
-      // Очистка при новой генерации
-      this.once("generate", () => this.removeListener("step", emulate));
-      return array;
-    }
+		// Создаётся набор Массивов
+		this.#arrayList = [...new Array(count)].map((e) => []);
 
+		// Все плиты попадают в один из массивов созданных на прошлом этапе
+		console.log(this);
 
-    #score;
-    generate(){
-      const size  = this.#arraySize;
+		switch (this.#original_rules) {
+			case true: {
+				slabs
+					.toSorted((a, b) => b - a)
+					.forEach(($) => this.#arrayList[0].push($));
+				break;
+			}
+			default: {
+				slabs.forEach((e) =>
+					this.#arrayList[random(0, this.#arrayList.length - 1)].push(e)
+				);
+				break;
+			}
+		}
+		this.nullifyScore();
+		this.emit("generate");
+	}
 
-      // Массив плит от 1 до `size` расположенных в случ. порядке
-      const slabs = [...new Array( size )]
-        .map((e, i) => i + 1)
-        .sort(() => Math.random() - 0.5);
+	nullifyScore() {
+		this.#hasWin = false;
+		this.#score = 0;
+	}
 
-
-
-      const count = this.#arrayCount;
-
-      // Создаётся набор Массивов
-      this.#arrayList = [...new Array( count )]
-        .map(e => []);
-
-
-      // Все плиты попадают в один из массивов созданных на прошлом этапе
-      slabs.forEach(e => this.#arrayList[ random(0, this.#arrayList.length - 1) ].push(e));
-
-      this.nullifyScore();
-      this.emit("generate");
-    }
-
-
-
-    nullifyScore(){
-      this.#hasWin = false;
-      this.#score  = 0;
-    }
-
-
-
-    /* Перекидывает последний элемент массива с индексом from в to
+	/* Перекидывает последний элемент массива с индексом from в to
       Возвращает массив `to`
     */
-    step(from = 0, to = 2){
+	step(from = 0, to = 2) {
+		if (isNaN(from) || isNaN(to))
+			throw new Error(
+				`Argument's must be a number. Current from value — ${Object.prototype.toString.call(
+					from
+				)}, to — ${Object.prototype.toString.call(to)}`
+			);
 
-      if (isNaN(from) || isNaN(to))
-        throw new Error(`Argument's must be a number. Current from value — ${ Object.prototype.toString.call(from) }, to — ${ Object.prototype.toString.call(to) }`);
+		// Если массива с таким номером не существует
+		if (to > this.#arrayCount || from < -this.#arrayCount)
+			throw new Error(`Cannot step from array ${from} to ${to}`);
 
-      // Если массива с таким номером не существует
-      if (to > this.#arrayCount || from < -this.#arrayCount)
-        throw new Error(`Cannot step from array ${from} to ${to}`);
+		if (from < 0) from = this.#arrayCount + from;
 
+		if (to < 0) to = this.#arrayCount + to;
 
-      if (from < 0)
-        from = this.#arrayCount + from;
+		const first = this.#arrayList[from],
+			second = this.#arrayList[to];
 
-      if (to < 0)
-        to = this.#arrayCount + to;
+		if (first.length === 0)
+			throw new Error(
+				"You are trying to pull out an element of an empty array"
+			);
 
+		// В хард режиме нельзя класть большую плитку на меньшую
+		if (this.#hardmode && second.at(-1) < first.at(-1))
+			throw new Error(
+				`Into Hardmode You cannot put the larger slab on smaller`
+			);
 
-      const
-        first  = this.#arrayList[ from ],
-        second = this.#arrayList[ to ];
+		this.#upScore();
 
+		second.push(first.pop());
+		this.emit("step", { from, to });
 
-      if (first.length === 0)
-        throw new Error("You are trying to pull out an element of an empty array");
+		this.#checkFilling();
+		return second;
+	}
 
+	#checkFilling() {
+		// Ищем заполненный массив
+		let full = this.#arrayList.find((arr) => arr.length === this.#arraySize);
 
-      // В хард режиме нельзя класть большую плитку на меньшую
-      if ( this.#hardmode && second.at(-1) < first.at(-1) )
-        throw new Error(`Into Hardmode You cannot put the larger slab on smaller`);
+		// Если такого не существует завершить функцию
+		if (!full) return false;
 
+		// Проверяем все ли плиты на своих местах
+		let notSortedItem = full.find(
+			(num, index) => this.#arraySize - num !== index
+		);
 
+		if (notSortedItem) return false;
 
-      this.#upScore();
+		// Если функция не завершена, здесь ждёт победа!
+		this.#playerWinner();
+		return true;
+	}
 
-      second.push( first.pop() );
-      this.emit("step", {from, to});
+	#upScore() {
+		this.#score++;
+	}
 
-      this.#checkFilling();
-      return second;
-    }
+	getScore() {
+		return this.#score;
+	}
 
+	getGameParams() {
+		return {
+			count: this.#arrayCount,
+			size: this.#arraySize,
+			hard: this.#hardmode,
+		};
+	}
 
+	// Единожды срабатывает когда пользователь побеждает
+	#hasWin;
+	#playerWinner() {
+		if (this.#hasWin) return;
 
+		this.emit("win");
+		this.#hasWin = true;
+	}
 
-    #checkFilling(){
-      // Ищем заполненный массив
-      let full = this.#arrayList.find(arr => arr.length === this.#arraySize);
+	// Проверка на то, одержал ли победу пользователь
+	get hasWin() {
+		return !!this.#hasWin;
+	}
 
-      // Если такого не существует завершить функцию
-      if (!full)
-        return false;
+	// Устаналивает кастомное расположение плит
+	// Не должно использоваться в обычной игре
+	_setUserArray(array) {
+		const comprises = (arr) =>
+			arr instanceof Array && arr.every((n) => typeof n === "number");
+		let isArrayList = array.every(comprises);
 
-      // Проверяем все ли плиты на своих местах
-      let notSortedItem = full.find((num, index) => this.#arraySize - num !== index );
+		if (!isArrayList)
+			throw new Error(
+				"Bad structure. Expected — [  [1,2,3], [], [7, 5], [6]  ] "
+			);
 
+		this.#arrayList = array.map((arr) => [...arr]);
 
-      if (notSortedItem)
-        return false;
+		this.#arrayCount = array.length;
+		this.#arraySize = array.reduce((acc, arr) => acc + arr.length, 0);
 
-      // Если функция не завершена, здесь ждёт победа!
-      this.#playerWinner();
-      return true;
-    }
+		this.nullifyScore();
 
-
-
-    #upScore(){
-      this.#score++;
-    }
-
-
-
-    getScore(){
-      return this.#score;
-    }
-
-
-
-    getGameParams(){
-      return {
-        count: this.#arrayCount,
-        size:  this.#arraySize,
-        hard:  this.#hardmode
-      }
-    }
-
-
-
-    // Единожды срабатывает когда пользователь побеждает
-    #hasWin;
-    #playerWinner(){
-      if (this.#hasWin)
-        return;
-
-      this.emit("win");
-      this.#hasWin = true;
-    }
-
-
-
-    // Проверка на то, одержал ли победу пользователь
-    get hasWin(){
-      return !!this.#hasWin;
-    }
-
-
-
-    // Устаналивает кастомное расположение плит
-    // Не должно использоваться в обычной игре
-    _setUserArray( array ){
-
-      const comprises = (arr) => arr instanceof Array && arr.every(n => typeof n === "number");
-      let isArrayList = array.every(comprises);
-
-      if ( !isArrayList )
-        throw new Error("Bad structure. Expected — [  [1,2,3], [], [7, 5], [6]  ] ");
-
-      this.#arrayList = array.map(arr => [...arr]);
-
-      this.#arrayCount = array.length;
-      this.#arraySize  = array.reduce((acc, arr) => acc + arr.length, 0);
-
-      this.nullifyScore();
-
-      this.emit("generate");
-    }
-
-
+		this.emit("generate");
+	}
 }
