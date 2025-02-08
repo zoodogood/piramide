@@ -1,18 +1,14 @@
 :root {
-  --arraySize: min( 20vw, 40vh );
+  --arraySize: min(20vw, 40vh);
   --beamPercent: 0.75;
   --beamWidthMultiplayer: 0.5;
   --slabsHeightMultiplayer: 0.85;
   --arrayMarginMultiplayer: 0.15;
 }
 
-
 #game {
   width: 100vw;
-  height: max(
-    70vh,
-    calc(95.5% - var(--codeSpace-code-height, 26%))
-  );
+  height: max(70vh, calc(95.5% - var(--codeSpace-code-height, 26%)));
 
   overflow-x: overlay;
   contain: size;
@@ -39,18 +35,19 @@
   min-width: fit-content;
 }
 
-
 .array {
-  width:  var( --arraySize );
-  height: var( --arraySize );
-  margin: calc( var( --arraySize ) * var( --arrayMarginMultiplayer ) );
+  width: var(--arraySize);
+  height: var(--arraySize);
+  margin: calc(var(--arraySize) * var(--arrayMarginMultiplayer));
 
   border-bottom: dashed #000000;
-  border-width: calc( var( --arraySize ) / 20 );
+  border-width: calc(var(--arraySize) / 20);
 
   position: relative;
   transform-origin: center;
-  transition: transform 500ms, filter 500ms;
+  transition:
+    transform 500ms,
+    filter 500ms;
 
   display: flex;
   flex-direction: column;
@@ -62,7 +59,7 @@
 }
 
 .array:hover {
-  background: rgba(255, 255, 255, 0.03);  
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .array::before {
@@ -71,28 +68,29 @@
   position: absolute;
   background: #000;
 
-  width:  calc( var( --arraySize ) / 10 * var( --beamWidthMultiplayer ));
-  height: calc( var( --arraySize ) * var( --beamPercent ) );
+  width: calc(var(--arraySize) / 10 * var(--beamWidthMultiplayer));
+  height: calc(var(--arraySize) * var(--beamPercent));
 
   box-shadow: 5px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 15px 15px 0% 0%;
 }
 
-
 .slab {
   background-color: #ffffff;
-  width:  calc( var( --my-width,  1 ) * var( --arraySize ) );
-  height: calc(var( --arraySize ) * var( --beamPercent ) / var( --my-height, 15 ) * var( --slabsHeightMultiplayer ) );
-  transition: transform 200ms, border-radius 200ms;
+  width: calc(var(--my-width, 1) * var(--arraySize));
+  height: calc(
+    var(--arraySize) * var(--beamPercent) / var(--my-height, 15) *
+      var(--slabsHeightMultiplayer)
+  );
+  transition:
+    transform 200ms,
+    border-radius 200ms;
   z-index: -1;
 }
 
 .array .slab:first-child {
   border-radius: 15px 15px 0% 0%;
 }
-
-
-
 
 #scoreTitle {
   display: flex;
@@ -105,7 +103,6 @@
 
   overflow: hidden;
 }
-
 
 #title {
   color: rgba(0, 0, 0, 0.15);
@@ -127,7 +124,6 @@
   font-size: 0.4em;
 }
 
-
 #flyZone {
   position: absolute;
   width: 100%;
@@ -141,8 +137,6 @@
   position: absolute;
   border-radius: 15px 15px 0% 0%;
 }
-
-
 
 @media (max-width: 600px) {
   :root {
@@ -159,26 +153,20 @@
   }
 }
 
-
-.tower-example
-{
+.tower-example {
   overflow: hidden;
 }
 
-.ghost-tower
-{
+.ghost-tower {
   opacity: 0.5;
-
 }
 
-.ghost-tower .array
-{
+.ghost-tower .array {
   align-items: baseline;
   margin: 0;
-
 }
 
-.ghost-tower:nth-child(2){
+.ghost-tower:nth-child(2) {
   animation: game-ghostTower-translate 3s infinite alternate;
   margin-left: 1vh;
 }

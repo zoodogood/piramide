@@ -1,23 +1,22 @@
 const GUIDANCES = [
-  [ i18n("library-advice-#0-advice"),  i18n("library-advice-#0-title")  ],
-  [ i18n("library-advice-#1-advice"),  i18n("library-advice-#1-title")  ],
-  [ i18n("library-advice-#2-advice"),  i18n("library-advice-#2-title")  ],
-  [ i18n("library-advice-#3-advice"),  i18n("library-advice-#3-title")  ],
-  [ i18n("library-advice-#4-advice"),  i18n("library-advice-#4-title")  ],
-  [ i18n("library-advice-#5-advice"),  i18n("library-advice-#5-title")  ],
-  [ i18n("library-advice-#6-advice"),  i18n("library-advice-#6-title")  ],
-  [ i18n("library-advice-#7-advice"),  i18n("library-advice-#7-title")  ],
-  [ i18n("library-advice-#8-advice"),  i18n("library-advice-#8-title")  ],
-  [ i18n("library-advice-#9-advice"),  i18n("library-advice-#9-title")  ],
-  [ i18n("library-advice-#10-advice"), i18n("library-advice-#10-title") ],
-  [ i18n("library-advice-#11-advice"), i18n("library-advice-#11-title") ],
-  [ i18n("library-advice-#12-advice"), i18n("library-advice-#12-title") ],
-  [ i18n("library-advice-#13-advice"), i18n("library-advice-#13-title") ]
+  [i18n("library-advice-#0-advice"), i18n("library-advice-#0-title")],
+  [i18n("library-advice-#1-advice"), i18n("library-advice-#1-title")],
+  [i18n("library-advice-#2-advice"), i18n("library-advice-#2-title")],
+  [i18n("library-advice-#3-advice"), i18n("library-advice-#3-title")],
+  [i18n("library-advice-#4-advice"), i18n("library-advice-#4-title")],
+  [i18n("library-advice-#5-advice"), i18n("library-advice-#5-title")],
+  [i18n("library-advice-#6-advice"), i18n("library-advice-#6-title")],
+  [i18n("library-advice-#7-advice"), i18n("library-advice-#7-title")],
+  [i18n("library-advice-#8-advice"), i18n("library-advice-#8-title")],
+  [i18n("library-advice-#9-advice"), i18n("library-advice-#9-title")],
+  [i18n("library-advice-#10-advice"), i18n("library-advice-#10-title")],
+  [i18n("library-advice-#11-advice"), i18n("library-advice-#11-title")],
+  [i18n("library-advice-#12-advice"), i18n("library-advice-#12-title")],
+  [i18n("library-advice-#13-advice"), i18n("library-advice-#13-title")],
 ];
 
-
 class Library {
-  constructor({ container, symbolsCount }){
+  constructor({ container, symbolsCount }) {
     this.container = container;
     this.symbolsCount = symbolsCount;
     container.classList.add("library-container");
@@ -25,16 +24,21 @@ class Library {
     this.manager = new GuidancesManager();
 
     container.innerHTML = this.constructor.HTML;
-    this.addCodeBlocks( this.container.querySelector("#codesBlocks"), this.manager.getOpening() );
+    this.addCodeBlocks(
+      this.container.querySelector("#codesBlocks"),
+      this.manager.getOpening(),
+    );
     this.addDraggableHandlers();
 
-    this.checkDiscoverises(this.container.querySelector(".discoveries"), this.symbolsCount);
+    this.checkDiscoverises(
+      this.container.querySelector(".discoveries"),
+      this.symbolsCount,
+    );
   }
 
-
-  addCodeBlocks(container, opening = []){
-    for (let index of opening){
-      let [code, title] = GUIDANCES.at( index );
+  addCodeBlocks(container, opening = []) {
+    for (let index of opening) {
+      let [code, title] = GUIDANCES.at(index);
       let node = document.createElement("code");
 
       node.title = title;
@@ -45,60 +49,51 @@ class Library {
     }
   }
 
-
-  addDraggableHandlers(){
+  addDraggableHandlers() {
     let container = this.container.querySelector("#codesBlocks");
-    const isCode = (node) => node.nodeName === "CODE" && this.container.contains(node);
+    const isCode = (node) =>
+      node.nodeName === "CODE" && this.container.contains(node);
 
     const swipeBlocks = (node, targetNode) => {
       let next = targetNode.nextElementSibling;
 
-      if (next === node)
-        next = next.previousElementSibling;
+      if (next === node) next = next.previousElementSibling;
 
       container.insertBefore(targetNode, node);
       container.insertBefore(node, next);
 
-      this.manager.update( this.container.querySelector("#codesBlocks") );
-    }
+      this.manager.update(this.container.querySelector("#codesBlocks"));
+    };
 
     let ephemeral, codeNode;
 
-    const moveHandler  = (mouseEvent) => {
+    const moveHandler = (mouseEvent) => {
       let { x: containerX, y: containerY } = container.getBoundingClientRect();
       containerY -= container.scrollTop;
 
       let { width, height } = ephemeral.getBoundingClientRect();
 
-      ephemeral.style.top  = `${ mouseEvent.clientY - containerY - height / 2 }px`;
-      ephemeral.style.left = `${ mouseEvent.clientX - containerX - width  / 2 }px`;
+      ephemeral.style.top = `${mouseEvent.clientY - containerY - height / 2}px`;
+      ephemeral.style.left = `${mouseEvent.clientX - containerX - width / 2}px`;
     };
-
 
     const enterHandler = (mouseEvent) => {
       let targetNode = mouseEvent.path.find(isCode);
-      if (!targetNode || targetNode === codeNode)
-        return;
+      if (!targetNode || targetNode === codeNode) return;
 
       targetNode.classList.add("dragzone");
     };
 
-
     const leaveHandler = (mouseEvent) => {
       let targetNode = mouseEvent.path.find(isCode);
-      if (!targetNode || targetNode === codeNode)
-        return;
+      if (!targetNode || targetNode === codeNode) return;
 
       targetNode.classList.remove("dragzone");
     };
 
-
-
-
-    container.addEventListener("mousedown", async mouseEvent => {
+    container.addEventListener("mousedown", async (mouseEvent) => {
       codeNode = mouseEvent.path.find(isCode);
-      if (!codeNode)
-        return;
+      if (!codeNode) return;
 
       ephemeral = codeNode.cloneNode(true);
       ephemeral.classList.add("ephemeral");
@@ -108,123 +103,108 @@ class Library {
 
       container.addEventListener("mousemove", moveHandler);
       container.addEventListener("mouseover", enterHandler);
-      container.addEventListener("mouseout",  leaveHandler);
+      container.addEventListener("mouseout", leaveHandler);
 
-
-      let mouseUpEvent = await new Promise(res => document.body.addEventListener("mouseup", res, {once: true}));
-
+      let mouseUpEvent = await new Promise((res) =>
+        document.body.addEventListener("mouseup", res, { once: true }),
+      );
 
       container.removeEventListener("mousemove", moveHandler);
       container.removeEventListener("mouseover", enterHandler);
-      container.removeEventListener("mouseout",  leaveHandler);
+      container.removeEventListener("mouseout", leaveHandler);
 
       codeNode.classList.remove("dragged");
       ephemeral.remove();
 
       let targetNode = mouseUpEvent.path.find(isCode);
-      if (!targetNode || targetNode === codeNode)
-        return;
+      if (!targetNode || targetNode === codeNode) return;
 
       targetNode.classList.remove("dragzone");
       swipeBlocks(codeNode, targetNode);
     });
   }
-  displayTargetHTML(){
+  displayTargetHTML() {
     let target = this.manager.getSymbolsTarget() - this.symbolsCount;
 
-    if (target < 0)
-      return "";
+    if (target < 0) return "";
 
-    if (this.manager.getOpening().length === GUIDANCES.length)
-      return "";
+    if (this.manager.getOpening().length === GUIDANCES.length) return "";
 
-    return ;
+    return;
   }
 
-
-  checkDiscoverises(container, count){
-    new Discoveries({ library: this, container })
-      .checkReady(count)
-      .init();
+  checkDiscoverises(container, count) {
+    new Discoveries({ library: this, container }).checkReady(count).init();
   }
-
 
   static HTML = `
-    <span><small>${ i18n("library-container-message") }</small></span>
+    <span><small>${i18n("library-container-message")}</small></span>
     <br>
     <main id = "codesBlocks"></main>
     <hr>
     <br>
     <div class = "discoveries"></div>
-  `
+  `;
 }
-
-
-
-
 
 class GuidancesManager {
   #opening;
-  constructor(){
-    this.#opening = localDB.getItem("guidances", {default: this.constructor.BASIC_GUIDANCES});
-
+  constructor() {
+    this.#opening = localDB.getItem("guidances", {
+      default: this.constructor.BASIC_GUIDANCES,
+    });
   }
 
-
-  getOpening(){
+  getOpening() {
     return this.#opening;
   }
 
-
-  getSymbolsTarget(){
-      return ~~( Math.pow(1.22106, this.#opening.length + 1) * 65 );
+  getSymbolsTarget() {
+    return ~~(Math.pow(1.22106, this.#opening.length + 1) * 65);
   }
 
-
-  update( container ){
+  update(container) {
     let childList = container.children;
-    let codeNodes = [...childList].filter(node => node.nodeName === "CODE");
+    let codeNodes = [...childList].filter((node) => node.nodeName === "CODE");
 
-
-    for (let i = 0; i < codeNodes.length; i++){
+    for (let i = 0; i < codeNodes.length; i++) {
       const title = codeNodes[i].title;
-      const block = GUIDANCES[ this.#opening[i] ];
+      const block = GUIDANCES[this.#opening[i]];
 
-      if ( block === undefined ){
-        this.#opening.push( GUIDANCES.findIndex(([code, id]) => id === title) );
+      if (block === undefined) {
+        this.#opening.push(GUIDANCES.findIndex(([code, id]) => id === title));
         continue;
       }
 
-
-      if ( block[1] === title )
-        continue;
+      if (block[1] === title) continue;
 
       // swipe
-      if ( block[1] !== title ) {
-        let swipeIndex = this.#opening.findIndex( index => GUIDANCES.at(index)[1] === title );
-        this.#opening[i] = this.#opening.splice(swipeIndex, 1, this.#opening[i]).at(0);
+      if (block[1] !== title) {
+        let swipeIndex = this.#opening.findIndex(
+          (index) => GUIDANCES.at(index)[1] === title,
+        );
+        this.#opening[i] = this.#opening
+          .splice(swipeIndex, 1, this.#opening[i])
+          .at(0);
       }
-
     }
 
-    localDB.setItem("guidances", this.#opening, {forceSave: true});
+    localDB.setItem("guidances", this.#opening, { forceSave: true });
   }
-
 
   static BASIC_GUIDANCES = [0, 1, 2, 3, 4];
 }
 
-
-
-
 class Discoveries {
-  constructor({ library, container }){
-    this.library   = library;
+  constructor({ library, container }) {
+    this.library = library;
     this.container = container;
 
     let opening = library.manager.getOpening();
-    let unavailable = GUIDANCES.filter( (e, i) => !opening.includes(i) )
-      .slice(0, 3);
+    let unavailable = GUIDANCES.filter((e, i) => !opening.includes(i)).slice(
+      0,
+      3,
+    );
 
     this.buttons = unavailable.map(([code, title]) => {
       let node = document.createElement("div");
@@ -234,59 +214,53 @@ class Discoveries {
     });
   }
 
-
-  checkReady(count){
+  checkReady(count) {
     let target = this.library.manager.getSymbolsTarget();
-    if (count < target)
-      this.lacks = target - count;
+    if (count < target) this.lacks = target - count;
 
     return this;
   }
 
+  init() {
+    if ("lacks" in this) return this.displayLacks();
 
-  init(){
-    if ("lacks" in this)
-      return this.displayLacks();
-
-    let isMaximum = this.library.manager.getOpening().length === GUIDANCES.length;
-    if (isMaximum)
-      return;
+    let isMaximum =
+      this.library.manager.getOpening().length === GUIDANCES.length;
+    if (isMaximum) return;
 
     this.clickHandler = this.#clickHandler.bind(this, this.library);
     this.container.addEventListener("click", this.clickHandler);
-    this.buttons.forEach(node => this.container.append(node));
+    this.buttons.forEach((node) => this.container.append(node));
   }
 
-
-  displayLacks(){
+  displayLacks() {
     let node = document.createElement("span");
     node.textContent = i18n("library-container-lacks", this.lacks);
     this.container.append(node);
   }
 
-
-  #clickHandler(library, clickEvent){
-    if (clickEvent.target.nodeName === "SECTION")
-      return;
+  #clickHandler(library, clickEvent) {
+    if (clickEvent.target.nodeName === "SECTION") return;
 
     this.container.removeEventListener("click", this.clickHandler);
 
     this.container.innerHTML = "";
-    let index = GUIDANCES.findIndex(([code, title]) => title === clickEvent.target.textContent);
+    let index = GUIDANCES.findIndex(
+      ([code, title]) => title === clickEvent.target.textContent,
+    );
 
-    if (!~index)
-      throw new Error("unknow Title");
+    if (!~index) throw new Error("unknow Title");
 
     let codesBlocks = library.container.querySelector("#codesBlocks");
 
     library.addCodeBlocks(codesBlocks, [index]);
-    library.manager.update( codesBlocks );
+    library.manager.update(codesBlocks);
 
     library.checkDiscoverises(this.container, library.symbolsCount);
   }
 
   static HTML = `
-      <center>${ i18n("library-container-take")}</center>
+      <center>${i18n("library-container-take")}</center>
       { buttons }
   `;
 }

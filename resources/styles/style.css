@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
 @font-face {
   font-family: Icons;
-  src: url('../fontello.ttf');
+  src: url("../fontello.ttf");
 }
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   padding: 0px;
   margin: 0px;
 
@@ -23,9 +23,8 @@
 }
 
 .icon {
-  font-family: 'Icons', 'Open Sans', sans-serif;
+  font-family: "Icons", "Open Sans", sans-serif;
 }
-
 
 ::-webkit-scrollbar-button {
   display: none;
@@ -51,7 +50,12 @@ p {
   display: inline;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
 }
 
@@ -85,7 +89,6 @@ html {
   overflow-x: hidden;
 }
 
-
 body {
   display: flex;
   flex-direction: column;
@@ -93,24 +96,17 @@ body {
   background-color: #36393f;
   color: #d5d0d4;
   overflow: hidden;
-  accent-color: var( --mainThemeColor );
+  accent-color: var(--mainThemeColor);
 }
 
 body::-webkit-scrollbar {
   width: 7px;
 }
 
-
-
-
 /*
   background: linear-gradient(316deg, #ffc857 0%, #32254a 74%);
   background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
                 radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
-
-
-
-
 
 code {
   font-family: "Menlo, Consolas", "DejaVu Sans Mono", monospace;
@@ -122,11 +118,9 @@ code.no-wrap {
   white-space: nowrap;
 }
 
-
 .spacing {
   letter-spacing: 3px;
 }
-
 
 .canvas-snow {
   top: 0;

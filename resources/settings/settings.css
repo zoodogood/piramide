@@ -70,7 +70,9 @@ main > h1::before {
 
 #settings-footer-towers img {
   opacity: 0.5;
-  transition: opacity 300ms, height 0s;
+  transition:
+    opacity 300ms,
+    height 0s;
   height: 5vh;
 }
 
@@ -78,7 +80,9 @@ main > h1::before {
   height: min(100vh, 80vw);
   opacity: 1;
   flex-shrink: 0;
-  transition: opacity 300ms, height 30s;
+  transition:
+    opacity 300ms,
+    height 30s;
 }
 
 .round-button {
@@ -123,7 +127,6 @@ main > h1::before {
   backdrop-filter: brightness(1.2);
 }
 
-
 .round-button:active {
   animation: click 50ms ease-in 0s 2 alternate forwards;
   outline: none;
@@ -133,9 +136,8 @@ main > h1::before {
   filter: brightness(1.4);
 }
 
-
-
-#button-exit::before, #button-exit::after {
+#button-exit::before,
+#button-exit::after {
   content: "";
   display: block;
   position: absolute;
@@ -153,22 +155,19 @@ main > h1::before {
   transform: rotateZ(-45deg);
 }
 
-
-
-
-
-
 details[open] > summary:first-of-type {
   margin-bottom: 10px;
-
 }
 
 details[open] {
-
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: left;
   cursor: default;
 }
@@ -189,11 +188,9 @@ details summary {
   overflow: hidden;
 }
 
-
 .margin-top {
   margin-top: 15px;
 }
-
 
 .switch {
   display: inline-block;
@@ -207,7 +204,6 @@ details summary {
   display: none;
 }
 
-
 .slider {
   position: absolute;
   width: 64px;
@@ -216,7 +212,6 @@ details summary {
   border-radius: 30px;
   transition: background 200ms;
 }
-
 
 .slider::before {
   content: "";
@@ -229,15 +224,12 @@ details summary {
 }
 
 input:checked + .slider {
-  background: var( --buttonsMainColor );
+  background: var(--buttonsMainColor);
 }
 
 input:checked + .slider::before {
-  transform: translateX( 36px );
+  transform: translateX(36px);
 }
-
-
-
 
 .range {
   -webkit-appearance: none;
@@ -255,7 +247,6 @@ input:checked + .slider::before {
   outline: 0;
   background: none;
 }
-
 
 .range::-webkit-slider-runnable-track {
   -webkit-appearance: none;
@@ -291,9 +282,10 @@ input:checked + .slider::before {
   background-color: white;
   border-radius: 14px;
   outline-offset: -5px;
-  box-shadow: calc(-50vw - 20px) 0 0 50vw var( --buttonsMainColor ), inset 0 0 0 5px white;
+  box-shadow:
+    calc(-50vw - 20px) 0 0 50vw var(--buttonsMainColor),
+    inset 0 0 0 5px white;
 }
-
 
 .range::-moz-range-thumb {
   -webkit-appearance: none;
@@ -307,13 +299,13 @@ input:checked + .slider::before {
   background-color: white;
   border-radius: 14px;
   outline-offset: -5px;
-  box-shadow: calc(-50vw - 20px) 0 0 50vw var( --buttonsMainColor ), inset 0 0 0 5px white;
+  box-shadow:
+    calc(-50vw - 20px) 0 0 50vw var(--buttonsMainColor),
+    inset 0 0 0 5px white;
 }
 
-
-
-
-.text-input, .content-input {
+.text-input,
+.content-input {
   background: none;
   border: none;
   outline: none;
@@ -323,8 +315,7 @@ input:checked + .slider::before {
 }
 
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button
-{
+input[type="number"]::-webkit-inner-spin-button {
   appearance: none;
   -webkit-appearance: none;
   margin: 0;
@@ -333,7 +324,6 @@ input[type="number"]::-webkit-inner-spin-button
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 
 .content-input {
   padding: 5px;
@@ -349,7 +339,6 @@ input[type="number"] {
   border: 1px solid #808080;
 }
 
-
 .button-input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -362,7 +351,7 @@ input[type="number"] {
   max-width: 150px;
   min-height: 34px;
   color: #ece8ea;
-  background: var( --buttonsMainColor );
+  background: var(--buttonsMainColor);
   letter-spacing: 1.5px;
   padding: 12px;
   border-radius: 50px;
@@ -371,7 +360,6 @@ input[type="number"] {
   font-style: italic;
   transition: all 100ms;
   margin-right: 15px;
-
 
   white-space: pre-line;
 }
@@ -384,8 +372,6 @@ input[type="number"] {
   transform: scale(0.8);
 }
 
-
-
 .danger-button {
   background: #bf4343;
   font-weight: bold;
@@ -396,7 +382,6 @@ input[type="number"] {
   background: #ffffff;
   color: #ff0000;
 }
-
 
 .select-input {
   box-sizing: border-box;
@@ -413,31 +398,25 @@ input[type="number"] {
   outline: none;
 }
 
-
 .select-input option {
   background: black;
 }
 
 option:hover {
-   box-shadow: 0 0 10px 100px var( --buttonsMainColor ) inset;
+  box-shadow: 0 0 10px 100px var(--buttonsMainColor) inset;
 }
-
-
-
 
 pre {
   padding: 20px;
   max-height: 40vh;
 }
 
-
-
 .creator-element {
   display: flex;
   height: 54px;
   cursor: pointer;
   border-radius: 12px;
-  outline: var( --buttonsMainColor ) solid 2px;
+  outline: var(--buttonsMainColor) solid 2px;
   outline-offset: -10px;
   text-transform: uppercase;
   justify-content: center;
@@ -465,21 +444,15 @@ pre {
   top: 0px;
 }
 
-
 .self-destroy-_close-element svg {
   width: 14px;
   height: 14px;
-  stroke: var( --buttonsMainColor );
+  stroke: var(--buttonsMainColor);
 }
 
 .self-destroy-_close-element svg:hover {
   filter: brightness(1.5);
 }
-
-
-
-
-
 
 @media (max-width: 600px) {
   .range {
@@ -521,7 +494,6 @@ pre {
     background: #191919;
   }
 
-
   .round-button {
     padding: 0;
     height: 100%;
@@ -541,5 +513,4 @@ pre {
   .round-button > span {
     display: none;
   }
-  
 }

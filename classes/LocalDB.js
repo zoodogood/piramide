@@ -1,69 +1,73 @@
 class LocalDB {
-	constructor(prefix) {
-		this.storageKey = `${ prefix }-localDB`
-		this.data = JSON.parse(localStorage.getItem(this.storageKey) ?? "{}");
-	}
+  constructor(prefix) {
+    this.storageKey = `${prefix}-localDB`;
+    this.data = JSON.parse(localStorage.getItem(this.storageKey) ?? "{}");
+  }
 
-	saveData() {
-		const serializedData = JSON.stringify(this.data);
-		localStorage.setItem(this.storageKey, serializedData);
-	}
+  saveData() {
+    const serializedData = JSON.stringify(this.data);
+    localStorage.setItem(this.storageKey, serializedData);
+  }
 
-	getItem(key, options = {}) {
-		const { parent, lastSegment } = this.getParentAndlastSegmentByNotatedKey(key);
-		return parent?.[lastSegment] ?? options.default ?? null;
-	}
+  getItem(key, options = {}) {
+    const { parent, lastSegment } =
+      this.getParentAndlastSegmentByNotatedKey(key);
+    return parent?.[lastSegment] ?? options.default ?? null;
+  }
 
-	setItem(key, value, options = {}) {
-		if (typeof value === "function") {
-			value = value(this.getItem(key, options));
-		}
+  setItem(key, value, options = {}) {
+    if (typeof value === "function") {
+      value = value(this.getItem(key, options));
+    }
 
-		const { parent, lastSegment } = this.getParentAndlastSegmentByNotatedKey(key);
-		parent[lastSegment] = value;
+    const { parent, lastSegment } =
+      this.getParentAndlastSegmentByNotatedKey(key);
+    parent[lastSegment] = value;
 
-		options.forceSave && this.saveData();
-		return parent[lastSegment];
-	}
+    options.forceSave && this.saveData();
+    return parent[lastSegment];
+  }
 
-	hasItem(key, options = {}){
-		const {parent, lastSegment} = this.getParentAndlastSegmentByNotatedKey(key);
-		return lastSegment in parent;
-	}
+  hasItem(key, options = {}) {
+    const { parent, lastSegment } =
+      this.getParentAndlastSegmentByNotatedKey(key);
+    return lastSegment in parent;
+  }
 
-	removeItem(key, options = {}){
-		const {parent, lastSegment} = this.getParentAndlastSegmentByNotatedKey(key);
-		
-		delete parent[lastSegment];
-		options.forceSave && this.saveData();
-	}
+  removeItem(key, options = {}) {
+    const { parent, lastSegment } =
+      this.getParentAndlastSegmentByNotatedKey(key);
 
-	getParentAndlastSegmentByNotatedKey(key) {
-		const pathSegments = key.split(".");
-		let parent = this.data;
+    delete parent[lastSegment];
+    options.forceSave && this.saveData();
+  }
 
-		for (let segment of pathSegments.slice(0, -1)) {
-			segment = this.handleOptionalProtocol({parent, segment});
+  getParentAndlastSegmentByNotatedKey(key) {
+    const pathSegments = key.split(".");
+    let parent = this.data;
 
-			if (!parent[segment]) {
-				return { parent: null, lastSegment: segment };
-			}
-			parent = parent[segment];
-		}
+    for (let segment of pathSegments.slice(0, -1)) {
+      segment = this.handleOptionalProtocol({ parent, segment });
 
-		return { parent, lastSegment: pathSegments.at(-1) ?? null };
-	}
+      if (!parent[segment]) {
+        return { parent: null, lastSegment: segment };
+      }
+      parent = parent[segment];
+    }
 
-	handleOptionalProtocol({parent, segment}){
-		if (segment.endsWith("?")) {
-			segment = segment.slice(0, -1);
-			if (!parent[segment]) {
-				parent[segment] = {};
-			}
-		}
+    return { parent, lastSegment: pathSegments.at(-1) ?? null };
+  }
 
-		return segment;
-	}
+  handleOptionalProtocol({ parent, segment }) {
+    if (segment.endsWith("?")) {
+      segment = segment.slice(0, -1);
+      if (!parent[segment]) {
+        parent[segment] = {};
+      }
+    }
+
+    return segment;
+  }
 }
 
 const localDB = new LocalDB("piramide");

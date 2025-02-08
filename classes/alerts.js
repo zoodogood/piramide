@@ -1,5 +1,5 @@
 class AlertBubble {
-  constructor ({ delayMultiplayer = 1 } = {}){
+  constructor({ delayMultiplayer = 1 } = {}) {
     this.field = this.createField();
 
     this.limit = window.innerWidth > 950 ? 4 : 2;
@@ -11,10 +11,14 @@ class AlertBubble {
     return this;
   }
 
-
-  async create(description, type = "success", title = false, {deletable: deletable, id: id} = {}){
+  async create(
+    description,
+    type = "success",
+    title = false,
+    { deletable: deletable, id: id } = {},
+  ) {
     let timeoutDelay = this.timeout - Date.now();
-    if (timeoutDelay > 0){
+    if (timeoutDelay > 0) {
       await delay(timeoutDelay);
       return this.create(description, type, title);
     }
@@ -25,17 +29,19 @@ class AlertBubble {
     const alert = document.createElement("div");
     alert.type = "normalAlert";
 
-    if (deletable === false){
+    if (deletable === false) {
       alert.deletable = false;
       alert.classList.add("nonDeletableAlert");
     }
 
     alert.classList.add(type, "alert");
-    title = title || {
-      "success": "Успешно!",
-      "warning": "Инфо",
-      "error"  : "Ошибка:"
-    }[type];
+    title =
+      title ||
+      {
+        success: "Успешно!",
+        warning: "Инфо",
+        error: "Ошибка:",
+      }[type];
 
     const paragraf = document.createElement("p");
     paragraf.textContent = title;
@@ -47,9 +53,10 @@ class AlertBubble {
 
     this.field.append(alert);
 
-    [...this.field.children].slice(0, -this.limit)
-      .filter(e => e.deletable !== false)
-      .forEach(e => this.remove(e));
+    [...this.field.children]
+      .slice(0, -this.limit)
+      .filter((e) => e.deletable !== false)
+      .forEach((e) => this.remove(e));
 
     this.field.onclick = this.remove.bind(this, alert);
 
@@ -57,7 +64,7 @@ class AlertBubble {
     this.remove(alert);
   }
 
-  async remove(element){
+  async remove(element) {
     await delay(100);
 
     element.classList.add("removed");
@@ -65,13 +72,12 @@ class AlertBubble {
     element.remove();
   }
 
-  createField(){
+  createField() {
     let field = document.createElement("div");
     field.classList.add("field", "alertField");
     document.body.append(field);
     return field;
   }
 }
-
 
 const Alert = new AlertBubble({ delayMultiplayer: 1 });

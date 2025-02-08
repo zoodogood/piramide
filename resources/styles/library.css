@@ -20,7 +20,6 @@
   flex-shrink: 0;
 }
 
-
 .library-container hr {
   border: none;
   opacity: 20%;
@@ -32,34 +31,27 @@
   margin-bottom: 10px;
 }
 
-
 .library-container::-webkit-scrollbar-thumb,
-.library-container *::-webkit-scrollbar-thumb
-{
+.library-container *::-webkit-scrollbar-thumb {
   background-color: rgba(115, 115, 115, 0.5);
   border-radius: 9em;
 }
 
 .library-container::-webkit-scrollbar-thumb:hover,
-.library-container *::-webkit-scrollbar-thumb:hover
-{
+.library-container *::-webkit-scrollbar-thumb:hover {
   background-color: rgba(115, 115, 115, 1);
 }
 
 .library-container::-webkit-scrollbar,
-.library-container *::-webkit-scrollbar
-{
+.library-container *::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-
-
 
 .library-container span {
   letter-spacing: 0.2px;
   text-align: center;
 }
-
 
 .library-container #codesBlocks {
   width: 100%;
@@ -68,7 +60,6 @@
 
   overflow: hidden;
 }
-
 
 .library-container code {
   display: block;
@@ -84,7 +75,6 @@
   pointer-events: none;
 }
 
-
 .library-container code.dragged {
   opacity: 40%;
   outline: 5px dashed black;
@@ -97,7 +87,6 @@
   outline-offset: -5px;
 }
 
-
 .library-container .ephemeral {
   position: absolute;
   width: auto;
@@ -105,13 +94,9 @@
   pointer-events: none;
 }
 
-
-
 .library-container .discoveries {
   width: 98%;
-
 }
-
 
 .library-container .discoveries div {
   display: flex;
@@ -128,12 +113,9 @@
   white-space: pre;
   background: rgba(200, 200, 200, 0.2);
 
-
-
   cursor: pointer;
   transition: transform 300ms;
 }
-
 
 .library-container .discoveries div:active {
   transform: scale(0.9, 1);
@@ -142,7 +124,6 @@
 .library-container .discoveries div:hover {
   border-bottom: 5px black solid;
 }
-
 
 .library-container .discoveries span {
   display: block;

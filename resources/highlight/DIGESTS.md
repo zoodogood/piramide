@@ -7,11 +7,13 @@ To do this you simply need to add the `integrity` attribute for each JavaScript 
 ```html
 <script
   src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"
-  integrity="sha384-LKzscvpyr8Tp/ecdXk4aItPXkD9HBHeUXJpyxh/+vgLKsmzR3dtFK4ruHRu5oid8"></script>
+  integrity="sha384-LKzscvpyr8Tp/ecdXk4aItPXkD9HBHeUXJpyxh/+vgLKsmzR3dtFK4ruHRu5oid8"
+></script>
 <!-- including any other grammars you might need to load -->
 <script
   src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/go.min.js"
-  integrity="sha384-rFquZ/snj+7+GynX2xDPDsD7DQIE6w8n91ynSWfX8Q0Pg9UmITvNLOf/noTwAKmF"></script>
+  integrity="sha384-rFquZ/snj+7+GynX2xDPDsD7DQIE6w8n91ynSWfX8Q0Pg9UmITvNLOf/noTwAKmF"
+></script>
 ```
 
 The full list of digests for every file can be found below.
@@ -34,7 +36,7 @@ sha384-08r+3TH9onFPvLk8Cvx0wWcdbdfY6dpbljOuYLPJIjdMAXAJ8QQSGXqzQ0eBVWZT language
 sha384-CTzGMmHfPnxR/asrb5EO6EYC9oJ9Tzxeo2SdpzFVtKr313+XS/+vKded4oYsHsyI languages/axapta.min.js
 sha384-UN4ZjOEIyu9irq77Guuj8Ue/Vp2I072tWKWxHEbS9TJaJ6Br23rkRVatFd8Ho9Rr languages/basic.min.js
 sha384-8WkRsic3IfuEOAoW3fx1K9B7LYiF6aY7qffBK0eIp8RkAdyRcaMgcvqSgemibYo+ languages/bnf.min.js
-sha384-nVdb9je5Cld82zXJ013LQtWBPWUMZl/gsDrsTTb/iGqca9gX56yc+PKMQfqeLBHQ languages/brainfuck.min.js
+sha384-nVdb9je5Cld82zXJ013LQtWBPWUMZl/gsDrsTTb/iGqca9gX56yc+PKMQfqeLBHQ languagesbr/ainfuck.min.js
 sha384-TU+haJgOsSjYVA7qDmqUoOvJzOQqarT72YT2TTKUJH+gek1WHh1+Go5OekKnM2mO languages/cal.min.js
 sha384-Q5YKmahq9V9Qst7XPb13BacX7JH7wNaWx4Y9oVzdxGXxtlGUuGet1SWHHhcJfV5s languages/capnproto.min.js
 sha384-cgPiNfBE8EI6KPdWInWXwDYC9bS7AnIKb2Moh+yLDSZLyxfsTBqV9JijKklx/8nB languages/ceylon.min.js

@@ -15,7 +15,6 @@
   overflow: hidden;
 }
 
-
 #readme footer {
   display: flex;
   height: 3vh;
@@ -23,7 +22,6 @@
   background-color: #1d1d1d;
   color: rgba(255, 255, 255, 0.2);
 }
-
 
 #readme h1 {
   text-align: left;
@@ -48,7 +46,6 @@
   overflow: visible;
 }
 
-
 #advice {
   line-height: 1.5;
   overflow: visible;
@@ -65,7 +62,6 @@
   margin-top: 5px;
 }
 
-
 #towerExample {
   align-self: center;
   margin-top: auto;
@@ -74,7 +70,6 @@
   display: flex;
   justify-content: center;
 }
-
 
 @media (max-width: 600px) {
   #readme footer {

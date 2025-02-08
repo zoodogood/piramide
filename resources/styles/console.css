@@ -7,7 +7,6 @@
   justify-content: space-between;
 }
 
-
 .console-node-input {
   position: sticky;
   bottom: 0;
@@ -30,7 +29,6 @@
 .console-input:placeholder-shown {
   font-style: italic;
 }
-
 
 .console-node-loggs {
   display: flex;
@@ -65,9 +63,8 @@
   background-color: #191920;
 }
 
-
 .console-msg-log {
-  border-color: var( --mainThemeColor );
+  border-color: var(--mainThemeColor);
 }
 
 .console-msg-info {
@@ -89,7 +86,6 @@
   color: #909090;
   font-style: italic;
 }
-
 
 @media (max-width: 600px) {
   .console-input:focus {

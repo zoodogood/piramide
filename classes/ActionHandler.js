@@ -1,7 +1,7 @@
 class ActionHandler {
   #prevent = false;
 
-  constructor(){
+  constructor() {
     this[Symbol.asyncIterator] = this.iteratorFunction;
     this.events = new EventEmitter();
 
@@ -9,53 +9,44 @@ class ActionHandler {
     this.index = 0;
   }
 
-
-
-  iteratorFunction(){
+  iteratorFunction() {
     return { next: this.iteratorNext.bind(this) };
   }
 
-
-
-  async iteratorNext(){
-
-    if ( this.#prevent ){
+  async iteratorNext() {
+    if (this.#prevent) {
       this.#prevent = false;
-      this.trace    = [];
-      this.index    = 0;
+      this.trace = [];
+      this.index = 0;
       return {
         done: true,
-        value: { trace: this.trace, index: this.index }
+        value: { trace: this.trace, index: this.index },
       };
     }
 
-
     // Очередь
-    if ( this.trace.length <= this.index )
-      await new Promise(res => this.events.once("push", res));
-    
-    
+    if (this.trace.length <= this.index)
+      await new Promise((res) => this.events.once("push", res));
 
-    let action = this.trace[ this.index++ ];
-    
+    let action = this.trace[this.index++];
 
-    if (!action){
+    if (!action) {
       this.index--;
-      
+
       return { done: false, values: null };
     }
 
-    localDB.setItem(`statistic?.${ action.type }`, (current) => current + 1);
+    localDB.setItem(`statistic?.${action.type}`, (current) => current + 1);
 
-    let promise = action.func( action );
+    let promise = action.func(action);
     promise.action = action;
-    this.processed.push( promise );
+    this.processed.push(promise);
 
     let data = {
       action,
-      next: this.trace.at( this.index ),
+      next: this.trace.at(this.index),
       trace: this.trace,
-      processed: this.processed
+      processed: this.processed,
     };
 
     /*
@@ -63,35 +54,28 @@ class ActionHandler {
       То досрочно запустить следующее действие
       Иначе ждать завершения всех текущих активных действий
     */
-    if ( await action.allowNext?.( data ) )
+    if (await action.allowNext?.(data))
       return { done: false, value: "pending" };
 
-    let values = await Promise.all( this.processed );
+    let values = await Promise.all(this.processed);
     this.processed = [];
     return { done: false, value: values };
   }
 
-
-
-  async handle(){
+  async handle() {
     let iterable = this;
 
-    if ( this.trace.length )
-      this.preventHundle();
+    if (this.trace.length) this.preventHundle();
 
     this.processed = [];
 
-    for await (let values of iterable)
-      this.events.emit("chunkHandled", values);
-
+    for await (let values of iterable) this.events.emit("chunkHandled", values);
   }
 
-
-
-  preventHundle({ clear = false } = {}){
-    this.push( {type: "beforeEnd"} );
+  preventHundle({ clear = false } = {}) {
+    this.push({ type: "beforeEnd" });
     this.#prevent = true;
-    this.push( {type: "afterEnd"} );
+    this.push({ type: "afterEnd" });
 
     localDB.saveData();
 
@@ -100,12 +84,8 @@ class ActionHandler {
     }
   }
 
-
-
-  push( action ){
-    this.trace.push( action );
+  push(action) {
+    this.trace.push(action);
     this.events.emit("push", action);
   }
-
-
 }

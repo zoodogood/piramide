@@ -1,157 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Ханойская Пирамидка</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href = "./">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="./" />
 
-    <meta property="og:title"       content="Ханойская Пирамидка" />
-    <meta property="og:url"         content="https://zoodogood.github.io/piramide/" />
-    <meta property="og:type"        content="website" />
-    <meta property="og:description" content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду." />
-    <meta property="og:image"       content="https://media.discordapp.net/attachments/565126051496198164/906115978637742090/G__111_PROJECTES_HTML_Project_CoolPyramid_index.html.png" />
+    <meta property="og:title" content="Ханойская Пирамидка" />
+    <meta property="og:url" content="https://zoodogood.github.io/piramide/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду."
+    />
+    <meta
+      property="og:image"
+      content="https://media.discordapp.net/attachments/565126051496198164/906115978637742090/G__111_PROJECTES_HTML_Project_CoolPyramid_index.html.png"
+    />
 
-    <meta name="keywords"    content="игра для программистов, алгоритм, хайнойская, башня, пирамида, ханойская пирамидка, написание алгоритма, игра на JavaScript, github"/>
-    <meta name="description" content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду."/>
+    <meta
+      name="keywords"
+      content="игра для программистов, алгоритм, хайнойская, башня, пирамида, ханойская пирамидка, написание алгоритма, игра на JavaScript, github"
+    />
+    <meta
+      name="description"
+      content="Это игра-головоломка, где пользователю предстоит написать алгоритм, чтобы решить детскую задачу — построить пирамиду."
+    />
 
-    <link rel="shorcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shorcut icon" href="./favicon.ico" type="image/x-icon" />
 
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content = "#36393f">
+    <meta name="theme-color" content="#36393f" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BJ9HS0CPW"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0BJ9HS0CPW"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-0BJ9HS0CPW');
+      gtag("config", "G-0BJ9HS0CPW");
     </script>
 
-    <link rel="stylesheet" href="resources/styles/style.css">
-    <link rel="stylesheet" href="resources/styles/main.css">
-    <link rel="stylesheet" href="resources/styles/game.css">
-    <link rel="stylesheet" href="resources/styles/code-space.css">
-    <link rel="stylesheet" href="resources/styles/footer.css">
+    <link rel="stylesheet" href="resources/styles/style.css" />
+    <link rel="stylesheet" href="resources/styles/main.css" />
+    <link rel="stylesheet" href="resources/styles/game.css" />
+    <link rel="stylesheet" href="resources/styles/code-space.css" />
+    <link rel="stylesheet" href="resources/styles/footer.css" />
   </head>
   <body>
     <main>
-      <section id = "game" itemscope itemtype = "https://schema.org/Game">
-          <div id = "scoreTitle">
-            <span id = "title" title = "Показывает сколько шагов уже выполнено" itemprop = "progress" i18n = "content">{{ game-title }}</span>
-          </div>
-          <div class="container" itemscope itemtype = "https://schema.org/gameLocation">
-            <div id = "flyZone"></div>
-            <main id = "towersList">
-              <div class = "ghost-tower tower-example" style = "--arraySize: 4vh;"></div>
-              <div class = "ghost-tower tower-example" style = "--arraySize: 8vh;"></div>
-              <div class = "ghost-tower tower-example" style = "--arraySize: 3.5vh;"></div>
-            </main>
-          </div>
+      <section id="game" itemscope itemtype="https://schema.org/Game">
+        <div id="scoreTitle">
+          <span
+            id="title"
+            title="Показывает сколько шагов уже выполнено"
+            itemprop="progress"
+            i18n="content"
+            >{{ game-title }}</span
+          >
+        </div>
+        <div
+          class="container"
+          itemscope
+          itemtype="https://schema.org/gameLocation"
+        >
+          <div id="flyZone"></div>
+          <main id="towersList">
+            <div
+              class="ghost-tower tower-example"
+              style="--arraySize: 4vh"
+            ></div>
+            <div
+              class="ghost-tower tower-example"
+              style="--arraySize: 8vh"
+            ></div>
+            <div
+              class="ghost-tower tower-example"
+              style="--arraySize: 3.5vh"
+            ></div>
+          </main>
+        </div>
       </section>
-      <section id = "code-space" itemscope itemtype = "https://schema.org/accessibilityControl">
-        <div id = "stretch-container" class = "hljs">•••</div>
-        <code contenteditable placeholder = "Поле для ввода кода" id = "code-area" class = "hljs language-javascript"></code>
+      <section
+        id="code-space"
+        itemscope
+        itemtype="https://schema.org/accessibilityControl"
+      >
+        <div id="stretch-container" class="hljs">•••</div>
+        <code
+          contenteditable
+          placeholder="Поле для ввода кода"
+          id="code-area"
+          class="hljs language-javascript"
+        ></code>
 
-        <div id = "control-buttons">
-          <span class = "button" id = "play-button" title = "Запустить сценарий! *CTRL + ENTER*" i18n = "content">
-            <span class = "icon">p</span> {{codeSpace-controlButtons-play}}
+        <div id="control-buttons">
+          <span
+            class="button"
+            id="play-button"
+            title="Запустить сценарий! *CTRL + ENTER*"
+            i18n="content"
+          >
+            <span class="icon">p</span> {{codeSpace-controlButtons-play}}
           </span>
-          <span class = "button" id = "scoreMap-button" title = "Показывает статистику собранную Полигоном" i18n = "content">
-            <span class = "icon">i</span> {{codeSpace-controlButtons-scoreMap}}
+          <span
+            class="button"
+            id="scoreMap-button"
+            title="Показывает статистику собранную Полигоном"
+            i18n="content"
+          >
+            <span class="icon">i</span> {{codeSpace-controlButtons-scoreMap}}
           </span>
-          <span class = "button" id = "copy-button" i18n = "content">
-            <span class = "icon">c</span> {{codeSpace-controlButtons-copy}}
+          <span class="button" id="copy-button" i18n="content">
+            <span class="icon">c</span> {{codeSpace-controlButtons-copy}}
           </span>
-          <span class = "button" id = "showConsole-button" title = "Логи скрипта" i18n = "content">
-            <span class = "icon">t</span> {{codeSpace-controlButtons-showConsole}}
+          <span
+            class="button"
+            id="showConsole-button"
+            title="Логи скрипта"
+            i18n="content"
+          >
+            <span class="icon">t</span> {{codeSpace-controlButtons-showConsole}}
           </span>
-          <span class = "button" id = "setDefault-button" title = "Заменяет код стандартным" i18n = "content">
-            <span class = "icon">h</span> {{codeSpace-controlButtons-setDefault}}
+          <span
+            class="button"
+            id="setDefault-button"
+            title="Заменяет код стандартным"
+            i18n="content"
+          >
+            <span class="icon">h</span> {{codeSpace-controlButtons-setDefault}}
           </span>
-          <span class = "button" id = "showHelps-button" title = "Небольшой справочник" i18n = "content">
-            <span class = "icon">l</span> {{codeSpace-controlButtons-showHelps}}
+          <span
+            class="button"
+            id="showHelps-button"
+            title="Небольшой справочник"
+            i18n="content"
+          >
+            <span class="icon">l</span> {{codeSpace-controlButtons-showHelps}}
           </span>
         </div>
-
       </section>
     </main>
 
-    <section id = "readme" itemscope itemtype = "https://schema.org/usageInfo">
+    <section id="readme" itemscope itemtype="https://schema.org/usageInfo">
       <article>
-        <h1 i18n = "content">{{footer-article-h1}}</h1>
-        <main id = "taskInfo" i18n = "content">
-          {{ footer-article-taskInfo }}
-        </main>
+        <h1 i18n="content">{{footer-article-h1}}</h1>
+        <main id="taskInfo" i18n="content">{{ footer-article-taskInfo }}</main>
 
-
-        <ol id = "advice" itemscope itemtype = "https://schema.org/gameTip" i18n-childs = "content">
+        <ol
+          id="advice"
+          itemscope
+          itemtype="https://schema.org/gameTip"
+          i18n-childs="content"
+        >
           <h2>{{ footer-advice-h2 }}</h2>
-          <li>
-            {{ footer-advice-#1 }}
-          </li>
-          <li>
-            {{ footer-advice-#2 }}
-          </li>
-          <li>
-            {{ footer-advice-#3 }}
-          </li>
-          <li>
-            {{ footer-advice-#4 }}
-          </li>
-          <li>
-            {{ footer-advice-#5 }}
-          </li>
-          <span id = "openSettings" onclick = "gtag('event', 'open_settings');"><a title = "Настройки" href = "./resources/settings/index.html" i18n = "content"><span class = "icon">a</span> {{ footer-advice-settings }}</a></span>
+          <li>{{ footer-advice-#1 }}</li>
+          <li>{{ footer-advice-#2 }}</li>
+          <li>{{ footer-advice-#3 }}</li>
+          <li>{{ footer-advice-#4 }}</li>
+          <li>{{ footer-advice-#5 }}</li>
+          <span id="openSettings" onclick="gtag('event', 'open_settings');"
+            ><a
+              title="Настройки"
+              href="./resources/settings/index.html"
+              i18n="content"
+              ><span class="icon">a</span> {{ footer-advice-settings }}</a
+            ></span
+          >
         </ol>
 
-
-        <div id = "towerExample" class = "tower-example" style = "--arraySize: 35vh;"></div>
+        <div
+          id="towerExample"
+          class="tower-example"
+          style="--arraySize: 35vh"
+        ></div>
       </article>
       <footer>
-        <span i18n = "content">{{ footer-bottom-hidden }}</span>
+        <span i18n="content">{{ footer-bottom-hidden }}</span>
       </footer>
     </section>
 
-    <script type="text/javascript" src = "classes/polifill.js"></script>
+    <script type="text/javascript" src="classes/polifill.js"></script>
 
-    <script type="text/javascript" src = "classes/EventEmitter.js"></script>
-    <script type="text/javascript" src = "classes/Util.js"></script>
-    <script type="text/javascript" src = "classes/LocalDB.js"></script>
-    <script type="text/javascript" src = "classes/UserParams.js"></script>
+    <script type="text/javascript" src="classes/EventEmitter.js"></script>
+    <script type="text/javascript" src="classes/Util.js"></script>
+    <script type="text/javascript" src="classes/LocalDB.js"></script>
+    <script type="text/javascript" src="classes/UserParams.js"></script>
 
     <script src="resources/i18n.json.js" charset="utf-8"></script>
     <script src="classes/I18n.js" charset="utf-8"></script>
 
+    <script type="text/javascript" src="classes/alerts.js"></script>
+    <script type="text/javascript" src="classes/modalWindow.js"></script>
 
-    <script type="text/javascript" src = "classes/alerts.js"></script>
-    <script type="text/javascript" src = "classes/modalWindow.js"></script>
+    <script type="text/javascript" src="classes/LinearGraph.js"></script>
+    <script type="text/javascript" src="classes/Library.js"></script>
+    <script type="text/javascript" src="classes/Console.js"></script>
 
+    <script type="text/javascript" src="classes/ActionHandler.js"></script>
+    <script type="text/javascript" src="classes/GlitchText.js"></script>
 
-    <script type="text/javascript" src = "classes/LinearGraph.js"></script>
-    <script type="text/javascript" src = "classes/Library.js"></script>
-    <script type="text/javascript" src = "classes/Console.js"></script>
+    <script
+      type="text/javascript"
+      src="resources/highlight/highlight.min.js"
+    ></script>
+    <script type="text/javascript" src="classes/CodeSpace.js"></script>
 
-    <script type="text/javascript" src = "classes/ActionHandler.js"></script>
-    <script type="text/javascript" src = "classes/GlitchText.js"></script>
+    <script type="text/javascript" src="classes/Game.js"></script>
+    <script type="text/javascript" src="classes/Visualizer.js"></script>
+    <script type="text/javascript" src="classes/Poligon.js"></script>
+    <script type="text/javascript" src="classes/CrashDefender.js"></script>
 
-    <script type="text/javascript" src = "resources/highlight/highlight.min.js"></script>
-    <script type="text/javascript" src = "classes/CodeSpace.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 
-    <script type="text/javascript" src = "classes/Game.js"></script>
-    <script type="text/javascript" src = "classes/Visualizer.js"></script>
-    <script type="text/javascript" src = "classes/Poligon.js"></script>
-    <script type="text/javascript" src = "classes/CrashDefender.js"></script>
-
-    <script type="text/javascript" src = "main.js"></script>
-
-    <link rel="stylesheet" href="resources/styles/alert-field.css">
-    <link rel="stylesheet" href="resources/styles/linearGraph.css">
-    <link rel="stylesheet" href="resources/styles/library.css">
-    <link rel="stylesheet" href="resources/styles/console.css">
-    <link rel="stylesheet" href="resources/styles/modalWindow.css">
+    <link rel="stylesheet" href="resources/styles/alert-field.css" />
+    <link rel="stylesheet" href="resources/styles/linearGraph.css" />
+    <link rel="stylesheet" href="resources/styles/library.css" />
+    <link rel="stylesheet" href="resources/styles/console.css" />
+    <link rel="stylesheet" href="resources/styles/modalWindow.css" />
   </body>
 </html>

@@ -1,5 +1,4 @@
 class Params {
-
   static prefix = "userParams";
 
   getList() {
@@ -9,14 +8,14 @@ class Params {
     return Object.assign({ ..._default }, user);
   }
 
-  static setValue(key, value, {forceSave} = {}) {
-    localDB.setItem(`${ this.prefix }.${key}`, value, {
-      forceSave
+  static setValue(key, value, { forceSave } = {}) {
+    localDB.setItem(`${this.prefix}.${key}`, value, {
+      forceSave,
     });
   }
 
-  static getValue(key){
-    return localDB.getItem(`${ this.prefix }.${ key }`);
+  static getValue(key) {
+    return localDB.getItem(`${this.prefix}.${key}`);
   }
 
   static defaultValues = {

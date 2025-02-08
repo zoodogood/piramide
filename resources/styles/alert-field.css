@@ -46,24 +46,40 @@
   }
 }
 
+.alertField .error p {
+  color: #7c0000;
+}
+.alertField .warning p {
+  color: #7c7c00;
+}
+.alertField .success p {
+  color: #007c00;
+}
 
-.alertField .error   p {color: #7c0000;}
-.alertField .warning p {color: #7c7c00;}
-.alertField .success p {color: #007c00;}
+.alertField .error {
+  background-color: rgba(250, 170, 170, 0.9);
+}
+.alertField .warning {
+  background-color: rgba(250, 250, 170, 0.9);
+}
+.alertField .success {
+  background-color: rgba(170, 250, 170, 0.9);
+}
 
-.alertField .error    {background-color: rgba(250, 170, 170, 0.9);}
-.alertField .warning  {background-color: rgba(250, 250, 170, 0.9);}
-.alertField .success  {background-color: rgba(170, 250, 170, 0.9);}
-
-.alertField .error    {border-color: rgb(250, 0, 0);}
-.alertField .warning  {border-color: rgb(255, 200, 0);}
-.alertField .success  {border-color: rgb(0, 170, 0);}
+.alertField .error {
+  border-color: rgb(250, 0, 0);
+}
+.alertField .warning {
+  border-color: rgb(255, 200, 0);
+}
+.alertField .success {
+  border-color: rgb(0, 170, 0);
+}
 
 .nonDeletableAlert {
   margin-bottom: 12px;
   padding-top: 12px;
 }
-
 
 .alertField.alert.removed {
   display: none;

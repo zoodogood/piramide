@@ -7,7 +7,6 @@
   overflow-x: hidden;
 }
 
-
 #code-space code {
   box-sizing: border-box;
   display: inline-block;
@@ -27,7 +26,7 @@
   overflow-y: overlay;
   border: none;
 
-  font-size: calc(var( --codeFontSize ) / 100);
+  font-size: calc(var(--codeFontSize) / 100);
 }
 
 #code-space code::-webkit-scrollbar-thumb {
@@ -38,11 +37,9 @@
   background: #5e6163;
 }
 
-
 #code-space code:focus {
   outline: none;
 }
-
 
 #code-space #stretch-container {
   height: 2vh;
@@ -55,7 +52,6 @@
   overflow: hidden;
 }
 
-
 #code-space #control-buttons {
   display: flex;
   height: 3vh;
@@ -64,7 +60,6 @@
   user-select: none;
   overflow: hidden;
 }
-
 
 #code-space #control-buttons .button {
   display: flex;
@@ -101,16 +96,14 @@
   padding-right: 5px;
 }
 
-
 #code-space #control-buttons .button:not([disabled]):active {
   transform: scale(0.95);
 }
 
-#code-space #control-buttons .button[disabled]{
+#code-space #control-buttons .button[disabled] {
   cursor: default;
   filter: brightness(0.5);
 }
-
 
 @media (max-width: 600px) {
   #code-space #control-buttons {
