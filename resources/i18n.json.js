@@ -25,7 +25,7 @@ globalThis.i18nLanguages = {
 		"footer-article-taskInfo": `Напишіть алгоритм, щоб зібрати всі плитки всередині одного масиву, вежі.<br>
        Для їх переміщення використовуйте метод класа: <code>game</code> — <code>step()</code>,<br>
        який приймає два аргументи: номер масиву з якого перенести плитку і того, в котрий її перенести.<br>
-       Отримати масив веж — <code>game.state</code>`,
+       Отримати нумеровану множину веж — <code>game.state</code>`,
 
 		"footer-advice-h2": "Прочитайте",
 		"footer-advice-#1": "Шукайте в Інтернеті те, що Вам цікаво.",
@@ -246,7 +246,7 @@ globalThis.i18nLanguages = {
 		"footer-article-taskInfo": `Напишите алгоритм, чтобы собрать все плитки внутри одного массива, <i>башни</i>.<br>
        Чтобы их перемещать используйте метод класса: <code>game</code> — <code>step()</code>,<br>
        который принимает два аргумента: номер массива с которого перенести плитку и того, в который её перекинуть.<br>
-       Получить массив башен — <code>game.state</code>`,
+       Получить нумерованное множество башен — <code>game.state</code>`,
 
 		"footer-advice-h2": "Прочтите",
 		"footer-advice-#1": "Ищите в Интернете то, что Вам интересно.",
@@ -466,9 +466,9 @@ globalThis.i18nLanguages = {
 		"footer-article-taskInfo": `Write an algorithm to collect all the tiles inside a single array, <i>tower</i>.<br>
        To move them, use the class method: <code>game</code> — <code>step()</code>,<br>
        which takes two arguments: the number of the array from which to move the tile and the array to which to move it to.<br>
-       Get array of towers — <code>game.state</code>`,
+       Get numbered set of towers — <code>game.state</code>`,
 
-		"footer-advice-h2": "You! Read me! NOW!",
+		"footer-advice-h2": "Read",
 		"footer-advice-#1": "Search the Internet for what you are interested in.",
 		"footer-advice-#2": `Visit the <a title = "Github" href = "https://github.com/zoodogood/piramide" target="_blank"><span class = "icon">g</span> Github page.</a>`,
 		"footer-advice-#3":
